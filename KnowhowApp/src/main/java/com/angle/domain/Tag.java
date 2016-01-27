@@ -10,7 +10,7 @@ public class Tag {
 
 	public Tag() {
 	}
-	
+
 	public String getTag() {
 		return tag;
 	}
