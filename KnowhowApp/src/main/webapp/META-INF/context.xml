@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Context>
+	<Resource name="jdbc/springDBPool" 
+			auth="Container"
+			type="javax.sql.DataSource"
+			driverClassName="oracle.jdbc.driver.OracleDriver"
+			url="jdbc:oracle:thin:@210.119.108.243:1521/orcl"
+			username="angle"
+			password="angle"		
+			factory="org.apache.commons.dbcp2.BasicDataSourceFactory"
+			maxIdle="5"
+			closeMethod="close" />
+</Context>
