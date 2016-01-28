@@ -5,10 +5,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.angle.dao.PostDao;
+import com.angle.dao.MemberDao;
 
 @Repository
-public class MemberDaoImpl implements PostDao {
+public class MemberDaoImpl implements MemberDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;

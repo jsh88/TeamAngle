@@ -8,6 +8,9 @@ public class Tag {
 	private String fDate;		//	최초 생성,작성,조회 일시
 	private String rDate;		// 최근 유입,작성,조회 일시
 
+	public Tag() {
+	}
+
 	public String getTag() {
 		return tag;
 	}

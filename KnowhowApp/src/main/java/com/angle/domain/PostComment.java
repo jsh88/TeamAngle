@@ -14,6 +14,9 @@ public class PostComment {
 	// Member Join Info
 	private String id;
 	private String nickName;
+	
+	public PostComment() {
+	}
 
 	public int getcNo() {
 		return cNo;

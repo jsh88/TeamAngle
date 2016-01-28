@@ -6,6 +6,9 @@ public class MemberTag extends Tag {
 	private String id;
 	private String nickName;
 
+	public MemberTag() {
+	}
+
 	public String getId() {
 		return id;
 	}

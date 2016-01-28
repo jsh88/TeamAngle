@@ -4,6 +4,9 @@ public class PostContent {
 
 	private String content;		// 페이지 내용
 	private String media;		// 페이지 이미지나 동영상 url
+	
+	public PostContent() {
+	}
 
 	public String getContent() {
 		return content;
