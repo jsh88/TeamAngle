@@ -1,14 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Knowhow 작성</title>
-</head>
-<body>
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +12,7 @@
 <script src="../boot/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<form name="addknowhow" method="post">
+<!-- 	<form name="addknowhow" method="post">
 		<div id="addEntry">
 			<div id="addHeader">
 				<div id="Close">
@@ -35,7 +25,7 @@
 			<div class="add" id="addtitle">
 				<b>제목 :</b> &nbsp;<input type="text" name="title" size="45"/>
 			</div>
-			<div class="add" id="addcontent">
+			<div class="add" id="addcontent">              
 				<textarea name="content" rows="15" cols="42" style="overflow: hidden;"></textarea>
 			</div>
 			<div class="add" id="addfile">
@@ -46,6 +36,16 @@
 			</div>
 			<div class="add">
 				<input type="submit" id="addbtn" value="공유하기" size="30"/>
+			</div>
+		</div>
+	</form> -->
+	
+	<form name="addknowhow" action="" method="post">
+		<div id="addEntry">
+			<div id="addHeader">
+				<button type="button" name="close" onclick="window.close()">
+					<img src="/Knowhow"
+				</button>
 			</div>
 		</div>
 	</form>
