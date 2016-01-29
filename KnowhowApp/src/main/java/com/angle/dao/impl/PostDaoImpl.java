@@ -66,7 +66,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 		jdbcTemplate.update("insert into postContent values(?, ?, ?, ?)",
 				new Object[] { pCon.getpNo(), pCon.getPage(), pCon.getContent(), pCon.getMedia() });
-		
+
 		jdbcTemplate.update("update post set mpage = mpage + 1, tdate = sysdate where pno = ?", pCon.getpNo());
 
 	}
@@ -140,7 +140,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	public void delPostPage(int pNo, int pageNum) {
 
 		jdbcTemplate.update("delete from postContent where pno = ? and page = ?", pageNum, pNo);
-		
+
 		jdbcTemplate.update("update post set mpage = mpage - 1, tdate = sysdate where pno = ?", pNo);
 
 	}
@@ -160,7 +160,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 					@Override
 					public ArrayList<Post> extractData(ResultSet rs) throws SQLException, DataAccessException {
-						
+
 						if (rs.next()) {
 
 							ArrayList<Post> pList = new ArrayList<>();
