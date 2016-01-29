@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.angle.service.PostCommentService;
 import com.angle.service.PostService;
 
 @Controller
@@ -19,9 +20,20 @@ public class PostController {
 	@Autowired
 	private PostService postService;
 
+	@Autowired
+	private PostCommentService postCommentService;
+
 	public void setPostService(PostService postService) {
 		this.postService = postService;
 	}
+
+	public void setPostCommentService(PostCommentService postCommentService) {
+		this.postCommentService = postCommentService;
+	}
+
+	/**
+	 * 포스트(페이지 포함) 추가, 수정, 삭제
+	 */
 
 	// 포스트 작성 시작
 	@RequestMapping(value = "addPost")
@@ -81,21 +93,56 @@ public class PostController {
 	}
 
 	// 포스트 작성 취소
-		@RequestMapping(value = "canclePosting")
-		public String canclePosting(HttpServletRequest request, HttpSession session) {
+	@RequestMapping(value = "canclePosting")
+	public String canclePosting(HttpServletRequest request, HttpSession session) {
 
-			postService.canclePosting(request, session);
+		postService.canclePosting(request, session);
 
-			return null; // 어디로 가야하오
-		}
-		
-		// 임시 포스트 리스트 가져오기
-		@RequestMapping(value = "getTempPost")
-		public String getTempPostList(HttpServletRequest request, HttpSession session) {
+		return null; // 어디로 가야하오
+	}
 
-			postService.getTempPostList(request, session);
+	// 임시 포스트 리스트 가져오기
+	@RequestMapping(value = "getTempPost")
+	public String getTempPostList(HttpServletRequest request, HttpSession session) {
 
-			return null; // 어디로 가야하오
-		}
+		postService.getTempPostList(request, session);
+
+		return null; // 어디로 가야하오
+	}
+
+	// 포스팅 완료
+	@RequestMapping(value = "completePosting")
+	public String completePosting(HttpServletRequest request, HttpSession session) {
+
+		postService.completePosting(request, session);
+
+		return null; // 어디로 가야하오
+	}
+
+	/**
+	 * 댓글 추가, 수정, 삭제
+	 */
+
+	// 댓글 추가
+	@RequestMapping(value = "addPostComment")
+	public String addPostComment(HttpServletRequest request, HttpSession session) {
+
+		postService.addPostComment(request, session);
+
+		return null; // 어디로 가야하오
+	}
+	
+	/**
+	 * 포스트 조회, 검색
+	 */
+
+	// 포스트 일반 조회
+	@RequestMapping(value = "morePost")
+	public String morePost(HttpServletRequest request, HttpSession session) {
+
+		postService.getMorePost(request, session);
+
+		return null; // 어디로 가야하오
+	}
 
 }

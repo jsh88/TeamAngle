@@ -14,7 +14,8 @@ public interface PostService {
 	public void addPostPage(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException;
 
-	public void modifyPostPage(MultipartHttpServletRequest request, HttpSession session) throws IllegalStateException, IOException;
+	public void modifyPostPage(MultipartHttpServletRequest request, HttpSession session)
+			throws IllegalStateException, IOException;
 
 	public void delPostPage(HttpServletRequest request, HttpSession session);
 
@@ -25,5 +26,11 @@ public interface PostService {
 	public void canclePosting(HttpServletRequest request, HttpSession session);
 
 	public void getTempPostList(HttpServletRequest request, HttpSession session);
+
+	public void completePosting(HttpServletRequest request, HttpSession session);
+
+	public void addPostComment(HttpServletRequest request, HttpSession session);
+
+	public void getMorePost(HttpServletRequest request, HttpSession session);
 
 }
