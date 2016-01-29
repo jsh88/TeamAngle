@@ -1,12 +1,10 @@
 package com.angle.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.angle.service.PostService;
@@ -21,10 +19,13 @@ public class TagController {
 		this.postService = postService;
 	}
 
+	// 
 	@RequestMapping
-	public String test(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
+	public String recommendTag(HttpServletRequest request, HttpSession session) {
+		
+		//
 
-		return null;
+		return null;	// 어디로 가야하오
 	}
 
 }

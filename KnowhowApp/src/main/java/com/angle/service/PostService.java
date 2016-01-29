@@ -29,8 +29,6 @@ public interface PostService {
 
 	public void completePosting(HttpServletRequest request, HttpSession session);
 
-	public void addPostComment(HttpServletRequest request, HttpSession session);
-
 	public void getMorePost(HttpServletRequest request, HttpSession session);
 
 }

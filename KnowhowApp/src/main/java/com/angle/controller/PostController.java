@@ -127,18 +127,45 @@ public class PostController {
 	@RequestMapping(value = "addPostComment")
 	public String addPostComment(HttpServletRequest request, HttpSession session) {
 
-		postService.addPostComment(request, session);
+		postCommentService.addPostComment(request, session);
 
 		return null; // 어디로 가야하오
 	}
-	
+
+	// 댓글 수정
+	@RequestMapping(value = "modifyPostComment")
+	public String modifyPostComment(HttpServletRequest request, HttpSession session) {
+
+		postCommentService.modifyPostComment(request, session);
+
+		return null; // 어디로 가야하오
+	}
+
+	// 댓글 삭제
+	@RequestMapping(value = "modifyPostComment")
+	public String delPostComment(HttpServletRequest request, HttpSession session) {
+
+		postCommentService.delPostComment(request, session);
+
+		return null; // 어디로 가야하오
+	}
+
 	/**
 	 * 포스트 조회, 검색
 	 */
 
-	// 포스트 일반 조회
+	// 포스트 페이지, 댓글 일반 조회
 	@RequestMapping(value = "morePost")
 	public String morePost(HttpServletRequest request, HttpSession session) {
+
+		postService.getMorePost(request, session);
+
+		return null; // 어디로 가야하오
+	}
+
+	// t
+	@RequestMapping(value = "t")
+	public String t(HttpServletRequest request, HttpSession session) {
 
 		postService.getMorePost(request, session);
 

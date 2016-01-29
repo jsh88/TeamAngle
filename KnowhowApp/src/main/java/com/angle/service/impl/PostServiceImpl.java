@@ -171,8 +171,14 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	@Override
 	public void completePosting(HttpServletRequest request, HttpSession session) {
 		
-		//
-				
+		// 포스트 작업 완료
+
+	}
+
+	@Override
+	public void getMorePost(HttpServletRequest request, HttpSession session) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -182,7 +188,13 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	}
 
 	@Override
-	public void getMorePost(HttpServletRequest request, HttpSession session) {
+	public void modifyPostComment(HttpServletRequest request, HttpSession session) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delPostComment(HttpServletRequest request, HttpSession session) {
 		// TODO Auto-generated method stub
 		
 	}
