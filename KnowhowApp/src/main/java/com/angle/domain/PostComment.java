@@ -10,14 +10,34 @@ public class PostComment {
 
 	// Post Join Info
 	private int pNo;
+	
+	// PostContent Join Info
+	private int pageCount;
 
 	// Member Join Info
 	private String id;
 	private String nickName;
+	private String image;
 	
 	public PostComment() {
 	}
 
+	public int getPageCount() {
+		return pageCount;
+	}
+	
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
+	}
+	
+	public String getImage() {
+		return image;
+	}
+	
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
 	public int getcNo() {
 		return cNo;
 	}

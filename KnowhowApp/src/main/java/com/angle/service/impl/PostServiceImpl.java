@@ -16,10 +16,11 @@ import com.angle.dao.PostDao;
 import com.angle.domain.Member;
 import com.angle.domain.Post;
 import com.angle.domain.PostContent;
+import com.angle.service.PostCommentService;
 import com.angle.service.PostService;
 
 @Service
-public class PostServiceImpl implements PostService {
+public class PostServiceImpl implements PostService, PostCommentService {
 
 	private final static String path = "/resources/images";
 
@@ -164,6 +165,25 @@ public class PostServiceImpl implements PostService {
 	public void getTempPostList(HttpServletRequest request, HttpSession session) {
 		
 		request.setAttribute("pList", postDao.getTempPostList(((Member)session.getAttribute("member")).getId()));
+		
+	}
+
+	@Override
+	public void completePosting(HttpServletRequest request, HttpSession session) {
+		
+		//
+				
+	}
+
+	@Override
+	public void addPostComment(HttpServletRequest request, HttpSession session) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void getMorePost(HttpServletRequest request, HttpSession session) {
+		// TODO Auto-generated method stub
 		
 	}
 }

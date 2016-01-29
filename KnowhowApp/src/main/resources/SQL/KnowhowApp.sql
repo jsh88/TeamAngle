@@ -3,14 +3,17 @@ from v$session a, v$lock b, dba_objects c
 where a.sid=b.sid and 
 b.id1=c.object_id and 
 b.type='TM';
-alter system kill session '286, 3265'; 
+alter system kill session '240, 15078'; 
 
 select username, account_status, lock_date from dba_users;
 
 commit;
 
+alter table postcontent drop (state);
+
 drop table postcomment;
 drop table postrecommendation;
+drop table postLog;
 drop table posttag;
 drop table membertag;
 drop table postcontent;
@@ -44,25 +47,35 @@ create table post(
   mdate date default sysdate not null,
   tdate date default sysdate,
   good number default 0 not null,
+  count number default 0 not null,
   state char(1) default 0 not null
 );
 
 create table postComment(
   cno number constraint com_pk primary key,
-  pno number constraint com_post_fk references post(pno) on delete cascade not null,
+  page number not null,
+  pno number not null,
   id varchar2(90) constraint com_mem_fk references member(id) on delete cascade not null,
   content varchar2(1000) not null,
   wdate date default sysdate not null,
   mdate date default sysdate not null,
-  media varchar2(1000)
+  media varchar2(1000),
+  constraint com_pContent_fk foreign key (pno, page) references postContent(pno, page) on delete cascade
 );
 
 create table postContent(
-  pno number constraint pContent_post references post(pno) on delete cascade not null,
+  pno number constraint pContent_post_fk references post(pno) on delete cascade not null,
   page number not null,
   content varchar2(4000) not null,
   media varchar2(1000),
   constraint pContent_pk primary key(pno, page)
+);
+
+create table postLog(
+  pno number constraint pLog_post_fk references post(pno) on delete cascade not null,
+  id varchar2(90) constraint pLog_member_fk references member(id) on delete cascade not null,
+  count number not null,
+  rdate date default sysdate not null
 );
 
 create table tag(
