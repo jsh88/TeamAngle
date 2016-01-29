@@ -17,4 +17,10 @@ public interface PostDao {
 
 	public ArrayList<PostContent> getPostPage(int pNo);
 
+	public void delPostPage(int pNo, int pageNum);
+
+	public void delPost(int pNo);
+
+	public ArrayList<Post> getTempPostList(String id);
+
 }

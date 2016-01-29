@@ -18,12 +18,12 @@ public interface PostService {
 
 	public void delPostPage(HttpServletRequest request, HttpSession session);
 
-	public void delPost(HttpServletRequest request, HttpSession session);
+	public void delPost(HttpServletRequest request);
 
-	public void modifyPost(MultipartHttpServletRequest request, HttpSession session);
+	public void modifyPost(HttpServletRequest request, HttpSession session);
 
 	public void canclePosting(HttpServletRequest request, HttpSession session);
 
-	public void getTempPost(HttpServletRequest request, HttpSession session);
+	public void getTempPostList(HttpServletRequest request, HttpSession session);
 
 }

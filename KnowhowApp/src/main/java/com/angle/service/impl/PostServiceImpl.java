@@ -85,7 +85,6 @@ public class PostServiceImpl implements PostService {
 		postDao.addPostPage(pCon);
 
 		pConList.add(pCon);
-		session.setAttribute("pConList", pConList);
 
 	}
 
@@ -118,13 +117,10 @@ public class PostServiceImpl implements PostService {
 
 		postDao.modifyPostPage(pCon);
 
-		pConList.add(pCon);
-		session.setAttribute("pConList", pConList);
-
 	}
 
 	@Override
-	public void modifyPost(MultipartHttpServletRequest request, HttpSession session) {
+	public void modifyPost(HttpServletRequest request, HttpSession session) {
 
 		int pNo = Integer.parseInt(request.getParameter("pno"));
 
@@ -136,11 +132,24 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public void delPostPage(HttpServletRequest request, HttpSession session) {
 
+		@SuppressWarnings("unchecked")
+		ArrayList<PostContent> pConList = (ArrayList<PostContent>) session.getAttribute("pConList");		
+		
+		int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+		
+		int pNo= pConList.get(pageNum).getpNo();
+
+		pConList.remove(pageNum);
+		
+		postDao.delPostPage(pNo, pageNum);
+
 	}
 
 	@Override
-	public void delPost(HttpServletRequest request, HttpSession session) {
-
+	public void delPost(HttpServletRequest request) {
+		
+		postDao.delPost(Integer.parseInt(request.getParameter("pno")));
+		
 	}
 
 	@Override
@@ -152,9 +161,9 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public void getTempPost(HttpServletRequest request, HttpSession session) {
+	public void getTempPostList(HttpServletRequest request, HttpSession session) {
 		
-		
+		request.setAttribute("pList", postDao.getTempPostList(((Member)session.getAttribute("member")).getId()));
 		
 	}
 }

@@ -10,10 +10,15 @@ public class Post {
 	private String tDate;	 		// 임시저장일시
 	private int good; 				// 추천수
 	private boolean state; 	// 임시
+	private int count;				// 포스트 조회수
 
 	// Member Join Info
 	private String id;
 	private String nickName;
+	
+	// Log Join Info
+	private int lCount;
+	private String rdate;
 	
 	public Post() {
 		
@@ -97,6 +102,30 @@ public class Post {
 
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
+	}
+	
+	public int getCount() {
+		return count;
+	}
+	
+	public void setCount(int count) {
+		this.count = count;
+	}
+	
+	public int getlCount() {
+		return lCount;
+	}
+	
+	public void setlCount(int lCount) {
+		this.lCount = lCount;
+	}
+	
+	public String getRdate() {
+		return rdate;
+	}
+	
+	public void setRdate(String rdate) {
+		this.rdate = rdate;
 	}
 
 }

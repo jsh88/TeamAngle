@@ -64,9 +64,9 @@ public class PostController {
 
 	// 포스트 삭제
 	@RequestMapping(value = "delPost", method = RequestMethod.GET)
-	public String delPost(HttpServletRequest request, HttpSession session) {
+	public String delPost(HttpServletRequest request) {
 
-		postService.delPost(request, session);
+		postService.delPost(request);
 
 		return null; // 어디로 가야하오
 	}
@@ -89,11 +89,11 @@ public class PostController {
 			return null; // 어디로 가야하오
 		}
 		
-		// 임시 포스트 유무 체크
+		// 임시 포스트 리스트 가져오기
 		@RequestMapping(value = "getTempPost")
-		public String getTempPost(HttpServletRequest request, HttpSession session) {
+		public String getTempPostList(HttpServletRequest request, HttpSession session) {
 
-			postService.getTempPost(request, session);
+			postService.getTempPostList(request, session);
 
 			return null; // 어디로 가야하오
 		}
