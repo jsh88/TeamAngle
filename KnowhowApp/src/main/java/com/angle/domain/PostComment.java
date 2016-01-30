@@ -12,7 +12,7 @@ public class PostComment {
 	private int pNo;
 	
 	// PostContent Join Info
-	private int pageCount;
+	private int page;
 
 	// Member Join Info
 	private String id;
@@ -22,12 +22,12 @@ public class PostComment {
 	public PostComment() {
 	}
 
-	public int getPageCount() {
-		return pageCount;
+	public int getPage() {
+		return page;
 	}
 	
-	public void setPageCount(int pageCount) {
-		this.pageCount = pageCount;
+	public void setPage(int page) {
+		this.page = page;
 	}
 	
 	public String getImage() {
