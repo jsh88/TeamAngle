@@ -21,14 +21,12 @@ public interface PostService {
 
 	public void delPost(HttpServletRequest request);
 
-	public void modifyPost(HttpServletRequest request, HttpSession session);
+	public void getPost(HttpServletRequest request, HttpSession session);
 
 	public void canclePosting(HttpServletRequest request, HttpSession session);
 
 	public void getTempPostList(HttpServletRequest request, HttpSession session);
 
 	public void completePosting(HttpServletRequest request, HttpSession session);
-
-	public void getMorePost(HttpServletRequest request, HttpSession session);
 
 }
