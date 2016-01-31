@@ -4,6 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,6 +18,7 @@ import org.springframework.stereotype.Repository;
 import com.angle.dao.PostCommentDao;
 import com.angle.dao.PostDao;
 import com.angle.domain.Post;
+import com.angle.domain.PostComment;
 import com.angle.domain.PostContent;
 
 @Repository
@@ -193,6 +197,70 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 					}
 				});
+
+	}
+
+	@Override
+	public ArrayList<PostComment> getPostCommentList(int pNo) {
+
+		ArrayList<PostComment> pComList = jdbcTemplate.query(
+				"select p.*, m.id, m.nickName, m.image from postComment p, member m where pno = ? and p.id = m.id order by wdate asc",
+				new Object[] { pNo }, new ResultSetExtractor<ArrayList<PostComment>>() {
+
+					@Override
+					public ArrayList<PostComment> extractData(ResultSet rs) throws SQLException, DataAccessException {
+
+						ArrayList<PostComment> pComList = new ArrayList<>();
+
+						if (rs.next()) {
+
+							do {
+
+								PostComment pCom = new PostComment();
+
+								pCom.setcNo(rs.getInt("ono"));
+								pCom.setContent(rs.getString("content"));
+								pCom.setId(rs.getString("id"));
+								pCom.setImage(rs.getString("image"));
+								pCom.setmDate(rs.getString("mdate"));
+								pCom.setMedia(rs.getString("media"));
+								pCom.setNickName(rs.getString("nickname"));
+								pCom.setPage(rs.getInt("page"));
+								pCom.setpNo(pNo);
+								pCom.setwDate(rs.getString("wdate"));
+
+							} while (rs.next());
+
+						}
+
+						return pComList;
+
+					}
+				});
+
+		return pComList;
+	}
+
+	@Override
+	public void modifyPostComment(PostComment pCom) {
+
+		jdbcTemplate.update("update postComment set content = ?, media = ?, mdate = sysdate where cno = ?",
+				new Object[] { pCom.getContent(), pCom.getMedia(), pCom.getcNo() });
+
+	}
+
+	@Override
+	public void addPostComment(PostComment pCom) {
+
+		jdbcTemplate.update("insert into postComment values(com_seq.nextval, ?, ?, ?, ?, sysdate, sysdate, ?)",
+				new Object[] { pCom.getPage(), pCom.getpNo(), pCom.getId(), pCom.getContent(), pCom.getMedia() });
+
+	}
+
+	@Override
+	public void delPostComment(int cNo) {
+
+		jdbcTemplate.update("delete from postComment where cno = ?", new Object[] { cNo });
 
 	}
 }

@@ -15,13 +15,21 @@ public class Post {
 	// Member Join Info
 	private String id;
 	private String nickName;
+	private String image;
 	
 	// Log Join Info
 	private int lCount;
 	private String rdate;
 	
-	public Post() {
-		
+	public Post() {		
+	}
+	
+	public String getImage() {
+		return image;
+	}
+	
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public int getpNo() {

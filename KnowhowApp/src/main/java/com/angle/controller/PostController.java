@@ -69,7 +69,7 @@ public class PostController {
 	public String modifyPost(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
-		postService.modifyPost(request, session);
+		postService.getPost(request, session);
 
 		return null; // 어디로 가야하오
 	}
@@ -92,7 +92,7 @@ public class PostController {
 		return null; // 어디로 가야하오
 	}
 
-	// 포스트 작성 취소
+	// 포스트 작성 취소 or 포스트 조회 취소
 	@RequestMapping(value = "canclePosting")
 	public String canclePosting(HttpServletRequest request, HttpSession session) {
 
@@ -124,8 +124,9 @@ public class PostController {
 	 */
 
 	// 댓글 추가
-	@RequestMapping(value = "addPostComment")
-	public String addPostComment(HttpServletRequest request, HttpSession session) {
+	@RequestMapping(value = "addPostComment", method = RequestMethod.POST)
+	public String addPostComment(MultipartHttpServletRequest request, HttpSession session)
+			throws IllegalStateException, IOException {
 
 		postCommentService.addPostComment(request, session);
 
@@ -133,8 +134,9 @@ public class PostController {
 	}
 
 	// 댓글 수정
-	@RequestMapping(value = "modifyPostComment")
-	public String modifyPostComment(HttpServletRequest request, HttpSession session) {
+	@RequestMapping(value = "modifyPostComment", method = RequestMethod.POST)
+	public String modifyPostComment(MultipartHttpServletRequest request, HttpSession session)
+			throws IllegalStateException, IOException {
 
 		postCommentService.modifyPostComment(request, session);
 
@@ -142,7 +144,7 @@ public class PostController {
 	}
 
 	// 댓글 삭제
-	@RequestMapping(value = "modifyPostComment")
+	@RequestMapping(value = "delPostComment")
 	public String delPostComment(HttpServletRequest request, HttpSession session) {
 
 		postCommentService.delPostComment(request, session);
@@ -158,7 +160,8 @@ public class PostController {
 	@RequestMapping(value = "morePost")
 	public String morePost(HttpServletRequest request, HttpSession session) {
 
-		postService.getMorePost(request, session);
+		postService.getPost(request, session);
+		postCommentService.getPostCommentList(request, session);
 
 		return null; // 어디로 가야하오
 	}
@@ -167,7 +170,7 @@ public class PostController {
 	@RequestMapping(value = "t")
 	public String t(HttpServletRequest request, HttpSession session) {
 
-		postService.getMorePost(request, session);
+		postService.getPost(request, session);
 
 		return null; // 어디로 가야하오
 	}
