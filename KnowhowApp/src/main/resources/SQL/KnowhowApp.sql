@@ -106,6 +106,8 @@ create table memberTag(
   constraint mTag_pk primary key(id, tag)
 );
 
+select * from member;
+
 create table postRecommendation(
   id varchar2(90) constraint pRecom_mem_fk references member(id) on delete set null,
   pno number constraint pRecom_post_fk references post(pno) on delete cascade not null,

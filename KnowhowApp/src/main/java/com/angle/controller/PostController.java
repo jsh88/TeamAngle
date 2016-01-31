@@ -112,7 +112,8 @@ public class PostController {
 
 	// 포스팅 완료
 	@RequestMapping(value = "completePosting")
-	public String completePosting(HttpServletRequest request, HttpSession session) {
+	public String completePosting(MultipartHttpServletRequest request, HttpSession session)
+			throws IllegalStateException, IOException {
 
 		postService.completePosting(request, session);
 
@@ -166,11 +167,11 @@ public class PostController {
 		return null; // 어디로 가야하오
 	}
 
-	// t
-	@RequestMapping(value = "t")
+	// 포스트 추천
+	@RequestMapping(value = "recommendPost")
 	public String t(HttpServletRequest request, HttpSession session) {
 
-		postService.getPost(request, session);
+		postService.recommendPost(request, session);
 
 		return null; // 어디로 가야하오
 	}
