@@ -27,6 +27,8 @@ public interface PostService {
 
 	public void getTempPostList(HttpServletRequest request, HttpSession session);
 
-	public void completePosting(HttpServletRequest request, HttpSession session);
+	public void recommendPost(HttpServletRequest request, HttpSession session);
+
+	public void completePosting(MultipartHttpServletRequest request, HttpSession session) throws IllegalStateException, IOException;
 
 }

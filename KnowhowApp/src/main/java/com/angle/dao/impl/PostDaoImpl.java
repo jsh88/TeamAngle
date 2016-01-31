@@ -20,6 +20,7 @@ import com.angle.dao.PostDao;
 import com.angle.domain.Post;
 import com.angle.domain.PostComment;
 import com.angle.domain.PostContent;
+import com.angle.domain.PostTag;
 
 @Repository
 public class PostDaoImpl implements PostDao, PostCommentDao {
@@ -262,5 +263,80 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 		jdbcTemplate.update("delete from postComment where cno = ?", new Object[] { cNo });
 
+	}
+
+	@Override
+	public void setRecommendPost(int pNo, String id) {
+
+		if (jdbcTemplate.queryForObject("select 1 from postrecommendation where pno = ? and id = ?",
+				new Object[] { pNo, id }, Object.class) != null)
+
+			jdbcTemplate.update("delete from postrecommendation where pno = ? and id = ?", new Object[] { pNo, id });
+
+		else
+
+			jdbcTemplate.update("insert into postrecommendation values(?, ?)", new Object[] { pNo, id });
+
+	}
+
+	@Override
+	public void completePosting(ArrayList<PostTag> pTagList) {
+
+		for (PostTag p : pTagList) {
+
+			// 태그 업로드
+			try {
+
+				jdbcTemplate.update("insert into tag values(?, ?, ?, sysdate, sysdate)",
+						new Object[] { p.getTag(), p.getCount(), p.getWeight() });
+
+			} catch (DataAccessException e) {
+
+				jdbcTemplate.update("update tag set count = count + 1, rdate = sysdate where tag = ?",
+						new Object[] { p.getTag() });
+
+			}
+
+			// 포스트 태그 업로드
+			try {
+
+				jdbcTemplate.update("insert into posttag values(?, ?, ?, ?, sysdate, sysdate)",
+						new Object[] { p.getpNo(), p.getTag(), p.getCount(), p.getWeight() });
+
+			} catch (DataAccessException e) {
+
+				jdbcTemplate.update("update posttag set count = count + 1, rdate = sysdate where tag = ?",
+						new Object[] { p.getTag() });
+
+			}
+		}
+
+		pTagList = jdbcTemplate.query("select * from posttag where pno = ?", new Object[] { pTagList.get(0).getpNo() },
+				new ResultSetExtractor<ArrayList<PostTag>>() {
+
+					@Override
+					public ArrayList<PostTag> extractData(ResultSet rs) throws SQLException, DataAccessException {
+
+						ArrayList<PostTag> pTagList = new ArrayList<>();
+
+						while (rs.next()) {
+
+							PostTag p = new PostTag();
+
+							p.setpNo(rs.getInt("pno"));
+							p.setCount(rs.getInt("count"));
+							p.setTag(rs.getString("tag"));
+							p.setWeight(rs.getInt("weight"));
+							p.setfDate(rs.getString("fdate"));
+							p.setrDate(rs.getString("rdate"));
+
+							pTagList.add(p);
+
+						}
+
+						return pTagList;
+
+					}
+				});
 	}
 }

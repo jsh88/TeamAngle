@@ -18,6 +18,8 @@ import com.angle.domain.Member;
 import com.angle.domain.Post;
 import com.angle.domain.PostComment;
 import com.angle.domain.PostContent;
+import com.angle.domain.PostTag;
+import com.angle.env.LuceneKoreanAnalyzer;
 import com.angle.service.PostCommentService;
 import com.angle.service.PostService;
 
@@ -32,12 +34,19 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	@Autowired
 	private PostCommentDao postCommentDao;
 
+	@Autowired
+	private LuceneKoreanAnalyzer luceneKoreanAnalyzer;
+
 	public void setPostDao(PostDao postDao) {
 		this.postDao = postDao;
 	}
 
 	public void setPostCommentDao(PostCommentDao postCommentDao) {
 		this.postCommentDao = postCommentDao;
+	}
+
+	public void setLuceneKoreanAnalyzer(LuceneKoreanAnalyzer luceneKoreanAnalyzer) {
+		this.luceneKoreanAnalyzer = luceneKoreanAnalyzer;
 	}
 
 	@Override
@@ -181,10 +190,16 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void completePosting(HttpServletRequest request, HttpSession session) {
+	public void completePosting(MultipartHttpServletRequest request, HttpSession session)
+			throws IllegalStateException, IOException {
 
-		// 포스트 작업 완료
+		ArrayList<PostTag> pTagList = (ArrayList<PostTag>) luceneKoreanAnalyzer
+				.getTags((ArrayList<PostContent>) session.getAttribute("pConList"));
+
+		postDao.completePosting(pTagList);
+		this.addPostPage(request, session);
 
 	}
 
@@ -274,6 +289,14 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 		session.setAttribute("pComList",
 				postCommentDao.getPostCommentList(Integer.parseInt(request.getParameter("pno"))));
+
+	}
+
+	@Override
+	public void recommendPost(HttpServletRequest request, HttpSession session) {
+
+		postDao.setRecommendPost(Integer.parseInt(request.getParameter("pno")),
+				((Member) session.getAttribute("member")).getId());
 
 	}
 }
