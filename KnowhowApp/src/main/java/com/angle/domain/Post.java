@@ -4,7 +4,7 @@ public class Post {
 
 	private int pNo; 				// 포스트 번호
 	private String title; 			// 포스트 제목
-	private int mPage; 			// 페이지 수
+	private int mPage; 			// 페이지 수, CommentCount 임시 저장
 	private String wDate; 		// 작성일시
 	private String mDate; 		// 수정일시
 	private String tDate;	 		// 임시저장일시
@@ -19,7 +19,7 @@ public class Post {
 	
 	// Log Join Info
 	private int lCount;
-	private String rdate;
+	private String rDate;
 	
 	public Post() {		
 	}
@@ -128,12 +128,12 @@ public class Post {
 		this.lCount = lCount;
 	}
 	
-	public String getRdate() {
-		return rdate;
+	public String getrDate() {
+		return rDate;
 	}
 	
-	public void setRdate(String rdate) {
-		this.rdate = rdate;
+	public void setrDate(String rDate) {
+		this.rDate = rDate;
 	}
 
 }

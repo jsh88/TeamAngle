@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.angle.service.PostCommentService;
 import com.angle.service.PostService;
+import com.angle.service.TagService;
 
 @Controller
 public class PostController {
@@ -23,12 +24,19 @@ public class PostController {
 	@Autowired
 	private PostCommentService postCommentService;
 
+	@Autowired
+	private TagService tagService;
+
 	public void setPostService(PostService postService) {
 		this.postService = postService;
 	}
 
 	public void setPostCommentService(PostCommentService postCommentService) {
 		this.postCommentService = postCommentService;
+	}
+
+	public void setTagService(TagService tagService) {
+		this.tagService = tagService;
 	}
 
 	/**
@@ -157,12 +165,21 @@ public class PostController {
 	 * 포스트 조회, 검색
 	 */
 
-	// 포스트 페이지, 댓글 일반 조회
+	// 포스트 페이지, 댓글 일반 조회, 디테일
 	@RequestMapping(value = "morePost")
 	public String morePost(HttpServletRequest request, HttpSession session) {
 
 		postService.getPost(request, session);
 		postCommentService.getPostCommentList(request, session);
+
+		return null; // 어디로 가야하오
+	}
+
+	// 포스트 리스트
+	@RequestMapping(value = "searchPostList")
+	public String searchPostList(HttpServletRequest request) {
+
+		postService.getPostList(request);
 
 		return null; // 어디로 가야하오
 	}

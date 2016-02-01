@@ -4,9 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,13 +14,14 @@ import org.springframework.stereotype.Repository;
 
 import com.angle.dao.PostCommentDao;
 import com.angle.dao.PostDao;
+import com.angle.dao.TagDao;
 import com.angle.domain.Post;
 import com.angle.domain.PostComment;
 import com.angle.domain.PostContent;
 import com.angle.domain.PostTag;
 
 @Repository
-public class PostDaoImpl implements PostDao, PostCommentDao {
+public class PostDaoImpl implements PostDao, PostCommentDao, TagDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
