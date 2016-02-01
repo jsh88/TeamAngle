@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>  
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<link rel="stylesheet" href="resources/css/addKnowhow.css" type="text/css" >
 	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	<link type="" rel="stylesheet" href="resources/css/addKnowhow.css">
 	<script>
 	$(document).ready(function(){
 		
@@ -85,7 +85,7 @@
 		<div class="modal-content" id="hideList" >
 			<div id="hideListWrap" style="overflow:scroll; overflow-x:hidden;">
 				<div class="hideListContent">
-					<div class="Title"><a href="#" class="atitle">The work never ends ..</a><div class="contentimg"><a href=""><img style="width:15px;" src="close.png"/></a></div></div>
+					<div class="Title"><a href="#" class="atitle">The work never ends ..</a><div class="contentimg"><a href=""><img style="width:15px;" src="resources/images/close.png"/></a></div></div>
 					<div class="pageNum">
 						page : 7
 					</div>

@@ -116,7 +116,7 @@
 				<div class="modal-content" id="addContent">
 				<div id="addWrap">
 					<div class="modal-header" id="header">
-						<div id="Closeimg"><a href=""><img style="width:20px;" src="close.png"/></a></div>
+						<div id="Closeimg"><a href=""><img style="width:20px;" src="resources/images/close.png"/></a></div>
 						<div id="Title">Title</div>
 						<div id="CreateDate">2016.01.28 11:11:11</div>
 					</div>
