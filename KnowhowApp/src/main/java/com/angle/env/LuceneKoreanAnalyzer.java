@@ -101,7 +101,7 @@ public class LuceneKoreanAnalyzer {
 
 		}
 
-		return null;
+		return pTagList;
 
 	}
 }
