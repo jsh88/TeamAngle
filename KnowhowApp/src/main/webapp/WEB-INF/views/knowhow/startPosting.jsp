@@ -5,10 +5,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link rel="stylesheet" href="resources/css/addKnowhow.css" type="text/css" >
 	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="resources/css/addKnowhow.css" type="text/css" >
 	<script>
 	$(document).ready(function(){
 		
@@ -62,7 +62,7 @@
     	<div class="modal-content" id="ModalContent">
 	<div id="addCheckWrap">
 		<div id="addForm">
-			<form name="addTitleForm" action="" method="post">
+			<form name="addTitleForm" action="addPost" method="post">
 				<div id="addTitle">
 							<div class="form-group">
 								<label for="addtitle" class="col-sm-12 control-label" id="titlelabel">Please enter a post title!</label>
@@ -72,9 +72,9 @@
 							</div>
 							<div id="buttonGroup">
 								<button type="submit" class="btn btn-success addbtn" id="Createbtn"><b>Create Post</b></button>
-								<button type="submit" class="btn btn-success addbtn" id="Continuebtn"><b>Continue to Post</b></button>
+								<button type="submit" class="btn btn-success addbtn" id="Continuebtn"><b>Continue to Posting</b></button>
 								<button type="button" class="btn btn-warning addbtn" id="Recallingbtn"> <b>Recalling Post</b></button>
-								<button type="button" class="btn btn-warning addbtn" id="Priorbtn"> <b>Prior</b></button>
+								<button type="button" class="btn btn-warning addbtn" id="Priorbtn"> <b>Fold</b></button>
 							</div>	
 					</div>
 			</form>
