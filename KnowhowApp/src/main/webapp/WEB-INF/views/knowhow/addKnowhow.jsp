@@ -325,10 +325,10 @@
 						</div>
 					</div>
 					<div id="addbtn">
-						<img style="width:45px; margin-left: 6px; margin-top: 5px;" src="add.png"/>
+						<img style="width:45px; margin-left: 6px; margin-top: 5px;" src="resources/images/add.png"/>
 					</div>
 					<div id="deletebtn">
-						<img style="width:45px; margin-left: 6px; margin-top: 5px;"src="delete.png"/>
+						<img style="width:45px; margin-left: 6px; margin-top: 5px;"src="resources/images/delete.png"/>
 					</div>
 				</div>
 			</div>
