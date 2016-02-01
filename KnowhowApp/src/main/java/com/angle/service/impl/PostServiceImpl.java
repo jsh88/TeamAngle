@@ -25,7 +25,7 @@ import com.angle.service.PostService;
 import com.angle.service.TagService;
 
 @Service
-public class PostServiceImpl implements PostService, PostCommentService, TagService {
+public class PostServiceImpl implements PostService, PostCommentService {
 
 	private final static String path = "/resources/images";
 

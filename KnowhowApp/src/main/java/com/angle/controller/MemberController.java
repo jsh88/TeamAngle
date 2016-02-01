@@ -27,12 +27,6 @@ public class MemberController {
 		this.memberService = memberService;
 	}
 
-	@RequestMapping
-	public String test(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
-
-		return null;
-	}
-
 	@RequestMapping("/memModify")
 	public String modifyProfile(MultipartHttpServletRequest req) {
 		/*
@@ -51,12 +45,12 @@ public class MemberController {
 		return "index";
 	}
 
-	// 내가 최근에 작성한 포인트
-	@RequestMapping
-	public String getMyLatelyPost(String id) {
-		Post p = memberService.getMyLatelyPost(id);
-		return "redirect:/";
-	}
+//	// 내가 최근에 작성한 포인트
+//	@RequestMapping
+//	public String getMyLatelyPost(String id) {
+//		Post p = memberService.getMyLatelyPost(id);
+//		return "redirect:/";
+//	}
 
 	// 회원가입 폼 콜 부분
 	@RequestMapping(value = { "/memberJoinForm" }, method = RequestMethod.GET)

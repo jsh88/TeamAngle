@@ -43,6 +43,13 @@ public class PostController {
 	 * 포스트(페이지 포함) 추가, 수정, 삭제
 	 */
 
+	@RequestMapping(value = "startPosting")
+	public String startPosting(HttpServletRequest request, HttpSession session) {
+		
+		
+		return "knowhow/startPosting";
+	}
+	
 	// 포스트 작성 시작
 	@RequestMapping(value = "addPost")
 	public String addPost(HttpServletRequest request, HttpSession session) {
