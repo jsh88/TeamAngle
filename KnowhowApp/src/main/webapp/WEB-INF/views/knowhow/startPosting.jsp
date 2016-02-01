@@ -8,9 +8,11 @@
 	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="resources/css/addKnowhow.css">
+	<link type="" rel="stylesheet" href="resources/css/addKnowhow.css">
 	<script>
 	$(document).ready(function(){
+		
+		$("#addModal").modal();
 		
 		$("#Continuebtn").hide();
 		$("#Priorbtn").hide();
@@ -99,10 +101,5 @@
 		</div>
 	</div>
 	</div>
-	
-	<!-- 연결되기 전 모달창 실험위한 버튼-->
-	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addModal">
-  			modal
-	</button>
 </body>
 </html>
