@@ -43,9 +43,9 @@ public class PostController {
 	 * 포스트(페이지 포함) 추가, 수정, 삭제
 	 */
 
+	// 포스트 작성 페이지로
 	@RequestMapping(value = "startPosting")
-	public String startPosting(HttpServletRequest request, HttpSession session) {
-		
+	public String startPosting(HttpServletRequest request, HttpSession session) {		
 		
 		return "knowhow/startPosting";
 	}
@@ -56,7 +56,7 @@ public class PostController {
 
 		postService.addPost(request, session);
 
-		return null; // 어디로 가야하오
+		return "redirect:knowhow/addKnowhow"; // 어디로 가야하오
 	}
 
 	// 포스트 페이지 작성

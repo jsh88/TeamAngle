@@ -8,7 +8,7 @@ import com.angle.domain.PostTag;
 
 public interface PostDao {
 
-	public Post addPost(Post p);
+	public void addPost(Post p);
 	
 	public void addPostPage(PostContent pCon);
 

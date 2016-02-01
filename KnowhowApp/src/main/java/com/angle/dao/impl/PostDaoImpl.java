@@ -36,12 +36,12 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	}
 
 	@Override
-	public Post addPost(Post p) {
+	public void addPost(Post p) {
 
 		String time = jdbcTemplate.queryForObject("select sysdate from dual", String.class);
 		int seq = jdbcTemplate.queryForObject("select post_seq.nextval from dual", Integer.class);
 
-		jdbcTemplate.update("insert into post values(?, ?, ?, 1, sysdate, sysdate, null, 0, 0)",
+		jdbcTemplate.update("insert into post values(?, ?, ?, 1, sysdate, sysdate, null, 0, 0, 0)",
 				new Object[] { seq, p.getId(), p.getTitle() });
 
 		p.setpNo(seq);
@@ -50,8 +50,6 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 		p.setwDate(time);
 		p.setGood(0);
 		p.setState(false);
-
-		return p;
 
 	}
 
