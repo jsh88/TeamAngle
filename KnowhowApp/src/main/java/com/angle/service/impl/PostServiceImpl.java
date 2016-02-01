@@ -22,9 +22,10 @@ import com.angle.domain.PostTag;
 import com.angle.env.LuceneKoreanAnalyzer;
 import com.angle.service.PostCommentService;
 import com.angle.service.PostService;
+import com.angle.service.TagService;
 
 @Service
-public class PostServiceImpl implements PostService, PostCommentService {
+public class PostServiceImpl implements PostService, PostCommentService, TagService {
 
 	private final static String path = "/resources/images";
 
@@ -298,5 +299,12 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		postDao.setRecommendPost(Integer.parseInt(request.getParameter("pno")),
 				((Member) session.getAttribute("member")).getId());
 
+	}
+
+	@Override
+	public void getPostList(HttpServletRequest request) {
+		
+		
+		
 	}
 }

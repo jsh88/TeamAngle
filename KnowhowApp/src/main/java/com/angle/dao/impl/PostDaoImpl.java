@@ -14,13 +14,14 @@ import org.springframework.stereotype.Repository;
 
 import com.angle.dao.PostCommentDao;
 import com.angle.dao.PostDao;
+import com.angle.dao.TagDao;
 import com.angle.domain.Post;
 import com.angle.domain.PostComment;
 import com.angle.domain.PostContent;
 import com.angle.domain.PostTag;
 
 @Repository
-public class PostDaoImpl implements PostDao, PostCommentDao {
+public class PostDaoImpl implements PostDao, PostCommentDao, TagDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
