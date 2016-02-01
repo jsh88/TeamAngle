@@ -28,113 +28,116 @@ public class MemberController {
 	}
 
 	@RequestMapping
-	public String test(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {		
-		
+	public String test(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
+
 		return null;
 	}
-	
+
 	@RequestMapping("/memModify")
-	public String modifyProfile(MultipartHttpServletRequest req){
-		/*Member m = memberService.getMember(req.getParameter("id"));
-		HttpSession session = req.getSession();
-		session.setAttribute("member", m);*/
-		
+	public String modifyProfile(MultipartHttpServletRequest req) {
+		/*
+		 * Member m = memberService.getMember(req.getParameter("id"));
+		 * HttpSession session = req.getSession();
+		 * session.setAttribute("member", m);
+		 */
+
 		memberService.modifyMember(req);
 		return "redirect:/";
 	}
-	
+
 	@RequestMapping("/myPage")
-	public String myPage(Model model){
+	public String myPage(Model model) {
 		model.addAttribute("title", "/member/myPage");
 		return "index";
 	}
+
 	// 내가 최근에 작성한 포인트
 	@RequestMapping
-	public String getMyLatelyPost(String id){
+	public String getMyLatelyPost(String id) {
 		Post p = memberService.getMyLatelyPost(id);
 		return "redirect:/";
 	}
-	
-	// ȸ������ �� �� �κ�
-	@RequestMapping(value={"/memberJoinForm"}, method=RequestMethod.GET)
+
+	// 회원가입 폼 콜 부분
+	@RequestMapping(value = { "/memberJoinForm" }, method = RequestMethod.GET)
 	public String MemberJoin(Model model) {
-		
+
 		model.addAttribute("body", "member/memJoin");
 		return "main";
 	}
-	
-	// ȸ������ ������ �κ�
-	@RequestMapping(value={"/memberJoinProc"}, method=RequestMethod.POST)
+
+	// 회원가입 서비스콜 부분
+	@RequestMapping(value = { "/memberJoinProc" }, method = RequestMethod.POST)
 	public String MemberJoinProc(HttpServletRequest request) throws IOException {
-		
+
 		memberService.insertMemberJoin(request);
 		return "main";
 	}
-	
-	// ȸ��Ż�� ó�� �κ�
-	@RequestMapping(value={"deleteMemberJoin"}, method=RequestMethod.GET)
+
+	// 회원탈퇴 처리 부분
+	@RequestMapping(value = { "deleteMemberJoin" }, method = RequestMethod.GET)
 	public String deleteMemberJoin(Model model, HttpServletRequest request) {
-		
+
 		memberService.deleteMember(request);
 		model.addAttribute("body", "member/�ɹ������� �̵��� �����̸�");
 		return "main";
 	}
-	
-	// ȸ������ ���̵� �ߺ�üũ ajax �޽���ó�� �κ�
-	@RequestMapping(value={"/checkId.ajax"}, method=RequestMethod.GET)
+
+	// 회원가입 아이디 중복체크 ajax 메시지처리 부분
+	@RequestMapping(value = { "/checkId.ajax" }, method = RequestMethod.GET)
 	public ModelAndView checkId(HttpServletRequest request) {
-		
+
 		ModelAndView model = new ModelAndView();
 		model.setViewName("ajax/memberAjax");
 		int result = memberService.checkId(request);
 		model.addObject("result", result);
-		
-		return model;		
+
+		return model;
 	}
-	
-	// ȸ������ �г��� �ߺ�üũ ajax �޽���ó�� �κ�
-	@RequestMapping(value={"/checkNickName.ajax"}, method=RequestMethod.GET)
+
+	// 회원가입 닉네임 중복체크 ajax 메시지처리 부분
+	@RequestMapping(value = { "/checkNickName.ajax" }, method = RequestMethod.GET)
 	public String checkNickName(Model model, HttpServletRequest request) {
-		
+
 		int result = memberService.checkNickName(request);
 		model.addAttribute("result", result);
-		
+
 		return "ajax/memberAjax";
 	}
-	
-	// ȸ������ ����â �� ��й�ȣ Ȯ�� �� �ݺκ�
-	@RequestMapping(value={"/memberUpdatePassCheckForm"}, method=RequestMethod.GET)
+
+	// 회원정보 수정창 전 비밀번호 확인 폼 콜부분
+	@RequestMapping(value = { "/memberUpdatePassCheckForm" }, method = RequestMethod.GET)
 	public String memberUpdatePassCheckForm(Model model, HttpServletRequest request) {
-		
+
 		model.addAttribute("body", "member/ȸ��������������й�ȣȮ�����̸�");
 		return "main";
-	}	
-	
-	// ȸ������ ����â �� ��й�ȣ Ȯ��â ������ �κ�
-	@RequestMapping(value={"/memeberUpdatePassCheck.ajax"}, method=RequestMethod.GET)
+	}
+
+	// 회원정보 수정창 전 비밀번호 확인창 서비스콜 부분
+	@RequestMapping(value = { "/memeberUpdatePassCheck.ajax" }, method = RequestMethod.GET)
 	public String memeberUpdatePassCheck(Model model, HttpServletRequest request) {
-		
+
 		int result = memberService.checkPw(request);
 		model.addAttribute("result", result);
-		
+
 		return "ajax/memberAjax";
 	}
-	
-	// ȸ������ ����â �� �κ� - ����â �ݰ� ���ÿ� �⺻����(���̵�, �г���) ������.
-	@RequestMapping(value={"/updateMemberInfoForm"}, method=RequestMethod.GET)
+
+	// 회원정보 수정창 콜 부분 - 수정창 콜과 동시에 기본정보(아이디, 닉네임) 가져옴.
+	@RequestMapping(value = { "/updateMemberInfoForm" }, method = RequestMethod.GET)
 	public String updateMemberInfoForm(Model model, HttpServletRequest request) {
-		
+
 		memberService.getMember(request);
 		model.addAttribute("body", "member/memModify");
-		
+
 		return "main";
 	}
-	
-	// ȸ������ ���� �� �κ�
-	@RequestMapping(value={"/updateMemberInfo"}, method=RequestMethod.POST)
+
+	// 회원정보 수정 콜 부분
+	@RequestMapping(value = { "/updateMemberInfo" }, method = RequestMethod.POST)
 	public String updateMemberInfo(Model model, HttpServletRequest request) throws IOException {
-		
-		memberService.updateMemberInfo(request);		
+
+		memberService.updateMemberInfo(request);
 		return "main";
 	}
 }
