@@ -28,13 +28,6 @@ public class MemberController {
 		this.memberService = memberService;
 	}
 
-
-	@RequestMapping("/myPage")
-	public String myPage(Model model) {
-		model.addAttribute("title", "/member/myPage");
-		return "index";
-	}
-
 //	// 내가 최근에 작성한 포인트
 //	@RequestMapping
 //	public String getMyLatelyPost(String id) {
