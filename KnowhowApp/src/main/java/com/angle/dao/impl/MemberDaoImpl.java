@@ -2,6 +2,7 @@ package com.angle.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -144,10 +145,23 @@ public class MemberDaoImpl implements MemberDao {
 
 	}
 
-	@Override
+
+	/*@Override
+	public void updateMemberInfo(Member member) {
+
+		String sql = "update member set id= :id, nickname= :nickname, " + "pw= :pw where id= :id";
+
+		namedParameterJdbcTemplate.update(sql,
+				new MapSqlParameterSource().addValue("id", member.getId()).addValue("nickname", member.getNickName())
+						.addValue("pw", member.getPw()).addValue("id", member.getId()));
+
+	}*/
+	
+	
+	/*@Override
 	public Boolean memberLoginCheck(String id, String pw) {
 
-		return jdbcTemplate.query("select 1 from member where id=? and pw=?", new Object[] { id, pw },
+		return jdbcTemplate.query("select 1 from member where id=? and pw=? ", new Object[] { id, pw },
 				new ResultSetExtractor<Boolean>() {
 
 					@Override
@@ -159,18 +173,36 @@ public class MemberDaoImpl implements MemberDao {
 						return false;
 					}
 				});
-	}
-
+	}*/
+	
+	
 	@Override
-	public void updateMemberInfo(Member member) {
+	public Member memberLogin(String id) {
+		
+		String sql = "select *from member where id = :id";
+		Member member = namedParameterJdbcTemplate.query(sql,
+				new MapSqlParameterSource().addValue("id", id),
+				new ResultSetExtractor<Member>() {
 
-		String sql = "update member set id= :id, nickname= :nickname, " + "pw= :pw where id= :id";
-
-		namedParameterJdbcTemplate.update(sql,
-				new MapSqlParameterSource().addValue("id", member.getId()).addValue("nickname", member.getNickName())
-						.addValue("pw", member.getPw()).addValue("id", member.getId()));
-
+					@Override
+					public Member extractData(ResultSet rs) throws SQLException, DataAccessException {
+						
+						Member m = new Member();
+						
+						if(rs.next()) {
+							m.setId(rs.getString("id"));
+							m.setPw(rs.getString("pw"));
+						} else if(!rs.next()) {
+							m.setId("");
+						}
+						
+						return m;
+					}					
+				});		
+		return member;
 	}
+
+	
 
 	public class memberRowMapper implements RowMapper<Member> {
 
@@ -222,4 +254,75 @@ public class MemberDaoImpl implements MemberDao {
 				new BeanPropertySqlParameterSource(m));
 
 	}
+
+	@Override
+	public void updateMemberInfoId(Member member) {
+		
+		String sql = "update member set id = :id where id = :id";
+		namedParameterJdbcTemplate.update(sql,
+				new MapSqlParameterSource().addValue("id", member.getId())
+					.addValue("id", member.getId()));		
+	}
+
+	@Override
+	public void updateMemberInfoNickName(Member member) {
+
+		String sql = "update member set nickname = :nickname where id = :id";
+		namedParameterJdbcTemplate.update(sql,
+				new MapSqlParameterSource().addValue("nickname", member.getNickName())
+					.addValue("id", member.getId()));		
+	}
+
+	@Override
+	public void updateMemberInfoPw(Member member) {
+
+		String sql = "update member set pw = :pw where id = :id";
+		namedParameterJdbcTemplate.update(sql,
+				new MapSqlParameterSource().addValue("pw", member.getPw())
+					.addValue("id", member.getId()));				
+		
+	}
+
+	@Override
+	public void updateVcount(Member member) {
+		
+		String sql = "update member set vcount = :vcount +1 where id = :id";
+		namedParameterJdbcTemplate.update(sql,
+				new MapSqlParameterSource().addValue("vcount", member.getvCount())
+				.addValue("id", member.getId()));
+					
+	}
+
+	@Override
+	public int getVcount(String id) {
+//		String sql = "select count(*) from member where id = :id and (trunc(sysdate) - 1/(24*60*60)) < ldate";
+		String sql = "select count(*) from member where id = :id and trunc(ldate) = :trunc(sysdate)";
+		return namedParameterJdbcTemplate.query(sql,
+				new MapSqlParameterSource().addValue("id", id),
+				new ResultSetExtractor<Integer>() {
+
+					@Override
+					public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+						int temp = 1;
+						if (rs.next()) {
+							temp = rs.getInt(1);
+						}
+						return temp;
+					}
+				});
+	}
+
+	@Override
+	public void updateLdate(Member member) {
+		Date d = new Date();
+		String date = d.toString();
+		String sql = "update member set ldate = :ldate where id = :id";
+		namedParameterJdbcTemplate.update(sql,
+				new MapSqlParameterSource().addValue("ldate", date)
+				.addValue("id", member.getId()));				
+		
+	}
+
+
+	
 }

@@ -159,11 +159,46 @@ function MemberUpdatePreFormCheck() {
 }
 
 
+$(function() {
+
+// 로그인 처리 조건체크	
+$("#로그인창 아이디 입력되는쪽 id").on("click", function() {
+	
+	var id = $("#id").val();
+	var pw = $("#pw").val();
+	
+	$.ajax({
+		url: "loginAjax",
+		type: "POST",
+		data: {"id" : id, "pw" : pw},
+		dataType: "text",
+		success: function(responseData, statusText, xhr) {
+			var result = responseData;
+			
+			if(result == -1) {
+				alert("아이디를 확인해주세요.");
+			} else if(result == 0) {
+				alert("로그인 성공!!!");
+				window.location = "../";   // 로그인후 이동할 페이지 설정
+			} else if(result == 1) {
+				alert("비밀번호를 확인해 주세요.");
+			}
+		},
+		error : function(xhr, statusText, responseData) {
+			alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
+		}
+	});
+});
+	
+	
+	
+	
+	
 $("#memberUpdatePassCheck").on("keyup", function() {
 	
 	var pw = $("#pw").val();
 	$.ajax({
-		url: "memeberUpdatePassCheck.ajax",
+		url: "memberUpdatePassCheck.ajax",
 		type: "POST",
 		data: {"pw": pw},
 		dataType: "text",
@@ -183,6 +218,83 @@ $("#memberUpdatePassCheck").on("keyup", function() {
 		}	
 	});	
 });
+
+
+// ID 사용가능 체크
+$("#id").on("keyup", function() {
+	
+	var id = $("#id").val();
+	$.ajax({
+		url: "updateMemberInfoId.ajax",
+		type: "POST",
+		data: {"id" : id},
+		dataType: "text",
+		success: function(responseData, statusText, xhr) {
+			var result = responseData;
+			
+			if(result >= 1) {
+				$("#id확인후메시지뿌려지는곳id").text("사용 불가능한 아이디 입니다.").css("color", "red");
+				$("#submit 버튼id ").attr("disabled", "disabled");
+			} else if(result == 0) {
+				$("#id확인후메시지뿌려지는곳id").text("사용 가능한 아이디 입니다.").css("color", "blue");
+				$("#submit 버튼id ").removeAttr("disabled");
+			}			
+		},
+		error : function(xhr, statusText, responseData) {
+			alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
+		}	
+	});	
+});
+			
+	
+//닉네임 사용가능 체크
+$("#nickname").on("keyup", function() {
+	
+	var nickname = $("#nickname").val();
+	
+	$.ajax({
+		url: "updateMemberInfoNickName.ajax",
+		type: "POST",
+		data: {"nickname": nickname},
+		dataType: "text",
+		success: function(responseData, statusText, xhr) {
+			var result = responseData;
+			
+			if(result >= 1) {
+				$("#nickname확인후메시지뿌려지는곳id").text("사용 불가능한 닉네임 입니다.").css("color", "red");
+				$("#submit 버튼id ").attr("disabled", "disabled");
+			} else if(result == 0) {
+				$("#nickname확인후메시지뿌려지는곳id").text("사용 가능한 닉네임 입니다.").css("color", "blue");
+				$("#submit 버튼id ").removeAttr("disabled");
+			}			
+		},
+		error : function(xhr, statusText, responseData) {
+			alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
+		}	
+	});	
+});	
+	
+	
+//회원수정페이지 비밀번호 확인체크
+$("#회원수정페이지 비밀번호 입력되는곳id").on("keyup", function() {
+	
+	var pass = $("#회원수정페이지 비밀번호 입력되는곳id").val();
+	if(pass.length < 8 || pass.length > 16) {
+		$("#회원수정페이지비밀번호메시지뿌려지는곳id").text("비밀번호는 8자 이상부터 16자 이하만 사용이 가능합니다.").css("color", "red");
+		$("#submit 버튼id ").attr("disabled", "disabled");
+	} else {
+		$("#회원수정페이지비밀번호메시지뿌려지는곳id").text("비밀번호 사용이 가능합니다.").css("color", "blue");
+		$("#submit 버튼id ").removeAttr("disabled");
+	}	
+});
+
+
+
+
+
+});
+
+
 
 
 
