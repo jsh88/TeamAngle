@@ -5,12 +5,19 @@
 <head>
 <style>
 .uploader {
-	position: relative;
+	position: absolute;
 	overflow: hidden;
 	width: 300px;
 	height: 350px;
 	background: #000000;
 	border: 2px dashed #e8e8e8;
+}
+
+#m {
+	position: absolute;
+	z-index: 3;
+	width: 300px;
+	height: 400px;
 }
 
 #imgInp {
@@ -42,8 +49,29 @@
 
 <script type="text/javascript">
 	$(function() {
+		
+		var img;
+		
 		$("#imgInp").on('change', function() {
 			readURL(this);
+		});
+
+		$('#m').on('drop', function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+
+			var reader = new FileReader();
+
+			reader.onload = function(e) {
+
+				$('#blah').attr('src', e.target.result);
+
+			}
+			
+			img = e.originalEvent.dataTransfer.files[0];
+
+			reader.readAsDataURL(img);
+
 		});
 	});
 
@@ -61,8 +89,9 @@
 </script>
 </head>
 <body>
-	<div class="uploader" onclick="$('#imgInp').click()">
+	<div class="uploader">
 		<form id="form1">
+			<div id="m" onclick="$('#imgInp').click()" contenteditable="true"></div>
 			<input type='file' id="imgInp" /> <img id="blah" alt="" />
 		</form>
 	</div>

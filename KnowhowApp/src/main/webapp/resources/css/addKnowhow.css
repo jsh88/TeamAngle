@@ -306,6 +306,7 @@
 			width:565px;
 			height: 300px;
 			border:0px;
+			cursor: pointer;
 		}
 		
 		#mediaImg{

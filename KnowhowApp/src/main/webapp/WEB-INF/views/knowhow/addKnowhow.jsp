@@ -29,6 +29,7 @@
 	<script>
 		$(document).ready(function(){
 			
+			var img;
 			var i = 1;
 			var m = "";
 			
@@ -121,7 +122,29 @@
 				$("#myCarousel").carousel(9);
 			});
 			
+			$('#m').on('drop', function(e) {
+				
+				e.preventDefault();
+				e.stopPropagation();
+
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+
+					$('#mediaImg').attr('src', e.target.result);
+
+				}
+				
+				img = e.originalEvent.dataTransfer.files[0];
+
+				reader.readAsDataURL(img);
+				
+				$("#mediaiframe").css("z-index", "2");
+
+			});
+			
 		});
+		//
 		
 		function openModal(){
 			
@@ -176,7 +199,7 @@
   							 		<form name="addKnowhowForm" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media" class="mbackground">
-												<div id="m" onclick="openModal()"></div>
+												<div id="m" onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
 												<input type="hidden" id="url" name="videourl"/><input type="file" class="imgurl" name="media"/><img id="mediaImg"/>
 											</div>
