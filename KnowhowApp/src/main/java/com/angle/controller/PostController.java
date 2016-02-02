@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.angle.service.PostCommentService;
 import com.angle.service.PostService;
+import com.angle.service.TagService;
 
 @Controller
 public class PostController {
@@ -23,6 +24,9 @@ public class PostController {
 	@Autowired
 	private PostCommentService postCommentService;
 
+	@Autowired
+	private TagService tagService;
+
 	public void setPostService(PostService postService) {
 		this.postService = postService;
 	}
@@ -31,9 +35,34 @@ public class PostController {
 		this.postCommentService = postCommentService;
 	}
 
+	public void setTagService(TagService tagService) {
+		this.tagService = tagService;
+	}
+
 	/**
 	 * 포스트(페이지 포함) 추가, 수정, 삭제
 	 */
+
+	// 포스트 작성 페이지로
+	@RequestMapping(value = "startPosting")
+	public String startPosting(HttpServletRequest request, HttpSession session) {
+
+		return "knowhow/startPosting";
+	}
+
+	// 포스트 작성 페이지로
+	@RequestMapping(value = "t")
+	public String t1(HttpServletRequest request, HttpSession session) {
+
+		return "knowhow/t";
+	}
+
+	// 포스트 작성 페이지로
+	@RequestMapping(value = "t2")
+	public String t2(HttpServletRequest request, HttpSession session) {
+
+		return "knowhow/t2";
+	}
 
 	// 포스트 작성 시작
 	@RequestMapping(value = "addPost")
@@ -41,7 +70,7 @@ public class PostController {
 
 		postService.addPost(request, session);
 
-		return null; // 어디로 가야하오
+		return "knowhow/addKnowhow"; // 어디로 가야하오
 	}
 
 	// 포스트 페이지 작성
@@ -112,7 +141,8 @@ public class PostController {
 
 	// 포스팅 완료
 	@RequestMapping(value = "completePosting")
-	public String completePosting(HttpServletRequest request, HttpSession session) {
+	public String completePosting(MultipartHttpServletRequest request, HttpSession session)
+			throws IllegalStateException, IOException {
 
 		postService.completePosting(request, session);
 
@@ -156,7 +186,7 @@ public class PostController {
 	 * 포스트 조회, 검색
 	 */
 
-	// 포스트 페이지, 댓글 일반 조회
+	// 포스트 페이지, 댓글 일반 조회, 디테일
 	@RequestMapping(value = "morePost")
 	public String morePost(HttpServletRequest request, HttpSession session) {
 
@@ -166,11 +196,20 @@ public class PostController {
 		return null; // 어디로 가야하오
 	}
 
-	// t
-	@RequestMapping(value = "t")
+	// 포스트 리스트
+	@RequestMapping(value = "searchPostList")
+	public String searchPostList(HttpServletRequest request) {
+
+		postService.getPostList(request);
+
+		return null; // 어디로 가야하오
+	}
+
+	// 포스트 추천
+	@RequestMapping(value = "recommendPost")
 	public String t(HttpServletRequest request, HttpSession session) {
 
-		postService.getPost(request, session);
+		postService.recommendPost(request, session);
 
 		return null; // 어디로 가야하오
 	}

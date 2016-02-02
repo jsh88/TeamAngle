@@ -18,8 +18,11 @@ import com.angle.domain.Member;
 import com.angle.domain.Post;
 import com.angle.domain.PostComment;
 import com.angle.domain.PostContent;
+import com.angle.domain.PostTag;
+import com.angle.env.LuceneKoreanAnalyzer;
 import com.angle.service.PostCommentService;
 import com.angle.service.PostService;
+import com.angle.service.TagService;
 
 @Service
 public class PostServiceImpl implements PostService, PostCommentService {
@@ -32,6 +35,9 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	@Autowired
 	private PostCommentDao postCommentDao;
 
+	@Autowired
+	private LuceneKoreanAnalyzer luceneKoreanAnalyzer;
+
 	public void setPostDao(PostDao postDao) {
 		this.postDao = postDao;
 	}
@@ -40,18 +46,35 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		this.postCommentDao = postCommentDao;
 	}
 
+	public void setLuceneKoreanAnalyzer(LuceneKoreanAnalyzer luceneKoreanAnalyzer) {
+		this.luceneKoreanAnalyzer = luceneKoreanAnalyzer;
+	}
+
 	@Override
 	public void addPost(HttpServletRequest request, HttpSession session) {
+		
+		Member m = new Member();
+		m.setId("test");
+		m.setPw("1");
+		m.setNickName("test");
+		m.setjDate("88/05/17");
+		m.setlDate("88/05/17");
+		m.setpComment("테스트 접속");
+		m.setImage("test.gif");
+		m.setvCount(1);
+		m.setState(false);
+		
+		session.setAttribute("member", m);
 
 		Post p = new Post();
 		ArrayList<PostContent> pConList = new ArrayList<>();
 
 		p.setId(((Member) session.getAttribute("member")).getId());
 		p.setNickName(((Member) session.getAttribute("member")).getNickName());
-		p.setImage(((Member) session.getAttribute("member")).getImage());
+		p.setImage(((Member) session.getAttribute("member")).getImage());		
 		p.setTitle(request.getParameter("title"));
 
-		p = postDao.addPost(p);
+		postDao.addPost(p);
 
 		session.setAttribute("post", p);
 		session.setAttribute("pConList", pConList);
@@ -181,10 +204,19 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void completePosting(HttpServletRequest request, HttpSession session) {
+	public void completePosting(MultipartHttpServletRequest request, HttpSession session)
+			throws IllegalStateException, IOException {
 
-		// 포스트 작업 완료
+		ArrayList<PostTag> pTagList = (ArrayList<PostTag>) luceneKoreanAnalyzer
+				.getTags((ArrayList<PostContent>) session.getAttribute("pConList"));
+
+		postDao.completePosting(pTagList);
+		
+		session.setAttribute("pTagList", pTagList);
+		
+		this.addPostPage(request, session);
 
 	}
 
@@ -275,5 +307,20 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		session.setAttribute("pComList",
 				postCommentDao.getPostCommentList(Integer.parseInt(request.getParameter("pno"))));
 
+	}
+
+	@Override
+	public void recommendPost(HttpServletRequest request, HttpSession session) {
+
+		postDao.setRecommendPost(Integer.parseInt(request.getParameter("pno")),
+				((Member) session.getAttribute("member")).getId());
+
+	}
+
+	@Override
+	public void getPostList(HttpServletRequest request) {
+		
+		
+		
 	}
 }

@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 import com.angle.domain.Post;
 import com.angle.domain.PostContent;
+import com.angle.domain.PostTag;
 
 public interface PostDao {
 
-	public Post addPost(Post p);
+	public void addPost(Post p);
 	
 	public void addPostPage(PostContent pCon);
 
@@ -22,5 +23,9 @@ public interface PostDao {
 	public void delPost(int pNo);
 
 	public ArrayList<Post> getTempPostList(String id);
+
+	public void setRecommendPost(int pNo, String id);
+
+	public void completePosting(ArrayList<PostTag> pTagList);
 
 }
