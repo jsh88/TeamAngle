@@ -45,18 +45,32 @@ public class PostController {
 
 	// 포스트 작성 페이지로
 	@RequestMapping(value = "startPosting")
-	public String startPosting(HttpServletRequest request, HttpSession session) {		
-		
+	public String startPosting(HttpServletRequest request, HttpSession session) {
+
 		return "knowhow/startPosting";
 	}
-	
+
+	// 포스트 작성 페이지로
+	@RequestMapping(value = "t")
+	public String t1(HttpServletRequest request, HttpSession session) {
+
+		return "knowhow/t";
+	}
+
+	// 포스트 작성 페이지로
+	@RequestMapping(value = "t2")
+	public String t2(HttpServletRequest request, HttpSession session) {
+
+		return "knowhow/t2";
+	}
+
 	// 포스트 작성 시작
 	@RequestMapping(value = "addPost")
 	public String addPost(HttpServletRequest request, HttpSession session) {
 
 		postService.addPost(request, session);
 
-		return "redirect:knowhow/addKnowhow"; // 어디로 가야하오
+		return "knowhow/addKnowhow"; // 어디로 가야하오
 	}
 
 	// 포스트 페이지 작성

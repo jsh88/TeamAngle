@@ -213,6 +213,9 @@ public class PostServiceImpl implements PostService, PostCommentService {
 				.getTags((ArrayList<PostContent>) session.getAttribute("pConList"));
 
 		postDao.completePosting(pTagList);
+		
+		session.setAttribute("pTagList", pTagList);
+		
 		this.addPostPage(request, session);
 
 	}

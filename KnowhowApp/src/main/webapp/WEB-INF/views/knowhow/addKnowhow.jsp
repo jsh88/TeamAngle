@@ -106,6 +106,8 @@
 			});
 			
 		});
+		
+		
 	</script>
 	<style>
 	</style>
@@ -117,8 +119,8 @@
 				<div id="addWrap">
 					<div class="modal-header" id="header">
 						<div id="Closeimg"><a href=""><img style="width:20px;" src="resources/images/close.png"/></a></div>
-						<div id="Title">Title</div>
-						<div id="CreateDate">2016.01.28 11:11:11</div>
+						<div id="Title">${post.title }</div>
+						<div id="CreateDate">${post.wDate }</div>
 					</div>
 					<!-- Modal 상단-->
 						<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
