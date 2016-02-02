@@ -2,6 +2,7 @@ package com.angle.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,15 +46,15 @@ public class MemberDaoImpl implements MemberDao {
 		} else {
 			state = "0";
 		}
-
+				
 		namedParameterJdbcTemplate.update(
 				"insert into member values("
-						+ ":id, :pw, :nickname, :jdate, :ldate, :vcount, :state, :image, :pcomment)",
+						+ ":id, :pw, :nickname, sysdate, sysdate, :vcount, :state, :image, :pcomment)",
 				new MapSqlParameterSource().addValue("id", member.getId()).addValue("pw", member.getPw())
-						.addValue("nickname", member.getNickName()).addValue("jdate", member.getjDate())
-						.addValue("ldate", member.getlDate()).addValue("vcount", member.getvCount())
+						.addValue("nickname", member.getNickName())						
+						.addValue("vcount", member.getvCount())
 						.addValue("state", state).addValue("image", member.getImage())
-						.addValue("pcomment", member.getpComment()));
+						.addValue("pcomment", member.getpComment()));				
 	}
 
 	@Override
@@ -314,11 +315,10 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public void updateLdate(Member member) {
-		Date d = new Date();
-		String date = d.toString();
-		String sql = "update member set ldate = :ldate where id = :id";
+		
+		String sql = "update member set ldate = sysdate where id = :id";
 		namedParameterJdbcTemplate.update(sql,
-				new MapSqlParameterSource().addValue("ldate", date)
+				new MapSqlParameterSource()
 				.addValue("id", member.getId()));				
 		
 	}
