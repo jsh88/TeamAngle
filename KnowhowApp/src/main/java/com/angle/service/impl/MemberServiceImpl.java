@@ -42,14 +42,7 @@ public class MemberServiceImpl implements MemberService {
 		String dateTime = date + " " + time;
 		
 		System.out.println(dateTime);  */
-		
-	/*	Date d = new Date();
-		String date = String.format("%TF", d);	// 날짜
-		String time = String.format("%TT", d);	// 시간
-		String dateTime = date + " " + time;
-		
-		System.out.println(dateTime);*/
-		
+					
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String nickname = request.getParameter("nickname");		
