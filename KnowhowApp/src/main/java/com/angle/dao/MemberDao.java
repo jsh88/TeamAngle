@@ -1,13 +1,11 @@
 package com.angle.dao;
 
+import java.util.List;
+
 import com.angle.domain.Member;
 import com.angle.domain.Post;
 
 public interface MemberDao {
-
-	public Post getMyLatelyPost(String id);
-
-	public void modifyMember(Member m);
 
 	public void insertMemberJoin(Member member);
 
@@ -21,7 +19,32 @@ public interface MemberDao {
 
 	public Member getMember(String id);
 
-	public Boolean memberLoginCheck(String id, String pw);
+	//	public Boolean memberLoginCheck(String id, String pw);
 
-	public void updateMemberInfo(Member member);
+	public Member memberLogin(String id);
+
+	public int getVcount(String id);
+
+	public void updateVcount(Member member);
+
+	//	public void updateMemberInfo(Member member);
+
+	public void updateMemberInfoId(Member member);
+
+	public void updateMemberInfoNickName(Member member);
+
+	public void updateMemberInfoPw(Member member);
+
+	public void updateLdate(Member member);
+	
+	public List<Post> getMyLatelyPost(String id);
+
+	public void modifyMember(Member m);
+
+	public List<Post> getMyConcernPost(String id);
+
+	public List<Post> getMyLatelyLookupPost(String id);
+
+	public List<Post> getMyMostLookupPost(String id);
+
 }

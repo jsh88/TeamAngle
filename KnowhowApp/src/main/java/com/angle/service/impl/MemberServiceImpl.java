@@ -2,6 +2,7 @@ package com.angle.service.impl;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,39 +32,15 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.getMember(id);
 	}
 	
-	// 내가 최근에 작성한 포인트
-	@Override
-	public Post getMyLatelyPost(String id) {
-		
-		return memberDao.getMyLatelyPost(id);
-	}
 	
-	@Override
-	public void modifyMember(MultipartHttpServletRequest req) {
-		HttpSession session = req.getSession();
-		Member m = (Member) session.getAttribute("member");
-		String image = req.getParameter("image");
-		String comment = req.getParameter("pComment");
-		
-		if(!image.isEmpty()){
-			m.setImage(image);
-		}
-		if(!comment.isEmpty()){
-			m.setpComment(comment);
-		}
-		
-		memberDao.modifyMember(m);
-		
-		
-	}
 
 	@Override
 	public void insertMemberJoin(HttpServletRequest request) throws IOException {
 		
 		//request.setCharacterEncoding("utf-8");
 		/*GregorianCalendar now = new GregorianCalendar();
-		String date = String.format("%TF", now);	// ��¥
-		String time = String.format("%TT", now);	// �ð�
+		String date = String.format("%TF", now);	// 날짜
+		String time = String.format("%TT", now);	// 시간
 		String dateTime = date + " " + time;*/
 		
 		Date d = new Date();
@@ -82,7 +59,7 @@ public class MemberServiceImpl implements MemberService {
 		m.setPw(pw);
 		m.setNickName(nickname);
 		m.setjDate(date);
-		m.setlDate(date);		
+		m.setlDate("");		
 		m.setvCount(vcount);
 		m.setState(true);
 		m.setImage(image);
@@ -125,18 +102,26 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.deleteMember(id);		
 	}
 
-	@Override
+	/*@Override
 	public void memberLoginCheck(HttpSession session, HttpServletRequest request) throws IOException {
 		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
+		Member m = new Member();
 		
 		if(memberDao.memberLoginCheck(id, pw)) {
 			session.setAttribute("member", memberDao.getMember(id).getId());
+			memberDao.updateLdate(m);
+			
+			int result = memberDao.getVcount(id);
+			if(result != 1) {
+				memberDao.updateVcount(m);
+			}
 		}
-	}
+		
+	}*/
 
-	@Override
+	/*@Override
 	public void updateMemberInfo(HttpServletRequest request) throws IOException {
 		
 		Member member = new Member();
@@ -147,7 +132,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		memberDao.updateMemberInfo(member);
 		
-	}
+	}*/
 
 	@Override
 	public Member getMember(HttpServletRequest request) {
@@ -158,4 +143,133 @@ public class MemberServiceImpl implements MemberService {
 		
 		return member;
 	}
+
+	@Override
+	public void updateMemberInfoId(HttpServletRequest request) throws IOException {
+		
+		Member member = new Member();
+		
+		member.setId(request.getParameter("id"));
+		
+		memberDao.updateMemberInfoId(member);
+		
+	}
+
+	@Override
+	public void updateMemberInfoNickName(HttpServletRequest request) throws IOException {
+		
+		Member member = new Member();
+		
+		member.setNickName(request.getParameter("nickname"));
+		
+		memberDao.updateMemberInfoNickName(member);
+		
+	}
+
+	@Override
+	public void updateMemberInfoPw(HttpServletRequest request) throws IOException {
+		
+		Member member = new Member();
+		
+		member.setPw(request.getParameter("pw"));
+		
+		memberDao.updateMemberInfoPw(member);
+	}
+
+	@Override
+	public int memberLoginCheck(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		int result = 1;
+		
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
+		
+		Member member = memberDao.memberLogin(id);
+		
+		if(member.getId().equals("")) {
+			result = -1;
+		} else {
+			if(member.getPw().equals(pw)) {
+				session.setAttribute("isLogin", true);
+				session.setAttribute("member", id);
+				result = 0;
+				memberDao.updateLdate(member);
+				
+				int v_result = memberDao.getVcount(id);
+				if(v_result != 1) {
+					memberDao.updateVcount(member);
+				}
+			} else if(!member.getPw().equals(pw)) {
+				result = 1;
+			}
+		}
+		
+		return result;
+	}
+
+	// 내가 최근에 작성한 포인트
+		@Override
+		public List<Post> getMyLatelyPost(String id) {
+			List<Post> pList = null;
+			
+			if(!pList.isEmpty() || pList != null){
+				pList = memberDao.getMyLatelyPost(id);
+			}
+				
+			return pList;
+		}
+		
+		@Override
+		public void modifyMember(MultipartHttpServletRequest req) {
+			HttpSession session = req.getSession();
+			Member m = (Member) session.getAttribute("member");
+			String image = req.getParameter("image");
+			String comment = req.getParameter("pComment");
+			
+			if(!image.isEmpty()){
+				m.setImage(image);
+			}
+			if(!comment.isEmpty()){
+				m.setpComment(comment);
+			}
+			
+			memberDao.modifyMember(m);
+		}
+		
+		@Override
+		public List<Post> getMyConcernPost(String id) {
+			List<Post> pList = null;
+			
+			if(!pList.isEmpty() || pList != null){
+				pList = memberDao.getMyConcernPost(id);
+			}
+			return pList;
+		}
+		
+		@Override
+		public List<Post> getMyLatelyLookupPost(String id) {
+			List<Post> pList = null;
+			if(!pList.isEmpty()){
+				pList = memberDao.getMyLatelyLookupPost(id);
+			}
+			return pList;
+		}
+		
+		@Override
+		public List<Post> getMyMostLookupPost(String id) {
+			List<Post> pList = null;
+			if(!pList.isEmpty()){
+				pList = memberDao.getMyMostLookupPost(id);
+			}
+			return pList;
+		}
+	
+	
+	
+	
+	
+	
+	
+	
 }

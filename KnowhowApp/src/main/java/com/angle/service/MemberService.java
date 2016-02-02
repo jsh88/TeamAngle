@@ -1,9 +1,9 @@
 package com.angle.service;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -22,16 +22,30 @@ public interface MemberService {
 
 	public void deleteMember(HttpServletRequest request);
 
-	public void memberLoginCheck(HttpSession session, HttpServletRequest request) throws IOException;
+	//	public void memberLoginCheck(HttpSession session, HttpServletRequest request) throws IOException;
+
+	public int memberLoginCheck(HttpServletRequest request);
 
 	public Member getMember(HttpServletRequest request);
 
-	public void updateMemberInfo(HttpServletRequest request) throws IOException;
-	
-	public void modifyMember(MultipartHttpServletRequest req);
+	//	public void updateMemberInfo(HttpServletRequest request) throws IOException;
 
-	public Post getMyLatelyPost(String id);
+	public void updateMemberInfoId(HttpServletRequest request) throws IOException;
+
+	public void updateMemberInfoNickName(HttpServletRequest request) throws IOException;
+
+	public void updateMemberInfoPw(HttpServletRequest request) throws IOException;
 
 	public Member getMember(String id);
-	
+
+	public List<Post> getMyLatelyPost(String id);
+
+	public void modifyMember(MultipartHttpServletRequest req);
+
+	public List<Post> getMyConcernPost(String id);
+
+	public List<Post> getMyLatelyLookupPost(String id);
+
+	public List<Post> getMyMostLookupPost(String id);
+
 }
