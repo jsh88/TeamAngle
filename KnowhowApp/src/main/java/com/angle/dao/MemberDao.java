@@ -21,7 +21,21 @@ public interface MemberDao {
 
 	public Member getMember(String id);
 
-	public Boolean memberLoginCheck(String id, String pw);
+//	public Boolean memberLoginCheck(String id, String pw);
+	
+	public Member memberLogin(String id);
+	
+	public int getVcount(String id);
+	
+	public void updateVcount(Member member);
 
-	public void updateMemberInfo(Member member);
+//	public void updateMemberInfo(Member member);
+	
+	public void updateMemberInfoId(Member member);
+	
+	public void updateMemberInfoNickName(Member member);
+	
+	public void updateMemberInfoPw(Member member);
+	
+	public void updateLdate(Member member);
 }
