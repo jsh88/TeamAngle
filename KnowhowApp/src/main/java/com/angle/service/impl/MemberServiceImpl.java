@@ -2,6 +2,7 @@ package com.angle.service.impl;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,31 +32,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.getMember(id);
 	}
 	
-	// 내가 최근에 작성한 포인트
-	@Override
-	public Post getMyLatelyPost(String id) {
-		
-		return memberDao.getMyLatelyPost(id);
-	}
 	
-	@Override
-	public void modifyMember(MultipartHttpServletRequest req) {
-		HttpSession session = req.getSession();
-		Member m = (Member) session.getAttribute("member");
-		String image = req.getParameter("image");
-		String comment = req.getParameter("pComment");
-		
-		if(!image.isEmpty()){
-			m.setImage(image);
-		}
-		if(!comment.isEmpty()){
-			m.setpComment(comment);
-		}
-		
-		memberDao.modifyMember(m);
-		
-		
-	}
 
 	@Override
 	public void insertMemberJoin(HttpServletRequest request) throws IOException {
@@ -231,7 +208,62 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
-	
+	// 내가 최근에 작성한 포인트
+		@Override
+		public List<Post> getMyLatelyPost(String id) {
+			List<Post> pList = null;
+			
+			if(!pList.isEmpty() || pList != null){
+				pList = memberDao.getMyLatelyPost(id);
+			}
+				
+			return pList;
+		}
+		
+		@Override
+		public void modifyMember(MultipartHttpServletRequest req) {
+			HttpSession session = req.getSession();
+			Member m = (Member) session.getAttribute("member");
+			String image = req.getParameter("image");
+			String comment = req.getParameter("pComment");
+			
+			if(!image.isEmpty()){
+				m.setImage(image);
+			}
+			if(!comment.isEmpty()){
+				m.setpComment(comment);
+			}
+			
+			memberDao.modifyMember(m);
+		}
+		
+		@Override
+		public List<Post> getMyConcernPost(String id) {
+			List<Post> pList = null;
+			
+			if(!pList.isEmpty() || pList != null){
+				pList = memberDao.getMyConcernPost(id);
+			}
+			return pList;
+		}
+		
+		@Override
+		public List<Post> getMyLatelyLookupPost(String id) {
+			List<Post> pList = null;
+			if(!pList.isEmpty()){
+				pList = memberDao.getMyLatelyLookupPost(id);
+			}
+			return pList;
+		}
+		
+		@Override
+		public List<Post> getMyMostLookupPost(String id) {
+			List<Post> pList = null;
+			if(!pList.isEmpty()){
+				pList = memberDao.getMyMostLookupPost(id);
+			}
+			return pList;
+		}
 	
 	
 	

@@ -1,9 +1,9 @@
 package com.angle.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.angle.domain.Member;
 import com.angle.domain.Post;
 import com.angle.service.MemberService;
 
@@ -27,17 +28,6 @@ public class MemberController {
 		this.memberService = memberService;
 	}
 
-	@RequestMapping("/memModify")
-	public String modifyProfile(MultipartHttpServletRequest req) {
-		/*
-		 * Member m = memberService.getMember(req.getParameter("id"));
-		 * HttpSession session = req.getSession();
-		 * session.setAttribute("member", m);
-		 */
-
-		memberService.modifyMember(req);
-		return "redirect:/";
-	}
 
 	@RequestMapping("/myPage")
 	public String myPage(Model model) {
@@ -202,7 +192,58 @@ public class MemberController {
 	}*/
 	
 	
+	@RequestMapping("/memModify")
+	public String modifyProfile(MultipartHttpServletRequest req){
+		/*Member m = memberService.getMember(req.getParameter("id"));
+		HttpSession session = req.getSession();
+		session.setAttribute("member", m);*/
+		
+		memberService.modifyMember(req);
+		return "redirect:/";
+	}
+	// 마이페이지 
+	@RequestMapping("/myPage")
+	public String getMyPage(Model model){
+		// 마이 페이지 그냥 session 받아서 jsp 에서 뿌리자
+		model.addAttribute("title", "/member/myPage");
+		return "index";		// include 한다길래 그냥 title로 써서 index 보냄
+	}
+	// 내가 최근에 작성한 포인트
+	@RequestMapping("/member/") // 뭘로 받지???
+	public String getMyLatelyPost(HttpServletRequest req, HttpSession session){
+		Member m = (Member) session.getAttribute("member");
+		String id = m.getId();
+		List<Post> pList = memberService.getMyLatelyPost(id);
+		return "redirect:/";   // 어디로 보내지?
+	}
+	// 취향저걱 
+	@RequestMapping("")
+	public String getMyConcernPost(HttpServletRequest req, HttpSession session, Model model){
+		Member m = (Member) session.getAttribute("member");
+		String id = m.getId();
+		List<Post> pList = memberService.getMyConcernPost(id);
+		model.addAttribute("title", "어디로 가야하오");
+		return "index"; // 어디로 가야하오
+	}
+	// 내가 최근 조회한 포스트
+	@RequestMapping("") // 어디?
+	public String getMyLatelyLookupPost(HttpServletRequest req, HttpSession session, Model model){
+		Member m = (Member) session.getAttribute("member");
+		String id = m.getId();
+		List<Post> pList = memberService.getMyLatelyLookupPost(id);
+		model.addAttribute("title", "어디로갈까나?");
+		return "index";
+	}
 	
+	@RequestMapping("")
+	public String getMyMostLookupPost(HttpServletRequest req, HttpSession session, Model model){
+		Member m = (Member) session.getAttribute("member");
+		String id = m.getId();
+		List<Post> pList = memberService.getMyMostLookupPost(id);
+		model.addAttribute("title", "어디로갈까나?");
+		return "index";
+		
+	}
 	
 	
 	

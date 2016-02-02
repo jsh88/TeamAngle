@@ -3,6 +3,7 @@ package com.angle.dao.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -224,36 +225,6 @@ public class MemberDaoImpl implements MemberDao {
 
 	}
 
-	// 내가 최근 작성한 포스트
-	@Override
-	public Post getMyLatelyPost(String id) {
-		Post p = (Post) namedParameterJdbcTemplate.query("select * from post where id = :id order by wdate desc",
-				new MapSqlParameterSource().addValue("id", id), new RowMapper<Post>() {
-
-					@Override
-					public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
-						Post p = new Post();
-						p.setpNo(rs.getInt("pno"));
-						p.setTitle(rs.getString("title"));
-						p.setmPage(rs.getInt("mPage"));
-						p.setwDate(rs.getString("wDate"));
-						p.setmDate(rs.getString("mDate"));
-						p.settDate(rs.getString("tDate"));
-						p.setGood(rs.getInt("good"));
-						p.setState(rs.getBoolean("state"));
-
-						return p;
-					}
-				});
-		return p;
-	}
-
-	@Override
-	public void modifyMember(Member m) {
-		namedParameterJdbcTemplate.update("UPDATE member SET image = :image, pComment = :pComment WHERE id = :id",
-				new BeanPropertySqlParameterSource(m));
-
-	}
 
 	@Override
 	public void updateMemberInfoId(Member member) {
@@ -323,6 +294,98 @@ public class MemberDaoImpl implements MemberDao {
 		
 	}
 
+	// 내가 최근 작성한 포스트
+		@Override
+		public List<Post> getMyLatelyPost(String id) {
+			List<Post> p = namedParameterJdbcTemplate.query(
+					"select * from post where id = :id order by wdate desc", 
+					new MapSqlParameterSource().addValue("id", id), 
+					new RowMapper<Post>() {
 
+						@Override
+						public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
+							Post p = new Post();
+							
+							p.setpNo(rs.getInt("pno"));
+							p.setTitle(rs.getString("title"));
+							p.setmPage(rs.getInt("mPage"));
+							p.setwDate(rs.getString("wDate"));
+							p.setmDate(rs.getString("mDate"));
+							p.settDate(rs.getString("tDate"));
+							p.setGood(rs.getInt("good"));
+							p.setState(rs.getBoolean("state"));
+							
+							return p;
+						}
+					});
+			return p;
+		}
+		
+		@Override
+		public void modifyMember(Member m) {
+			namedParameterJdbcTemplate.update(
+					"UPDATE member SET image = :image, pComment = :pComment WHERE id = :id",
+					new BeanPropertySqlParameterSource(m));
+			
+		}
+		
+		@Override
+		public List<Post> getMyConcernPost(String id) {
+			List<Post> pList = namedParameterJdbcTemplate.query(
+					"select pt.pno, mt.count, pt.weight, mt.tag, mt.rdate from membertag mt, posttag pt where mt.tag = pt.tag and mt.id = :id order by mt.tag desc", 
+					new MapSqlParameterSource().addValue("id", id), 
+					new RowMapper<Post>() {
+						@Override
+						public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
+							Post p = new Post();
+							p.setpNo(rs.getInt("pt.pno"));
+							p.setlCount(rs.getInt("count"));
+							
+							
+							return p;
+						}
+					});
+			return pList;
+		}
+		
+		@Override
+		public List<Post> getMyLatelyLookupPost(String id) {
+			List<Post> pList = namedParameterJdbcTemplate.query(
+					"select * from postlog where id = :id order by rdate desc", 
+					new MapSqlParameterSource().addValue("id", id),
+					new RowMapper<Post>() {
+
+						@Override
+						public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
+							Post p = new Post();
+							p.setpNo(rs.getInt("pno"));
+							p.setId(rs.getString("id"));
+							p.setlCount(rs.getInt("count"));
+							return p;
+						}
+					});
+			
+			return pList;
+		}
+		
+		@Override
+		public List<Post> getMyMostLookupPost(String id) {
+			List<Post> pList = namedParameterJdbcTemplate.query(
+					"select * from postlog where id = :id order by count desc", 
+					new MapSqlParameterSource().addValue("id", id),
+					new RowMapper<Post>() {
+
+						@Override
+						public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
+							Post p = new Post();
+							p.setpNo(rs.getInt("pno"));
+							p.setId(rs.getString("id"));
+							p.setlCount(rs.getInt("count"));
+							return p;
+						}
+					});
+			
+			return pList;
+		}
 	
 }
