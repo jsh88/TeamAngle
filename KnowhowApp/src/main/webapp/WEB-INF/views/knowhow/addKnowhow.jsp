@@ -18,6 +18,13 @@
 			opacity:0;
 			border:0px;
 		}
+		
+		#Clear{
+			float:right;
+			margin-top: -15px;
+			margin-right: 20px;
+			opacity:0.9;
+		}
 	</style>
 	<script>
 		$(document).ready(function(){
@@ -133,11 +140,19 @@
 				
 				$("#inputModal").hide();
 				/* $("#Media").css("background-image","none"); */
+				$("#url").val(m);
 				$("#mediaiframe").css("z-index", "5");
 				$("#mediaiframe").attr("src", m+"?autoplay=1&autohide=1");
+				
+				$("#inputurl").val("");
 			}
 		}
 		
+		function clearPage(){
+				
+			
+			
+		}
 	</script>
 	<style>
 	</style>
@@ -148,9 +163,10 @@
 				<div class="modal-content" id="addContent">
 				<div id="addWrap">
 					<div class="modal-header" id="header">
-						<div id="Closeimg"><a href=""><img style="width:20px;" src="resources/images/close.png"/></a></div>
+						<div id="Closeimg"><a href="#"><img style="width:20px;" src="resources/images/close.png"/></a></div>
 						<div id="Title">${post.title }</div>
 						<div id="CreateDate">${post.wDate }</div>
+						<div id="Clear" onclick=""><a href="#"><img style="width:20px;" src="resources/images/clear.png"/></a></div>
 					</div>
 					<!-- Modal 상단-->
 						<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
@@ -162,7 +178,7 @@
 											<div id="Media" class="mbackground">
 												<div id="m" onclick="openModal()"></div>
 												<iframe id="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden" name="videourl"/><input type="file" class="imgurl" name="media"/><img id="mediaImg"/>
+												<input type="hidden" id="url" name="videourl"/><input type="file" class="imgurl" name="media"/><img id="mediaImg"/>
 											</div>
 											<div id="content_Text">
 												<textarea class="form-control knowhow1" name="knowhow" rows="10" cols=""></textarea>
