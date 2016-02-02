@@ -332,14 +332,20 @@ public class MemberDaoImpl implements MemberDao {
 		@Override
 		public List<Post> getMyConcernPost(String id) {
 			List<Post> pList = namedParameterJdbcTemplate.query(
-					"select pt.pno, mt.count, pt.weight, mt.tag, mt.rdate from membertag mt, posttag pt where mt.tag = pt.tag and mt.id = :id order by mt.tag desc", 
+					"select * from post p1, (select pt.pno from membertag mt, posttag pt where mt.tag = pt.tag and mt.id = :id order by mt.tag desc) p2 where p1.pno = p2.pno", 
 					new MapSqlParameterSource().addValue("id", id), 
 					new RowMapper<Post>() {
 						@Override
 						public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
 							Post p = new Post();
-							p.setpNo(rs.getInt("pt.pno"));
-							p.setlCount(rs.getInt("count"));
+							p.setpNo(rs.getInt("pno"));
+							p.setTitle(rs.getString("title"));
+							p.setmPage(rs.getInt("mPage"));
+							p.setwDate(rs.getString("wDate"));
+							p.setmDate(rs.getString("mDate"));
+							p.settDate(rs.getString("tDate"));
+							p.setGood(rs.getInt("good"));
+							p.setState(rs.getBoolean("state"));
 							
 							
 							return p;
@@ -351,7 +357,7 @@ public class MemberDaoImpl implements MemberDao {
 		@Override
 		public List<Post> getMyLatelyLookupPost(String id) {
 			List<Post> pList = namedParameterJdbcTemplate.query(
-					"select * from postlog where id = :id order by rdate desc", 
+					"select * from post p1, (select pno from postlog where id = :id order by rdate desc) p2 where p1.pno = p2.pno", 
 					new MapSqlParameterSource().addValue("id", id),
 					new RowMapper<Post>() {
 
@@ -359,8 +365,13 @@ public class MemberDaoImpl implements MemberDao {
 						public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
 							Post p = new Post();
 							p.setpNo(rs.getInt("pno"));
-							p.setId(rs.getString("id"));
-							p.setlCount(rs.getInt("count"));
+							p.setTitle(rs.getString("title"));
+							p.setmPage(rs.getInt("mPage"));
+							p.setwDate(rs.getString("wDate"));
+							p.setmDate(rs.getString("mDate"));
+							p.settDate(rs.getString("tDate"));
+							p.setGood(rs.getInt("good"));
+							p.setState(rs.getBoolean("state"));
 							return p;
 						}
 					});
@@ -371,7 +382,7 @@ public class MemberDaoImpl implements MemberDao {
 		@Override
 		public List<Post> getMyMostLookupPost(String id) {
 			List<Post> pList = namedParameterJdbcTemplate.query(
-					"select * from postlog where id = :id order by count desc", 
+					"select * from post p1, (select pno from postlog where id = :id order by count desc) p2 where p1.pno = p2.pno", 
 					new MapSqlParameterSource().addValue("id", id),
 					new RowMapper<Post>() {
 
@@ -379,8 +390,13 @@ public class MemberDaoImpl implements MemberDao {
 						public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
 							Post p = new Post();
 							p.setpNo(rs.getInt("pno"));
-							p.setId(rs.getString("id"));
-							p.setlCount(rs.getInt("count"));
+							p.setTitle(rs.getString("title"));
+							p.setmPage(rs.getInt("mPage"));
+							p.setwDate(rs.getString("wDate"));
+							p.setmDate(rs.getString("mDate"));
+							p.settDate(rs.getString("tDate"));
+							p.setGood(rs.getInt("good"));
+							p.setState(rs.getBoolean("state"));
 							return p;
 						}
 					});
