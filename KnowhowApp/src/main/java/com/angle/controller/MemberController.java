@@ -217,7 +217,7 @@ public class MemberController {
 		return "redirect:/";   // 어디로 보내지?
 	}
 	// 취향저걱 
-	@RequestMapping("")
+	@RequestMapping("/getMyConcertPost")
 	public String getMyConcernPost(HttpServletRequest req, HttpSession session, Model model){
 		Member m = (Member) session.getAttribute("member");
 		String id = m.getId();
@@ -226,7 +226,7 @@ public class MemberController {
 		return "index"; // 어디로 가야하오
 	}
 	// 내가 최근 조회한 포스트
-	@RequestMapping("") // 어디?
+	@RequestMapping("/getMyLatelyLookupPost") // 어디?
 	public String getMyLatelyLookupPost(HttpServletRequest req, HttpSession session, Model model){
 		Member m = (Member) session.getAttribute("member");
 		String id = m.getId();
@@ -235,7 +235,7 @@ public class MemberController {
 		return "index";
 	}
 	
-	@RequestMapping("")
+	@RequestMapping("/getMyMostLookupPost")
 	public String getMyMostLookupPost(HttpServletRequest req, HttpSession session, Model model){
 		Member m = (Member) session.getAttribute("member");
 		String id = m.getId();
@@ -245,8 +245,7 @@ public class MemberController {
 		
 	}
 	
-	
-	
+
 	
 	
 }
