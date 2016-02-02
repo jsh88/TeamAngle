@@ -58,14 +58,39 @@
 	
 	.d{
 		font-size: 15px;
-		margin-right: 10px;
-		margin-left: 10px;
 	}
 	
+	
+	.l{
+		margin-left: 20px;
+	}
 	#listDiv{
 		font-size: 16px;
 		margin-left: 20px;
 		margin-top: 20px;
+	}
+	
+	#list{
+		float: right;
+		margin-right: 10px;
+	}
+	
+	#listline{
+		width:100%;
+		border-bottom: 1px solid #BFBCBC;
+		float:right;
+	}
+	
+	.category{
+		width:55px;
+		height:40px;
+		margin-bottom: 6px;
+		color:white;
+		font-weight: bold;
+		text-align: center;
+		vertical-align:middle;
+		line-height:40px;
+		font-size: 18px;
 	}
 </style>
 </head>
@@ -76,7 +101,7 @@
 				<div id="myWrap">
 					<div id="myTitle">
 						<div id="Closeimg"><a href="#"><img style="width:20px;" src="resources/images/close.png"/></a></div>
-						<div id="Title">MyKnowhow</div>
+						<div id="Title">MyKnow</div>
 						<div id="description">
 							<span class="d" id="o">-조회 수 높은 knowhow</span>
 							<span class="d" id="n">-최근 knowhow</span>
@@ -85,10 +110,13 @@
 						</div>
 						<div id="listDiv">
 							<div class="knowhowlist">
-								<a href="#"><b>Title</b></a>
-								<span>2016.02.02 18:17:32</span>
-								<span><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a></span>
+								<div><a href="#"><b>Title</b></a></div>
+								<div id="list">
+								<span class="l">2016.02.02 18:17:32</span>
+								<span class="l"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a></span>
 								<span><a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></span>
+								</div>
+								<div id="listline"></div>
 							</div>
 						</div>
 					</div>
@@ -97,35 +125,17 @@
 				<div id="addDelete">
 					<div id="lineback"></div>
 					<div id="postit">
-						<div class="pageNumber p1">
+						<div class="category1">
 							1
 						</div>
-						<div class="pageNumber p2">
+						<div class="category2">
 							2
 						</div>
-						<div class="pageNumber p3">
+						<div class="category3">
 							3
 						</div>
-						<div class="pageNumber p4">
+						<div class="category4">
 							4
-						</div>
-						<div class="pageNumber p5">
-							5
-						</div>
-						<div class="pageNumber p6">
-							6
-						</div>
-						<div class="pageNumber p7">
-							7
-						</div>
-						<div class="pageNumber p8">
-							8
-						</div>
-						<div class="pageNumber p9">
-							9
-						</div>
-						<div class="pageNumber p10">
-							10
 						</div>
 					</div>
 				</div>
