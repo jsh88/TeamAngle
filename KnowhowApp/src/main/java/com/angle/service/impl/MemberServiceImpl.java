@@ -2,7 +2,6 @@ package com.angle.service.impl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -43,39 +42,37 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public void insertMemberJoin(HttpServletRequest request) throws IOException {
-
-		//request.setCharacterEncoding("utf-8");
-		/*GregorianCalendar now = new GregorianCalendar();
-		String date = String.format("%TF", now);	// 날짜
-		String time = String.format("%TT", now);	// 시간
-		String dateTime = date + " " + time;*/
-
-		Date d = new Date();
-		String date = d.toString();
-
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		String nickname = request.getParameter("nickname");		
-		int vcount = 0;
-
-		String image = "";
-		String pComment = "";
-
-		Member m = new Member();
-		m.setId(id);
-		m.setPw(pw);
-		m.setNickName(nickname);
-		m.setjDate(date);
-		m.setlDate("");		
-		m.setvCount(vcount);
-		m.setState(true);
-		m.setImage(image);
-		m.setpComment(pComment);
-
-		memberDao.insertMemberJoin(m);
-
-	}
+	   public void insertMemberJoin(HttpServletRequest request) throws IOException {
+	            
+	      /*GregorianCalendar now = new GregorianCalendar();
+	      String date = String.format("%TF", now);   // 날짜
+	      String time = String.format("%TT", now);   // 시간
+	      String dateTime = date + " " + time;
+	      
+	      System.out.println(dateTime);  */
+	               
+	      String id = request.getParameter("id");
+	      String pw = request.getParameter("pw");
+	      String nickname = request.getParameter("nickname");      
+	      int vcount = 0;
+	   
+	      String image = "";
+	      String pComment = "";
+	      
+	      Member m = new Member();
+	      m.setId(id);
+	      m.setPw(pw);
+	      m.setNickName(nickname);
+	      m.setjDate("");
+	      m.setlDate("");      
+	      m.setvCount(vcount);
+	      m.setState(true);
+	      m.setImage(image);
+	      m.setpComment(pComment);
+	      
+	      memberDao.insertMemberJoin(m);
+	      
+	   }
 
 	@Override
 	public int checkId(HttpServletRequest request) {
@@ -199,7 +196,7 @@ public class MemberServiceImpl implements MemberService {
 			result = -1;
 		} else {
 			if(member.getPw().equals(pw)) {
-				session.setAttribute("isLogin", true);
+//				session.setAttribute("isLogin", true);
 				session.setAttribute("member", id);
 				result = 0;
 				memberDao.updateLdate(member);
