@@ -10,6 +10,14 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="resources/css/addKnowhow.css">
 	<style>
+		.imgurl{
+			position: absolute;
+			width:20px;
+			height: 200px;
+			z-index:1;
+			opacity:0;
+			border:0px;
+		}
 	</style>
 	<script>
 		$(document).ready(function(){
@@ -125,6 +133,7 @@
 				
 				$("#inputModal").hide();
 				/* $("#Media").css("background-image","none"); */
+				$("#mediaiframe").css("z-index", "5");
 				$("#mediaiframe").attr("src", m+"?autoplay=1&autohide=1");
 			}
 		}
@@ -153,7 +162,7 @@
 											<div id="Media" class="mbackground">
 												<div id="m" onclick="openModal()"></div>
 												<iframe id="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<img id="mediaImg"/>
+												<input type="hidden" name="videourl"/><input type="file" class="imgurl" name="media"/><img id="mediaImg"/>
 											</div>
 											<div id="content_Text">
 												<textarea class="form-control knowhow1" name="knowhow" rows="10" cols=""></textarea>
@@ -170,6 +179,9 @@
   							 		<form name="addKnowhowForm" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media"class="mbackground">
+												<div id="m" onclick="openModal()"></div>
+												<iframe id="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden" name="videourl"/><input type="file" class="imgurl" name="media"/><img id="mediaImg"/>
 											</div>
 											<div id="content_Text">
 												<textarea class="form-control knowhow2" name="knowhow" rows="10" cols=""></textarea>
@@ -186,6 +198,9 @@
   							 		<form name="addKnowhowForm" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media" class="mbackground">
+												<div id="m" onclick="openModal()"></div>
+												<iframe id="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden" name="videourl"/><input type="file" class="imgurl" name="media"/><img id="mediaImg"/>
 											</div>
 											<div id="content_Text">
 												<textarea class="form-control knowhow3"  name="knowhow" rows="10" cols=""></textarea>
@@ -202,6 +217,9 @@
   							 		<form name="addKnowhowForm" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media" class="mbackground">
+												<div id="m" onclick="openModal()"></div>
+												<iframe id="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden" name="videourl"/><input type="file" class="imgurl" name="media"/><img id="mediaImg"/>
 											</div>
 											<div id="content_Text">
 												<textarea class="form-control knowhow4" name="knowhow" rows="10" cols=""></textarea>
@@ -218,6 +236,9 @@
   							 		<form name="addKnowhowForm" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media" class="mbackground">
+												<div id="m" onclick="openModal()"></div>
+												<iframe id="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden" name="videourl"/><input type="file"  class="imgurl" name="media"/><img id="mediaImg"/>
 											</div>
 											<div id="content_Text">
 												<textarea class="form-control knowhow5" name="knowhow" rows="10" cols=""></textarea>
@@ -234,6 +255,9 @@
   							 		<form name="addKnowhowForm" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media" class="mbackground">
+												<div id="m" onclick="openModal()"></div>
+												<iframe id="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden" name="videourl"/><input type="file"  class="imgurl" name="media"/><img id="mediaImg"/>
 											</div>
 											<div id="content_Text">
 												<textarea class="form-control knowhow6" name="knowhow" rows="10" cols=""></textarea>
@@ -250,6 +274,9 @@
   							 		<form name="addKnowhowForm" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media" class="mbackground">
+												<div id="m" onclick="openModal()"></div>
+												<iframe id="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden" name="videourl"/><input type="file" class="imgurl" name="media"/><img id="mediaImg"/>
 											</div>
 											<div id="content_Text">
 												<textarea class="form-control knowhow7" name="knowhow" rows="10" cols=""></textarea>
@@ -266,6 +293,9 @@
   							 		<form name="addKnowhowForm" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media" class="mbackground">
+												<div id="m" onclick="openModal()"></div>
+												<iframe id="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden" name="videourl"/><input type="file"  class="imgurl" name="media"/><img id="mediaImg"/>
 											</div>
 											<div id="content_Text">
 												<textarea class="form-control knowhow8" name="knowhow" rows="10" cols=""></textarea>
@@ -282,6 +312,9 @@
   							 		<form name="addKnowhowForm" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media" class="mbackground">
+												<div id="m" onclick="openModal()"></div>
+												<iframe id="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden" name="videourl"/><input type="file" class="imgurl" name="media"/><img id="mediaImg"/>
 											</div>
 											<div id="content_Text">
 												<textarea class="form-control knowhow9" name="knowhow" rows="10" cols=""></textarea>
@@ -298,6 +331,9 @@
   							 		<form name="addKnowhowForm" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media" class="mbackground">
+												<div id="m" onclick="openModal()"></div>
+												<iframe id="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden" name="videourl"/><input type="file" class="imgurl" name="media"/><img id="mediaImg"/>
 											</div>
 											<div id="content_Text">
 												<textarea class="form-control knowhow10" name="knowhow" rows="10" cols=""></textarea>
