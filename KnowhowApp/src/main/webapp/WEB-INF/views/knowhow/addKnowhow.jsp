@@ -15,6 +15,7 @@
 		$(document).ready(function(){
 			
 			var i = 1;
+			var m = "";
 			
 			$("#addModal").modal();
 			
@@ -107,6 +108,26 @@
 			
 		});
 		
+		function openModal(){
+			
+			$("#inputModal").modal();
+			
+		}
+		
+		function closeModal(){
+			
+			m = $("#inputurl").val();
+			
+			if(m == ""){
+				$("#inputModal").hide();
+			
+			}else{
+				
+				$("#inputModal").hide();
+				/* $("#Media").css("background-image","none"); */
+				$("#mediaiframe").attr("src", m+"?autoplay=1&autohide=1");
+			}
+		}
 		
 	</script>
 	<style>
@@ -129,10 +150,13 @@
   							 	<div class="item active">
   							 		<form name="addKnowhowForm" action="test.jsp" method="post">
 										<div id="content">
-											<div id="Media">
+											<div id="Media" class="mbackground">
+												<div id="m" onclick="openModal()"></div>
+												<iframe id="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<img id="mediaImg"/>
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow1" name="knowhow" rows="13" cols=""></textarea>
+												<textarea class="form-control knowhow1" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -145,10 +169,10 @@
   							 	<div class="item">
   							 		<form name="addKnowhowForm" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
-											<div id="Media">
+											<div id="Media"class="mbackground">
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow2" name="knowhow" rows="13" cols=""></textarea>
+												<textarea class="form-control knowhow2" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -161,10 +185,10 @@
   							 	<div class="item">
   							 		<form name="addKnowhowForm" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
-											<div id="Media">
+											<div id="Media" class="mbackground">
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow3"  name="knowhow" rows="13" cols=""></textarea>
+												<textarea class="form-control knowhow3"  name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -177,10 +201,10 @@
   							 	<div class="item">
   							 		<form name="addKnowhowForm" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
-											<div id="Media">
+											<div id="Media" class="mbackground">
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow4" name="knowhow" rows="13" cols=""></textarea>
+												<textarea class="form-control knowhow4" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -193,10 +217,10 @@
   							 	<div class="item">
   							 		<form name="addKnowhowForm" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
-											<div id="Media">
+											<div id="Media" class="mbackground">
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow5" name="knowhow" rows="13" cols=""></textarea>
+												<textarea class="form-control knowhow5" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -209,10 +233,10 @@
   							 	<div class="item">
   							 		<form name="addKnowhowForm" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
-											<div id="Media">
+											<div id="Media" class="mbackground">
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow6" name="knowhow" rows="13" cols=""></textarea>
+												<textarea class="form-control knowhow6" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -225,10 +249,10 @@
   							 	<div class="item">
   							 		<form name="addKnowhowForm" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
-											<div id="Media">
+											<div id="Media" class="mbackground">
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow7" name="knowhow" rows="13" cols=""></textarea>
+												<textarea class="form-control knowhow7" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -241,10 +265,10 @@
   							 	<div class="item">
   							 		<form name="addKnowhowForm" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
-											<div id="Media">
+											<div id="Media" class="mbackground">
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow8" name="knowhow" rows="13" cols=""></textarea>
+												<textarea class="form-control knowhow8" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -257,10 +281,10 @@
   							 	<div class="item">
   							 		<form name="addKnowhowForm" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
-											<div id="Media">
+											<div id="Media" class="mbackground">
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow9" name="knowhow" rows="13" cols=""></textarea>
+												<textarea class="form-control knowhow9" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -273,10 +297,10 @@
   							 	<div class="item">
   							 		<form name="addKnowhowForm" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
-											<div id="Media">
+											<div id="Media" class="mbackground">
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow10" name="knowhow" rows="13" cols=""></textarea>
+												<textarea class="form-control knowhow10" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -334,6 +358,26 @@
 					</div>
 				</div>
 			</div>
+			<div class="modal fade" id="inputModal">
+		<div class="modal-dialog" id="inputDialog">
+			<div class="modal-content" id="inputContent">
+				<div id="inputWrap">
+				<div id="Closeimg2"><a href=""><img style="width:20px;" src="resources/images/close.png"/></a></div>	
+					<div id="inputTitle">
+						<div class="form-group">
+							<label for="addtitle" class="col-sm-12 control-label" id="titlelabel">Please enter a Video url</label>
+							<div class="col-sm-12">
+							<input type="text" class="form-control" id="inputurl" name="url" maxlength="80"/> 
+							</div>
+						</div>
+						<div id="buttonGroup">
+								<button type="button" class="btn btn-success addbtn"onclick="closeModal()"><b>Enter</b></button>
+							</div>	
+					</div>
+			</div>
+		</div>
+		</div>
+	</div>
 	</div>
 </body>
 </html>
