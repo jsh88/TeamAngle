@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -47,5 +49,10 @@ public interface MemberService {
 	public List<Post> getMyLatelyLookupPost(String id);
 
 	public List<Post> getMyMostLookupPost(String id);
+
+	String emailCheck(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception;
+
+	void getSendCodeCheck(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+			throws Exception;
 
 }
