@@ -1,7 +1,6 @@
 package com.angle.service.impl;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,15 +35,20 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void insertMemberJoin(HttpServletRequest request) throws IOException {
-		
-		//request.setCharacterEncoding("utf-8");
+				
 		/*GregorianCalendar now = new GregorianCalendar();
 		String date = String.format("%TF", now);	// 날짜
 		String time = String.format("%TT", now);	// 시간
-		String dateTime = date + " " + time;*/
+		String dateTime = date + " " + time;
 		
-		Date d = new Date();
-		String date = d.toString();
+		System.out.println(dateTime);  */
+		
+	/*	Date d = new Date();
+		String date = String.format("%TF", d);	// 날짜
+		String time = String.format("%TT", d);	// 시간
+		String dateTime = date + " " + time;
+		
+		System.out.println(dateTime);*/
 		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
@@ -58,7 +62,7 @@ public class MemberServiceImpl implements MemberService {
 		m.setId(id);
 		m.setPw(pw);
 		m.setNickName(nickname);
-		m.setjDate(date);
+		m.setjDate("");
 		m.setlDate("");		
 		m.setvCount(vcount);
 		m.setState(true);
@@ -191,7 +195,7 @@ public class MemberServiceImpl implements MemberService {
 			result = -1;
 		} else {
 			if(member.getPw().equals(pw)) {
-				session.setAttribute("isLogin", true);
+//				session.setAttribute("isLogin", true);
 				session.setAttribute("member", id);
 				result = 0;
 				memberDao.updateLdate(member);
