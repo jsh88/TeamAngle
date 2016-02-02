@@ -39,8 +39,6 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.getMember(id);
 	}
 
-
-
 	@Override
 	   public void insertMemberJoin(HttpServletRequest request) throws IOException {
 	            
