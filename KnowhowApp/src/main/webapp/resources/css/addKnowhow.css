@@ -293,14 +293,14 @@
 			
 			/* media*/
 			
-		#mediaiframe{
+		.mediaiframe{
 			margin: 0px auto;
 			z-index: 2;
 			position: absolute;
 			border:0px;
 		}
 		
-		#m{
+		.m{
 			position: absolute;
 			z-index:3;
 			width:565px;
@@ -309,7 +309,7 @@
 			cursor: pointer;
 		}
 		
-		#mediaImg{
+		.mediaImg{
 			width:565px;
 			height:300px;
 			border:0px;
