@@ -28,10 +28,4 @@ public class TagController {
 		return null;	// 어디로 가야하오
 	}
 	
-	@RequestMapping(value="/myknowhow")
-	public String myKnowhow(){
-		
-		return "knowhow/myKnowhow";
-	}
-
 }
