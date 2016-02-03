@@ -24,15 +24,19 @@
 			margin-top: -15px;
 			margin-right: 20px;
 			opacity:0.9;
+			cursor: pointer;
 		}
 	</style>
 	<script>
-		$(document).ready(function(){
-			
-			var img;
-			var i = 1;
-			var m = "";
-			var num = "";
+	
+	var imgArr = [10];
+	var urlArr = [10];
+	var conArr = [10];
+	var i = 1;
+	var maxPage = 1;
+	var url = "";
+	
+		$(document).ready(function(){			
 			
 			$("#addModal").modal();
 			
@@ -46,11 +50,10 @@
 			$(".p9").hide();
 			$(".p10").hide();
 			
-			
 			 /*추가 버튼*/
 			 $("#addbtn").click(function(){
 				
-				 var n = $(".knowhow"+i).val();
+				 var n = $(".knowhow" + maxPage).val();
 				 
 				 if(n == null || n == ""){
 				 
@@ -59,25 +62,47 @@
 				 }else{	 
 					 
 					 $("#myCarousel").carousel(i);
-					 i +=1;
-					 $(".p"+i).show();
-				 
+					 maxPage +=1;
+					 i += 1;
+					 
+					 if(maxPage==10) {
+						 $("#addbtn").hide();
+					 } else {
+						 $(".p"+ maxPage).show();
+					 }
 				 }
 			}); 
+			 
+			 
 			 
 			 /*삭제 버튼*/
 			 $("#deletebtn").click(function(){
 				
-				if(i == 1){
+				if(maxPage == 1){
 					
 					alert('삭제할 페이지가 없습니다.')
 					
 				}else{
 					
-					$(".p"+i).hide(); 
-					i -=1;
-					$("#myCarousel").carousel(i-1);
+					// clear 로직
+					$('#mediaiframe' + maxPage).attr('src', "");				// 미디어 src 비우기
+					$('#inputurl').attr('value', "");									// 모달 위 모달 value 비우기
+					$("#ta" + i).val("");													// 컨텐트 비우기
+					$("#mediaiframe"+ maxPage).css("z-index", "2");	// 미디어 층 내리기
+					$("#mediaImg").attr("src", "");									// 이미지 비우기
+					imgArr[i - 1] = null;													// 파일 비우기
+					urlArr[i - 1] = null;													// url 비우기
+					conArr[i - 1] = null;													// content 비우기
+					url = "";																	// url 운반 변수 비우기
 					
+					$(".p"+i).hide(); 
+					maxPage -=1;
+					i -= 1;
+					$("#myCarousel").carousel(maxPage - 1);
+					
+					if(maxPage==9) {
+						$("#addbtn").show();
+					}					
 				}
 			 });
 			 
@@ -85,84 +110,99 @@
 			 /*div 간 이동*/
 			$(".p1").click(function(){
 				$("#myCarousel").carousel(0);
+				checkVideo();
+				i = 1;
+				checkMaxPage();
 			});
 			
 			$(".p2").click(function(){
 				$("#myCarousel").carousel(1);
+				checkVideo();
+				i = 2;
+				checkMaxPage();
 			});
 			
 			$(".p3").click(function(){
 				$("#myCarousel").carousel(2);
+				checkVideo();
+				i = 3;
+				checkMaxPage();
 			});
 			
 			$(".p4").click(function(){
 				$("#myCarousel").carousel(3);
+				checkVideo();
+				i = 4;
+				checkMaxPage();
 			});
 			
 			$(".p5").click(function(){
 				$("#myCarousel").carousel(4);
+				checkVideo();
+				i = 5;
+				checkMaxPage();
 			});
 			
 			$(".p6").click(function(){
 				$("#myCarousel").carousel(5);
+				checkVideo();
+				i = 6;
+				checkMaxPage();
 			});
 			
 			$(".p7").click(function(){
 				$("#myCarousel").carousel(6);
+				checkVideo();
+				i = 7;
+				checkMaxPage();
 			});
 			
 			$(".p8").click(function(){
 				$("#myCarousel").carousel(7);
+				checkVideo();
+				i = 8;
+				checkMaxPage();
 			});
 			
 			$(".p9").click(function(){
 				$("#myCarousel").carousel(8);
+				checkVideo();
+				i = 9;
+				checkMaxPage();
 			});
 			
 			$(".p10").click(function(){
 				$("#myCarousel").carousel(9);
+				$("#addbtn").hide();
+				checkVideo();
+				i = 10;
+				checkMaxPage();
 			});
 			
 			/* 이미지 드래그 앤 드롭 */
-			$('.m').on('drop', function(e) {
-				
-				var midimg = $(e.target).attr('id');
-				num= midimg.replace("m", '');
-				
-				alert(num);
+			$('#m'+i).on('drop', function(e) {
 				
 				e.preventDefault();
 				e.stopPropagation();
 
 				var reader = new FileReader();
 
-				reader.onload = function(e) {
+				reader.onload = function(ev) {
 
-					$('#mediaImg'+num).attr('src', e.target.result);
+					$('#mediaImg' + i).attr('src', ev.target.result);
 
 				}
 				
-				img = e.originalEvent.dataTransfer.files[0];
+				imgArr[i] = e.originalEvent.dataTransfer.files[0];
 
-				reader.readAsDataURL(img);
-				
-				$("#mediaiframe"+num).css("z-index", "2");
+				reader.readAsDataURL(imgArr[i]);
 
 			});
 			
-			/*동영상 url*/
-			$(".m").click(function(){
+			
+			$("#inpuBtn").click(function(){
 				
-				var mid = $(this).attr('id');
-				num= mid.replace("m", '');
-				
-				openModal();
-				
-				$("#inpuBtn").click(function(){
-					
-					closeModal(num);
-					
-				});
+				closeModal();
 				
 			});
 			
@@ -175,27 +215,60 @@
 			
 		}
 
-		function closeModal(k){
+		function closeModal(){
 			
-			m = $("#inputurl").val();
+			url = $("#inputurl").val();
 			
-			if(m == ""){
+			if(url == ""){
+				
+				alert("URL이 입력되지 않았습니다.");
 				$("#inputModal").modal('hide');
 			
 			}else{
 				
 				$("#inputModal").modal('hide');
-				$("#url"+k).val(m);
-				$("#mediaiframe"+k).css("z-index", "5");
-				$("#mediaiframe"+k).attr("src", m+"?autoplay=1&autohide=1");
+				urlArr[i] = url;
+				$("#mediaiframe"+i).css("z-index", "4");
+				$("#mediaiframe"+i).attr("src", url+"?autoplay=1&autohide=1");
 				
 				$("#inputurl").val("");
 			}
 		}
 		
+		function checkVideo() {
+			if(urlArr[i]) { // 보류
+// 				$("mediaiframe" + i)[0].contentWindow.postMessage('{"event":"command", "func":"pauseVideo","args":""}','*');
+			}
+		}
+		
+		function checkMaxPage() {
+			if(maxPage==i) {
+				if(i==10) {
+					$("#addbtn").hide();
+					$("#deletebtn").show();
+				} else {
+					$("#addbtn").show();
+					$("#deletebtn").show();
+				}						
+			} else {
+				$("#addbtn").hide();
+				$("#deletebtn").hide();
+			}
+		}
+		
 		function clearPage(){
 				
+			alert("모든 요소를 비웁니다."); // ing
 			
+			// clear 로직
+			$('#mediaiframe' + i).attr('src', "");				// 미디어 src 비우기
+			$('#inputurl').attr('value', "");						// 모달 위 모달 value 비우기
+			$("#ta" + i).val("");										// 컨텐트 비우기
+			$("#mediaiframe"+ i).css("z-index", "2");		// 미디어 층 내리기
+			$("#mediaImg" + i).attr("src", "");				// 이미지 비우기
+			imgArr[i - 1] = null;										// 파일 비우기
+			urlArr[i - 1] = null;										// url 비우기
+			url = "";														// url 운반 변수 비우기		
 			
 		}
 	</script>
@@ -211,7 +284,7 @@
 						<div id="Closeimg"><a href="#"><img style="width:20px;" src="resources/images/close.png"/></a></div>
 						<div id="Title">${post.title }</div>
 						<div id="CreateDate">${post.wDate }</div>
-						<div id="Clear" onclick=""><a href="#"><img style="width:20px;" src="resources/images/clear.png"/></a></div>
+						<div id="Clear" onclick="clearPage()"><img style="width:20px;" src="resources/images/clear.png"/></div>
 					</div>
 					<!-- Modal 상단-->
 						<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
@@ -226,7 +299,7 @@
 												<input type="hidden" id="url1" name="videourl"/><input type="file" class="imgurl" id="imgurl1" name="media"/><img class="mediaImg" id="mediaImg1"/>
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow1" name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="ta1" class="form-control knowhow1" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -240,12 +313,12 @@
   							 		<form name="addKnowhowForm2" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media"class="mbackground">
-												<div id="m2" class="m" onclick="openModal()"></div>
+												<div id="m2" class="m" onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe2" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
 												<input type="hidden"id="url2" name="videourl"/><input type="file" class="imgurl" id="imgurl2" name="media"/><img class="mediaImg" id="mediaImg2"/>
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow2" name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="ta2" class="form-control knowhow2" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -259,12 +332,12 @@
   							 		<form name="addKnowhowForm3" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media" class="mbackground">
-												<div id="m3" class="m"  onclick="openModal()"></div>
+												<div id="m3" class="m"  onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe3" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
 												<input type="hidden" id="url3" name="videourl"/><input type="file" class="imgurl" id="imgurl3" name="media"/><img class="mediaImg" id="mediaImg3"/>
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow3"  name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="ta3" class="form-control knowhow3"  name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -278,12 +351,12 @@
   							 		<form name="addKnowhowForm4" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media" class="mbackground">
-												<div id="m4" class="m"  onclick="openModal()"></div>
+												<div id="m4" class="m"  onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe4" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
 												<input type="hidden" id="url4"  name="videourl"/><input type="file" class="imgurl" id="imgurl4" name="media"/><img class="mediaImg" id="mediaImg4"/>
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow4" name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="ta4" class="form-control knowhow4" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -297,12 +370,12 @@
   							 		<form name="addKnowhowForm5" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media" class="mbackground">
-												<div id="m5" class="m"  onclick="openModal()"></div>
+												<div id="m5" class="m"  onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe5" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
 												<input type="hidden"  id="url5" name="videourl"/><input type="file"  class="imgurl" id="imgurl5" name="media"/><img class="mediaImg" id="mediaImg5"/>
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow5" name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="ta5" class="form-control knowhow5" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -316,12 +389,12 @@
   							 		<form name="addKnowhowForm6" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media" class="mbackground">
-												<div id="m6" class="m"  onclick="openModal()"></div>
+												<div id="m6" class="m"  onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe6" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
 												<input type="hidden" id="url6" name="videourl"/><input type="file"  class="imgurl" id="imgurl6" name="media"/><img class="mediaImg" id="mediaImg6"/>
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow6" name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="ta6" class="form-control knowhow6" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -335,12 +408,12 @@
   							 		<form name="addKnowhowForm7" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media" class="mbackground">
-												<div id="m7" class="m"  onclick="openModal()"></div>
+												<div id="m7" class="m"  onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe7" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
 												<input type="hidden" id="url7" name="videourl"/><input type="file" class="imgurl" id="imgurl7" name="media"/><img class="mediaImg" id="mediaImg7"/>
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow7" name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="ta7" class="form-control knowhow7" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -354,12 +427,12 @@
   							 		<form name="addKnowhowForm8" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media" class="mbackground">
-												<div id="m8" class="m"  onclick="openModal()"></div>
+												<div id="m8" class="m"  onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe8" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
 												<input type="hidden" id="url8" name="videourl"/><input type="file"  class="imgurl" id="imgurl8" name="media"/><img class="mediaImg" id="mediaImg8"/>
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow8" name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="ta8" class="form-control knowhow8" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -373,12 +446,12 @@
   							 		<form name="addKnowhowForm9" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media" class="mbackground">
-												<div id="m9" class="m"  onclick="openModal()"></div>
+												<div id="m9" class="m"  onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe9" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
 												<input type="hidden" id="url9" name="videourl"/><input type="file" class="imgurl" id="imgurl9" name="media"/><img class="mediaImg" id="mediaImg9"/>
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow9" name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="ta9" class="form-control knowhow9" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
@@ -392,12 +465,12 @@
   							 		<form name="addKnowhowForm10" name="knowhow" action="test.jsp" method="post">
 										<div id="content">
 											<div id="Media" class="mbackground">
-												<div id="m10" class="m"  onclick="openModal()"></div>
+												<div id="m10" class="m"  onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe10" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
 												<input type="hidden" id="url10" name="videourl"/><input type="file" class="imgurl" id="imgurl10" name="media"/><img class="mediaImg" id="mediaImg10"/>
 											</div>
 											<div id="content_Text">
-												<textarea class="form-control knowhow10" name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="ta10" class="form-control knowhow10" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">

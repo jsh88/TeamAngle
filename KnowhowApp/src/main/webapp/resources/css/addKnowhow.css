@@ -25,6 +25,7 @@
 			.addbtn{
 				margin-top: 10px;
 				margin-bottom: 10px;
+				cursor: pointer;
 			}
 			
 			#Recallingbtn, #Priorbtn{
@@ -221,6 +222,7 @@
 				margin-top:10px;
 				width: 55px;
 				height:40px;
+				cursor: pointer;
 			}
 			
 			.pageNumber{
@@ -237,42 +239,52 @@
 			
 			.p1{
 				background-color:red;
+				cursor: pointer;
 			}
 			
 			.p2{
 				background-color:tomato;
+				cursor: pointer;
 			}
 			
 			.p3{
 				background-color:orange;
+				cursor: pointer;
 			}
 			
 			.p4{
 				background-color:#FFDA00;
+				cursor: pointer;
 			}
 			
 			.p5{
 				background-color: #336C12;
+				cursor: pointer;
 			}
 			
 			.p6{
 				background-color: #429AD8;
+				cursor: pointer;
 			}
 			
 			.p7{
 				background-color:#2556AB;
+				cursor: pointer;
 			}
 			
 			.p8{
 				background-color:#4F25AB;
+				cursor: pointer;
 			}
 
 			.p9{
 				background-color:#AB2525;
+				cursor: pointer;
 			}
 			
 			.p10{
 				background-color:#222020;
+				cursor: pointer;
 			}
 	
 			#addDelete{
