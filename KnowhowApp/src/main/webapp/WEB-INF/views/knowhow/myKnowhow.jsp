@@ -14,12 +14,16 @@
 		
 		$("#myModal").modal();
 		
-	/* 	$("#o").hide(); */
+		$("#o").hide();
 		$("#n").hide();
 		$("#c").hide();
 		$("#r").hide();
 		
-	});
+		});
+	
+	function AjaxList(category){
+		
+	}
 </script>
 </head>
 <body>
@@ -36,16 +40,9 @@
 							<span class="d" id="c">&nbsp;-댓글 많은 knowhow</span>
 							<span class="d" id="r" >&nbsp;-추천 높은 knowhow</span>
 						</div>
-						<div id="listDiv"  style="overflow:scroll; overflow-x:hidden;">
-							<div class="knowhowlist" >
-								<div><a href="#"><b>Title</b></a></div>
-								<div id="list">
-								<span class="l">2016.02.02 18:17:32</span>
-								<span class="l"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a></span>
-								<span><a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></span>
-								</div>
-								<div id="listline"></div>
-							</div>
+						<div id="listDiv" style="overflow:scroll; overflow-x:hidden;">
+						<iframe id="listIframe" width="460" height="100%" frameborder="0" allowfullscreen >
+						</iframe>
 						</div>
 					</div>
 				</div>
