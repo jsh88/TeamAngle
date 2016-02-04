@@ -40,19 +40,25 @@ public interface MemberService {
 
 	public Member getMember(String id);
 
-	public List<Post> getMyLatelyPost(String id);
+	public void getMyLatelyPost(String id);
 
 	public void modifyMember(MultipartHttpServletRequest req);
 
-	public List<Post> getMyConcernPost(String id);
+	public void getMyConcernPost(String id);
 
-	public List<Post> getMyLatelyLookupPost(String id);
+	public void getMyLatelyLookupPost(String id);
 
-	public List<Post> getMyMostLookupPost(String id);
+	public void getMyMostLookupPost(String id);
 
 	String emailCheck(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception;
 
 	void getSendCodeCheck(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws Exception;
+
+	public void getMyPostByViews(HttpServletRequest req, HttpSession session);
+
+	public void getMyPostByRecommand(HttpServletRequest req, HttpSession session);
+
+	public void getMyPostByComments(HttpServletRequest req, HttpSession session);
 
 }

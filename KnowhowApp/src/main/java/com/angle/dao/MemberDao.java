@@ -47,4 +47,10 @@ public interface MemberDao {
 
 	public List<Post> getMyMostLookupPost(String id);
 
+	public List<Post> getMyPostByViews(String id);
+
+	public List<Post> getMyPostByRecommand(String id);
+
+	public List<Post> getMyPostByComments(String id);
+
 }
