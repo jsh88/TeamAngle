@@ -42,7 +42,7 @@
 			urlArr[0] = null;
 			conArr[0] = null;
 			
-			$("#addModal").modal();
+			$("#addModal").modal();			
 			
 			$(".p2").hide();
 			$(".p3").hide();
@@ -66,6 +66,7 @@
 				 }else{	 
 					 
 					 $("#myCarousel").carousel(i);
+					 modifyCon();
 					 maxPage +=1;
 					 i += 1;
 					 
@@ -114,20 +115,23 @@
 			$(".p1").click(function(){
 				$("#myCarousel").carousel(0);
 				checkVideo();
-				i = 1;
+				modifyCon();
+				i = 1;				
 				checkMaxPage();
 			});
 			
 			$(".p2").click(function(){
 				$("#myCarousel").carousel(1);
 				checkVideo();
-				i = 2;
+				modifyCon();
+				i = 2;				
 				checkMaxPage();
 			});
 			
 			$(".p3").click(function(){
 				$("#myCarousel").carousel(2);
 				checkVideo();
+				modifyCon();
 				i = 3;
 				checkMaxPage();
 			});
@@ -135,6 +139,7 @@
 			$(".p4").click(function(){
 				$("#myCarousel").carousel(3);
 				checkVideo();
+				modifyCon();
 				i = 4;
 				checkMaxPage();
 			});
@@ -142,6 +147,7 @@
 			$(".p5").click(function(){
 				$("#myCarousel").carousel(4);
 				checkVideo();
+				modifyCon();
 				i = 5;
 				checkMaxPage();
 			});
@@ -149,6 +155,7 @@
 			$(".p6").click(function(){
 				$("#myCarousel").carousel(5);
 				checkVideo();
+				modifyCon();
 				i = 6;
 				checkMaxPage();
 			});
@@ -156,6 +163,7 @@
 			$(".p7").click(function(){
 				$("#myCarousel").carousel(6);
 				checkVideo();
+				modifyCon();
 				i = 7;
 				checkMaxPage();
 			});
@@ -163,6 +171,7 @@
 			$(".p8").click(function(){
 				$("#myCarousel").carousel(7);
 				checkVideo();
+				modifyCon();
 				i = 8;
 				checkMaxPage();
 			});
@@ -170,6 +179,7 @@
 			$(".p9").click(function(){
 				$("#myCarousel").carousel(8);
 				checkVideo();
+				modifyCon();
 				i = 9;
 				checkMaxPage();
 			});
@@ -178,6 +188,7 @@
 				$("#myCarousel").carousel(9);
 				$("#addbtn").hide();
 				checkVideo();
+				modifyCon();
 				i = 10;
 				checkMaxPage();
 			});
@@ -195,8 +206,9 @@
 					$('#mediaImg' + i).attr('src', ev.target.result);
 
 				}
-				
+
 				imgArr[i - 1] = e.originalEvent.dataTransfer.files[0];
+				urlArr[i - 1] = null;
 
 				reader.readAsDataURL(imgArr[i - 1]);
 
@@ -209,20 +221,20 @@
 			});
 			
 		});
-		//
+		//		
 		
 		function openModal(){
-			
-			if(imgArr[i - 1]) {
 				
-				alert("이미지가 들어있습니다. Clear 해주세요.");
-				
-			} else {
-				
-				$("#inputModal").modal();
-				
-			}		
-		}
+				if(imgArr[i - 1]) {
+					
+					alert("이미지가 들어있습니다. Clear 해주세요.");
+					
+				} else {
+					
+					$("#inputModal").modal();
+					
+				}		
+			}
 
 		function closeModal(){
 			
@@ -237,8 +249,9 @@
 				
 				$("#inputModal").modal('hide');
 				urlArr[i - 1] = url;
+				imgArr[i - 1] = null;
 				$("#mediaiframe"+i).css("z-index", "4");
-				$("#mediaiframe"+i).attr("src", url+"?autoplay=1&autohide=1");
+				$("#mediaiframe"+i).attr("src", url+"?autoplay=0&autohide=1");
 				
 				$("#inputurl").val("");
 			}
@@ -265,20 +278,86 @@
 			}
 		}
 		
+		function modifyCon() {
+			
+			conArr[i - 1] = $("#ta" + i).val();
+			
+		}
+		
 		function clearPage(){
 				
 			alert("모든 요소를 비웁니다.");
 			
 			// clear 로직
-			$('#mediaiframe' + i).attr('src', "");				// 미디어 src 비우기
-			$('#inputurl').attr('value', "");						// 모달 위 모달 value 비우기
-			$("#ta" + i).val("");										// 컨텐트 비우기
-			$("#mediaiframe"+ i).css("z-index", "2");		// 미디어 층 내리기
-			$("#mediaImg" + i).attr("src", "");				// 이미지 비우기
-			imgArr[i - 1] = null;										// 파일 비우기
-			urlArr[i - 1] = null;										// url 비우기
-			url = "";														// url 운반 변수 비우기		
+			$('#mediaiframe' + maxPage).attr('src', "");				// 미디어 src 비우기
+			$('#inputurl').attr('value', "");									// 모달 위 모달 value 비우기
+			$("#ta" + i).val("");													// 컨텐트 비우기
+			$("#mediaiframe"+ maxPage).css("z-index", "2");	// 미디어 층 내리기
+			$("#mediaImg" + i).attr("src", "");							// 이미지 비우기
+			imgArr[i - 1] = null;													// 파일 비우기
+			urlArr[i - 1] = null;													// url 비우기
+			conArr[i - 1] = null;													// content 비우기
+			url = "";																	// url 운반 변수 비우기
 			
+		}
+		
+		function complete() {
+// 			alert($("#imgurl1").val());
+// 			conArr[i - 1] = $("#ta" + i).val();
+// 			if(!imgArr[i - 1]) { imgArr[i - 1] = null }
+// 			if(!urlArr[i - 1]) { urlArr[i - 1] = null }
+			
+// 			for(var j = 0; j < 10; j++) {
+				
+// 				if(conArr[j]) {
+					
+// 					alert(j + "페이지\n" + "이미지 : " + imgArr[j] + "\nURL : " + urlArr[j] + "\n내용 : " + conArr[j] + "\nmaxPage : " + maxPage);
+					
+// 				}
+// 			}
+
+		conArr[i - 1] = $("#ta" + i).val();
+
+		$.ajaxSettings.traditional = true;
+		var formData = new FormData();
+		formData.append("mpage", maxPage);
+		
+		for(var k = 0; k < maxPage; k++) {
+			formData.append("imgArr" + k, imgArr[k]);
+			if(k+1 != maxPage) {
+				conArr[k] = conArr[k] + "$e";
+				urlArr[k] = urlArr[k] + "$e";
+			}
+		}
+
+		formData.append("urlArr", urlArr);
+		formData.append("conArr", conArr);
+		
+			$.ajax({
+				type : 'POST',
+				url		: 'completePosting',
+				data	: formData, 
+				processData : false,
+				contentType : false,
+				success : function(v) {
+					
+					if(v == "success") {
+						
+					}
+				}, beforeSend : function() {
+					// 이미지 보여주기
+					
+				},
+				error : function(request, status, error){
+					
+					alert("code:"+request.status+"\n\n"+"message:"+request.responseText+"\n\n"+"error:"+error);
+					
+			    },
+			    complete : function(){
+			    	$("#addModal").modal("hide");
+			    	
+			    }
+			}); 
 		}
 	</script>
 	<style>
@@ -312,7 +391,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="submit" value="Completed">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="Complete">
 												</div>
 											</div>
 										</div>
@@ -331,7 +410,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="submit" value="Completed">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
 												</div>
 											</div>
 										</div>
@@ -350,7 +429,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="submit" value="Completed">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
 												</div>
 											</div>
 										</div>
@@ -369,7 +448,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="submit" value="Completed">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
 												</div>
 											</div>
 										</div>
@@ -388,7 +467,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="submit" value="Completed">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
 												</div>
 											</div>
 										</div>
@@ -407,7 +486,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="submit" value="Completed">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
 												</div>
 											</div>
 										</div>
@@ -426,7 +505,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="submit" value="Completed">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
 												</div>
 											</div>
 										</div>
@@ -445,7 +524,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="submit" value="Completed">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
 												</div>
 											</div>
 										</div>
@@ -464,7 +543,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="submit" value="Completed">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
 												</div>
 											</div>
 										</div>
@@ -483,7 +562,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="submit" value="Completed">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
 												</div>
 											</div>
 										</div>
