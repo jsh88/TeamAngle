@@ -1,9 +1,9 @@
 package com.angle.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.angle.domain.Member;
-import com.angle.domain.Post;
 import com.angle.service.MemberService;
 
 @Controller
@@ -44,11 +43,11 @@ public class MemberController {
 	}
 
 	// 회원가입 서비스콜 부분
-	@RequestMapping(value = { "/memberJoinProc" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/member/memberJoinProc" }, method = RequestMethod.POST)
 	public String MemberJoinProc(HttpServletRequest request) throws IOException {
 
 		memberService.insertMemberJoin(request);
-		return "main";
+		return "member/memJoin";
 	}
 	
 	// 회원탈퇴 처리 부분
@@ -61,11 +60,11 @@ public class MemberController {
 	}
 
 	// 회원가입 아이디 중복체크 ajax 메시지처리 부분
-	@RequestMapping(value = { "/checkId.ajax" })
+	@RequestMapping(value = { "/member/checkId.ajax" }, method=RequestMethod.POST)
 	public ModelAndView checkId(HttpServletRequest request) {
 
 		ModelAndView model = new ModelAndView();
-		model.setViewName("ajax/memberAjax");
+		model.setViewName("member/memberAjax");
 		int result = memberService.checkId(request);
 		model.addObject("result", result);
 
@@ -73,13 +72,13 @@ public class MemberController {
 	}
 
 	// 회원가입 닉네임 중복체크 ajax 메시지처리 부분
-	@RequestMapping(value = { "/checkNickName.ajax" })
+	@RequestMapping(value = { "/member/checkNickName.ajax" })
 	public String checkNickName(Model model, HttpServletRequest request) {
 
 		int result = memberService.checkNickName(request);
 		model.addAttribute("result", result);
 
-		return "ajax/memberAjax";
+		return "member/memberAjax";
 	}
 
 	// 회원정보 수정창 전 비밀번호 확인창 콜부분
@@ -97,7 +96,7 @@ public class MemberController {
 		int result = memberService.checkPw(request);
 		model.addAttribute("result", result);
 
-		return "ajax/memberAjax";
+		return "member/memberAjax";
 	}
 
 	// 회원정보 수정창 콜 부분 - 수정창 콜과 동시에 기본정보(아이디, 닉네임) 가져옴.
@@ -160,21 +159,23 @@ public class MemberController {
 	@RequestMapping(value = { "/loginMemberForm" })
 	public String loginMemberForm(Model model)	{
 		
-		model.addAttribute("body", "member/회원로그인폼이름");
-		return "main";
+		model.addAttribute("body", "login/login");
+		return "login/login";
 	}
 	
 	// 회원 로그인 서비스 콜 부분 
-	@RequestMapping("/loginAjax")
+	@RequestMapping(value = {"/login/logincheck.do"}, method=RequestMethod.POST)
 	public ModelAndView loginProc(HttpServletRequest request) {
 		
 		int result = memberService.memberLoginCheck(request);
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("result", result);
-		mav.setViewName("ajax/memberAjax");
+		mav.setViewName("member/memberAjax");
+		mav.setViewName("login/loginAjax");
 		
-		return mav;
+		return mav;		
+		
 	}
 	
 	/*// 회원 로그인 콜 부분
@@ -199,14 +200,14 @@ public class MemberController {
 	public String getMyPage(Model model){
 		// 마이 페이지 그냥 session 받아서 jsp 에서 뿌리자
 		model.addAttribute("title", "/member/myPage");
-		return "index";		// include 한다길래 그냥 title로 써서 index 보냄
+		return "/member/myPage";		// include 한다길래 그냥 title로 써서 index 보냄
 	}
 	// 내가 최근에 작성한 포인트
-	@RequestMapping("/member/") // 뭘로 받지???
+	@RequestMapping("/getMyLatelyPost") // 뭘로 받지???
 	public String getMyLatelyPost(HttpServletRequest req, HttpSession session){
 		Member m = (Member) session.getAttribute("member");
 		String id = m.getId();
-		List<Post> pList = memberService.getMyLatelyPost(id);
+		memberService.getMyLatelyPost(id);
 		return "redirect:/";   // 어디로 보내지?
 	}
 	// 취향저걱 
@@ -214,7 +215,7 @@ public class MemberController {
 	public String getMyConcernPost(HttpServletRequest req, HttpSession session, Model model){
 		Member m = (Member) session.getAttribute("member");
 		String id = m.getId();
-		List<Post> pList = memberService.getMyConcernPost(id);
+		memberService.getMyConcernPost(id);
 		model.addAttribute("title", "어디로 가야하오");
 		return "index"; // 어디로 가야하오
 	}
@@ -223,7 +224,7 @@ public class MemberController {
 	public String getMyLatelyLookupPost(HttpServletRequest req, HttpSession session, Model model){
 		Member m = (Member) session.getAttribute("member");
 		String id = m.getId();
-		List<Post> pList = memberService.getMyLatelyLookupPost(id);
+		memberService.getMyLatelyLookupPost(id);
 		model.addAttribute("title", "어디로갈까나?");
 		return "index";
 	}
@@ -232,13 +233,49 @@ public class MemberController {
 	public String getMyMostLookupPost(HttpServletRequest req, HttpSession session, Model model){
 		Member m = (Member) session.getAttribute("member");
 		String id = m.getId();
-		List<Post> pList = memberService.getMyMostLookupPost(id);
+		memberService.getMyMostLookupPost(id);
 		model.addAttribute("title", "어디로갈까나?");
 		return "index";
 		
 	}
+	// 이메일 발송
+	@RequestMapping("/emailCheck")
+	public String emailCheck(HttpServletRequest req, HttpServletResponse res, HttpSession session) throws Exception{
+		memberService.emailCheck(req, res, session);
+		return "index";
+	}
+	// 이메일로 받은 인증번호 && 세션 저장한 인증번호 비교
+	@RequestMapping("/sendCodeCheck")
+	public String getSendCodeCheck(HttpServletRequest req, HttpServletResponse res, HttpSession session) throws Exception{
+		memberService.getSendCodeCheck(req, res, session);
+		return "index";
+		
+	}
+	// 내가 작성한 포스트 조회수순
+	@RequestMapping("/getMyPostByViews")
+	public String getMyPostByViews(HttpServletRequest req, HttpSession session, Model model){
+		
+		memberService.getMyPostByViews(req, session);
+		model.addAttribute("title","어디로가야하오");
+		return "index";
+	}
 	
-
+	// 내가 작성한 포스트 좋아요순
+	@RequestMapping("/getMyPostByRecommand")
+	public String getMyPostByRecommand(HttpServletRequest req, HttpSession session, Model model){
+		
+		memberService.getMyPostByRecommand(req, session);
+		model.addAttribute("title","어디로가야하오");
+		return "index";
+	}
 	
-	
+	// 내가 작성한 포스트 댓글순
+		@RequestMapping("/getMyPostByComments")
+		public String getMyPostByComments(HttpServletRequest req, HttpSession session, Model model){
+			
+			memberService.getMyPostByComments(req, session);
+			model.addAttribute("title","어디로가야하오");
+			return "index";
+		}
+		
 }
