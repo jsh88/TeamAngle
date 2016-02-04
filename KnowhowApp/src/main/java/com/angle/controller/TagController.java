@@ -28,4 +28,9 @@ public class TagController {
 		return null;	// 어디로 가야하오
 	}
 	
+	
+	@RequestMapping(value="/knowhowDetail")
+	public String myKnowhow(){
+		return "knowhow/knowhowDetail";
+	}
 }
