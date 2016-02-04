@@ -48,7 +48,7 @@ $("#lg_pass").on("keyup", function() {
 
 $(function(){
 	
-	$("#btnlg").click(function(){
+	$("#lg_btn").click(function(){
 	
 		$("#lg_id, #lg_pass").val("");
 		$("#lg_id, #lg_pass").css("border", "0.5px solid #cccFFf");
