@@ -213,14 +213,13 @@ public class MemberServiceImpl implements MemberService {
 
 	// 내가 최근에 작성한 포인트
 	@Override
-	public List<Post> getMyLatelyPost(String id) {
+	public void getMyLatelyPost(String id) {
 		List<Post> pList = null;
 
 		if(!pList.isEmpty() || pList != null){
 			pList = memberDao.getMyLatelyPost(id);
 		}
 
-		return pList;
 	}
 
 	@Override
@@ -241,31 +240,28 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<Post> getMyConcernPost(String id) {
+	public void getMyConcernPost(String id) {
 		List<Post> pList = null;
 
 		if(!pList.isEmpty() || pList != null){
 			pList = memberDao.getMyConcernPost(id);
 		}
-		return pList;
 	}
 
 	@Override
-	public List<Post> getMyLatelyLookupPost(String id) {
+	public void getMyLatelyLookupPost(String id) {
 		List<Post> pList = null;
-		if(!pList.isEmpty()){
+		if(!pList.isEmpty() || pList != null){
 			pList = memberDao.getMyLatelyLookupPost(id);
 		}
-		return pList;
 	}
 
 	@Override
-	public List<Post> getMyMostLookupPost(String id) {
+	public void getMyMostLookupPost(String id) {
 		List<Post> pList = null;
-		if(!pList.isEmpty()){
+		if(!pList.isEmpty() || pList != null){
 			pList = memberDao.getMyMostLookupPost(id);
 		}
-		return pList;
 	}
 
 
@@ -292,8 +288,8 @@ public class MemberServiceImpl implements MemberService {
 		session.setAttribute("emailSendCode", sendCode);
 		System.out.println("(세션 저장함)sendCode : " + sendCode);
 		String reciver = id;
-		String subject = "ProjectCall Email인증입니다";
-		String content = "ProjectCall Email인증번호 :  " + sendCode ;
+		String subject = "안녕하세요 세상의 모든 노하우 KnowHow 입니다.";
+		String content = "KnowHow 회원가입 인증번호 :  " + sendCode ;
 
 		email.setReciver(reciver);
 		email.setSubject(subject);
@@ -325,8 +321,38 @@ public class MemberServiceImpl implements MemberService {
 		out.close();
 	}
 
+	@Override
+	public void getMyPostByViews(HttpServletRequest req, HttpSession session) {
+		Member m = (Member) session.getAttribute("member");
+		String id = m.getId();
+		List<Post> pList = null;
+		if(!pList.isEmpty() || pList != null){
+			pList  = memberDao.getMyPostByViews(id);
+		}
+		
+	}
+	
+	@Override
+	public void getMyPostByRecommand(HttpServletRequest req, HttpSession session) {
+		Member m = (Member) session.getAttribute("member");
+		String id = m.getId();
+		List<Post> pList = null;
+		if(!pList.isEmpty() || pList != null){
+			pList  = memberDao.getMyPostByRecommand(id);
+		}
+		
+	}
 
-
-
-
+	@Override
+	public void getMyPostByComments(HttpServletRequest req, HttpSession session) {
+		Member m = (Member) session.getAttribute("member");
+		String id = m.getId();
+		List<Post> pList = null;
+		if(!pList.isEmpty() || pList != null){
+			pList  = memberDao.getMyPostByComments(id);
+		}
+		
+	}
+	
+	
 }
