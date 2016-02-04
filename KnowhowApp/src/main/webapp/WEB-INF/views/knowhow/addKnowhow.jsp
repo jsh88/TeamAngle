@@ -38,6 +38,10 @@
 	
 		$(document).ready(function(){			
 			
+			imgArr[0] = null;
+			urlArr[0] = null;
+			conArr[0] = null;
+			
 			$("#addModal").modal();
 			
 			$(".p2").hide();
@@ -57,7 +61,7 @@
 				 
 				 if(n == null || n == ""){
 				 
-					 alert('페이지가 비어있습니다.');
+					 alert('내용이 비어있습니다.');
 					 
 				 }else{	 
 					 
@@ -67,13 +71,12 @@
 					 
 					 if(maxPage==10) {
 						 $("#addbtn").hide();
-					 } else {
-						 $(".p"+ maxPage).show();
 					 }
+					 
+					 $(".p"+ maxPage).show();
+					 
 				 }
-			}); 
-			 
-			 
+			}); 			 
 			 
 			 /*삭제 버튼*/
 			 $("#deletebtn").click(function(){
@@ -89,7 +92,7 @@
 					$('#inputurl').attr('value', "");									// 모달 위 모달 value 비우기
 					$("#ta" + i).val("");													// 컨텐트 비우기
 					$("#mediaiframe"+ maxPage).css("z-index", "2");	// 미디어 층 내리기
-					$("#mediaImg").attr("src", "");									// 이미지 비우기
+					$("#mediaImg" + i).attr("src", "");							// 이미지 비우기
 					imgArr[i - 1] = null;													// 파일 비우기
 					urlArr[i - 1] = null;													// url 비우기
 					conArr[i - 1] = null;													// content 비우기
@@ -102,7 +105,7 @@
 					
 					if(maxPage==9) {
 						$("#addbtn").show();
-					}					
+					}
 				}
 			 });
 			 
@@ -180,7 +183,7 @@
 			});
 			
 			/* 이미지 드래그 앤 드롭 */
-			$('#m'+i).on('drop', function(e) {
+			$('.m').on('drop', function(e) {	
 				
 				e.preventDefault();
 				e.stopPropagation();
@@ -193,12 +196,11 @@
 
 				}
 				
-				imgArr[i] = e.originalEvent.dataTransfer.files[0];
+				imgArr[i - 1] = e.originalEvent.dataTransfer.files[0];
 
-				reader.readAsDataURL(imgArr[i]);
+				reader.readAsDataURL(imgArr[i - 1]);
 
-			});
-			
+			});		
 			
 			$("#inpuBtn").click(function(){
 				
@@ -211,8 +213,15 @@
 		
 		function openModal(){
 			
-			$("#inputModal").modal();
-			
+			if(imgArr[i - 1]) {
+				
+				alert("이미지가 들어있습니다. Clear 해주세요.");
+				
+			} else {
+				
+				$("#inputModal").modal();
+				
+			}		
 		}
 
 		function closeModal(){
@@ -227,7 +236,7 @@
 			}else{
 				
 				$("#inputModal").modal('hide');
-				urlArr[i] = url;
+				urlArr[i - 1] = url;
 				$("#mediaiframe"+i).css("z-index", "4");
 				$("#mediaiframe"+i).attr("src", url+"?autoplay=1&autohide=1");
 				
@@ -236,7 +245,7 @@
 		}
 		
 		function checkVideo() {
-			if(urlArr[i]) { // 보류
+			if(urlArr[i - 1]) { // 보류
 // 				$("mediaiframe" + i)[0].contentWindow.postMessage('{"event":"command", "func":"pauseVideo","args":""}','*');
 			}
 		}
@@ -258,7 +267,7 @@
 		
 		function clearPage(){
 				
-			alert("모든 요소를 비웁니다."); // ing
+			alert("모든 요소를 비웁니다.");
 			
 			// clear 로직
 			$('#mediaiframe' + i).attr('src', "");				// 미디어 src 비우기
@@ -295,7 +304,7 @@
 										<div id="content">
 											<div id="Media" class="mbackground">
 												<div id="m1" class="m" onclick="openModal()" contenteditable="true"></div>
-												<iframe id="mediaiframe1" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<iframe id="mediaiframe1" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscree></iframe>
 												<input type="hidden" id="url1" name="videourl"/><input type="file" class="imgurl" id="imgurl1" name="media"/><img class="mediaImg" id="mediaImg1"/>
 											</div>
 											<div id="content_Text">
