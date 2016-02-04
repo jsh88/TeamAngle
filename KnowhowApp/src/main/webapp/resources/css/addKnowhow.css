@@ -25,6 +25,7 @@
 			.addbtn{
 				margin-top: 10px;
 				margin-bottom: 10px;
+				cursor: pointer;
 			}
 			
 			#Recallingbtn, #Priorbtn{
@@ -221,6 +222,7 @@
 				margin-top:10px;
 				width: 55px;
 				height:40px;
+				cursor: pointer;
 			}
 			
 			.pageNumber{

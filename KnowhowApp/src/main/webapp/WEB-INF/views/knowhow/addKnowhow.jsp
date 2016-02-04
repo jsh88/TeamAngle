@@ -38,6 +38,10 @@
 	
 		$(document).ready(function(){			
 			
+			imgArr[0] = null;
+			urlArr[0] = null;
+			conArr[0] = null;
+			
 			$("#addModal").modal();
 			
 			$(".p2").hide();
@@ -57,7 +61,7 @@
 				 
 				 if(n == null || n == ""){
 				 
-					 alert('페이지가 비어있습니다.');
+					 alert('내용이 비어있습니다.');
 					 
 				 }else{	 
 					 
@@ -67,13 +71,12 @@
 					 
 					 if(maxPage==10) {
 						 $("#addbtn").hide();
-					 } else {
-						 $(".p"+ maxPage).show();
 					 }
+					 
+					 $(".p"+ maxPage).show();
+					 
 				 }
-			}); 
-			 
-			 
+			}); 			 
 			 
 			 /*삭제 버튼*/
 			 $("#deletebtn").click(function(){
@@ -89,9 +92,10 @@
 					$('#inputurl').attr('value', "");									// 모달 위 모달 value 비우기
 					$("#ta" + i).val("");													// 컨텐트 비우기
 					$("#mediaiframe"+ maxPage).css("z-index", "2");	// 미디어 층 내리기
-					$("#mediaImg").attr("src", "");									// 이미지 비우기
-					imgArr[maxPage - 1] = null;										// 파일 비우기
-					urlArr[maxPage - 1] = null;										// url 비우기
+					$("#mediaImg" + i).attr("src", "");							// 이미지 비우기
+					imgArr[i - 1] = null;													// 파일 비우기
+					urlArr[i - 1] = null;													// url 비우기
+					conArr[i - 1] = null;													// content 비우기
 					url = "";																	// url 운반 변수 비우기
 					
 					$(".p"+i).hide(); 
@@ -101,7 +105,7 @@
 					
 					if(maxPage==9) {
 						$("#addbtn").show();
-					}					
+					}
 				}
 			 });
 			 
@@ -109,94 +113,94 @@
 			 /*div 간 이동*/
 			$(".p1").click(function(){
 				$("#myCarousel").carousel(0);
-				videoCheck();
+				checkVideo();
 				i = 1;
-				maxPageCheck();
+				checkMaxPage();
 			});
 			
 			$(".p2").click(function(){
 				$("#myCarousel").carousel(1);
-				videoCheck();
+				checkVideo();
 				i = 2;
-				maxPageCheck();
+				checkMaxPage();
 			});
 			
 			$(".p3").click(function(){
 				$("#myCarousel").carousel(2);
-				videoCheck();
+				checkVideo();
 				i = 3;
-				maxPageCheck();
+				checkMaxPage();
 			});
 			
 			$(".p4").click(function(){
 				$("#myCarousel").carousel(3);
-				videoCheck();
+				checkVideo();
 				i = 4;
+				checkMaxPage();
 			});
 			
 			$(".p5").click(function(){
 				$("#myCarousel").carousel(4);
-				videoCheck();
+				checkVideo();
 				i = 5;
-				maxPageCheck();
+				checkMaxPage();
 			});
 			
 			$(".p6").click(function(){
 				$("#myCarousel").carousel(5);
-				videoCheck();
+				checkVideo();
 				i = 6;
-				maxPageCheck();
+				checkMaxPage();
 			});
 			
 			$(".p7").click(function(){
 				$("#myCarousel").carousel(6);
-				videoCheck();
+				checkVideo();
 				i = 7;
-				maxPageCheck();
+				checkMaxPage();
 			});
 			
 			$(".p8").click(function(){
 				$("#myCarousel").carousel(7);
-				videoCheck();
+				checkVideo();
 				i = 8;
-				maxPageCheck();
+				checkMaxPage();
 			});
 			
 			$(".p9").click(function(){
 				$("#myCarousel").carousel(8);
-				videoCheck();
+				checkVideo();
 				i = 9;
-				maxPageCheck();
+				checkMaxPage();
 			});
 			
 			$(".p10").click(function(){
 				$("#myCarousel").carousel(9);
-				$("#addbtn").hide();	//
-				videoCheck();
+				$("#addbtn").hide();
+				checkVideo();
 				i = 10;
-				maxPageCheck();
+				checkMaxPage();
 			});
 			
 			/* 이미지 드래그 앤 드롭 */
-			$('#m' + i).on('drop', function(e) {
+			$('.m').on('drop', function(e) {	
 				
 				e.preventDefault();
 				e.stopPropagation();
 
 				var reader = new FileReader();
 
-				reader.onload = function(e) {
+				reader.onload = function(ev) {
 
-					$('#mediaImg' + i).attr('src', e.target.result);
+					$('#mediaImg' + i).attr('src', ev.target.result);
 
 				}
 				
-				imgArr[i] = e.originalEvent.dataTransfer.files[0];
+				imgArr[i - 1] = e.originalEvent.dataTransfer.files[0];
 
-				reader.readAsDataURL(imgArr[i]);
+				reader.readAsDataURL(imgArr[i - 1]);
 
-			});
-			
+			});		
 			
 			$("#inpuBtn").click(function(){
 				
@@ -209,8 +213,15 @@
 		
 		function openModal(){
 			
-			$("#inputModal").modal();
-			
+			if(imgArr[i - 1]) {
+				
+				alert("이미지가 들어있습니다. Clear 해주세요.");
+				
+			} else {
+				
+				$("#inputModal").modal();
+				
+			}		
 		}
 
 		function closeModal(){
@@ -225,7 +236,7 @@
 			}else{
 				
 				$("#inputModal").modal('hide');
-				urlArr[i] = url;
+				urlArr[i - 1] = url;
 				$("#mediaiframe"+i).css("z-index", "4");
 				$("#mediaiframe"+i).attr("src", url+"?autoplay=1&autohide=1");
 				
@@ -233,13 +244,13 @@
 			}
 		}
 		
-		function videoCheck() {
-			if(urlArr[i]!=null && urlArr[i]!="") { // 보류
+		function checkVideo() {
+			if(urlArr[i - 1]) { // 보류
 // 				$("mediaiframe" + i)[0].contentWindow.postMessage('{"event":"command", "func":"pauseVideo","args":""}','*');
 			}
 		}
 		
-		function maxPageCheck() {
+		function checkMaxPage() {
 			if(maxPage==i) {
 				if(i==10) {
 					$("#addbtn").hide();
@@ -256,7 +267,7 @@
 		
 		function clearPage(){
 				
-			alert("모든 요소를 비웁니다."); // ing
+			alert("모든 요소를 비웁니다.");
 			
 			// clear 로직
 			$('#mediaiframe' + i).attr('src', "");				// 미디어 src 비우기
@@ -293,7 +304,7 @@
 										<div id="content">
 											<div id="Media" class="mbackground">
 												<div id="m1" class="m" onclick="openModal()" contenteditable="true"></div>
-												<iframe id="mediaiframe1" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<iframe id="mediaiframe1" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscree></iframe>
 												<input type="hidden" id="url1" name="videourl"/><input type="file" class="imgurl" id="imgurl1" name="media"/><img class="mediaImg" id="mediaImg1"/>
 											</div>
 											<div id="content_Text">
