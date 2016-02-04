@@ -1,7 +1,6 @@
 package com.angle.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +15,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.angle.domain.Member;
-import com.angle.domain.Post;
 import com.angle.service.MemberService;
 
 @Controller
@@ -45,11 +43,11 @@ public class MemberController {
 	}
 
 	// 회원가입 서비스콜 부분
-	@RequestMapping(value = { "/memberJoinProc" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/member/memberJoinProc" }, method = RequestMethod.POST)
 	public String MemberJoinProc(HttpServletRequest request) throws IOException {
 
 		memberService.insertMemberJoin(request);
-		return "main";
+		return "member/memJoin";
 	}
 	
 	// 회원탈퇴 처리 부분
@@ -62,7 +60,7 @@ public class MemberController {
 	}
 
 	// 회원가입 아이디 중복체크 ajax 메시지처리 부분
-	@RequestMapping(value = { "/checkId.ajax" })
+	@RequestMapping(value = { "/member/checkId.ajax" }, method=RequestMethod.POST)
 	public ModelAndView checkId(HttpServletRequest request) {
 
 		ModelAndView model = new ModelAndView();
@@ -74,7 +72,7 @@ public class MemberController {
 	}
 
 	// 회원가입 닉네임 중복체크 ajax 메시지처리 부분
-	@RequestMapping(value = { "/checkNickName.ajax" })
+	@RequestMapping(value = { "/member/checkNickName.ajax" })
 	public String checkNickName(Model model, HttpServletRequest request) {
 
 		int result = memberService.checkNickName(request);
@@ -161,12 +159,12 @@ public class MemberController {
 	@RequestMapping(value = { "/loginMemberForm" })
 	public String loginMemberForm(Model model)	{
 		
-		model.addAttribute("body", "member/회원로그인폼이름");
-		return "main";
+		model.addAttribute("body", "login/login");
+		return "login/login";
 	}
 	
 	// 회원 로그인 서비스 콜 부분 
-	@RequestMapping("/loginAjax")
+	@RequestMapping(value = {"/login/logincheck.do"}, method=RequestMethod.POST)
 	public ModelAndView loginProc(HttpServletRequest request) {
 		
 		int result = memberService.memberLoginCheck(request);
@@ -174,8 +172,10 @@ public class MemberController {
 		
 		mav.addObject("result", result);
 		mav.setViewName("member/memberAjax");
+		mav.setViewName("login/loginAjax");
 		
-		return mav;
+		return mav;		
+		
 	}
 	
 	/*// 회원 로그인 콜 부분
