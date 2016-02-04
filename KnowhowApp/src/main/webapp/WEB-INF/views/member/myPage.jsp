@@ -10,7 +10,7 @@
 </head>
 <body>
 	<c:if test="${ member.id eq null }">
-		<c:redirect url="/member/login.jsp"/>
+		<c:redirect url="loginMemberForm"/>
 	</c:if>
 	<c:forEach var="m" items="${ member ne null }">
 		${ m.id }

@@ -66,7 +66,7 @@ public class MemberController {
 	public ModelAndView checkId(HttpServletRequest request) {
 
 		ModelAndView model = new ModelAndView();
-		model.setViewName("ajax/memberAjax");
+		model.setViewName("member/memberAjax");
 		int result = memberService.checkId(request);
 		model.addObject("result", result);
 
@@ -80,7 +80,7 @@ public class MemberController {
 		int result = memberService.checkNickName(request);
 		model.addAttribute("result", result);
 
-		return "ajax/memberAjax";
+		return "member/memberAjax";
 	}
 
 	// 회원정보 수정창 전 비밀번호 확인창 콜부분
@@ -98,7 +98,7 @@ public class MemberController {
 		int result = memberService.checkPw(request);
 		model.addAttribute("result", result);
 
-		return "ajax/memberAjax";
+		return "member/memberAjax";
 	}
 
 	// 회원정보 수정창 콜 부분 - 수정창 콜과 동시에 기본정보(아이디, 닉네임) 가져옴.
@@ -173,7 +173,7 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("result", result);
-		mav.setViewName("ajax/memberAjax");
+		mav.setViewName("member/memberAjax");
 		
 		return mav;
 	}
@@ -200,10 +200,10 @@ public class MemberController {
 	public String getMyPage(Model model){
 		// 마이 페이지 그냥 session 받아서 jsp 에서 뿌리자
 		model.addAttribute("title", "/member/myPage");
-		return "index";		// include 한다길래 그냥 title로 써서 index 보냄
+		return "/member/myPage";		// include 한다길래 그냥 title로 써서 index 보냄
 	}
 	// 내가 최근에 작성한 포인트
-	@RequestMapping("/member/") // 뭘로 받지???
+	@RequestMapping("/getMyLatelyPost") // 뭘로 받지???
 	public String getMyLatelyPost(HttpServletRequest req, HttpSession session){
 		Member m = (Member) session.getAttribute("member");
 		String id = m.getId();
