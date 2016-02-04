@@ -3,6 +3,7 @@ package com.angle.service.impl;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -52,7 +53,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	@Override
 	public void addPost(HttpServletRequest request, HttpSession session) {
-		
+
 		Member m = new Member();
 		m.setId("test");
 		m.setPw("1");
@@ -63,7 +64,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		m.setImage("test.gif");
 		m.setvCount(1);
 		m.setState(false);
-		
+
 		session.setAttribute("member", m);
 
 		Post p = new Post();
@@ -71,7 +72,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 		p.setId(((Member) session.getAttribute("member")).getId());
 		p.setNickName(((Member) session.getAttribute("member")).getNickName());
-		p.setImage(((Member) session.getAttribute("member")).getImage());		
+		p.setImage(((Member) session.getAttribute("member")).getImage());
 		p.setTitle(request.getParameter("title"));
 
 		postDao.addPost(p);
@@ -204,19 +205,68 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void completePosting(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
-		ArrayList<PostTag> pTagList = (ArrayList<PostTag>) luceneKoreanAnalyzer
-				.getTags((ArrayList<PostContent>) session.getAttribute("pConList"));
+		int mPage = Integer.parseInt(request.getParameter("mpage"));
+		String[] urlArr = request.getParameter("urlArr").split("\\$e,");
+		String[] conArr = request.getParameter("conArr").split("\\$e,");
+			
+			System.out.println(conArr.length);
+			System.out.println(Arrays.toString(urlArr));
+			System.out.println(mPage);
+		
+		Post p = (Post) session.getAttribute("post");
+
+		ArrayList<PostContent> pConList = new ArrayList<>();
+		MultipartFile multipartFile = null;
+		File file = null;
+
+		for (int i = 0; i < mPage; i++) {
+			
+			System.out.println(conArr[i]);
+			System.out.println(urlArr[i]);
+
+			PostContent pCon = new PostContent();
+
+			if (request.getFile("imgArr" + i) != null) {
+
+				multipartFile = request.getFile("imgArr" + i);
+
+				file = new File(request.getServletContext().getRealPath(path), multipartFile.getOriginalFilename());
+
+				multipartFile.transferTo(file);
+
+				pCon.setMedia(multipartFile.getOriginalFilename()); // 이미지 이름
+
+			} else if (urlArr.length != 0 && !urlArr[i].isEmpty()) {
+
+				pCon.setMedia(urlArr[i]); // 동영상 URL
+
+			} else {
+
+				pCon.setMedia("none");
+
+			}
+
+			pCon.setPage(i);
+			pCon.setpNo(p.getpNo());
+			pCon.setContent(conArr[i]);
+
+			pConList.add(pCon);
+
+		}
+
+		// 포스트 페이지들 추가
+		postDao.addPostPage(pConList);
+
+		// 포스트 태그 생성
+		ArrayList<PostTag> pTagList = (ArrayList<PostTag>) luceneKoreanAnalyzer.getTags(pConList);
 
 		postDao.completePosting(pTagList);
-		
+
 		session.setAttribute("pTagList", pTagList);
-		
-		this.addPostPage(request, session);
 
 	}
 
@@ -319,8 +369,6 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	@Override
 	public void getPostList(HttpServletRequest request) {
-		
-		
-		
+
 	}
 }

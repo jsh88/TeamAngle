@@ -28,4 +28,6 @@ public interface PostDao {
 
 	public void completePosting(ArrayList<PostTag> pTagList);
 
+	public void addPostPage(ArrayList<PostContent> pConList);
+
 }

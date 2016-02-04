@@ -68,6 +68,7 @@ public class LuceneKoreanAnalyzer {
 										if (("N".equals(pos) && o.getScore() >= 70)
 												|| ("N".equals(pos) && o.getStem().toString().length() == 3
 														&& !(o.getStem().toString().equals("입니다")))) {
+											// 것, 그들, 이상
 											
 											System.out.println(o.getStem().toString());
 											
@@ -75,6 +76,7 @@ public class LuceneKoreanAnalyzer {
 																						
 											pTag.setpNo(pNo);
 											pTag.setTag(o.getStem().toString());
+											pTag.setCount(1);
 											
 											pTagList.add(pTag);
 											
