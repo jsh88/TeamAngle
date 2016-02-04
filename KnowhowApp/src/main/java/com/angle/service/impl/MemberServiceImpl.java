@@ -51,7 +51,12 @@ public class MemberServiceImpl implements MemberService {
 	               
 	      String id = request.getParameter("id");
 	      String pw = request.getParameter("pw");
-	      String nickname = request.getParameter("nickname");      
+	      String nickname = request.getParameter("nickname");  
+	      
+	      System.out.println("MemberService : id - " + id);
+	      System.out.println("MemberService : pw - " + pw);
+	      System.out.println("MemberService : nickname - " + nickname);
+	      
 	      int vcount = 0;
 	   
 	      String image = "";
@@ -187,6 +192,9 @@ public class MemberServiceImpl implements MemberService {
 
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
+		
+		/*System.out.println("MemberService - id : " + id);
+		System.out.println("MemberService - pw : " + pw);*/
 
 		Member member = memberDao.memberLogin(id);
 
@@ -200,6 +208,7 @@ public class MemberServiceImpl implements MemberService {
 				memberDao.updateLdate(member);
 
 				int v_result = memberDao.getVcount(id);
+				System.out.println(v_result);
 				if(v_result != 1) {
 					memberDao.updateVcount(member);
 				}
