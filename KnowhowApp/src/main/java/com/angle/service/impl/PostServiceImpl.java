@@ -210,13 +210,18 @@ public class PostServiceImpl implements PostService, PostCommentService {
 			throws IllegalStateException, IOException {
 
 		int mPage = Integer.parseInt(request.getParameter("mpage"));
-		String[] urlArr = request.getParameter("urlArr").split("\\$e,");
-		String[] conArr = request.getParameter("conArr").split("\\$e,");
-			
-			System.out.println(conArr.length);
-			System.out.println(Arrays.toString(urlArr));
-			System.out.println(mPage);
+		String[] urlArr = request.getParameter("urlArr").split("q1z,");
+		String[] conArr = request.getParameter("conArr").split("q1z,");
 		
+		System.out.println(urlArr[mPage - 1]);
+		System.out.println(conArr[mPage - 1]);
+
+		conArr[mPage - 1] = conArr[mPage - 1].replace("q1z", "");
+		urlArr[mPage - 1] = urlArr[mPage - 1].replace("q1z", "");
+		
+		System.out.println(urlArr[mPage - 1]);
+		System.out.println(conArr[mPage - 1]);
+
 		Post p = (Post) session.getAttribute("post");
 
 		ArrayList<PostContent> pConList = new ArrayList<>();
@@ -224,9 +229,6 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		File file = null;
 
 		for (int i = 0; i < mPage; i++) {
-			
-			System.out.println(conArr[i]);
-			System.out.println(urlArr[i]);
 
 			PostContent pCon = new PostContent();
 
@@ -240,7 +242,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 				pCon.setMedia(multipartFile.getOriginalFilename()); // 이미지 이름
 
-			} else if (urlArr.length != 0 && !urlArr[i].isEmpty()) {
+			} else if (!urlArr[i].equals("undefined")) {
 
 				pCon.setMedia(urlArr[i]); // 동영상 URL
 

@@ -10,6 +10,27 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="resources/css/addKnowhow.css">
 	<style>
+	
+	.wrap-loading{ /*화면 전체를 어둡게 합니다.*/
+    position: fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background: rgba(0,0,0,0.2);
+    }
+    
+     .wrap-loading div{ /*로딩 이미지*/
+        position: fixed;
+        top:50%;
+        left:50%;
+        margin-left: -21px;
+        margin-top: -21px;
+    }
+    .display-none{ /*감추기*/
+        display:none;
+    }
+	
 		.imgurl{
 			position: absolute;
 			width:20px;
@@ -39,8 +60,8 @@
 		$(document).ready(function(){			
 			
 			imgArr[0] = null;
-			urlArr[0] = null;
 			conArr[0] = null;
+			urlArr[0] = undefined;
 			
 			$("#addModal").modal();			
 			
@@ -95,7 +116,7 @@
 					$("#mediaiframe"+ maxPage).css("z-index", "2");	// 미디어 층 내리기
 					$("#mediaImg" + i).attr("src", "");							// 이미지 비우기
 					imgArr[i - 1] = null;													// 파일 비우기
-					urlArr[i - 1] = null;													// url 비우기
+					urlArr[i - 1] = undefined;											// url 비우기
 					conArr[i - 1] = null;													// content 비우기
 					url = "";																	// url 운반 변수 비우기
 					
@@ -208,7 +229,7 @@
 				}
 
 				imgArr[i - 1] = e.originalEvent.dataTransfer.files[0];
-				urlArr[i - 1] = null;
+				urlArr[i - 1] = "none";
 
 				reader.readAsDataURL(imgArr[i - 1]);
 
@@ -295,7 +316,7 @@
 			$("#mediaiframe"+ maxPage).css("z-index", "2");	// 미디어 층 내리기
 			$("#mediaImg" + i).attr("src", "");							// 이미지 비우기
 			imgArr[i - 1] = null;													// 파일 비우기
-			urlArr[i - 1] = null;													// url 비우기
+			urlArr[i - 1] = undefined;											// url 비우기
 			conArr[i - 1] = null;													// content 비우기
 			url = "";																	// url 운반 변수 비우기
 			
@@ -315,8 +336,16 @@
 					
 // 				}
 // 			}
-
+		for(var s = 0; s < maxPage ; s++) {			
+			if($("#ta" + i).val() == "") {
+				alert("내용이 없는 페이지가 있습니다.");
+				return;
+			}			
+		}
+		
+		
 		conArr[i - 1] = $("#ta" + i).val();
+		 
 
 		$.ajaxSettings.traditional = true;
 		var formData = new FormData();
@@ -324,10 +353,8 @@
 		
 		for(var k = 0; k < maxPage; k++) {
 			formData.append("imgArr" + k, imgArr[k]);
-			if(k+1 != maxPage) {
-				conArr[k] = conArr[k] + "$e";
-				urlArr[k] = urlArr[k] + "$e";
-			}
+				conArr[k] = conArr[k] + "q1z";
+				urlArr[k] = urlArr[k] + "q1z";
 		}
 
 		formData.append("urlArr", urlArr);
@@ -341,12 +368,11 @@
 				contentType : false,
 				success : function(v) {
 					
-					if(v == "success") {
-						
-					}
+					$('.wrap-loading').addClass('display-none');
+					
 				}, beforeSend : function() {
 					// 이미지 보여주기
-					
+					$('.wrap-loading').removeClass('display-none');
 				},
 				error : function(request, status, error){
 					
@@ -354,6 +380,8 @@
 					
 			    },
 			    complete : function(){
+			    	
+			    	// 이미지 감추기 처리		    	
 			    	$("#addModal").modal("hide");
 			    	
 			    }
@@ -637,5 +665,8 @@
 		</div>
 	</div>
 	</div>
+	<div class="wrap-loading display-none">
+    <div><img src="resources/images/loading.gif" /></div>
+</div>
 </body>
 </html>
