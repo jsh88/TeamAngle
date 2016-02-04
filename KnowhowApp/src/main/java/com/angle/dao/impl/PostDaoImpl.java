@@ -306,32 +306,44 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 			}
 		}
 
-		pTagList = jdbcTemplate.query("select * from posttag where pno = ?", new Object[] { pTagList.get(0).getpNo() },
-				new ResultSetExtractor<ArrayList<PostTag>>() {
+		if (!pTagList.isEmpty())
+			
+			pTagList = jdbcTemplate.query("select * from posttag where pno = ?",
+					new Object[] { pTagList.get(0).getpNo() }, new ResultSetExtractor<ArrayList<PostTag>>() {
 
-					@Override
-					public ArrayList<PostTag> extractData(ResultSet rs) throws SQLException, DataAccessException {
+						@Override
+						public ArrayList<PostTag> extractData(ResultSet rs) throws SQLException, DataAccessException {
 
-						ArrayList<PostTag> pTagList = new ArrayList<>();
+							ArrayList<PostTag> pTagList = new ArrayList<>();
 
-						while (rs.next()) {
+							while (rs.next()) {
 
-							PostTag p = new PostTag();
+								PostTag p = new PostTag();
 
-							p.setpNo(rs.getInt("pno"));
-							p.setCount(rs.getInt("count"));
-							p.setTag(rs.getString("tag"));
-							p.setWeight(rs.getInt("weight"));
-							p.setfDate(rs.getString("fdate"));
-							p.setrDate(rs.getString("rdate"));
+								p.setpNo(rs.getInt("pno"));
+								p.setCount(rs.getInt("count"));
+								p.setTag(rs.getString("tag"));
+								p.setWeight(rs.getInt("weight"));
+								p.setfDate(rs.getString("fdate"));
+								p.setrDate(rs.getString("rdate"));
 
-							pTagList.add(p);
+								pTagList.add(p);
+
+							}
+
+							return pTagList;
 
 						}
+					});
+	}
 
-						return pTagList;
+	@Override
+	public void addPostPage(ArrayList<PostContent> pConList) {
 
-					}
-				});
+		for (int i = 0; i < pConList.size(); i++)
+
+			jdbcTemplate.update("insert into postContent values(?, ?, ?, ?)", new Object[] { pConList.get(i).getpNo(),
+					pConList.get(i).getPage(), pConList.get(i).getContent(), pConList.get(i).getMedia() });
+
 	}
 }

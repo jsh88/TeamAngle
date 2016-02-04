@@ -1,6 +1,7 @@
 package com.angle.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.angle.service.PostCommentService;
@@ -139,14 +142,15 @@ public class PostController {
 		return null; // 어디로 가야하오
 	}
 
-	// 포스팅 완료
-	@RequestMapping(value = "completePosting")
+	// 포스팅 완료, ajax
+	@RequestMapping(value = "completePosting", method = RequestMethod.POST)
+	@ResponseBody
 	public String completePosting(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
-		postService.completePosting(request, session);
+		 postService.completePosting(request, session);
 
-		return null; // 어디로 가야하오
+		return "success";
 	}
 
 	/**
