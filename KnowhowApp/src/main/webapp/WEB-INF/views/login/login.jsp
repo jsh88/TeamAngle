@@ -13,6 +13,7 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
+
 <style>
 
 #dialog {
@@ -46,7 +47,8 @@ label{
 		aria-labelledby="loginModal" aria-hidden="true">
 		<div id="dialog" class="modal-dialog" >
 			<div id="content" class="modal-content">
-				<form class="form">
+ 				<!-- <form class="form" onsubmit="return false" method="post"> -->
+ 				<form class="form" action="logincheck.do" method="post">
 					
 					<div class="modal-body" id="mdb">
 						<button type="button" class="close" data-dismiss="modal">
@@ -75,12 +77,12 @@ label{
 							
 						</div>
 					</div>
-				</form>
+ 				</form> 
 			</div>
 		</div>
 	</div>
 	
 	
-	<script src="resources/js/ajax_login.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/ajax_login.js"></script>
 </body>
 </html>

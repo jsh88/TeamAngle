@@ -47,17 +47,17 @@ $(function() {
 			dataType: "text",
 			success: function(responseData, statusText, xhr) {
 				var result = responseData;
-				if(result == 0) {
-					$(".chk1").text("o").css("color", "green");
-					/*$("#submit 버튼id ").attr("disabled", "disabled");*/
-				} else {
+				if(result >=1) {
 					$(".chk1").text("x").css("color", "red");
+					/*$("#submit 버튼id ").attr("disabled", "disabled");*/
+				} else if(result == 0){
+					$(".chk1").text("o").css("color", "green");
 					/*$("#submit 버튼id ").removeAttr("disabled");*/
 				}			
 			},
 			error : function(xhr, statusText, responseData) {
-				$(".chk1").text("연결이 안돼 임마").css("color", "red");
-//				alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
+//				$(".chk1").text("연결이 안돼 임마").css("color", "red");
+				alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
 			}	
 		});	
 	});
@@ -88,8 +88,8 @@ $(function() {
 				}			
 			},
 			error : function(xhr, statusText, responseData) {
-				$(".chk2").text("x").css("color", "red");
-				/*alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);*/
+				//$(".chk2").text("x").css("color", "red");
+				alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
 			}	
 		});	
 	});

@@ -268,7 +268,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public int getVcount(String id) {
 //		String sql = "select count(*) from member where id = :id and (trunc(sysdate) - 1/(24*60*60)) < ldate";
-		String sql = "select count(*) from member where id = :id and trunc(ldate) = :trunc(sysdate)";
+		String sql = "select vcount from member where id = :id and trunc(ldate) = trunc(sysdate)";
 		return namedParameterJdbcTemplate.query(sql,
 				new MapSqlParameterSource().addValue("id", id),
 				new ResultSetExtractor<Integer>() {

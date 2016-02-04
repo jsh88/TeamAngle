@@ -44,11 +44,11 @@ public class MemberController {
 	}
 
 	// 회원가입 서비스콜 부분
-	@RequestMapping(value = { "/memberJoinProc" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/member/memberJoinProc" }, method = RequestMethod.POST)
 	public String MemberJoinProc(HttpServletRequest request) throws IOException {
 
 		memberService.insertMemberJoin(request);
-		return "main";
+		return "member/memJoin";
 	}
 	
 	// 회원탈퇴 처리 부분
@@ -61,11 +61,11 @@ public class MemberController {
 	}
 
 	// 회원가입 아이디 중복체크 ajax 메시지처리 부분
-	@RequestMapping(value = { "/checkId.ajax" })
+	@RequestMapping(value = { "/member/checkId.ajax" }, method=RequestMethod.POST)
 	public ModelAndView checkId(HttpServletRequest request) {
 
 		ModelAndView model = new ModelAndView();
-		model.setViewName("ajax/memberAjax");
+		model.setViewName("member/memberAjax");
 		int result = memberService.checkId(request);
 		model.addObject("result", result);
 
@@ -73,13 +73,13 @@ public class MemberController {
 	}
 
 	// 회원가입 닉네임 중복체크 ajax 메시지처리 부분
-	@RequestMapping(value = { "/checkNickName.ajax" })
+	@RequestMapping(value = { "/member/checkNickName.ajax" })
 	public String checkNickName(Model model, HttpServletRequest request) {
 
 		int result = memberService.checkNickName(request);
 		model.addAttribute("result", result);
 
-		return "ajax/memberAjax";
+		return "member/memberAjax";
 	}
 
 	// 회원정보 수정창 전 비밀번호 확인창 콜부분
@@ -160,21 +160,22 @@ public class MemberController {
 	@RequestMapping(value = { "/loginMemberForm" })
 	public String loginMemberForm(Model model)	{
 		
-		model.addAttribute("body", "member/회원로그인폼이름");
-		return "main";
+		model.addAttribute("body", "login/login");
+		return "login/login";
 	}
 	
 	// 회원 로그인 서비스 콜 부분 
-	@RequestMapping("/loginAjax")
+	@RequestMapping(value = {"/login/logincheck.do"}, method=RequestMethod.POST)
 	public ModelAndView loginProc(HttpServletRequest request) {
 		
 		int result = memberService.memberLoginCheck(request);
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("result", result);
-		mav.setViewName("ajax/memberAjax");
+		mav.setViewName("login/loginAjax");
 		
-		return mav;
+		return mav;		
+		
 	}
 	
 	/*// 회원 로그인 콜 부분
