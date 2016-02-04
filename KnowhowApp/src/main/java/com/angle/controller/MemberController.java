@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -206,7 +207,7 @@ public class MemberController {
 	public String getMyLatelyPost(HttpServletRequest req, HttpSession session){
 		Member m = (Member) session.getAttribute("member");
 		String id = m.getId();
-		List<Post> pList = memberService.getMyLatelyPost(id);
+		memberService.getMyLatelyPost(id);
 		return "redirect:/";   // 어디로 보내지?
 	}
 	// 취향저걱 
@@ -214,7 +215,7 @@ public class MemberController {
 	public String getMyConcernPost(HttpServletRequest req, HttpSession session, Model model){
 		Member m = (Member) session.getAttribute("member");
 		String id = m.getId();
-		List<Post> pList = memberService.getMyConcernPost(id);
+		memberService.getMyConcernPost(id);
 		model.addAttribute("title", "어디로 가야하오");
 		return "index"; // 어디로 가야하오
 	}
@@ -223,7 +224,7 @@ public class MemberController {
 	public String getMyLatelyLookupPost(HttpServletRequest req, HttpSession session, Model model){
 		Member m = (Member) session.getAttribute("member");
 		String id = m.getId();
-		List<Post> pList = memberService.getMyLatelyLookupPost(id);
+		memberService.getMyLatelyLookupPost(id);
 		model.addAttribute("title", "어디로갈까나?");
 		return "index";
 	}
@@ -232,13 +233,49 @@ public class MemberController {
 	public String getMyMostLookupPost(HttpServletRequest req, HttpSession session, Model model){
 		Member m = (Member) session.getAttribute("member");
 		String id = m.getId();
-		List<Post> pList = memberService.getMyMostLookupPost(id);
+		memberService.getMyMostLookupPost(id);
 		model.addAttribute("title", "어디로갈까나?");
 		return "index";
 		
 	}
+	// 이메일 발송
+	@RequestMapping("/emailCheck")
+	public String emailCheck(HttpServletRequest req, HttpServletResponse res, HttpSession session) throws Exception{
+		memberService.emailCheck(req, res, session);
+		return "index";
+	}
+	// 이메일로 받은 인증번호 && 세션 저장한 인증번호 비교
+	@RequestMapping("/sendCodeCheck")
+	public String getSendCodeCheck(HttpServletRequest req, HttpServletResponse res, HttpSession session) throws Exception{
+		memberService.getSendCodeCheck(req, res, session);
+		return "index";
+		
+	}
+	// 내가 작성한 포스트 조회수순
+	@RequestMapping("/getMyPostByViews")
+	public String getMyPostByViews(HttpServletRequest req, HttpSession session, Model model){
+		
+		memberService.getMyPostByViews(req, session);
+		model.addAttribute("title","어디로가야하오");
+		return "index";
+	}
 	
-
+	// 내가 작성한 포스트 좋아요순
+	@RequestMapping("/getMyPostByRecommand")
+	public String getMyPostByRecommand(HttpServletRequest req, HttpSession session, Model model){
+		
+		memberService.getMyPostByRecommand(req, session);
+		model.addAttribute("title","어디로가야하오");
+		return "index";
+	}
 	
-	
+	// 내가 작성한 포스트 댓글순
+		@RequestMapping("/getMyPostByComments")
+		public String getMyPostByComments(HttpServletRequest req, HttpSession session, Model model){
+			
+			memberService.getMyPostByComments(req, session);
+			model.addAttribute("title","어디로가야하오");
+			return "index";
+		}
+		
 }
