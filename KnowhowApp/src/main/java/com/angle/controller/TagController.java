@@ -1,32 +1,25 @@
 package com.angle.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.angle.service.PostService;
+import com.angle.service.TagService;
 
 @Controller
 public class TagController {
 
 	@Autowired
-	private PostService postService;
+	private TagService tagService;
 
-	public void setPostService(PostService postService) {
-		this.postService = postService;
+	public void setTagService(TagService tagService) {
+		this.tagService = tagService;
 	}
 
-	// 
-	@RequestMapping
-	public String recommendTag(HttpServletRequest request, HttpSession session) {
+	// addTag 접근
+	@RequestMapping(value = "addTag")
+	public String addTag() {
 		
-		// 
-
-		return null;	// 어디로 가야하오
+		return "knowhow/addTag";
 	}
-	
-	
 }

@@ -37,7 +37,7 @@ public class LuceneKoreanAnalyzer {
 
 					String question = pCon.getContent();
 
-					System.out.println("\n\n=====================\nCount : " + "\n루씬 형태소 분석기 시작\n문자열 : " + question);
+					System.out.println("- 형태소 분석 시작 -\n문자열 : " + question);
 
 					try {
 
@@ -50,7 +50,7 @@ public class LuceneKoreanAnalyzer {
 							Token token = null;
 
 							// 형태소 분석
-							System.out.println("\n명사만 추출 시작\n------------------------");
+							System.out.println("- 명사 추출 시작 -");
 							start = System.currentTimeMillis();
 
 							while ((token = tokenizer.next()) != null) {
@@ -69,17 +69,17 @@ public class LuceneKoreanAnalyzer {
 												|| ("N".equals(pos) && o.getStem().toString().length() == 3
 														&& !(o.getStem().toString().equals("입니다")))) {
 											// 것, 그들, 이상
-											
+
 											System.out.println(o.getStem().toString());
-											
+
 											PostTag pTag = new PostTag();
-																						
+
 											pTag.setpNo(pNo);
 											pTag.setTag(o.getStem().toString());
 											pTag.setCount(1);
-											
+
 											pTagList.add(pTag);
-											
+
 										}
 									}
 								} catch (Exception e) {

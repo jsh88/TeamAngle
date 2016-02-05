@@ -275,7 +275,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	}
 
 	@Override
-	public void completePosting(ArrayList<PostTag> pTagList) {
+	public ArrayList<PostTag> completePosting(ArrayList<PostTag> pTagList) {
 
 		for (PostTag p : pTagList) {
 
@@ -308,7 +308,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 		if (!pTagList.isEmpty())
 			
-			pTagList = jdbcTemplate.query("select * from posttag where pno = ?",
+			return jdbcTemplate.query("select * from posttag where pno = ? order by count desc",
 					new Object[] { pTagList.get(0).getpNo() }, new ResultSetExtractor<ArrayList<PostTag>>() {
 
 						@Override
@@ -328,6 +328,8 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 								p.setrDate(rs.getString("rdate"));
 
 								pTagList.add(p);
+								
+								System.out.println(p.getTag());
 
 							}
 
@@ -335,6 +337,8 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 						}
 					});
+		
+		return null;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -24,6 +25,14 @@
 				
 				$("#Tag").append("<span class='t'>"+t+"</span>");
 				$("#hiddentext").val(hidden+" "+subt);
+				
+				$(this).hide();
+				
+			});
+			
+			$(".t").click(function(){
+				
+				$(this).hide();
 				
 			});
 			
@@ -167,6 +176,7 @@
 		.t{
 			padding-right: 10px;
 			font-style: italic;
+			cursor: pointer;
 		}
 		
 		#w{
@@ -195,8 +205,9 @@
 							<span id="k">&nbsp; - 태그를 입력해 주세요.</span>
 						</div>
 						<div id="ReTag">
-							<a class="tags" href="#">#히트</a>
-							<a class="tags" href="#">#아니카</a>
+							<c:forEach var="i" begin="0" end="19">
+									<a class="tags" href="#">#${pTagList.get(i).tag }</a>
+							</c:forEach>
 						</div>
 						<div id="userTag">
 							<div id="userTitle">
@@ -205,7 +216,7 @@
 							<div id="Line"></div>
 							<form name="tag" action="" method="post">
 							<div id="Tag">
-								<input type="hidden" id="hiddentext"  name="tags"/>
+								<a></a><input type="hidden" id="hiddentext"  name="tags"/>
 							</div>
 							<div id="Tagbtn">
 								<input type="submit" id="tagsubmit" class="btn btn-success addbtn"  value="Posted"/> 

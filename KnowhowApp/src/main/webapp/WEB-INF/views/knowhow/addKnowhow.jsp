@@ -365,7 +365,7 @@
 				contentType : false,
 				success : function(v) {
 					
-					$('.wrap-loading').addClass('display-none');
+					alert("성공이다해!")
 					
 				}, beforeSend : function() {
 					
@@ -381,7 +381,9 @@
 			    complete : function(){			    				
 			    	
 			    	// 이미지 감추기 처리
-			    	$("#addModal").modal("hide");
+			    	$(location).attr('href',"addTag");
+					$('.wrap-loading').addClass('display-none');
+			    	$("#addModal").modal("hide");			    	
 			    	
 			    }
 			}); 

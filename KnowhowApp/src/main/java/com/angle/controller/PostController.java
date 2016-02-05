@@ -169,12 +169,6 @@ public class PostController {
 
 		return null; // 어디로 가야하오
 	}
-	
-	// addTag 접근
-	@RequestMapping(value = "addTag")
-	public String addTag() {
-		return "knowhow/addTag";
-	}
 
 	/**
 	 * 포스트 조회, 검색

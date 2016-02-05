@@ -3,7 +3,6 @@ package com.angle.service.impl;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -23,7 +22,6 @@ import com.angle.domain.PostTag;
 import com.angle.env.LuceneKoreanAnalyzer;
 import com.angle.service.PostCommentService;
 import com.angle.service.PostService;
-import com.angle.service.TagService;
 
 @Service
 public class PostServiceImpl implements PostService, PostCommentService {
@@ -212,15 +210,9 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		int mPage = Integer.parseInt(request.getParameter("mpage"));
 		String[] urlArr = request.getParameter("urlArr").split("q1z,");
 		String[] conArr = request.getParameter("conArr").split("q1z,");
-		
-		System.out.println(urlArr[mPage - 1]);
-		System.out.println(conArr[mPage - 1]);
 
 		conArr[mPage - 1] = conArr[mPage - 1].replace("q1z", "");
 		urlArr[mPage - 1] = urlArr[mPage - 1].replace("q1z", "");
-		
-		System.out.println(urlArr[mPage - 1]);
-		System.out.println(conArr[mPage - 1]);
 
 		Post p = (Post) session.getAttribute("post");
 
@@ -263,12 +255,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		// 포스트 페이지들 추가
 		postDao.addPostPage(pConList);
 
-		// 포스트 태그 생성
-		ArrayList<PostTag> pTagList = (ArrayList<PostTag>) luceneKoreanAnalyzer.getTags(pConList);
-
-		postDao.completePosting(pTagList);
-
-		session.setAttribute("pTagList", pTagList);
+		session.setAttribute("pTagList", postDao.completePosting((ArrayList<PostTag>) luceneKoreanAnalyzer.getTags(pConList)));
 
 	}
 

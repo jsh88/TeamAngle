@@ -26,7 +26,7 @@ public interface PostDao {
 
 	public void setRecommendPost(int pNo, String id);
 
-	public void completePosting(ArrayList<PostTag> pTagList);
+	public ArrayList<PostTag> completePosting(ArrayList<PostTag> pTagList);
 
 	public void addPostPage(ArrayList<PostContent> pConList);
 
