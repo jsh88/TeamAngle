@@ -71,7 +71,7 @@ $("#passCheck").on("keyup", function() {
 	$.ajax({
 		url: "memberUpdatePassCheck.ajax",
 		type: "POST",
-		data: {"pw": pw},
+		data: {"passCheck": pw},
 		dataType: "text",
 		success: function(responseData, statusText, xhr) {
 			var result = responseData;
@@ -85,8 +85,8 @@ $("#passCheck").on("keyup", function() {
 			}			
 		},
 		error : function(xhr, statusText, responseData) {
-			$(".chk").text("x").css("color", "red");
-			/*alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);*/
+		//	$(".chk").text("x").css("color", "red");
+			alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
 		}	
 	});	
 });
