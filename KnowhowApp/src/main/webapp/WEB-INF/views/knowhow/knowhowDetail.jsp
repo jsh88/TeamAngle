@@ -21,9 +21,11 @@
 				e.preventDefault();
 				e.stopPropagation();
 				
-				/* $("#detailDialog").css("width", "1130px"); */
 				$("#commentContent").slideToggle(400);
 				$("#detailDialog").css("width", "1130px");
+				
+				
+			
 				
 			});
 			
@@ -118,6 +120,88 @@
 			height: 740px;
 			float:left;
 			border:10px solid #535353;
+		}
+		
+		#replyDiv{
+			width:400px;
+			height: 510px;
+			margin: 0px auto;
+			margin-top: 15px;
+			border: 1px solid #BFBCBC;
+			border-radius:6px;
+		}
+		
+		#replyContent{
+			width:400px;
+			height: 170px;
+			margin: 0px auto;
+			margin-top: 20px;
+		}
+		
+		#replybtndiv{
+			margin-top: 10px;
+		}
+		
+		#replybtn{
+			width:100%;
+			font-weight: bold;
+			font-size: 15px;
+			height: 40px;
+		}
+		
+		.replyView{
+			width:380px;
+			height: 65px;
+			margin: 0px auto;
+			margin-top:10px;
+			border-bottom: 1px solid #BFBCBC;
+		}
+		
+		.replyProfile{
+			width:55px;
+			height:55px;
+			float:left;
+		}
+		
+		.profileImg{
+			width: 100%;
+			height: 100%;
+			display: block;	
+		}
+		
+		.replyInfo{
+			width: 240px;
+			height: 20px;
+			float: left;
+		}
+		
+		.replyModifyDelete{
+			width:50px;
+			height:20px;
+			float:left;
+			margin-left: 5px;
+		}
+		
+		.replyDate{
+			display:inline-block;
+			font-size:10px;
+			float:right;
+			margin-top: 5px;
+		}
+		
+		.replyNickname{
+			display:inline-block;
+			font-weight: bold;
+			font-size: 13px;
+			margin-left: 5px;
+		}
+		
+		.replycontents{
+			float: left;
+			width:315px;
+			height:40px;
+			margin-left: 5px;
+			font-size: 13px;
 		}
 		
 		.pageNumber{
@@ -379,7 +463,7 @@
 												<iframe id="mediaiframe1" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg1"/>
 											</div>
-											<div id="content_Text1" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
+											<div id="content_Text1" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 												ㅎㅇ
 											</div>
 										</div>
@@ -391,7 +475,7 @@
 												<iframe id="mediaiframe2" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg2"/>
 											</div>
-											<div id="content_Text2" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
+											<div id="content_Text2" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
 										</div>
   							 	</div>
@@ -402,7 +486,7 @@
 												<iframe id="mediaiframe3" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg3"/>
 											</div>
-											<div id="content_Text3" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
+											<div id="content_Text3" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
 										</div>
   							 	</div>
@@ -413,7 +497,7 @@
 												<iframe id="mediaiframe4" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg4"/>
 											</div>
-											<div id="content_Text4" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
+											<div id="content_Text4" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
 										</div>
   							 	</div>
@@ -424,7 +508,7 @@
 												<iframe id="mediaiframe5" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg5"/>
 											</div>
-											<div id="content_Text5" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
+											<div id="content_Text5" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
 										</div>
   							 	</div>
@@ -435,7 +519,7 @@
 												<iframe id="mediaiframe6" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg6"/>
 											</div>
-											<div id="content_Text6" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
+											<div id="content_Text6" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
 										</div>
   							 	</div>
@@ -446,7 +530,7 @@
 												<iframe id="mediaiframe7" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg7"/>
 											</div>
-											<div id="content_Text7" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
+											<div id="content_Text7" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
 										</div>
   							 	</div>
@@ -457,7 +541,7 @@
 												<iframe id="mediaiframe8" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg8"/>
 											</div>
-											<div id="content_Text8" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
+											<div id="content_Text8" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
 										</div>
   							 	</div>
@@ -468,7 +552,7 @@
 												<iframe id="mediaiframe9" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg9"/>
 											</div>
-											<div id="content_Text9" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
+											<div id="content_Text9" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
 										</div>
   							 	</div>
@@ -479,7 +563,7 @@
 												<iframe id="mediaiframe10" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg10"/>
 											</div>
-											<div id="content_Text10" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
+											<div id="content_Text10" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
 										</div>
   							 	</div>
@@ -545,7 +629,35 @@
 					</div>
 				</div>
 				<div id="commentContent" class="modal-content">
-						
+					<div id="replyDiv" style="overflow: auto; overflow-x:hidden;">
+						<div class="replyView">
+							<div class="replyProfile">
+								<img src="resources/images/ssssss.png" class="img-responsive img-rounded profileImg">
+							</div>
+							<div class="replyInfo">
+								<div class="replyNickname">
+								 	<a href="#">닉네임이당열글자까지</a>
+								</div>
+								<div class="replyDate">2016-02-05 17:26:32</div>
+							</div>
+							<div class="replyModifyDelete">
+								<a href="#"><img style="width:20px;" src="resources/images/modify.png"/></a>&nbsp;
+								<a href="#"><img style="width:20px;" src="resources/images/delete.png"/></a>
+							</div>
+							<div class="replycontents" style="overflow: auto; overflow-x:hidden;">
+								오늘은 금요일이당 헤헤헤헤헤헤헤헤 댓글창 거의 끝나간당.
+							</div>
+							<div class="replyline"></div>
+						</div>
+					</div>
+					<form name="replyForm" action="" method="post">
+						<div id="replyContent">
+							<textarea class="form-control" rows="5"name="reply"></textarea>
+							<div id="replybtndiv">
+								<input type="button" id="replybtn"class="btn btn-success" value="Send"/>
+							</div>
+						</div>
+					</form>	
 				</div>
 			</div>
 		</div>
