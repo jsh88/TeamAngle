@@ -29,8 +29,4 @@ public class TagController {
 	}
 	
 	
-	@RequestMapping(value="/knowhowDetail")
-	public String myKnowhow(){
-		return "knowhow/knowhowDetail";
-	}
 }

@@ -14,6 +14,18 @@
 			
 			$("#detailModal").modal();
 			$("#modifyDelete").hide();
+			$("#commentContent").hide();
+			
+			$("#replycontent").click(function(e){
+				
+				e.preventDefault();
+				e.stopPropagation();
+				
+				/* $("#detailDialog").css("width", "1130px"); */
+				$("#commentContent").slideToggle(400);
+				$("#detailDialog").css("width", "1130px");
+				
+			});
 			
 			$(".p1").click(function(){
 				$("#myCarousel").carousel(0);
@@ -90,15 +102,22 @@
 	</script>
 	<style>
 		#detailContent{
-				width: 650px;
+				width: 600px;
 				height: 740px;
 				float:left;
-				border:10px solid #376CBF;
+				border:10px solid #535353;
 				
 			}
 			
 		#detailDialog{
 			width: 760px;
+		}
+		
+		#commentContent{
+			width:450px;
+			height: 740px;
+			float:left;
+			border:10px solid #535353;
 		}
 		
 		.pageNumber{
@@ -170,7 +189,7 @@
 				float:left;
 			}
 			
-			#title{
+			#detailTitle{
 				margin-left: 20px;
 				font-size: 28px;
 				font-weight: bold;
@@ -219,7 +238,7 @@
 				margin:0px auto;
 				margin-top: 20px;
 				margin-bottom: 10px;
-				width: 570px;
+				width: 520px;
 				height: 200px;
 				font-size: 16px;
 			}
@@ -234,21 +253,22 @@
 		.m{
 			position: absolute;
 			z-index:3;
-			width:565px;
+			width:567px;
 			height: 300px;
-			border:0px;
+			border: none;
 		}
 		
 		.mediaImg{
-			width:565px;
+			width:515px;
 			height:300px;
-			border:0px;
+			border:none;
 		}
 		
-		#Tag{
+		#detailTag{
 			width:600px;
 			margin: 0px auto;
 			margin-bottom: 10px;
+			height: 50px;
 		}
 		
 		.tags{
@@ -256,10 +276,83 @@
 			color:#666666;
 			font-size: 17px;
 		}
+	
 		
-		#footer{
-			height: 30px;
+		#Media{
+			margin-top: 10px;
+			height: 300px;
 		}
+		
+		#content{
+				margin:0px auto;
+				height: 500px;
+				width: 90%;
+				margin-bottom: 10px;
+		}
+		
+		#recommenBtn{
+			border-style: none;
+			background: none;
+			width: 100px;
+		}
+		
+		#footerContent{
+			width:500px;
+			margin: 0px auto;
+		}
+		
+		#recommen{
+			width:80px;
+			float:right;
+		}
+		
+		#recommenImg{
+			width:50px;
+			float:right;
+		}
+		
+		#recommenNum{
+			font-size: 17px;
+			font-weight:bold;
+			vertical-align: middle;
+			line-height: 40px;
+			text-align: center;
+			float:right;
+		}
+		
+		#reply{
+			width:80px;
+			float:right;
+		}
+		
+		#replyImg{
+			width:50px;
+			float:right;
+		}
+		
+		#replyNum{
+			font-size: 17px;
+			font-weight:bold;
+			vertical-align: middle;
+			line-height: 40px;
+			text-align: center;
+			float:right;
+		}
+		
+		#tagline{
+			width:510px;
+			height: 5px;
+			border-top: 1px solid #BFBCBC;
+			margin: 0px auto;
+		}
+		
+		::-webkit-scrollbar {width: 8px; height: 8px; border: 3px solid #fff; }
+ 
+			 ::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {display: block; height: 10px; background: url('./images/bg.png') #efefef}
+ 
+			 ::-webkit-scrollbar-track {background: #efefef; -webkit-border-radius: 10px; border-radius:10px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.2)}
+			 
+			 ::-webkit-scrollbar-thumb {height: 50px; width: 50px; background: rgba(0,0,0,.2); -webkit-border-radius: 8px; border-radius: 8px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.1)}
 	</style>
 </head>
 <body>
@@ -269,7 +362,7 @@
 					<div id="detailWrap">
 					<div class="modal-header" id="header">
 						<div id="closeimg"><a href="javascript:window.close()"><img style="width:20px;" src="resources/images/close.png"/></a></div>
-						<div id="title">Title</div>
+						<div id="detailTitle">Title</div>
 						<div id="createDate"><img style="width:30px;" src="resources/images/wDate.png">&nbsp;2016-02-04 10:29:33</div>
 						<div id="writer"><img src="resources/images/writer.png">&nbsp;<a href="#">404404</a></div>
 						<div id="modifyDelete"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></div>
@@ -283,10 +376,10 @@
 										<div id="content">
 											<div id="Media" class="mbackground">
 												<div id="m1" class="m" onclick="openModal()"></div>
-												<iframe id="mediaiframe1" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscree></iframe>
+												<iframe id="mediaiframe1" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg1"/>
 											</div>
-											<div id="content_Text1" class="content_Text">
+											<div id="content_Text1" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
 												ㅎㅇ
 											</div>
 										</div>
@@ -295,10 +388,10 @@
 										<div id="content">
 											<div id="Media"class="mbackground">
 												<div id="m2" class="m" onclick="openModal()"></div>
-												<iframe id="mediaiframe2" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<iframe id="mediaiframe2" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg2"/>
 											</div>
-											<div id="content_Text2" class="content_Text">
+											<div id="content_Text2" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
 											</div>
 										</div>
   							 	</div>
@@ -306,10 +399,10 @@
 										<div id="content">
 											<div id="Media" class="mbackground">
 												<div id="m3" class="m"  onclick="openModal()"></div>
-												<iframe id="mediaiframe3" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<iframe id="mediaiframe3" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg3"/>
 											</div>
-											<div id="content_Text3" class="content_Text">
+											<div id="content_Text3" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
 											</div>
 										</div>
   							 	</div>
@@ -317,10 +410,10 @@
 										<div id="content">
 											<div id="Media" class="mbackground">
 												<div id="m4" class="m"  onclick="openModal()"></div>
-												<iframe id="mediaiframe4" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<iframe id="mediaiframe4" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg4"/>
 											</div>
-											<div id="content_Text4" class="content_Text">
+											<div id="content_Text4" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
 											</div>
 										</div>
   							 	</div>
@@ -328,10 +421,10 @@
 										<div id="content">
 											<div id="Media" class="mbackground">
 												<div id="m5" class="m"  onclick="openModal()"></div>
-												<iframe id="mediaiframe5" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<iframe id="mediaiframe5" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg5"/>
 											</div>
-											<div id="content_Text5" class="content_Text">
+											<div id="content_Text5" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
 											</div>
 										</div>
   							 	</div>
@@ -339,10 +432,10 @@
 										<div id="content">
 											<div id="Media" class="mbackground">
 												<div id="m6" class="m"  onclick="openModal()"></div>
-												<iframe id="mediaiframe6" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<iframe id="mediaiframe6" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg6"/>
 											</div>
-											<div id="content_Text6" class="content_Text">
+											<div id="content_Text6" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
 											</div>
 										</div>
   							 	</div>
@@ -350,10 +443,10 @@
 										<div id="content">
 											<div id="Media" class="mbackground">
 												<div id="m7" class="m"  onclick="openModal()"></div>
-												<iframe id="mediaiframe7" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<iframe id="mediaiframe7" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg7"/>
 											</div>
-											<div id="content_Text7" class="content_Text">
+											<div id="content_Text7" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
 											</div>
 										</div>
   							 	</div>
@@ -361,10 +454,10 @@
 										<div id="content">
 											<div id="Media" class="mbackground">
 												<div id="m8" class="m"  onclick="openModal()"></div>
-												<iframe id="mediaiframe8" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<iframe id="mediaiframe8" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg8"/>
 											</div>
-											<div id="content_Text8" class="content_Text">
+											<div id="content_Text8" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
 											</div>
 										</div>
   							 	</div>
@@ -372,10 +465,10 @@
 										<div id="content">
 											<div id="Media" class="mbackground">
 												<div id="m9" class="m"  onclick="openModal()"></div>
-												<iframe id="mediaiframe9" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<iframe id="mediaiframe9" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg9"/>
 											</div>
-											<div id="content_Text9" class="content_Text">
+											<div id="content_Text9" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
 											</div>
 										</div>
   							 	</div>
@@ -383,21 +476,37 @@
 										<div id="content">
 											<div id="Media" class="mbackground">
 												<div id="m10" class="m"  onclick="openModal()"></div>
-												<iframe id="mediaiframe10" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<iframe id="mediaiframe10" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
 												<img class="mediaImg" id="mediaImg10"/>
 											</div>
-											<div id="content_Text10" class="content_Text">
+											<div id="content_Text10" class="content_Text" style="overflow:scroll; overflow-x:hidden;">
 											</div>
 										</div>
   							 	</div>
   							 </div>
 						</div>
-						<div id="Tag"><span class="tags">#tag</span></div>
-						<div class="modal-footer" id="footer">
-							<button type="button" class="btn btn-default btn-lg">
-								 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-							</button>
+						<div id="detailTag">
+							<div id="tagline"></div>
+							<span class="tags">#tag</span>
 						</div>
+							<div id="footerContent">
+								<div id="reply">
+									<div id="replyNum">
+										40
+									</div>
+									<div id="replyImg">
+										<a id="replycontent" href="#"><img	style="width:50px;" src="resources/images/comment.png"/></a>
+									</div>
+								</div>	
+								<div id="recommen">
+									<div id="recommenNum">
+										30
+									</div>
+									<div id="recommenImg">
+										<a href="#"><img style="width:50px;"src="resources/images/recomment.png"/></a>
+									</div>
+								</div>
+							</div>
 					</div>
 				</div>
 				<div id="pageMove">
@@ -434,6 +543,9 @@
 							10
 						</div>
 					</div>
+				</div>
+				<div id="commentContent" class="modal-content">
+						
 				</div>
 			</div>
 		</div>
