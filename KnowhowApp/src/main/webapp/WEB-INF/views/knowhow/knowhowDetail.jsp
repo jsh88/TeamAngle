@@ -10,7 +10,7 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script>
 		$(document).ready(function(){
-			var i = "";
+			var i = 1;
 			
 			$("#detailModal").modal();
 			$("#modifyDelete").hide();
@@ -22,10 +22,7 @@
 				e.stopPropagation();
 				
 				$("#commentContent").slideToggle(400);
-				$("#detailDialog").css("width", "1130px");
-				
-				
-			
+				$("#detailDialog").css("width", "1130px");		
 				
 			});
 			
