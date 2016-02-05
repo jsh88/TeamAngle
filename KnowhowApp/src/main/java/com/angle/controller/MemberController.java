@@ -39,19 +39,19 @@ public class MemberController {
 	public String MemberJoin(Model model) {
 
 		model.addAttribute("body", "member/memJoin");
-		return "member/memJoin";
+		return "main/main";
 	}
 
 	// 회원가입 서비스콜 부분
-	@RequestMapping(value = { "/member/memberJoinProc" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/memberJoinProc" }, method = RequestMethod.POST)
 	public String MemberJoinProc(HttpServletRequest request) throws IOException {
 
 		memberService.insertMemberJoin(request);
-		return "member/memJoin";
+		return "main/main";
 	}
 	
 	// 회원탈퇴 처리 부분
-	@RequestMapping(value = { "deleteMemberJoin" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/deleteMemberJoin" }, method = RequestMethod.GET)
 	public String deleteMemberJoin(Model model, HttpServletRequest request) {
 
 		memberService.deleteMember(request);
@@ -60,19 +60,19 @@ public class MemberController {
 	}
 
 	// 회원가입 아이디 중복체크 ajax 메시지처리 부분
-	@RequestMapping(value = { "/member/checkId.ajax" }, method=RequestMethod.POST)
+	@RequestMapping(value = { "/checkId.ajax" }, method=RequestMethod.POST)
 	public ModelAndView checkId(HttpServletRequest request) {
 
 		ModelAndView model = new ModelAndView();
 		model.setViewName("member/memberAjax");
 		int result = memberService.checkId(request);
 		model.addObject("result", result);
-
+		System.out.println(result + " : 0 이면 True");
 		return model;
 	}
 
 	// 회원가입 닉네임 중복체크 ajax 메시지처리 부분
-	@RequestMapping(value = { "/member/checkNickName.ajax" })
+	@RequestMapping(value = { "/checkNickName.ajax" })
 	public String checkNickName(Model model, HttpServletRequest request) {
 
 		int result = memberService.checkNickName(request);
@@ -86,7 +86,7 @@ public class MemberController {
 	public String memberUpdatePassCheckForm(Model model, HttpServletRequest request) {
 
 		model.addAttribute("body", "member/회원정보수정전비밀번호확인폼이름");
-		return "main";
+		return "member/memModify";
 	}
 
 	// 회원정보 수정창 전 비밀번호 확인창 서비스콜 부분

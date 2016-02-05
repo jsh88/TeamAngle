@@ -13,10 +13,6 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <style>
-b {
-	color: #376cbf;
-	font-weight: 600;
-}
 
 #head {
 	margin-left: 30px;
@@ -33,7 +29,7 @@ b {
 	font-size: 20px;
 }
 
-#dialog {
+#dialog3 {
 	border: 10px solid #376cbf;
 }
 
@@ -43,15 +39,8 @@ b {
 </style>
 </head>
 <body>
-	<div class="container">
-		<button type="button" class="btn btn-primary btn-lg"
-			data-toggle="modal" data-target="#lightbox">Modal</button>
-
-		<div class="modal fade and carousel slide modal-lg" id="lightbox"
-			role="dialog">
-			<div class="modal-dialog">
 				<form name="mjoin" action="memberJoinProc" method="post">
-					<div class="modal-content" id="dialog">
+					<div class="modal-content" id="dialog3">
 						<div class="modal-header">
 							<div id="head" class="col-sm-6">
 								<h3>
@@ -185,9 +174,7 @@ b {
 						</div>
 					</div>
 				</form>
-			</div>
-		</div>
-	</div>
+
 
 	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/ajax_memJoin.js"></script>

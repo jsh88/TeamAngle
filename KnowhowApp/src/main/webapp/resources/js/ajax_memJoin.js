@@ -22,8 +22,7 @@ $(document).ready(function() {
 		interval : false
 	});
 	
-	$('#btn1').hide();
-	$('#btn3').hide();
+	$('#btn1, #btn3').hide();
 	$('.chk').hide();
 
 $(function() {
@@ -31,9 +30,6 @@ $(function() {
 	$('#btn2').click(function() {
 		$('#btn1').show();
 	});
-	//이메일 형식 확인
-	var RegexEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
-
 	// 아이디 사용가능 체크
 	$("#mj_id").on("keyup", function() {
 		$(".chk1").show();
