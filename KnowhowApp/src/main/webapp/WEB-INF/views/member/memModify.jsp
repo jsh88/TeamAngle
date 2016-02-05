@@ -12,7 +12,13 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+<script>
+$(document).ready(function(){
+	
+	$("#show").modal();
+	
+});
+</script>
 <style>
 #content {
 	height: 300px;
@@ -27,12 +33,16 @@
 
 </head>
 <body>
+<<<<<<< HEAD
  <input type="hidden" name="id" value="${member}"/> 
 	<button id="btnpw" class="btn btn-warning btn-lg" data-toggle="modal"
 		data-target="#pwibox">PassWordInput</button>
 
 	<div class="modal fade slide" id="pwibox" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
+=======
+<input type="hidden" name="id" value=""/>
+>>>>>>> refs/heads/wooking
 
 		<div id="show" class="modal-dialog">
 			<div class="modal-content" style="height: 150px;">
