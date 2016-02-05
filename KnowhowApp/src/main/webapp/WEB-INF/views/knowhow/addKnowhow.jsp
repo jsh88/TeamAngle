@@ -10,6 +10,27 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="resources/css/addKnowhow.css">
 	<style>
+	
+	.wrap-loading{ /*화면 전체를 어둡게 합니다.*/
+    position: fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background: rgba(0,0,0,0.2);
+    }
+    
+     .wrap-loading div{ /*로딩 이미지*/
+         width:1000;  /*div의 전체 가로픽셀*/
+		 position:absolute;   /*테이블의 영향을받지않는 div*/
+		 left:50%;   /*div 왼쪽 top 부분이 가로 전체의 중간으로 위치하게됨*/
+		 margin-left:-500px;  /* 왼쪽 top부분이 가운데로왔으니 좌측에서 전체가로픽셀의 반을 마이너스하여 좌측으로 옮겨줌 */
+    }
+    
+    .display-none{ /*감추기*/
+        display:none;
+    }
+	
 		.imgurl{
 			position: absolute;
 			width:20px;
@@ -39,8 +60,8 @@
 		$(document).ready(function(){			
 			
 			imgArr[0] = null;
-			urlArr[0] = null;
 			conArr[0] = null;
+			urlArr[0] = undefined;
 			
 			$("#addModal").modal();			
 			
@@ -95,7 +116,7 @@
 					$("#mediaiframe"+ maxPage).css("z-index", "2");	// 미디어 층 내리기
 					$("#mediaImg" + i).attr("src", "");							// 이미지 비우기
 					imgArr[i - 1] = null;													// 파일 비우기
-					urlArr[i - 1] = null;													// url 비우기
+					urlArr[i - 1] = undefined;											// url 비우기
 					conArr[i - 1] = null;													// content 비우기
 					url = "";																	// url 운반 변수 비우기
 					
@@ -208,7 +229,7 @@
 				}
 
 				imgArr[i - 1] = e.originalEvent.dataTransfer.files[0];
-				urlArr[i - 1] = null;
+				urlArr[i - 1] = "none";
 
 				reader.readAsDataURL(imgArr[i - 1]);
 
@@ -295,28 +316,33 @@
 			$("#mediaiframe"+ maxPage).css("z-index", "2");	// 미디어 층 내리기
 			$("#mediaImg" + i).attr("src", "");							// 이미지 비우기
 			imgArr[i - 1] = null;													// 파일 비우기
-			urlArr[i - 1] = null;													// url 비우기
+			urlArr[i - 1] = undefined;											// url 비우기
 			conArr[i - 1] = null;													// content 비우기
 			url = "";																	// url 운반 변수 비우기
 			
-		}
-		
-		function complete() {
+		}		
+
 // 			alert($("#imgurl1").val());
 // 			conArr[i - 1] = $("#ta" + i).val();
 // 			if(!imgArr[i - 1]) { imgArr[i - 1] = null }
-// 			if(!urlArr[i - 1]) { urlArr[i - 1] = null }
-			
-// 			for(var j = 0; j < 10; j++) {
-				
-// 				if(conArr[j]) {
-					
-// 					alert(j + "페이지\n" + "이미지 : " + imgArr[j] + "\nURL : " + urlArr[j] + "\n내용 : " + conArr[j] + "\nmaxPage : " + maxPage);
-					
+// 			if(!urlArr[i - 1]) { urlArr[i - 1] = null }			
+// 			for(var j = 0; j < 10; j++) {				
+// 				if(conArr[j]) {					
+// 					alert(j + "페이지\n" + "이미지 : " + imgArr[j] + "\nURL : " + urlArr[j] + "\n내용 : " + conArr[j] + "\nmaxPage : " + maxPage);					
 // 				}
 // 			}
 
+		function complete() {
+			
+			for(var s = 0; s < maxPage ; s++) {
+				if($("#ta" + i).val() == "") {
+					alert("내용이 없는 페이지가 있습니다.");
+					return;
+				}
+			}
+		
 		conArr[i - 1] = $("#ta" + i).val();
+		 
 
 		$.ajaxSettings.traditional = true;
 		var formData = new FormData();
@@ -324,10 +350,8 @@
 		
 		for(var k = 0; k < maxPage; k++) {
 			formData.append("imgArr" + k, imgArr[k]);
-			if(k+1 != maxPage) {
-				conArr[k] = conArr[k] + "$e";
-				urlArr[k] = urlArr[k] + "$e";
-			}
+				conArr[k] = conArr[k] + "q1z";
+				urlArr[k] = urlArr[k] + "q1z";
 		}
 
 		formData.append("urlArr", urlArr);
@@ -341,11 +365,12 @@
 				contentType : false,
 				success : function(v) {
 					
-					if(v == "success") {
-						
-					}
+					$('.wrap-loading').addClass('display-none');
+					
 				}, beforeSend : function() {
-					// 이미지 보여주기
+					
+			    	// 이미지 보여주기
+					$('.wrap-loading').removeClass('display-none');
 					
 				},
 				error : function(request, status, error){
@@ -353,7 +378,9 @@
 					alert("code:"+request.status+"\n\n"+"message:"+request.responseText+"\n\n"+"error:"+error);
 					
 			    },
-			    complete : function(){
+			    complete : function(){			    				
+			    	
+			    	// 이미지 감추기 처리
 			    	$("#addModal").modal("hide");
 			    	
 			    }
@@ -364,7 +391,8 @@
 	</style>
 </head>
 <body>
- 	<div class="modal fade" id="addModal" data-backdrop="static">
+ 	<div class="modal fade" id="addModal" data-backdrop="static">  														
+ 	
 		<div class="modal-dialog" id="addDialog">
 				<div class="modal-content" id="addContent">
 				<div id="addWrap">
@@ -375,9 +403,14 @@
 						<div id="Clear" onclick="clearPage()"><img style="width:20px;" src="resources/images/clear.png"/></div>
 					</div>
 					<!-- Modal 상단-->
-						<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+						<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">				
 							
   							 <div class="carousel-inner" role="listbox">
+  							 
+  							  	<div class="wrap-loading display-none">
+						    		<div><img src="resources/images/loading2.gif" /></div>
+								</div>
+  							 					
   							 	<div class="item active">
   							 		<form name="addKnowhowForm1" action="test.jsp" method="post">
 										<div id="content">

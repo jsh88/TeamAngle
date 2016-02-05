@@ -1,7 +1,6 @@
 package com.angle.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.angle.service.PostCommentService;
@@ -51,20 +49,6 @@ public class PostController {
 	public String startPosting(HttpServletRequest request, HttpSession session) {
 
 		return "knowhow/startPosting";
-	}
-
-	// 포스트 작성 페이지로
-	@RequestMapping(value = "t")
-	public String t1(HttpServletRequest request, HttpSession session) {
-
-		return "knowhow/t";
-	}
-
-	// 포스트 작성 페이지로
-	@RequestMapping(value = "t2")
-	public String t2(HttpServletRequest request, HttpSession session) {
-
-		return "knowhow/t2";
 	}
 
 	// 포스트 작성 시작
@@ -184,6 +168,12 @@ public class PostController {
 		postCommentService.delPostComment(request, session);
 
 		return null; // 어디로 가야하오
+	}
+	
+	// addTag 접근
+	@RequestMapping(value = "addTag")
+	public String addTag() {
+		return "knowhow/addTag";
 	}
 
 	/**
