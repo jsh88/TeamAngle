@@ -182,7 +182,7 @@
 		<div class="modal-dialog" id="tagDialog">
 				<div class="modal-content" id="tagContent">
 				<div id="addWrap">
-						<div id="Tagimage"><a href=""><img style="width:20px;" src="close.png"/></a></div>
+						<div id="Tagimage"><a href=""><img style="width:20px;" src="resources/images//close.png"/></a></div>
 					<div id="TagContent">
 						<div id="contentTitle">
 							Recommendation Tag
