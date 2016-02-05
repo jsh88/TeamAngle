@@ -203,7 +203,7 @@ public class MemberServiceImpl implements MemberService {
 		} else {
 			if(member.getPw().equals(pw)) {
 //				session.setAttribute("isLogin", true);
-				session.setAttribute("member", id);
+				session.setAttribute("member", memberDao.getMember(id));
 				result = 0;
 				memberDao.updateLdate(member);
 

@@ -85,12 +85,12 @@ public class MemberController {
 	@RequestMapping(value = { "/memberUpdatePassCheckForm" }, method = RequestMethod.GET)
 	public String memberUpdatePassCheckForm(Model model, HttpServletRequest request) {
 
-		model.addAttribute("body", "member/회원정보수정전비밀번호확인폼이름");
-		return "main";
+		model.addAttribute("body", "member/memModify");
+		return "member/memModify";
 	}
 
 	// 회원정보 수정창 전 비밀번호 확인창 서비스콜 부분
-	@RequestMapping(value = { "/memberUpdatePassCheck.ajax" })
+	@RequestMapping(value = { "/member/memberUpdatePassCheck.ajax" })
 	public String memeberUpdatePassCheck(Model model, HttpServletRequest request) {
 
 		int result = memberService.checkPw(request);
@@ -270,12 +270,23 @@ public class MemberController {
 	}
 	
 	// 내가 작성한 포스트 댓글순
-		@RequestMapping("/getMyPostByComments")
-		public String getMyPostByComments(HttpServletRequest req, HttpSession session, Model model){
-			
-			memberService.getMyPostByComments(req, session);
-			model.addAttribute("title","어디로가야하오");
-			return "index";
-		}
+	@RequestMapping("/getMyPostByComments")
+	public String getMyPostByComments(HttpServletRequest req, HttpSession session, Model model){
+		
+		memberService.getMyPostByComments(req, session);
+		model.addAttribute("title","어디로가야하오");
+		return "index";
+	}
+	
+	
+	// 로그인 세션 확인 부분 동작 확인 부분 처리
+	@RequestMapping(value = { "/member/loginConfrim" })
+	public String loginConfirmForm(Model model, HttpSession session)	{
+		Member m = (Member) session.getAttribute("member");
+		String id = m.getId();
+		memberService.getMember(id);
+		model.addAttribute("body", "member/loginConfirm");
+		return "member/loginConfirm";
+	}
 		
 }

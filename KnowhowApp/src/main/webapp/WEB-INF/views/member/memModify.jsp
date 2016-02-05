@@ -27,7 +27,7 @@
 
 </head>
 <body>
-<input type="hidden" name="id" value=""/>
+ <input type="hidden" name="id" value="${member}"/> 
 	<button id="btnpw" class="btn btn-warning btn-lg" data-toggle="modal"
 		data-target="#pwibox">PassWordInput</button>
 
@@ -46,7 +46,7 @@
 							<span>Please.. password..</span>
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="password" id="passCheck" class="form-control">
+							<input type="password" id="passCheck" name="passCheck" class="form-control">
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
 							<button id="p1" class="btn btn-warning col-sm-12">go to</button>
@@ -155,6 +155,6 @@
 		</div>
 	</div>
 	
-	<script src="resources/js/ajax_myModfy.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/ajax_myModfy.js"></script>
 </body>
 </html>
