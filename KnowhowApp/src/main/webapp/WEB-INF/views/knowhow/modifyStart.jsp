@@ -55,7 +55,6 @@
 			$("#hideList").show();
 			
 		});
-		
 
 		$("#Priorbtn").click(function(){
 		/*  $("#ModalDialog").css('margin-top','350px'); */
@@ -86,7 +85,7 @@
 		$.ajaxSettings.traditional = true; // 배열형식으로 넘기기
 		 // 폼 데이터 받기 or Append or 인자로 form id)
 		var formData = new FormData();
-		formData.append("key", value);
+		formData.append("title", title);
 	
 		$.ajax({
 			type : 'POST',

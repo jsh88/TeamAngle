@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,13 +38,32 @@
 	var maxPage = 1;
 	var url = "";
 	
-		$(document).ready(function(){			
+		$(document).ready(function(){
 			
-			imgArr[0] = null;
-			urlArr[0] = null;
-			conArr[0] = null;
+			<c:forEach items="${pConList}" var="pCon" varStatus="status">
+				
+				<c:if test='${pCon.media eq "undefined" and pCon.media eq "none"}'>
+					imgArr["${status.index}"] = null;
+					urlArr["${status.index}"] = null;
+				</c:if>
+				<c:if test='${pCon.media eq "undefined"}'>
+					imgArr["${status.index}"] = "${pCon.media}";
+					urlArr["${status.index}"] = null;
+					$("#mediaImg" + "${status.count}").attr("src", "resources/images/" + "${pCon.media}");
+				</c:if>
+				<c:if test='${pCon.media ne "undefined"}'>
+					imgArr["${status.index}"] = null;
+					urlArr["${status.index}"] = "${pCon.media}";
+					$('#mediaiframe' + "${status.count}").attr("src", "${pCon.media}");
+				</c:if>
+		
+				conArr.push("${pCon.content}");
+				
+			</c:forEach>
 			
-			$("#addModal").modal();			
+			maxPage = "${post.mPage}";
+			
+			$("#addModal").modal();
 			
 			$(".p2").hide();
 			$(".p3").hide();
