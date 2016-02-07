@@ -18,20 +18,17 @@ function MemberjoinFormCheck() {
 $(document).ready(function() {
 	// 슬라이드 해제
 	
-	$("#myCarousel").carousel({
-		interval : false
-	});
-	
-	$('#btn1, #btn3').hide();
+	$('#mj_btn_left, #mj_btn_submit').hide();
 	$('.chk').hide();
 
 $(function() {
 	// 버튼 움직임 함수
-	$('#btn2').click(function() {
-		$('#btn1').show();
+	$('#mj_btn_right').click(function() {
+		$('#mj_btn_left').show();
 	});
 	// 아이디 사용가능 체크
 	$("#mj_id").on("keyup", function() {
+		$('#mj_btn_left').hide();
 		$(".chk1").show();
 		var id = $("#mj_id").val();
 //		alert(id);
@@ -62,6 +59,7 @@ $(function() {
 	
 	// 닉네임 사용가능 체크
 	$("#mj_nickname").on("keyup", function() {
+		$('#mj_btn_left').hide();
 		$(".chk2").show();
 		var nickname = $("#mj_nickname").val();
 		
@@ -94,15 +92,16 @@ $(function() {
 	
 	// 첫번째 비밀번호 확인체크
 	$("#mj_pass1").on("keyup", function() {
+		$('#mj_btn_left').hide();
 		
 		var pass = $("#mj_pass1").val();
 		if(pass.length < 8 || pass.length > 16) {
 			$("#mj_pass1").css("color", "red");
-			$("#btn2").hide();
+			$("#mj_btn_right").hide();
 			/*$("#submit 버튼id ").attr("disabled", "disabled");*/
 		} else {
 			$("#mj_pass1").css("color", "green");
-			$("#btn2").show();
+			$("#mj_btn_right").show();
 		}	
 	});
 	
@@ -110,6 +109,8 @@ $(function() {
 	
 	// 두번째 비밀번호 확인체크
 	$("#mj_pass2").on("keyup", function() {
+		$("#mj_btn_left").hide();
+		$("#mj_btn_right").hide();
 		$(".chk3").show();
 		var pass = $("#mj_pass1").val();
 		var passCheck = $("#mj_pass2").val();
@@ -119,16 +120,15 @@ $(function() {
 			if(pass != passCheck) {
 				$(".chk3").text("x").css("color", "red").css('font-weight', '800');
 				
-				$("#btn3").hide(1000);
+				$("#mj_btn_submit").hide(1000);
 				
 				if($(".chk3").text() == "x") {
-				$("#btnlast").show(1000);
+				$("#mj_btn_left").show(1000);
 					}
 			} else if(pass = passCheck) {
 				$(".chk3").text("o").css("color", "green");
-				
-				$("#btnlast").hide();
-				$("#btn3").show(1000);
+
+				$("#mj_btn_submit").show(1000);
 				
 			}
 		}

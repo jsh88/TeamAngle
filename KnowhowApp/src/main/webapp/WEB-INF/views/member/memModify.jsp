@@ -1,170 +1,146 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
-<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<title>회원가입</title>
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link href="resources/css/Member.css" rel="stylesheet" type="text/css">
+
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-$(document).ready(function(){
-	
-	$("#show").modal();
-	
-});
-</script>
+
 <style>
-#content {
-	height: 300px;
-	border-radius: 6px;
-	border: 10px solid #376cbf;
-}
 
-.btn {
-	margin-top: 10px;
-}
 </style>
-
 </head>
 <body>
-<<<<<<< HEAD
- <input type="hidden" name="id" value="${member}"/> 
-	<button id="btnpw" class="btn btn-warning btn-lg" data-toggle="modal"
-		data-target="#pwibox">PassWordInput</button>
+<div class="modal-dialog">
+	<form name="mjoin" action="memberJoinProc" method="post">
+		<div class="modal-content" id="dialog">
 
-	<div class="modal fade slide" id="pwibox" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-=======
-<input type="hidden" name="id" value=""/>
->>>>>>> refs/heads/wooking
+			<div class="modal-body">
+				<div id="mj_head" class="col-sm-6">
+					<h3>
+						<b>P</b>lease. <b>S</b>ign <b>i</b>n.
+					</h3>
+				</div>
+				
+				<div id="mjForm" class="carousel slide" data-interval="false">
 
-		<div id="show" class="modal-dialog">
-			<div class="modal-content" style="height: 150px;">
-					<div class="modal-body">
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-						</button>
+					<div class="carousel-inner">
 
-
-						<div class="col-sm-offset-1 col-sm-11">
-							<span>Please.. password..</span>
+						<!-- 아이디 -->
+						<div class="item active">
+							<div class="col-sm-12">
+								<div class="form-group" id="fg1">
+									<label for="id" class="col-sm-offset-1 col-sm-11 control-label">Please.
+										E-mail</label>
+									<div class="col-sm-1"></div>
+									<div class="col-sm-8">
+										<input type="email" class="form-control " id="mj_id" name="id">
+									</div>
+									<!-- Ajax 체킹 div  -->
+									<div class="col-sm-3">
+										<div class="chk chk1"></div>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="col-sm-offset-1 col-sm-10">
-							<input type="password" id="passCheck" name="passCheck" class="form-control">
+						
+						<!-- 닉네임 -->
+						<div class="item">
+							<div class="col-sm-12">
+								<div class="form-group" id="fg2">
+									<label for="nickname"
+										class="col-sm-offset-1 col-sm-11 control-label">Please.
+										Nickname</label>
+									<div class="col-sm-1"></div>
+									<div class="col-sm-8">
+										<input type="text" class="form-control " id="mj_nickname"
+											name="nickname">
+									</div>
+									<!-- Ajax 체킹 div  -->
+									<div class="col-sm-3">
+										<div class="chk chk2"></div>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="col-sm-offset-1 col-sm-10">
-							<button id="p1" class="btn btn-warning col-sm-12">go to</button>
+
+						<!-- 패스워드 1 -->
+						<div class="item">
+							<div class="col-sm-12">
+								<div class="form-group" id="fg3">
+									<label for="pass1"
+										class="col-sm-offset-1 col-sm-11 control-label">Please.
+										Pass</label>
+									<div class="col-sm-1"></div>
+									<div class="col-sm-8">
+										<input type="password" class="form-control " id="mj_pass1">
+									</div>
+									<div class="col-sm-3"></div>
+								</div>
+							</div>
 						</div>
+
+						<!-- 패스워드 2 -->
+						<div class="item">
+							<div class="col-sm-12">
+								<div class="form-group" id="fg4">
+									<label for="pass2"
+										class="col-sm-offset-1 col-sm-11 control-label">Please.
+										Pass again</label>
+									<div class="col-sm-1"></div>
+									<div class="col-sm-8">
+										<input type="password" class="form-control " id="mj_pass2"
+											name="pw">
+									</div>
+									<!-- Ajax 체킹 div  -->
+									<div class="col-sm-3">
+										<div class="chk chk3"></div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
 					</div>
+					<!-- Controls -->
+					<!-- Controls buttons -->
+				</div>
 			</div>
-		</div>
 
-
-
-		<div id="show1" class="modal-dialog">
-			<div class="modal-content" id="content">
-				<div class="modal-body">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-					</button>
-					<div class="col-sm-10">
-						<h3>Member Modify</h3>
+			<div id="mdf" class="modal-footer">
+				<div class="col-sm-12">
+					<div class="col-sm-1">
+						<a id="mj_btn_left" class="carousel-control" href="#mjForm"
+							data-slide="prev"> <span
+							class="ic glyphicon glyphicon-circle-arrow-left"
+							aria-hidden="true"></span></a>
 					</div>
-
-					<div class="list-group col-sm-offset-3 col-sm-6">
-						<button id="l1" class="btn btn-warning col-sm-12">email</button>
-						<button id="l2" class="btn btn-warning col-sm-12">nick</button>
-						<button id="l3" class="btn btn-warning col-sm-12">pass</button>
-						<button id="l4" class="btn btn-warning col-sm-12">delete</button>
+					<div class="col-sm-7"></div>
+					<div class="col-sm-4">
+						<input type="submit" id="mj_btn_submit" class="btn btn-success col-sm-12"
+							value="등록하기">
+						<a id="mj_btn_right" class="carousel-control" href="#mjForm"
+							data-slide="next"> <span
+							class="ic glyphicon glyphicon-circle-arrow-right"
+							aria-hidden="true"></span></a>
 					</div>
 				</div>
 			</div>
 		</div>
+	</form>
+</div>
 
-		<div id="show2" class="modal-dialog">
-
-			<div class="modal-content">
-				<div class="modal-body">
-				
-				<form name="emailEdit" action="" method="post">
-					<div id="lq1" style="height: 100px;">
-						<div class="col-sm-offset-1 col-sm-11">
-							<span>Please.. Email..</span>
-						</div>
-						<div class="col-sm-offset-1 col-sm-10">
-							<input type="email" id="edit_id" name="id" class="form-control">
-						</div>
-						<div class="col-sm-offset-1 col-sm-10">
-							<input type="submit" class="btn btn-success col-sm-12" value="Changing Email">
-						</div>
-					</div>
-				</form>
-				
-				<form name="nickEdit" action="" method="post">
-					<div id="lq2" style="height: 100px;">
-						<div class="col-sm-offset-1 col-sm-11">
-							<span>Please.. Nickname..</span>
-						</div>
-						<div class="col-sm-offset-1 col-sm-10">
-							<input type="text" id="edit_nick" name="nickname" class="form-control">
-						</div>
-						<div class="col-sm-offset-1 col-sm-10">
-							<input type="submit" class="btn btn-success col-sm-12" value="Changing Nickname">
-						</div>
-					</div>
-				</form>
-				
-				<form name="passEdit" action="" method="post">
-					<div id="lq3" style="height: 170px;">
-						<div class="col-sm-offset-1 col-sm-10">
-							<span>Please.. changing password ..</span>
-						</div>
-						<div class="col-sm-offset-1 col-sm-10">
-							<input type="password" id="edit_pass1"  class="form-control">
-						</div>
-						<div class="col-sm-1">
-							<img src="http://placehold.it/30x30">
-						</div>
-						<div class="col-sm-offset-1 col-sm-10">
-							<span>Please.. again ..</span>
-						</div>
-
-						<div class="col-sm-offset-1 col-sm-10">
-
-							<input type="password" id="edit_pass2" name="pw" class="form-control">
-						</div>
-						<div class="col-sm-1">
-							<img src="http://placehold.it/30x30">
-						</div>
-						<div class="col-sm-offset-1 col-sm-10">
-							<input type="submit" class="btn btn-success col-sm-12" value="Changing Password">
-						</div>
-					</div>
-				</form>
-
-
-				<form name="deleteMem" action="" method="post">
-					<div id="lq4" style="height: 60px;">
-						<div class="col-sm-offset-1 col-sm-11">
-							<span>Please.. delete..</span>
-						</div>
-						<div class="col-sm-offset-1 col-sm-10">
-							<input type="submit" class="btn btn-success col-sm-12" value="Member leave..">
-						</div>
-					</div>
-				</form>
-				
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<script src="${pageContext.request.contextPath}/resources/js/ajax_myModfy.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script
+		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="resources/js/ajax_memJoin.js"></script>
 </body>
 </html>

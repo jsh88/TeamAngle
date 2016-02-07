@@ -16,18 +16,15 @@
 
 <style>
 
-#dialog {
-	width: 500px;
-}
-#content {
+#lg_content {
 	width: 500px;
 	border-radius: 6px;
 	border: 10px solid #376cbf;
 	}
-	#mdb {
+#lg_mdb {
 		height: 250px;
 	}
-label{
+#lg_mdb label{
 	margin-top: 5px;
 }
 #sbtn {
@@ -38,12 +35,11 @@ label{
 
 </head>
 <body>
-
-			<div id="content" class="modal-content">
- 				<!-- <form class="form" onsubmit="return false" method="post"> -->
+	<div class="modal-dialog">
+			<div id="lg_content" class="modal-content">
  				<form class="form" action="logincheck.do" method="post">
 					
-					<div class="modal-body" id="mdb">
+					<div class="modal-body" id="lg_mdb">
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 						</button>
@@ -72,7 +68,7 @@ label{
 					</div>
  				</form> 
 			</div>
-
+	</div>
 	<script src="${pageContext.request.contextPath}/resources/js/ajax_login.js"></script>
 </body>
 </html>
