@@ -38,28 +38,7 @@
 	var maxPage = 1;
 	var url = "";
 	
-		$(document).ready(function(){
-			
-			<c:forEach items="${pConList}" var="pCon" varStatus="status">
-				
-				<c:if test='${pCon.media eq "undefined" and pCon.media eq "none"}'>
-					imgArr["${status.index}"] = null;
-					urlArr["${status.index}"] = null;
-				</c:if>
-				<c:if test='${pCon.media eq "undefined"}'>
-					imgArr["${status.index}"] = "${pCon.media}";
-					urlArr["${status.index}"] = null;
-					$("#mediaImg" + "${status.count}").attr("src", "resources/images/" + "${pCon.media}");
-				</c:if>
-				<c:if test='${pCon.media ne "undefined"}'>
-					imgArr["${status.index}"] = null;
-					urlArr["${status.index}"] = "${pCon.media}";
-					$('#mediaiframe' + "${status.count}").attr("src", "${pCon.media}");
-				</c:if>
-		
-				conArr.push("${pCon.content}");
-				
-			</c:forEach>
+		$(document).ready(function(){		
 			
 			maxPage = "${post.mPage}";
 			
@@ -74,6 +53,30 @@
 			$(".p8").hide();
 			$(".p9").hide();
 			$(".p10").hide();
+
+			<c:forEach items="${pConList}" var="pCon" varStatus="status">
+				
+				<c:if test='${pCon.media eq "undefined" and pCon.media eq "none"}'>
+					imgArr["${status.index}"] = null;
+					urlArr["${status.index}"] = null;
+				</c:if>
+				<c:if test='${pCon.media eq "undefined" and pCon.media ne "none"}}'>
+					imgArr["${status.index}"] = "${pCon.media}";
+					urlArr["${status.index}"] = null;
+					$("#mediaImg" + "${status.count}").attr("src", "${pCon.media}");
+				</c:if>
+				<c:if test='${pCon.media ne "undefined"} and pCon.media eq "none"}'>
+					imgArr["${status.index}"] = null;
+					urlArr["${status.index}"] = "${pCon.media}";
+					$('#mediaiframe' + "${status.count}").attr("src", "${pCon.media}");
+				</c:if>
+		
+				conArr.push("${pCon.content}");
+				$("#ta" + "${status.count}").val("${pCon.content}");
+				$(".p" + "${status.count}").show();
+				
+			</c:forEach>
+
 			
 			 /*추가 버튼*/
 			 $("#addbtn").click(function(){
@@ -399,9 +402,9 @@
 						<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
 							
   							 <div class="carousel-inner" role="listbox">
-  							 	<div class="item active">
+  							 	<div class="item active additem">
   							 		<form name="addKnowhowForm1" action="test.jsp" method="post">
-										<div id="content">
+										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
 												<div id="m1" class="m" onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe1" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscree></iframe>
@@ -418,9 +421,9 @@
 										</div>
 									</form>
   							 	</div>
-  							 	<div class="item">
+  							 	<div class="item additem">
   							 		<form name="addKnowhowForm2" name="knowhow" action="test.jsp" method="post">
-										<div id="content">
+										<div id="addKnowhowcontent">
 											<div id="Media"class="mbackground">
 												<div id="m2" class="m" onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe2" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
@@ -437,9 +440,9 @@
 										</div>
 									</form>
   							 	</div>
-  							 	<div class="item">
+  							 	<div class="item additem">
   							 		<form name="addKnowhowForm3" name="knowhow" action="test.jsp" method="post">
-										<div id="content">
+										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
 												<div id="m3" class="m"  onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe3" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
@@ -456,9 +459,9 @@
 										</div>
 									</form>
   							 	</div>
-  							 	<div class="item">
+  							 	<div class="item additem">
   							 		<form name="addKnowhowForm4" name="knowhow" action="test.jsp" method="post">
-										<div id="content">
+										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
 												<div id="m4" class="m"  onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe4" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
@@ -475,9 +478,9 @@
 										</div>
 									</form>
   							 	</div>
-  							 	<div class="item">
+  							 	<div class="item additem">
   							 		<form name="addKnowhowForm5" name="knowhow" action="test.jsp" method="post">
-										<div id="content">
+										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
 												<div id="m5" class="m"  onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe5" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
@@ -494,9 +497,9 @@
 										</div>
 									</form>
   							 	</div>
-  							 	<div class="item">
+  							 	<div class="item additem">
   							 		<form name="addKnowhowForm6" name="knowhow" action="test.jsp" method="post">
-										<div id="content">
+										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
 												<div id="m6" class="m"  onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe6" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
@@ -513,9 +516,9 @@
 										</div>
 									</form>
   							 	</div>
-  							 	<div class="item">
+  							 	<div class="item additem">
   							 		<form name="addKnowhowForm7" name="knowhow" action="test.jsp" method="post">
-										<div id="content">
+										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
 												<div id="m7" class="m"  onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe7" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
@@ -532,9 +535,9 @@
 										</div>
 									</form>
   							 	</div>
-  							 	<div class="item">
+  							 	<div class="item additem">
   							 		<form name="addKnowhowForm8" name="knowhow" action="test.jsp" method="post">
-										<div id="content">
+										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
 												<div id="m8" class="m"  onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe8" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
@@ -553,7 +556,7 @@
   							 	</div>
   							 	<div class="item">
   							 		<form name="addKnowhowForm9" name="knowhow" action="test.jsp" method="post">
-										<div id="content">
+										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
 												<div id="m9" class="m"  onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe9" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
@@ -572,7 +575,7 @@
   							 	</div>
   							 	<div class="item">
   							 		<form name="addKnowhowForm10" name="knowhow" action="test.jsp" method="post">
-										<div id="content">
+										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
 												<div id="m10" class="m"  onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe10" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
