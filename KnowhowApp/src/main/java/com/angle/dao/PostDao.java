@@ -34,4 +34,6 @@ public interface PostDao {
 
 	void modifyTitle(int pNo, String title);
 
+	public void setMaxPostPage(int pNo, int mPage);
+
 }

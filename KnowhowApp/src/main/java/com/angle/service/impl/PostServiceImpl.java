@@ -215,6 +215,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		urlArr[mPage - 1] = urlArr[mPage - 1].replace("q1z", "");
 
 		Post p = (Post) session.getAttribute("post");
+		p.setmPage(mPage);
 
 		ArrayList<PostContent> pConList = new ArrayList<>();
 		MultipartFile multipartFile = null;
@@ -254,6 +255,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 		// 포스트 페이지들 추가
 		postDao.addPostPage(pConList);
+		postDao.setMaxPostPage(p.getpNo(), mPage);
 
 		session.setAttribute("pTagList",
 				postDao.completePosting((ArrayList<PostTag>) luceneKoreanAnalyzer.getTags(pConList)));

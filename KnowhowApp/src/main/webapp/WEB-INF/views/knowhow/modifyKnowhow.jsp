@@ -72,7 +72,7 @@
 				</c:if>
 		
 				conArr.push("${pCon.content}");
-				$("#ta" + i).val("${pCon.content}");
+				$("#ta" + "${status.count}").val("${pCon.content}");
 				$(".p" + "${status.count}").show();
 				
 			</c:forEach>

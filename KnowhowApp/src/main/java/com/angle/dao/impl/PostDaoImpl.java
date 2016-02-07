@@ -118,7 +118,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 								pCon.setpNo(pNo);
 								pCon.setPage(rs.getInt("page"));
-								pCon.setContent(rs.getString("content").replaceAll("(\r\n|\n)", "<br />"));
+								pCon.setContent(rs.getString("content").replace("\r\n", "<br>"));
 
 								if (rs.getString("media").equals("undefined") && !rs.getString("media").equals("none"))
 									pCon.setMedia("resources//images//" + rs.getString("media"));
@@ -364,6 +364,13 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	public void modifyTitle(int pNo, String title) {
 
 		jdbcTemplate.update("update post set title = ? where pno = ?", new Object[] { pNo, title });
+
+	}
+
+	@Override
+	public void setMaxPostPage(int pNo, int mPage) {
+
+		jdbcTemplate.update("update post set mpage = ? where pno = ?", new Object[] { mPage, pNo });
 
 	}
 }
