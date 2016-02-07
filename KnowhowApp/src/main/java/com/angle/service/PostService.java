@@ -36,4 +36,6 @@ public interface PostService {
 
 	public void completePosting(HttpSession session);
 
+	public void modifyTitle(HttpServletRequest request, HttpSession session);
+
 }

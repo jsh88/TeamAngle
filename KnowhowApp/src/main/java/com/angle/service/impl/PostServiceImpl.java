@@ -368,4 +368,15 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		postDao.setPostState(((Post) session.getAttribute("post")).getpNo());
 
 	}
+
+	@Override
+	public void modifyTitle(HttpServletRequest request, HttpSession session) {
+		
+		Post p = (Post) session.getAttribute("post");
+		
+		p.setTitle(request.getParameter("title"));
+
+		postDao.modifyTitle(p.getpNo(), p.getTitle());
+
+	}
 }

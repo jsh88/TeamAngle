@@ -81,13 +81,32 @@ public class PostController {
 	}
 
 	// 포스트 수정 시작
-	@RequestMapping(value = "modifyPost")
-	public String modifyPost(MultipartHttpServletRequest request, HttpSession session)
+	@RequestMapping(value = "modifyStart", method = RequestMethod.GET)
+	public String modifyStart(HttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
 		postService.getPost(request, session);
 
-		return null; // 어디로 가야하오
+		return "knowhow/modifyStart";
+	}
+
+	// 포스트 수정 페이지로
+	@RequestMapping(value = "modifyPost")
+	public String modifyPost(HttpServletRequest request, HttpSession session)
+			throws IllegalStateException, IOException {
+
+		return "knowhow/modifyKnowhow";
+	}
+
+	// 포스트 타이틀 수정
+	@RequestMapping(value = "modifyTitle")
+	@ResponseBody
+	public String modifyTitle(HttpServletRequest request, HttpSession session)
+			throws IllegalStateException, IOException {
+
+		postService.modifyTitle(request, session);
+
+		return "success"; // ajax
 	}
 
 	// 포스트 삭제
@@ -97,6 +116,7 @@ public class PostController {
 		postService.delPost(request);
 
 		return null; // 어디로 가야하오
+
 	}
 
 	// 포스트 페이지 삭제
@@ -134,13 +154,12 @@ public class PostController {
 
 		postService.completeWrite(request, session);
 
-		return "success";
+		return "success"; // ajax
 	}
 
 	// 포스트 작성 완료, ajax
 	@RequestMapping(value = "completePosting", method = RequestMethod.POST)
-	public String completePosting(HttpSession session)
-			throws IllegalStateException, IOException {
+	public String completePosting(HttpSession session) throws IllegalStateException, IOException {
 
 		postService.completePosting(session);
 

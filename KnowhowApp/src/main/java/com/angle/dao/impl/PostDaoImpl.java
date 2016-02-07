@@ -75,7 +75,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	public Post getPost(int pNo) {
 
 		return jdbcTemplate.queryForObject("select p.*, nickname from post p, member m where p.id=m.id and p.pno = ?",
-				new Object[] {}, new RowMapper<Post>() {
+				new Object[] { pNo }, new RowMapper<Post>() {
 
 					@Override
 					public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -307,7 +307,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 		}
 
 		if (!pTagList.isEmpty())
-			
+
 			return jdbcTemplate.query("select * from posttag where pno = ? order by count desc",
 					new Object[] { pTagList.get(0).getpNo() }, new ResultSetExtractor<ArrayList<PostTag>>() {
 
@@ -328,7 +328,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 								p.setrDate(rs.getString("rdate"));
 
 								pTagList.add(p);
-								
+
 								System.out.println(p.getTag());
 
 							}
@@ -337,7 +337,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 						}
 					});
-		
+
 		return null;
 	}
 
@@ -353,8 +353,15 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 	@Override
 	public void setPostState(int pNo) {
-		
-		jdbcTemplate.update("update post set state = 1, tdate = null where pno = ?", new Object[]{pNo});
-		
+
+		jdbcTemplate.update("update post set state = 1, tdate = null where pno = ?", new Object[] { pNo });
+
+	}
+
+	@Override
+	public void modifyTitle(int pNo, String title) {
+
+		jdbcTemplate.update("update post set title = ? where pno = ?", new Object[] { pNo, title });
+
 	}
 }

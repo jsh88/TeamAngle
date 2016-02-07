@@ -32,4 +32,6 @@ public interface PostDao {
 
 	public void setPostState(int pNo);
 
+	void modifyTitle(int pNo, String title);
+
 }
