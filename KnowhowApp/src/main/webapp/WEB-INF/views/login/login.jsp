@@ -39,13 +39,6 @@ label{
 </head>
 <body>
 
-	<button id="btnlg" class="btn btn-warning" data-toggle="modal"
-		data-target="#lgbox">login</button>
-		
-
-	<div class="modal fade" id="lgbox" tabindex="-1" role="dialog"
-		aria-labelledby="loginModal" aria-hidden="true">
-		<div id="dialog" class="modal-dialog" >
 			<div id="content" class="modal-content">
  				<!-- <form class="form" onsubmit="return false" method="post"> -->
  				<form class="form" action="logincheck.do" method="post">
@@ -79,10 +72,7 @@ label{
 					</div>
  				</form> 
 			</div>
-		</div>
-	</div>
-	
-	
+
 	<script src="${pageContext.request.contextPath}/resources/js/ajax_login.js"></script>
 </body>
 </html>

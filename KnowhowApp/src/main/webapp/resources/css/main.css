@@ -1,0 +1,76 @@
+@CHARSET "UTF-8";
+/* 최상단 header */
+#header_main {
+	background-color: black;
+	margin: 0;
+	padding: 0;
+}
+#brand {
+	margin-left: 7px;
+	margin-top: 3px;
+	color: yellow;
+}
+#search_btn {
+	
+	border: 2px solid tomato;
+	background-color: tomato;
+	color: white;
+}
+#loginbtn, #joinbtn, #navbtn {
+	color: white;
+}
+#nav1 {
+	
+	float: right;
+	position: fixed;
+}
+/* main */
+
+	#menu {
+	margin-top: 10px;
+	border: 1px solid #CCCCCC;
+	border-radius: 10px;
+	float: right;
+	overflow: auto;
+	}
+	#nv1 {
+		padding:0;
+	}
+	#nv1 > button {
+		height: 40px;
+	}
+	
+	.line {
+	margin: 2px auto;
+		height: 2px;
+		background-color: tomato;
+	}
+	#c1, #c2 {
+	text-align: center;
+	}
+
+#profil_img, #nav1 {
+	margin-top: 5px;
+	text-align: center;
+}
+#profil_line, #profil_nametag {
+	margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+::-webkit-scrollbar {width: 8px; height: 8px; border: 3px solid #fff; }
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {display: block; height: 10px; background: url('./images/bg.png') #efefef}
+::-webkit-scrollbar-track {background: #efefef; -webkit-border-radius: 10px; border-radius:10px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.2)}			 
+::-webkit-scrollbar-thumb {height: 50px; width: 50px; background: rgba(0,0,0,.2); -webkit-border-radius: 8px; border-radius: 8px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.1)}
