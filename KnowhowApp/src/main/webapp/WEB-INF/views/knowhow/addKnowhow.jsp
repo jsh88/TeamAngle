@@ -225,6 +225,7 @@
 				reader.onload = function(ev) {
 
 					$('#mediaImg' + i).attr('src', ev.target.result);
+					$('#m'+i).css("background-image","none");
 
 				}
 
@@ -314,7 +315,8 @@
 			$('#inputurl').attr('value', "");									// 모달 위 모달 value 비우기
 			$("#ta" + i).val("");													// 컨텐트 비우기
 			$("#mediaiframe"+ i).css("z-index", "2");					// 미디어 층 내리기
-			$("#mediaImg" + i).attr("src", "");							// 이미지 비우기
+			$("#mediaImg" + i).attr("src", "");								// 이미지 비우기
+			$('#m'+i).css("background-image"," url('/KnowhowApp/resources/images/insertImage.png')"); //원래이미지로
 			imgArr[i - 1] = null;													// 파일 비우기
 			urlArr[i - 1] = undefined;											// url 비우기
 			conArr[i - 1] = null;													// content 비우기

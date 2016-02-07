@@ -169,9 +169,7 @@
 			}
 			
 			.mbackground{
-				background-image: url("/KnowhowApp/resources/images/insertImage.png");
-				background-size:100%, 100%;
-				background-repeat: no-repeat;
+				
 			}
 			#content_Text{
 				margin-top: 20px;
@@ -319,6 +317,9 @@
 			height: 300px;
 			border:0px;
 			cursor: pointer;
+			background-image: url("/KnowhowApp/resources/images/insertImage.png");
+			background-size:100%, 100%;
+			background-repeat: no-repeat;
 		}
 		
 		.mediaImg{
