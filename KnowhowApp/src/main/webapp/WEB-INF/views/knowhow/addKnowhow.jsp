@@ -63,7 +63,7 @@
 			conArr[0] = null;
 			urlArr[0] = undefined;
 			
-			$("#addModal").modal();			
+			$("#addModal").modal();
 			
 			$(".p2").hide();
 			$(".p3").hide();
@@ -229,7 +229,7 @@
 				}
 
 				imgArr[i - 1] = e.originalEvent.dataTransfer.files[0];
-				urlArr[i - 1] = "none";
+				urlArr[i - 1] = undefined;
 
 				reader.readAsDataURL(imgArr[i - 1]);
 
