@@ -19,6 +19,7 @@
 </style>
 </head>
 <body>
+<div class="modal-dialog">
 	<form name="mjoin" action="memberJoinProc" method="post">
 		<div class="modal-content" id="dialog">
 
@@ -135,7 +136,7 @@
 			</div>
 		</div>
 	</form>
-
+</div>
 
 	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script
