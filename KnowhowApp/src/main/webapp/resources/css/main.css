@@ -40,22 +40,15 @@
 		height: 40px;
 	}
 	
-	.line {
-	margin: 2px auto;
-		height: 2px;
-		background-color: tomato;
-	}
 	#c1, #c2 {
 	text-align: center;
 	}
 
-#profil_img, #nav1 {
+#profile_img, #nav1 {
 	margin-top: 5px;
 	text-align: center;
 }
-#profil_line, #profil_nametag {
-	margin-top: 10px;
-}
+
 
 
 

@@ -17,20 +17,26 @@
 <style>
 
 #lg_content {
+margin: 0 auto;
 	width: 500px;
 	border-radius: 6px;
 	border: 10px solid #376cbf;
 	}
 #lg_mdb {
-		height: 250px;
+		height: 270px;
 	}
-#lg_mdb label{
+#lg_mdb label, #lg_findId label, #lg_findPass label{
 	margin-top: 5px;
 }
-#sbtn {
+#lg_btn {
 	margin-top: 25px;
 }
-
+#lg_findId, #lg_findPass {
+	margin: 0 auto;
+	margin-top: 30px;
+	width: 500px;
+	height: 270px;
+}
 </style>
 
 </head>
@@ -48,7 +54,7 @@
 							<div class="form-group">
 								<label class="col-sm-6" for="lg_id">Please.
 									Email ...</label>
-									<div class="col-sm-11">
+									<div class="col-sm-12">
 									<input type="email" id="lg_id" name="id"
 									class="form-control"></div>
 									
@@ -61,6 +67,11 @@
 									name="pw" class="form-control">
 									
 									<input type="submit" id="lg_btn" class="btn btn-success col-sm-12" value="Sign in">
+									
+									
+									</div>
+									<div class="col-sm-12">
+										<a href="#">아이디</a>&nbsp;/&nbsp;<a href="#">비밀번호</a>를 잃어버리셨나요?
 									</div>
 							</div>
 							
@@ -68,6 +79,49 @@
 					</div>
  				</form> 
 			</div>
+			
+			<div id="lg_findId" class="modal-content">
+			<form name="findEmail" action="" method="post">			
+			<div>Find You're Email</div>
+				<div class="form-group">
+								<label class="col-sm-6" for="lg_nickname">Please.
+									Nickname ...</label>
+									<div class="col-sm-12">
+									<input type="text" id="lg_nickname" name="nickname"
+									class="form-control"></div>
+				</div>
+				<div class="form-group">
+								<label class="col-sm-6" for="lg_pass3">Please.
+									Nickname ...</label>
+									<div class="col-sm-12">
+									<input type="text" id="lg_pass3" name="pass"
+									class="form-control"></div>
+				</div>
+				</form>
+				</div>
+			
+			
+			
+			<div id="lg_findPass" class="modal-content">
+				<form name="findEmail" action="" method="post">			
+					<div>Find You're Email</div>
+						<div class="form-group">
+							<label class="col-sm-6" for="lg_nickname">Please.
+									Nickname ...</label>
+							<div class="col-sm-12">
+							<input type="text" id="lg_nickname" name="nickname"
+									class="form-control"></div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-6" for="lg_pass3">Please.
+									Nickname ...</label>
+								<div class="col-sm-12">
+								<input type="text" id="lg_pass3" name="pass"
+									class="form-control"></div>
+						 </div>
+					</form>
+			</div>
+			
 	</div>
 	<script src="${pageContext.request.contextPath}/resources/js/ajax_login.js"></script>
 </body>

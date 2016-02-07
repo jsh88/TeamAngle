@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <link type="text/css" href="resources/css/main.css" rel="stylesheet" >
-<!-- <script src="resources/js/ajax_main.js"></script> -->
+<script src="resources/js/ajax_header.js"></script>
 <script>
    function openModal(i){
 	   
@@ -31,7 +31,6 @@
 	   $("#"+modal).modal();
 	   
    }
-   
 </script>
 <style>
 </style>
@@ -70,6 +69,7 @@
                %>
                <li><div id="joinbtn" class="btn btn-lg" onclick="openModal('1')">Join</div></li>
                <li><div id="loginbtn" class="btn btn-lg" onclick="openModal('2')">Login</div></li>
+               <li><div id="navbtn" class="btn btn-lg" onclick="navModal()">myPage</div></li>
                <%
                   } else {
                %>
@@ -89,18 +89,16 @@
       <div class="col-md-9"></div>
       	<div class="col-md-3">
         	 <div id="menu">
-            	<div id="profil_line" class="col-sm-12 col-xs-12 col-md-12">
-	               	<div id="profil_img" class="col-sm-5 col-xs-12">
+            	<div id="profile_line" class="col-sm-12 col-xs-12 col-md-12">
+	               	<div id="profile_img" class="col-sm-5 col-xs-12">
 	                  <img src="http://placehold.it/110x110">
 	               	</div>
-	               	<div id="profil_nametag" class="col-sm-7 col-xs-12">
+	               	<div id="profile_nametag" class="col-sm-7 col-xs-12">
 	                  <div class="col-sm-12 col-xs-12">김용유</div>
 	                  <div class="col-sm-12 col-xs-12">식용유같은느끼함</div>
 	                  <div class="col-sm-12 col-xs-12">식용유같은느끼함</div>
 	               </div>
             	</div>
-
-            <div class="col-sm-12 col-xs-12 line"></div>
 
 			<!-- 마이페이지 버튼 -->
             <div id="nv1" class="col-sm-12 col-xs-12 btn-group btn-group-xs btn-group-sm btn-group-lg" role="group">
@@ -109,7 +107,6 @@
                <button class="btn btn-default col-sm-3 col-xs-3" onclick="openModal('5')">Writing Post</button>
                <button class="btn btn-default col-sm-3 col-xs-3">MyPost</button>
             </div>
-            <div class="col-sm-12 col-xs-12 line"></div>
             
             <!-- 마이페이지 - 최근 본 knowhow -->
             <div class="col-sm-12 col-xs-12">

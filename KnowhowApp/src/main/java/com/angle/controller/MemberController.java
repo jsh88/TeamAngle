@@ -39,7 +39,7 @@ public class MemberController {
 	public String MemberJoin(Model model) {
 
 		model.addAttribute("body", "member/memJoin");
-		return "main/main";
+		return "template/header";
 	}
 
 	// 회원가입 서비스콜 부분
