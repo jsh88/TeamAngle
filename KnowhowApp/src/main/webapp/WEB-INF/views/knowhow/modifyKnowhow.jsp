@@ -38,28 +38,7 @@
 	var maxPage = 1;
 	var url = "";
 	
-		$(document).ready(function(){
-			
-			<c:forEach items="${pConList}" var="pCon" varStatus="status">
-				
-				<c:if test='${pCon.media eq "undefined" and pCon.media eq "none"}'>
-					imgArr["${status.index}"] = null;
-					urlArr["${status.index}"] = null;
-				</c:if>
-				<c:if test='${pCon.media eq "undefined"}'>
-					imgArr["${status.index}"] = "${pCon.media}";
-					urlArr["${status.index}"] = null;
-					$("#mediaImg" + "${status.count}").attr("src", "resources/images/" + "${pCon.media}");
-				</c:if>
-				<c:if test='${pCon.media ne "undefined"}'>
-					imgArr["${status.index}"] = null;
-					urlArr["${status.index}"] = "${pCon.media}";
-					$('#mediaiframe' + "${status.count}").attr("src", "${pCon.media}");
-				</c:if>
-		
-				conArr.push("${pCon.content}");
-				
-			</c:forEach>
+		$(document).ready(function(){		
 			
 			maxPage = "${post.mPage}";
 			
@@ -74,6 +53,30 @@
 			$(".p8").hide();
 			$(".p9").hide();
 			$(".p10").hide();
+
+			<c:forEach items="${pConList}" var="pCon" varStatus="status">
+				
+				<c:if test='${pCon.media eq "undefined" and pCon.media eq "none"}'>
+					imgArr["${status.index}"] = null;
+					urlArr["${status.index}"] = null;
+				</c:if>
+				<c:if test='${pCon.media eq "undefined" and pCon.media ne "none"}}'>
+					imgArr["${status.index}"] = "${pCon.media}";
+					urlArr["${status.index}"] = null;
+					$("#mediaImg" + "${status.count}").attr("src", "${pCon.media}");
+				</c:if>
+				<c:if test='${pCon.media ne "undefined"} and pCon.media eq "none"}'>
+					imgArr["${status.index}"] = null;
+					urlArr["${status.index}"] = "${pCon.media}";
+					$('#mediaiframe' + "${status.count}").attr("src", "${pCon.media}");
+				</c:if>
+		
+				conArr.push("${pCon.content}");
+				$("#ta" + i).val("${pCon.content}");
+				$(".p" + "${status.count}").show();
+				
+			</c:forEach>
+
 			
 			 /*추가 버튼*/
 			 $("#addbtn").click(function(){
