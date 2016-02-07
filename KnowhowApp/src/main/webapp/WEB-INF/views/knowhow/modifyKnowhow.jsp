@@ -44,6 +44,8 @@
 			
 			$("#addModal").modal();
 			
+			$("#addbtn").hide();
+			$("#deletebtn").hide();
 			$(".p2").hide();
 			$(".p3").hide();
 			$(".p4").hide();
@@ -55,21 +57,28 @@
 			$(".p10").hide();
 
 			<c:forEach items="${pConList}" var="pCon" varStatus="status">
+			
+				var media = "${pCon.media}";
 				
-				<c:if test='${pCon.media eq "undefined" and pCon.media eq "none"}'>
+				if(media == undefined && media == null) {
+					
 					imgArr["${status.index}"] = null;
-					urlArr["${status.index}"] = null;
-				</c:if>
-				<c:if test='${pCon.media eq "undefined" and pCon.media ne "none"}}'>
-					imgArr["${status.index}"] = "${pCon.media}";
-					urlArr["${status.index}"] = null;
-					$("#mediaImg" + "${status.count}").attr("src", "${pCon.media}");
-				</c:if>
-				<c:if test='${pCon.media ne "undefined"} and pCon.media eq "none"}'>
+					urlArr["${status.index}"] = undefined;
+					
+				} else if(media.indexOf("https:") > -1) {
+					
 					imgArr["${status.index}"] = null;
 					urlArr["${status.index}"] = "${pCon.media}";
 					$('#mediaiframe' + "${status.count}").attr("src", "${pCon.media}");
-				</c:if>
+					$("#mediaiframe"+ "${status.count}").css("z-index", "4");
+					
+				} else {
+					
+					imgArr["${status.index}"] = "${pCon.media}";
+					urlArr["${status.index}"] = null;
+					$("#mediaImg" + "${status.count}").attr("src", "${pCon.media}");
+				
+				}
 		
 				conArr.push("${pCon.content}");
 				$("#ta" + "${status.count}").val("${pCon.content}");
@@ -119,7 +128,7 @@
 					$("#mediaiframe"+ maxPage).css("z-index", "2");	// 미디어 층 내리기
 					$("#mediaImg" + i).attr("src", "");							// 이미지 비우기
 					imgArr[i - 1] = null;													// 파일 비우기
-					urlArr[i - 1] = null;													// url 비우기
+					urlArr[i - 1] = undefined;											// url 비우기
 					conArr[i - 1] = null;													// content 비우기
 					url = "";																	// url 운반 변수 비우기
 					
@@ -232,7 +241,7 @@
 				}
 
 				imgArr[i - 1] = e.originalEvent.dataTransfer.files[0];
-				urlArr[i - 1] = null;
+				urlArr[i - 1] = undefined;
 
 				reader.readAsDataURL(imgArr[i - 1]);
 
@@ -319,7 +328,7 @@
 			$("#mediaiframe"+ maxPage).css("z-index", "2");	// 미디어 층 내리기
 			$("#mediaImg" + i).attr("src", "");							// 이미지 비우기
 			imgArr[i - 1] = null;													// 파일 비우기
-			urlArr[i - 1] = null;													// url 비우기
+			urlArr[i - 1] = undefined;													// url 비우기
 			conArr[i - 1] = null;													// content 비우기
 			url = "";																	// url 운반 변수 비우기
 			
@@ -554,7 +563,7 @@
 										</div>
 									</form>
   							 	</div>
-  							 	<div class="item">
+  							 	<div class="item additem">
   							 		<form name="addKnowhowForm9" name="knowhow" action="test.jsp" method="post">
 										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
@@ -573,7 +582,7 @@
 										</div>
 									</form>
   							 	</div>
-  							 	<div class="item">
+  							 	<div class="item additem">
   							 		<form name="addKnowhowForm10" name="knowhow" action="test.jsp" method="post">
 										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">

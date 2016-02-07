@@ -118,10 +118,14 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 								pCon.setpNo(pNo);
 								pCon.setPage(rs.getInt("page"));
-								pCon.setContent(rs.getString("content").replace("\r\n", "<br>"));
+								pCon.setContent(rs.getString("content").replace("\r\n", " "));
 
-								if (rs.getString("media").equals("undefined") && !rs.getString("media").equals("none"))
-									pCon.setMedia("resources//images//" + rs.getString("media"));
+								if (!rs.getString("media").contains("https:")) {
+									System.out.println(rs.getString("media"));
+									pCon.setMedia("resources/images/" + rs.getString("media"));
+								}
+								else 
+									pCon.setMedia(rs.getString("media"));
 
 								pConList.add(pCon);
 
