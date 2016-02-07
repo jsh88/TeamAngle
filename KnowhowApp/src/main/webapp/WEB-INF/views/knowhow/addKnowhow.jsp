@@ -310,10 +310,10 @@
 			alert("모든 요소를 비웁니다.");
 			
 			// clear 로직
-			$('#mediaiframe' + maxPage).attr('src', "");				// 미디어 src 비우기
+			$('#mediaiframe' + i).attr('src', "");							// 미디어 src 비우기
 			$('#inputurl').attr('value', "");									// 모달 위 모달 value 비우기
 			$("#ta" + i).val("");													// 컨텐트 비우기
-			$("#mediaiframe"+ maxPage).css("z-index", "2");	// 미디어 층 내리기
+			$("#mediaiframe"+ i).css("z-index", "2");					// 미디어 층 내리기
 			$("#mediaImg" + i).attr("src", "");							// 이미지 비우기
 			imgArr[i - 1] = null;													// 파일 비우기
 			urlArr[i - 1] = undefined;											// url 비우기
