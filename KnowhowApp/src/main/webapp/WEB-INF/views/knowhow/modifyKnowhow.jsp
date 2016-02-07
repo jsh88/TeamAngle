@@ -77,6 +77,7 @@
 					imgArr["${status.index}"] = "${pCon.media}";
 					urlArr["${status.index}"] = null;
 					$("#mediaImg" + "${status.count}").attr("src", "${pCon.media}");
+					$('#m'+"${status.count}").css("background-image","none");
 				
 				}
 		
