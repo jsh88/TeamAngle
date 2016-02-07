@@ -392,9 +392,7 @@
 	<style>
 	</style>
 </head>
-<body>
- 	<div class="modal fade" id="addModal" data-backdrop="static">  														
- 	
+<body> 	
 		<div class="modal-dialog" id="addDialog">
 				<div class="modal-content" id="addContent">
 				<div id="addWrap">
@@ -586,7 +584,7 @@
   							 	</div>
   							 	<div class="item">
   							 		<form name="addKnowhowForm10" name="knowhow" action="test.jsp" method="post">
-										<div id="content">
+										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
 												<div id="m10" class="m"  onclick="openModal()" contenteditable="true"></div>
 												<iframe id="mediaiframe10" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>

@@ -297,7 +297,6 @@
 	</style>
 	</head>
 <body>
-	<div class="modal fade" id="tagModal" data-backdrop="static">
 		<div class="modal-dialog" id="tagDialog">
 		
 			<div class="wrap-loading display-none">
@@ -305,7 +304,7 @@
 			</div>
 		
 				<div class="modal-content" id="tagContent">
-				<div id="addWrap">
+				<div id="TagWrap">
 						<div id="Tagimage"><a href=""><img style="width:20px;" src="resources/images//close.png"/></a></div>
 					<div id="TagContent">
 						<div id="contentTitle">
@@ -345,6 +344,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
