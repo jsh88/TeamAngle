@@ -279,7 +279,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 		for (PostTag p : pTagList) {
 
-			// 태그 업로드
+			// 루트 태그 업로드
 			try {
 
 				jdbcTemplate.update("insert into tag values(?, ?, ?, sysdate, sysdate)",
@@ -349,5 +349,12 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 			jdbcTemplate.update("insert into postContent values(?, ?, ?, ?)", new Object[] { pConList.get(i).getpNo(),
 					pConList.get(i).getPage(), pConList.get(i).getContent(), pConList.get(i).getMedia() });
 
+	}
+
+	@Override
+	public void setPostState(int pNo) {
+		
+		jdbcTemplate.update("update post set state = 1, tdate = null where pno = ?", new Object[]{pNo});
+		
 	}
 }

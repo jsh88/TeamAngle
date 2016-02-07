@@ -30,4 +30,6 @@ public interface PostDao {
 
 	public void addPostPage(ArrayList<PostContent> pConList);
 
+	public void setPostState(int pNo);
+
 }

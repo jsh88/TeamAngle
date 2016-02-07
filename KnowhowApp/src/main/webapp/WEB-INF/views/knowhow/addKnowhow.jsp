@@ -359,7 +359,7 @@
 		
 			$.ajax({
 				type : 'POST',
-				url		: 'completePosting',
+				url		: 'completeWrite',
 				data	: formData, 
 				processData : false,
 				contentType : false,
@@ -381,7 +381,7 @@
 			    complete : function(){			    				
 			    	
 			    	// 이미지 감추기 처리
-			    	$(location).attr('href',"addTag");
+			    	$(location).attr('href',"addTagPage");
 					$('.wrap-loading').addClass('display-none');
 			    	$("#addModal").modal("hide");			    	
 			    	

@@ -126,15 +126,25 @@ public class PostController {
 		return null; // 어디로 가야하오
 	}
 
-	// 포스팅 완료, ajax
-	@RequestMapping(value = "completePosting", method = RequestMethod.POST)
+	// 포스트 작성 완료, ajax
+	@RequestMapping(value = "completeWrite", method = RequestMethod.POST)
 	@ResponseBody
-	public String completePosting(MultipartHttpServletRequest request, HttpSession session)
+	public String completeWrite(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
-		 postService.completePosting(request, session);
+		postService.completeWrite(request, session);
 
 		return "success";
+	}
+
+	// 포스트 작성 완료, ajax
+	@RequestMapping(value = "completePosting", method = RequestMethod.POST)
+	public String completePosting(HttpSession session)
+			throws IllegalStateException, IOException {
+
+		postService.completePosting(session);
+
+		return "forward:addTag";
 	}
 
 	/**

@@ -204,7 +204,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	}
 
 	@Override
-	public void completePosting(MultipartHttpServletRequest request, HttpSession session)
+	public void completeWrite(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
 		int mPage = Integer.parseInt(request.getParameter("mpage"));
@@ -255,7 +255,8 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		// 포스트 페이지들 추가
 		postDao.addPostPage(pConList);
 
-		session.setAttribute("pTagList", postDao.completePosting((ArrayList<PostTag>) luceneKoreanAnalyzer.getTags(pConList)));
+		session.setAttribute("pTagList",
+				postDao.completePosting((ArrayList<PostTag>) luceneKoreanAnalyzer.getTags(pConList)));
 
 	}
 
@@ -358,6 +359,13 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	@Override
 	public void getPostList(HttpServletRequest request) {
+
+	}
+
+	@Override
+	public void completePosting(HttpSession session) {
+
+		postDao.setPostState(((Post) session.getAttribute("post")).getpNo());
 
 	}
 }
