@@ -1,6 +1,28 @@
 /* 회원 로그인 아작스 */
 /* 회원의 아이디 등록여부확인*/
 
+$(document).ready(function() {	
+	
+	$("#find_id").click(function(){
+		if($("#lg_findId").css("display")=='none') {
+			$("#lg_findId").show();
+		} else {
+			$("#lg_findId").hide();
+		}
+	});
+	$("#find_email").click(function(){
+		if($("#lg_findPass").css("display")=='none') {
+			$("#lg_findPass").show();
+		} else {
+			$("#lg_findPass").hide();
+		}
+	});
+	
+});
+
+
+
+
 $(function() {
 /*$("#lg_btn").attr("disabled", "disabled");*/
 // 로그인 처리 조건체크	
@@ -38,34 +60,8 @@ $("#lg_btn").click(function(e) {
 			alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
 		}	
 	});
-	
 });
-
-/* password가 맞으면 로그인*/
-/*$("#lg_pass").on("keyup", function() {
-	
-	var pw = $("#lg_pass").val();
-	
-	if(pw.length < 8 || pw.length > 16) {
-		$("#lg_pass").css("border", "2px solid red");
-	} else {
-		$("#lg_pass").css("border", "2px solid lime");
-		$("#lg_btn").removeAttr("disabled");
-	}
-	
-});*/
-	
 });
+	
 
-/*$(function(){
-	
-	$("#lg_btn").click(function(){
-	
-		$("#lg_id, #lg_pass").val("");
-		$("#lg_id, #lg_pass").css("border", "0.5px solid #cccFFf");
-
-	
-	});
-	
-});*/
 	
