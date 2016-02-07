@@ -141,9 +141,7 @@
 	<div class="modal fade" id="loginPage">
          <jsp:include page="../login/login.jsp"></jsp:include>
     </div>
-
-<%--  	
-
+	
 	<div class="modal fade" id="memJoinPage">
          <jsp:include page="../member/memJoin.jsp"></jsp:include>
 	</div>
@@ -154,7 +152,7 @@
 
 	<div class="modal fade" id="profileModifyPage">
 		<jsp:include page="../member/profileModify.jsp"></jsp:include>
-	</div> --%>
+	</div>
 	
 	
 	<!-- 서버단 작업끝나면 modal fade 지울 페이지  , openModal() 추가해야함 -->
