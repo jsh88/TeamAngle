@@ -15,7 +15,9 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <style>
-
+#lg_1, #lg_2, #lg_3, #lg_4 {
+	height: 250px;
+}
 </style>
 </head>
 <body>
@@ -35,7 +37,7 @@
 					<div class="carousel-inner">
 
 						<!-- 아이디 -->
-						<div class="item active">
+						<div id="lg_1" class="item active">
 							<div class="col-sm-12">
 								<div class="form-group" id="fg1">
 									<label for="id" class="col-sm-offset-1 col-sm-11 control-label">Please.
@@ -53,7 +55,7 @@
 						</div>
 						
 						<!-- 닉네임 -->
-						<div class="item">
+						<div id="lg_2" class="item">
 							<div class="col-sm-12">
 								<div class="form-group" id="fg2">
 									<label for="nickname"
@@ -73,7 +75,7 @@
 						</div>
 
 						<!-- 패스워드 1 -->
-						<div class="item">
+						<div id="lg_3" class="item">
 							<div class="col-sm-12">
 								<div class="form-group" id="fg3">
 									<label for="pass1"
@@ -89,7 +91,7 @@
 						</div>
 
 						<!-- 패스워드 2 -->
-						<div class="item">
+						<div id="lg_4" class="item">
 							<div class="col-sm-12">
 								<div class="form-group" id="fg4">
 									<label for="pass2"
