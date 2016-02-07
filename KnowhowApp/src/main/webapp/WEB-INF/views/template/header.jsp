@@ -103,7 +103,7 @@
 			<!-- 마이페이지 버튼 -->
             <div id="nv1" class="col-sm-12 col-xs-12 btn-group btn-group-xs btn-group-sm btn-group-lg" role="group">
                <button id="edit_Profile" class="btn btn-default col-sm-3 col-xs-3" onclick="modalOpen('4')" >Profile Edit</button>
-               <button class="btn btn-default col-sm-3 col-xs-3" onclick="modalOpen('3')">Member Edit</button>
+               <button id="edit_MemModify" class="btn btn-default col-sm-3 col-xs-3" onclick="modalOpen('3')">Member Edit</button>
                <button class="btn btn-default col-sm-3 col-xs-3" onclick="modalOpen('5')">Writing Post</button>
                <button class="btn btn-default col-sm-3 col-xs-3">MyPost</button>
             </div>

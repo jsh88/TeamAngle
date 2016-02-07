@@ -16,77 +16,14 @@
 <style>
 #md_content {
 	height: 260px;
+	border-radius: 6px;
+
 }
 .btn_choice {
 	margin-top: 10px;
 }
 </style>
 
-<script>
-	$(document).ready(function() {
-		$('#show').show();
-		$('#show1').hide();
-		$('#show2').hide();
-
-		$('#lq1').hide();
-		$('#lq2').hide();
-		$('#lq3').hide();
-		$('#lq4').hide();
-		$('.s1').hide();
-		$('.s2').hide();
-		
-		$('#p1').click(function() {
-			$('#show1').show('slow');
-			$('#lq1').hide();
-			$('#lq2').hide();
-			$('#lq3').hide();
-			$('#lq4').hide();
-			$('.s1').hide();
-			$('.s2').hide();
-		});
-
-		$('#l1').click(function() {
-			$('#show').hide('slow');
-			$('#show2').first().show('slow', function lq1() {
-				$('#lq1').show('slow');
-				$('#lq2').hide(1000);
-				$('#lq3').hide(1000);
-				$('#lq4').hide(1000);
-			});
-		});
-		$('#l2').click(function() {
-			$('#show').hide('slow');
-			$('#show2').first().show('slow', function lq1() {
-				$('#lq2').show('slow');
-				$('#lq1').hide(1000);
-				$('#lq3').hide(1000);
-				$('#lq4').hide(1000);
-			});
-		});
-		$('#l3').click(function() {
-			$('#show').hide('slow');
-			$('#show2').first().show('slow', function lq1() {
-				$('#lq3').show('slow');
-				$('.s1').show('slow');
-				$('.s2').show('slow');
-
-				$('#lq1').hide(1000);
-				$('#lq2').hide(1000);
-				$('#lq4').hide(1000);
-			});
-		});
-		$('#l4').click(function() {
-			$('#show').hide('slow');
-			$('#show2').first().show('slow', function lq1() {
-				$('#lq4').show('slow');
-				$('#lq1').hide(1000);
-				$('#lq2').hide(1000);
-				$('#lq3').hide(1000);
-			});
-		});
-
-	});
-</script>
 
 
 
@@ -193,7 +130,7 @@
 							<span>Please.. delete..</span>
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="submit" class="btn btn-success col-sm-12" value="수정">
+							<input type="submit" class="btn btn-success col-sm-12 " value="수정">
 						</div>
 					</div>
 

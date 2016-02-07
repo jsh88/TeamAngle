@@ -13,7 +13,9 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-
+<script>
+$(document).ready()
+</script>
 <style>
 
 #lg_content {
@@ -71,7 +73,7 @@ margin: 0 auto;
 									
 									</div>
 									<div class="col-sm-12">
-										<a href="#">아이디</a>&nbsp;/&nbsp;<a href="#">비밀번호</a>를 잃어버리셨나요?
+										<a href="#" onclick="" id="find_id">아이디</a>&nbsp;/&nbsp;<a href="#" onclick="" id="find_pass">비밀번호</a>를 잃어버리셨나요?
 									</div>
 							</div>
 							
@@ -123,6 +125,6 @@ margin: 0 auto;
 			</div>
 			
 	</div>
-	<script src="${pageContext.request.contextPath}/resources/js/ajax_login.js"></script>
+	<script src="resources/js/ajax_login.js"></script>
 </body>
 </html>
