@@ -11,7 +11,7 @@
 <link type="text/css" href="resources/css/main.css" rel="stylesheet" >
 <script src="resources/js/ajax_header.js"></script>
 <script>
-   function openModal(i){
+   function modalOpen(i){
 	   
 	   var modal = "";
 	   
@@ -67,8 +67,8 @@
                <%
                   if (session.getAttribute("member") == null) {
                %>
-               <li><div id="joinbtn" class="btn btn-lg" onclick="openModal('1')">Join</div></li>
-               <li><div id="loginbtn" class="btn btn-lg" onclick="openModal('2')">Login</div></li>
+               <li><div id="joinbtn" class="btn btn-lg" onclick="modalOpen('1')">Join</div></li>
+               <li><div id="loginbtn" class="btn btn-lg" onclick="modalOpen('2')">Login</div></li>
                <li><div id="navbtn" class="btn btn-lg" onclick="navModal()">myPage</div></li>
                <%
                   } else {
@@ -102,9 +102,9 @@
 
 			<!-- 마이페이지 버튼 -->
             <div id="nv1" class="col-sm-12 col-xs-12 btn-group btn-group-xs btn-group-sm btn-group-lg" role="group">
-               <button id="edit_Profile" class="btn btn-default col-sm-3 col-xs-3" onclick="openModal('4')" >Profile Edit</button>
-               <button class="btn btn-default col-sm-3 col-xs-3" onclick="openModal('3')">Member Edit</button>
-               <button class="btn btn-default col-sm-3 col-xs-3" onclick="openModal('5')">Writing Post</button>
+               <button id="edit_Profile" class="btn btn-default col-sm-3 col-xs-3" onclick="modalOpen('4')" >Profile Edit</button>
+               <button class="btn btn-default col-sm-3 col-xs-3" onclick="modalOpen('3')">Member Edit</button>
+               <button class="btn btn-default col-sm-3 col-xs-3" onclick="modalOpen('5')">Writing Post</button>
                <button class="btn btn-default col-sm-3 col-xs-3">MyPost</button>
             </div>
             
