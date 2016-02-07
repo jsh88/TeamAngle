@@ -57,7 +57,6 @@
 	</script>
 </head>
 <body>
-		<div class="modal fade" id="addModal">
 		<div class="modal-dialog" id="ModalDialog">
     	<div class="modal-content" id="ModalContent">
 	<div id="addCheckWrap">
@@ -100,6 +99,5 @@
 			</div>
 		</div>
 	</div>
- </div>
 </body>
 </html>

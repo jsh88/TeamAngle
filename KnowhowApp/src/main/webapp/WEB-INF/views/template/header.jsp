@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <link type="text/css" href="resources/css/main.css" rel="stylesheet" >
-<script src="resources/js/ajax_main.js"></script>
+<!-- <script src="resources/js/ajax_main.js"></script> -->
 <script>
    function openModal(i){
 	   
@@ -138,9 +138,11 @@
 
    <!-- modal -->
 
- 	<div class="modal fade" id="loginPage">
+	<div class="modal fade" id="loginPage">
          <jsp:include page="../login/login.jsp"></jsp:include>
     </div>
+
+<%--  	
 
 	<div class="modal fade" id="memJoinPage">
          <jsp:include page="../member/memJoin.jsp"></jsp:include>
@@ -152,16 +154,18 @@
 
 	<div class="modal fade" id="profileModifyPage">
 		<jsp:include page="../member/profileModify.jsp"></jsp:include>
-	</div>
+	</div> --%>
 	
 	
 	<!-- 서버단 작업끝나면 modal fade 지울 페이지  , openModal() 추가해야함 -->
 	
-<%-- 	
+
 	
 	<div class="modal fade" id="startPostingPage">
 		<jsp:include page="../knowhow/startPosting.jsp"></jsp:include>
 	</div>	
+
+<%-- 	
 	
 	<div class="modal fade" id="addKnowhowPage">
 		<jsp:include page="../knowhow/addKnowhow.jsp"></jsp:include>
