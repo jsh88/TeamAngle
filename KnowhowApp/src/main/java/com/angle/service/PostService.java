@@ -38,4 +38,6 @@ public interface PostService {
 
 	public void modifyTitle(HttpServletRequest request, HttpSession session);
 
+	public void completeModify(MultipartHttpServletRequest request, HttpSession session) throws IllegalStateException, IOException;
+
 }

@@ -12,7 +12,6 @@ import com.angle.dao.TagDao;
 import com.angle.domain.MemberTag;
 import com.angle.domain.Post;
 import com.angle.domain.PostTag;
-import com.angle.domain.Tag;
 import com.angle.service.TagService;
 
 @Service

@@ -135,7 +135,6 @@
 			 /*div 간 이동*/
 			$(".p1").click(function(){
 				$("#myCarousel").carousel(0);
-				checkVideo();
 				modifyCon();
 				i = 1;				
 				checkMaxPage();
@@ -143,7 +142,6 @@
 			
 			$(".p2").click(function(){
 				$("#myCarousel").carousel(1);
-				checkVideo();
 				modifyCon();
 				i = 2;				
 				checkMaxPage();
@@ -151,7 +149,6 @@
 			
 			$(".p3").click(function(){
 				$("#myCarousel").carousel(2);
-				checkVideo();
 				modifyCon();
 				i = 3;
 				checkMaxPage();
@@ -159,7 +156,6 @@
 			
 			$(".p4").click(function(){
 				$("#myCarousel").carousel(3);
-				checkVideo();
 				modifyCon();
 				i = 4;
 				checkMaxPage();
@@ -167,7 +163,6 @@
 			
 			$(".p5").click(function(){
 				$("#myCarousel").carousel(4);
-				checkVideo();
 				modifyCon();
 				i = 5;
 				checkMaxPage();
@@ -175,7 +170,6 @@
 			
 			$(".p6").click(function(){
 				$("#myCarousel").carousel(5);
-				checkVideo();
 				modifyCon();
 				i = 6;
 				checkMaxPage();
@@ -183,7 +177,6 @@
 			
 			$(".p7").click(function(){
 				$("#myCarousel").carousel(6);
-				checkVideo();
 				modifyCon();
 				i = 7;
 				checkMaxPage();
@@ -191,7 +184,6 @@
 			
 			$(".p8").click(function(){
 				$("#myCarousel").carousel(7);
-				checkVideo();
 				modifyCon();
 				i = 8;
 				checkMaxPage();
@@ -199,7 +191,6 @@
 			
 			$(".p9").click(function(){
 				$("#myCarousel").carousel(8);
-				checkVideo();
 				modifyCon();
 				i = 9;
 				checkMaxPage();
@@ -208,7 +199,6 @@
 			$(".p10").click(function(){
 				$("#myCarousel").carousel(9);
 				$("#addbtn").hide();
-				checkVideo();
 				modifyCon();
 				i = 10;
 				checkMaxPage();
@@ -276,12 +266,6 @@
 				$("#mediaiframe"+i).attr("src", url+"?autoplay=0&autohide=1");
 				
 				$("#inputurl").val("");
-			}
-		}
-		
-		function checkVideo() {
-			if(urlArr[i - 1]) { // 보류
-// 				$("mediaiframe" + i)[0].contentWindow.postMessage('{"event":"command", "func":"pauseVideo","args":""}','*');
 			}
 		}
 		
@@ -385,7 +369,7 @@
 			    	// 이미지 감추기 처리
 			    	$(location).attr('href',"addTagPage");
 					$('.wrap-loading').addClass('display-none');
-			    	$("#addModal").modal("hide");			    	
+			    	$("#addModal").modal("hide");
 			    	
 			    }
 			}); 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +10,57 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script>
+	
+		var cCount = [];
+		var i = 1;
+	
 		$(document).ready(function(){
-			var i = 1;
+			
+			maxPage = "${post.mPage}";			
+			
+			$("#addbtn").hide();
+			$("#deletebtn").hide();
+			$(".p2").hide();
+			$(".p3").hide();
+			$(".p4").hide();
+			$(".p5").hide();
+			$(".p6").hide();
+			$(".p7").hide();
+			$(".p8").hide();
+			$(".p9").hide();
+			$(".p10").hide();
+
+			<c:forEach items="${pConList}" var="pCon" varStatus="status">
+			
+				cCount["${status.index}"] = "${fn:length(pComListMap[status.index])}";
+				
+				var media = "${pCon.media}";
+				
+				if(media == "none") {
+					
+// 					imgArr["${status.index}"] = null;
+// 					urlArr["${status.index}"] = undefined;
+					
+				} else if(media.indexOf("https:") > -1) {
+					
+					$('#mediaiframe' + "${status.count}").attr("src", "${pCon.media}");
+					$("#mediaiframe"+ "${status.count}").css("z-index", "4");
+					
+				} else {
+					
+					$("#mediaImg" + "${status.count}").attr("src", "${pCon.media}");
+					$('#m'+"${status.count}").css("background-image","none");
+				
+				}
+				
+// 				var content = replaceAll("${pCon.content}", '<br>', '\n');
+				var content = "${pCon.content}";
+				$("#content_Text" + "${status.count}").html(content);
+				
+				$(".p" + "${status.count}").show();
+				
+			</c:forEach>
+			setCommentSize(i);
 			
 			$("#detailModal").modal();
 			$("#modifyDelete").hide();
@@ -22,82 +72,91 @@
 				e.stopPropagation();
 				
 				$("#commentContent").slideToggle(400);
-				$("#detailDialog").css("width", "1130px");		
+				$("#detailDialog").css("width", "1130px");
 				
 			});
 			
 			$(".p1").click(function(){
 				$("#myCarousel").carousel(0);
-				checkVideo();
 				i = 1;
-				checkMaxPage();
+				setCommentSize(i);
 			});
 			
 			$(".p2").click(function(){
 				$("#myCarousel").carousel(1);
-				checkVideo();
 				i = 2;
-				checkMaxPage();
+				setCommentSize(i);
 			});
 			
 			$(".p3").click(function(){
 				$("#myCarousel").carousel(2);
-				checkVideo();
 				i = 3;
-				checkMaxPage();
+				setCommentSize(i);
 			});
 			
 			$(".p4").click(function(){
 				$("#myCarousel").carousel(3);
-				checkVideo();
 				i = 4;
-				checkMaxPage();
+				setCommentSize(i);
 			});
 			
 			$(".p5").click(function(){
 				$("#myCarousel").carousel(4);
-				checkVideo();
 				i = 5;
-				checkMaxPage();
+				setCommentSize(i);
 			});
 			
 			$(".p6").click(function(){
 				$("#myCarousel").carousel(5);
-				checkVideo();
 				i = 6;
-				checkMaxPage();
+				setCommentSize(i);
 			});
 			
 			$(".p7").click(function(){
 				$("#myCarousel").carousel(6);
-				checkVideo();
 				i = 7;
-				checkMaxPage();
+				setCommentSize(i);
 			});
 			
 			$(".p8").click(function(){
 				$("#myCarousel").carousel(7);
-				checkVideo();
 				i = 8;
-				checkMaxPage();
+				setCommentSize(i);
 			});
 			
 			$(".p9").click(function(){
 				$("#myCarousel").carousel(8);
-				checkVideo();
 				i = 9;
-				checkMaxPage();
+				setCommentSize(i);
 			});
 			
 			$(".p10").click(function(){
 				$("#myCarousel").carousel(9);
-				$("#addbtn").hide();
-				checkVideo();
 				i = 10;
-				checkMaxPage();
+				setCommentSize(i);
 			});
 			
 		});
+		
+		function replaceAll(str, target, replacement) {
+			
+   			return str.split(target).join(replacement);
+   			
+		};
+		
+		function setCommentSize(page) {
+			
+			if(cCount[page - 1] == null) {
+				
+				$("#replyNum").text(0);
+				
+			} else {
+				
+				$("#replyNum").text(cCount[page - 1]);
+				
+			}	
+		}
+		
 	</script>
 	<style>
 		#detailContent{
@@ -443,11 +502,11 @@
 					<div id="detailWrap">
 					<div class="modal-header" id="header">
 						<div id="closeimg"><a href="javascript:window.close()"><img style="width:20px;" src="resources/images/close.png"/></a></div>
-						<div id="detailTitle">Title</div>
-						<div id="createDate"><img style="width:30px;" src="resources/images/wDate.png">&nbsp;2016-02-04 10:29:33</div>
-						<div id="writer"><img src="resources/images/writer.png">&nbsp;<a href="#">404404</a></div>
+						<div id="detailTitle">${post.title }</div>
+						<div id="createDate"><img style="width:30px;" src="resources/images/wDate.png">&nbsp;${post.wDate }</div>
+						<div id="writer"><img src="resources/images/writer.png">&nbsp;<a href="#">${post.nickName }</a></div>
 						<div id="modifyDelete"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></div>
-						<div id="viewNum"><img src="resources/images/viewnumber.png"/>&nbsp;50</div>
+						<div id="viewNum"><img src="resources/images/viewnumber.png"/>&nbsp;${post.count }</div>
 					</div>
 					<!-- Modal 상단-->
 						<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
@@ -461,7 +520,6 @@
 												<img class="mediaImg" id="mediaImg1"/>
 											</div>
 											<div id="content_Text1" class="content_Text" style="overflow: auto; overflow-x:hidden;">
-												ㅎㅇ
 											</div>
 										</div>
   							 	</div>
@@ -573,7 +631,6 @@
 							<div id="footerContent">
 								<div id="reply">
 									<div id="replyNum">
-										40
 									</div>
 									<div id="replyImg">
 										<a id="replycontent" href="#"><img	style="width:50px;" src="resources/images/comment.png"/></a>
@@ -581,7 +638,7 @@
 								</div>	
 								<div id="recommen">
 									<div id="recommenNum">
-										30
+										${post.good }
 									</div>
 									<div id="recommenImg">
 										<a href="#"><img style="width:50px;"src="resources/images/recomment.png"/></a>

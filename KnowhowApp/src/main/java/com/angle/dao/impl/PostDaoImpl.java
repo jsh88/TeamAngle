@@ -3,6 +3,7 @@ package com.angle.dao.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -118,14 +119,17 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 								pCon.setpNo(pNo);
 								pCon.setPage(rs.getInt("page"));
-								pCon.setContent(rs.getString("content").replace("\r\n", " "));
+								pCon.setContent(rs.getString("content").replaceAll("\r\n", "<br>"));
 
-								if (!rs.getString("media").contains("https:")) {
-									System.out.println(rs.getString("media"));
-									pCon.setMedia("resources/images/" + rs.getString("media"));
-								}
-								else 
+								if (rs.getString("media").indexOf("https:") > -1 || rs.getString("media").equals("none"))
+									
+									// url 이거나, 미디어가 없으면 그냥 넣는다.
 									pCon.setMedia(rs.getString("media"));
+								
+								else
+									
+									// 이미지 넣는당
+									pCon.setMedia("resources/images/" + rs.getString("media"));
 
 								pConList.add(pCon);
 
@@ -203,44 +207,54 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	}
 
 	@Override
-	public ArrayList<PostComment> getPostCommentList(int pNo) {
+	public HashMap<Integer, ArrayList<PostComment>> getPostCommentList(int pNo, int mPage) {
 
-		ArrayList<PostComment> pComList = jdbcTemplate.query(
-				"select p.*, m.id, m.nickName, m.image from postComment p, member m where pno = ? and p.id = m.id order by wdate asc",
-				new Object[] { pNo }, new ResultSetExtractor<ArrayList<PostComment>>() {
+		HashMap<Integer, ArrayList<PostComment>> pComListMap = new HashMap<>();
+		
+		for (int i = 0; i < mPage; i++)		
 
-					@Override
-					public ArrayList<PostComment> extractData(ResultSet rs) throws SQLException, DataAccessException {
+			pComListMap.put(i,
+					jdbcTemplate.query(
+							"select p.*, m.id, m.nickName, m.image from postComment p, member m where pno = ? and page = ? and p.id = m.id order by wdate asc",
+							new Object[] { pNo, i }, new ResultSetExtractor<ArrayList<PostComment>>() {
 
-						ArrayList<PostComment> pComList = new ArrayList<>();
+								@Override
+								public ArrayList<PostComment> extractData(ResultSet rs)
+										throws SQLException, DataAccessException {
 
-						if (rs.next()) {
+									ArrayList<PostComment> pComList = null;
 
-							do {
+									if (rs.next()) {
 
-								PostComment pCom = new PostComment();
+										pComList = new ArrayList<>();
 
-								pCom.setcNo(rs.getInt("ono"));
-								pCom.setContent(rs.getString("content"));
-								pCom.setId(rs.getString("id"));
-								pCom.setImage(rs.getString("image"));
-								pCom.setmDate(rs.getString("mdate"));
-								pCom.setMedia(rs.getString("media"));
-								pCom.setNickName(rs.getString("nickname"));
-								pCom.setPage(rs.getInt("page"));
-								pCom.setpNo(pNo);
-								pCom.setwDate(rs.getString("wdate"));
+										do {
 
-							} while (rs.next());
+											PostComment pCom = new PostComment();
 
-						}
+											pCom.setcNo(rs.getInt("cno"));
+											pCom.setContent(rs.getString("content"));
+											pCom.setId(rs.getString("id"));
+											pCom.setImage(rs.getString("image"));
+											pCom.setmDate(rs.getString("mdate"));
+											pCom.setMedia(rs.getString("media"));
+											pCom.setNickName(rs.getString("nickname"));
+											pCom.setPage(rs.getInt("page"));
+											pCom.setpNo(pNo);
+											pCom.setwDate(rs.getString("wdate"));
+											
+											pComList.add(pCom);
 
-						return pComList;
+										} while (rs.next());
 
-					}
-				});
+									}
 
-		return pComList;
+									return pComList;
+
+								}
+							}));
+
+		return pComListMap;
 	}
 
 	@Override
@@ -335,8 +349,6 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 								pTagList.add(p);
 
-								System.out.println(p.getTag());
-
 							}
 
 							return pTagList;
@@ -349,6 +361,8 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 	@Override
 	public void addPostPage(ArrayList<PostContent> pConList) {
+		
+		jdbcTemplate.update("delete from postContent where pno = ?", new Object[] { pConList.get(0).getpNo() });
 
 		for (int i = 0; i < pConList.size(); i++)
 

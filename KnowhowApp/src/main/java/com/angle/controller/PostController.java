@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.angle.service.PostCommentService;
 import com.angle.service.PostService;
-import com.angle.service.TagService;
 
 @Controller
 public class PostController {
@@ -25,19 +24,12 @@ public class PostController {
 	@Autowired
 	private PostCommentService postCommentService;
 
-	@Autowired
-	private TagService tagService;
-
 	public void setPostService(PostService postService) {
 		this.postService = postService;
 	}
 
 	public void setPostCommentService(PostCommentService postCommentService) {
 		this.postCommentService = postCommentService;
-	}
-
-	public void setTagService(TagService tagService) {
-		this.tagService = tagService;
 	}
 
 	/**
@@ -156,6 +148,17 @@ public class PostController {
 
 		return "success"; // ajax
 	}
+	
+	// 포스트 작성 완료, ajax
+	@RequestMapping(value = "completeModify", method = RequestMethod.POST)
+	@ResponseBody
+	public String completeModify(MultipartHttpServletRequest request, HttpSession session)
+			throws IllegalStateException, IOException {
+
+		postService.completeModify(request, session);
+
+		return "success"; // ajax
+	}
 
 	// 포스트 작성 완료, ajax
 	@RequestMapping(value = "completePosting", method = RequestMethod.POST)
@@ -204,13 +207,13 @@ public class PostController {
 	 */
 
 	// 포스트 페이지, 댓글 일반 조회, 디테일
-	@RequestMapping(value = "morePost")
+	@RequestMapping(value = "morePost", method = RequestMethod.GET)
 	public String morePost(HttpServletRequest request, HttpSession session) {
 
 		postService.getPost(request, session);
 		postCommentService.getPostCommentList(request, session);
 
-		return null; // 어디로 가야하오
+		return "knowhow/knowhowDetail";
 	}
 
 	// 포스트 리스트

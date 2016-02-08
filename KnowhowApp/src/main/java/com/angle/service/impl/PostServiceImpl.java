@@ -191,8 +191,8 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		session.removeAttribute("post");
 		session.removeAttribute("pConList");
 
-		if (session.getAttribute("pComList") != null)
-			session.removeAttribute("pComList");
+		if (session.getAttribute("pComListMap") != null)
+			session.removeAttribute("pComListMap");
 
 	}
 
@@ -345,9 +345,10 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	@Override
 	public void getPostCommentList(HttpServletRequest request, HttpSession session) {
+		
+		Post p = (Post) session.getAttribute("post");
 
-		session.setAttribute("pComList",
-				postCommentDao.getPostCommentList(Integer.parseInt(request.getParameter("pno"))));
+		session.setAttribute("pComListMap", postCommentDao.getPostCommentList(p.getpNo(), p.getmPage()));
 
 	}
 
@@ -373,12 +374,84 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	@Override
 	public void modifyTitle(HttpServletRequest request, HttpSession session) {
-		
+
 		Post p = (Post) session.getAttribute("post");
-		
+
 		p.setTitle(request.getParameter("title"));
 
 		postDao.modifyTitle(p.getpNo(), p.getTitle());
+
+	}
+
+	@Override
+	public void completeModify(MultipartHttpServletRequest request, HttpSession session)
+			throws IllegalStateException, IOException {
+
+		int mPage = Integer.parseInt(request.getParameter("mpage"));
+		String[] urlArr = request.getParameter("urlArr").split("q1z,");
+		String[] conArr = request.getParameter("conArr").split("q1z,");
+
+		conArr[mPage - 1] = conArr[mPage - 1].replace("q1z", "");
+		urlArr[mPage - 1] = urlArr[mPage - 1].replace("q1z", "");
+
+		Post p = (Post) session.getAttribute("post");
+		p.setmPage(mPage);
+
+		ArrayList<PostContent> pConList = new ArrayList<>();
+		MultipartFile multipartFile = null;
+		File file = null;
+
+		for (int i = 0; i < mPage; i++) {
+
+			PostContent pCon = new PostContent();
+
+			if (!urlArr[i].equals("undefined")) {
+
+				pCon.setMedia(urlArr[i]); // 동영상 URL
+
+			} else if (request.getFile("imgArr" + i) != null || request.getParameter("imgArr" + i) != null) {
+
+				multipartFile = request.getFile("imgArr" + i);
+
+				if (multipartFile != null) {
+
+					file = new File(request.getServletContext().getRealPath(path), multipartFile.getOriginalFilename());
+
+					multipartFile.transferTo(file);
+
+					pCon.setMedia(multipartFile.getOriginalFilename());
+
+				} else if (request.getParameter("imgArr" + i).indexOf(".") > -1) {
+
+					String str = request.getParameter("imgArr" + i).substring(path.length());
+					
+					if (str.equals("null"))
+						pCon.setMedia("none");
+					else
+						pCon.setMedia(str);
+
+				} else {
+					
+					pCon.setMedia("none");	
+					
+				}
+			} else {
+
+				pCon.setMedia("none");
+
+			}
+
+			pCon.setPage(i);
+			pCon.setpNo(p.getpNo());
+			pCon.setContent(conArr[i]);
+
+			pConList.add(pCon);
+
+		}
+
+		// 포스트 페이지들 추가
+		postDao.addPostPage(pConList);
+		postDao.setMaxPostPage(p.getpNo(), mPage);
 
 	}
 }
