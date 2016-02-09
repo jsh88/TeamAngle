@@ -10,13 +10,15 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script>
-	
-		var cCount = [];
 		var i = 1;
+		var pNo = "";
 	
 		$(document).ready(function(){
 			
-			maxPage = "${post.mPage}";			
+			maxPage = parseInt("${post.mPage}");
+			pNo = "${post.pNo}";
+			
+			getCommentList();
 			
 			$("#addbtn").hide();
 			$("#deletebtn").hide();
@@ -31,8 +33,16 @@
 			$(".p10").hide();
 
 			<c:forEach items="${pConList}" var="pCon" varStatus="status">
-			
-				cCount["${status.index}"] = "${fn:length(pComListMap[status.index])}";
+				
+				/*
+				<c:forEach items="${pComListMap}" var="pComList">
+			        <c:forEach items="${pComList.value}" var="pCom">
+			        
+			        	alert("${pCom.nickName}");
+			        	
+			        </c:forEach>
+		        </c:forEach>
+				*/
 				
 				var media = "${pCon.media}";
 				
@@ -60,7 +70,6 @@
 				$(".p" + "${status.count}").show();
 				
 			</c:forEach>
-			setCommentSize(i);
 			
 			$("#detailModal").modal();
 			$("#modifyDelete").hide();
@@ -79,61 +88,61 @@
 			$(".p1").click(function(){
 				$("#myCarousel").carousel(0);
 				i = 1;
-				setCommentSize(i);
+				getCommentList();
 			});
 			
 			$(".p2").click(function(){
 				$("#myCarousel").carousel(1);
 				i = 2;
-				setCommentSize(i);
+				getCommentList();
 			});
 			
 			$(".p3").click(function(){
 				$("#myCarousel").carousel(2);
 				i = 3;
-				setCommentSize(i);
+				getCommentList();
 			});
 			
 			$(".p4").click(function(){
 				$("#myCarousel").carousel(3);
 				i = 4;
-				setCommentSize(i);
+				getCommentList();
 			});
 			
 			$(".p5").click(function(){
 				$("#myCarousel").carousel(4);
 				i = 5;
-				setCommentSize(i);
+				getCommentList();
 			});
 			
 			$(".p6").click(function(){
 				$("#myCarousel").carousel(5);
 				i = 6;
-				setCommentSize(i);
+				getCommentList();
 			});
 			
 			$(".p7").click(function(){
 				$("#myCarousel").carousel(6);
 				i = 7;
-				setCommentSize(i);
+				getCommentList();
 			});
 			
 			$(".p8").click(function(){
 				$("#myCarousel").carousel(7);
 				i = 8;
-				setCommentSize(i);
+				getCommentList();
 			});
 			
 			$(".p9").click(function(){
 				$("#myCarousel").carousel(8);
 				i = 9;
-				setCommentSize(i);
+				getCommentList();
 			});
 			
 			$(".p10").click(function(){
 				$("#myCarousel").carousel(9);
 				i = 10;
-				setCommentSize(i);
+				getCommentList();
 			});
 			
 		});
@@ -144,21 +153,82 @@
    			
 		};
 		
-		function setCommentSize(page) {
+		// 페이지 이동 시의 댓글
+		function getCommentList() {
 			
-			if(cCount[page - 1] == null) {
+		    // 폼 데이터 받기 or Append or 인자로 form id)
+			var formData = new FormData();
+			
+			formData.append("pno", pNo);
+			formData.append("page", i - 1);
+
+			$.ajax({
+				type : 'POST',
+				url : 'getCommentList',
+				data : formData,
+				processData : false,
+				contentType : false,
+
+				success : function(responseData, statusText, xhr) {
+					
+					alert("성공이당");
+					
+					var result = responseData;
+					$('#replyDiv').html(result);
+					// 성공처리(v는 서버로 받은 메시지, value)
+					
+				},
+				beforeSend : function() {
+
+					// 전송 전
+					// 이미지 보여주기
+					$('.wrap-loading').removeClass('display-none');
+					
+				},
+				error : function(request, status, error) {
+
+					// 에러 로직, 에러 로그 확인
+					alert("code:" + request.status + "\n\n" + "message:"
+							+ request.responseText + "\n\n" + "error:" + error);
+
+				},
+				complete : function() {
+
+					// 이미지 감추기 처리
+//					$(location).attr('href', "이동할 페이지");
+					$('.wrap-loading').addClass('display-none');
+					$("#tagModal").modal("hide");
+
+				}
 				
-				$("#replyNum").text(0);
-				
-			} else {
-				
-				$("#replyNum").text(cCount[page - 1]);
-				
-			}	
+			});			
+			
 		}
 		
 	</script>
 	<style>
+	
+		/*화면 전체를 어둡게 합니다.*/
+		.wrap-loading { 
+			position: fixed;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			background: rgba(0, 0, 0, 0.2);
+		}
+		
+		.wrap-loading div { 							/*로딩 이미지*/
+			width: 1000; 								/*div의 전체 가로픽셀*/
+			position: absolute; 						/*테이블의 영향을받지않는 div*/
+			left: 50%; 									/*div 왼쪽 top 부분이 가로 전체의 중간으로 위치하게됨*/
+			margin-left: -500px;						/* 왼쪽 top부분이 가운데로왔으니 좌측에서 전체가로픽셀의 반을 마이너스하여 좌측으로 옮겨줌 */										
+		}
+		
+		.display-none { /*감추기*/
+			display: none;
+		}
+	
 		#detailContent{
 				width: 600px;
 				height: 740px;
@@ -512,6 +582,11 @@
 						<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
 							
   							 <div class="carousel-inner" role="listbox">
+  							 
+	  							<div class="wrap-loading display-none">
+			  						<div><img src="resources/images/loading2.gif" /></div>
+								</div>
+  							 
   							 	<div class="item active">
 										<div id="content">
 											<div id="Media" class="mbackground">
@@ -626,7 +701,13 @@
 						</div>
 						<div id="detailTag">
 							<div id="tagline"></div>
-							<span class="tags">#tag</span>
+							<c:set var="isDoing" value="true"/> 					
+							<c:forEach var="tags" items="${pTagList }" varStatus="status">
+								<c:if test="${isDoing}">
+									<span class="tags">#${tags.tag }</span>
+									<c:if test="${status.index eq 19}"><c:set var="isDoing" value="false"/></c:if>
+								</c:if>
+							</c:forEach>							
 						</div>
 							<div id="footerContent">
 								<div id="reply">
@@ -684,25 +765,7 @@
 				</div>
 				<div id="commentContent" class="modal-content">
 					<div id="replyDiv" style="overflow: auto; overflow-x:hidden;">
-						<div class="replyView">
-							<div class="replyProfile">
-								<img src="resources/images/ssssss.png" class="img-responsive img-rounded profileImg">
-							</div>
-							<div class="replyInfo">
-								<div class="replyNickname">
-								 	<a href="#">닉네임이당열글자까지</a>
-								</div>
-								<div class="replyDate">2016-02-05 17:26:32</div>
-							</div>
-							<div class="replyModifyDelete">
-								<a href="#"><img style="width:20px;" src="resources/images/modify.png"/></a>&nbsp;
-								<a href="#"><img style="width:20px;" src="resources/images/delete.png"/></a>
-							</div>
-							<div class="replycontents" style="overflow: auto; overflow-x:hidden;">
-								오늘은 금요일이당 헤헤헤헤헤헤헤헤 댓글창 거의 끝나간당.
-							</div>
-							<div class="replyline"></div>
-						</div>
+						
 					</div>
 					<form name="replyForm" action="" method="post">
 						<div id="replyContent">

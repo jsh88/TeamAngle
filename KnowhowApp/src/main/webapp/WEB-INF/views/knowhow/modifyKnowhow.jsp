@@ -61,7 +61,9 @@
 	
 		$(document).ready(function(){		
 			
-			maxPage = "${post.mPage}";
+			maxPage = parseInt("${post.mPage}");
+			
+			alert(maxPage);
 			
 			$("#addModal").modal();
 			
@@ -109,7 +111,6 @@
 				$(".p" + "${status.count}").show();
 				
 			</c:forEach>
-
 			
 			 /*추가 버튼*/
 			 $("#addbtn").click(function(){
@@ -134,7 +135,9 @@
 					 $(".p"+ maxPage).show();
 					 
 				 }
-			}); 			 
+				 
+				 alert(maxPage);
+			});
 			 
 			 /*삭제 버튼*/
 			 $("#deletebtn").click(function(){
@@ -402,7 +405,7 @@
 			    complete : function(){
 			    	
 			    	// 이미지 감추기 처리
-// 			    	$(location).attr('href',"addTagPage");
+			    	$(location).attr('href',"addTagPage");
 					$('.wrap-loading').addClass('display-none');
 			    	$("#addModal").modal("hide");
 			    	

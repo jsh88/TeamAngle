@@ -7,7 +7,9 @@ import com.angle.domain.PostComment;
 
 public interface PostCommentDao {
 
-	public HashMap<Integer, ArrayList<PostComment>> getPostCommentList(int pNo, int mPage);
+	public HashMap<Integer, ArrayList<PostComment>> getPostCommentListAll(int pNo, int mPage);
+	
+	public ArrayList<PostComment> getPostCommentList(int pNo, int page);
 
 	public void modifyPostComment(PostComment pCom);
 
