@@ -11,12 +11,16 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script>
 		var i = 1;
+		var recoNum = 0;
 		var pNo = "";
 	
 		$(document).ready(function(){
 			
 			maxPage = parseInt("${post.mPage}");
 			pNo = "${post.pNo}";
+			recoNum = parseInt("${postRecommendationCount}");
+			
+			$("#recommenNum").text(recoNum);
 			
 			getCommentList();
 			
@@ -33,16 +37,6 @@
 			$(".p10").hide();
 
 			<c:forEach items="${pConList}" var="pCon" varStatus="status">
-				
-				/*
-				<c:forEach items="${pComListMap}" var="pComList">
-			        <c:forEach items="${pComList.value}" var="pCom">
-			        
-			        	alert("${pCom.nickName}");
-			        	
-			        </c:forEach>
-		        </c:forEach>
-				*/
 				
 				var media = "${pCon.media}";
 				
@@ -153,7 +147,7 @@
    			
 		};
 		
-		// 페이지 이동 시의 댓글
+		// 댓글 가져오기
 		function getCommentList() {
 			
 		    // 폼 데이터 받기 or Append or 인자로 form id)
@@ -171,9 +165,8 @@
 
 				success : function(responseData, statusText, xhr) {
 					
-					alert("성공이당");
-					
 					var result = responseData;
+					$('#replyDiv').empty();
 					$('#replyDiv').html(result);
 					// 성공처리(v는 서버로 받은 메시지, value)
 					
@@ -199,11 +192,231 @@
 					$('.wrap-loading').addClass('display-none');
 					$("#tagModal").modal("hide");
 
+				}				
+			});						
+		}
+		
+		function setRecommendation() {
+			
+			$.ajaxSettings.traditional = true; // 배열형식으로 넘기기
+			 // 폼 데이터 받기 or Append or 인자로 form id)
+			var formData = new FormData();
+			formData.append("pno", pNo);
+
+			$.ajax({
+				type : 'POST',
+				url : 'recommendPost',
+				data : formData,
+				processData : false,
+				contentType : false,
+
+				success : function(v) {
+					
+					// 성공처리(v는 서버로 받은 메시지, value)
+					if(v == 'true') {
+						recoNum = recoNum + 1;
+					} else {
+						recoNum = recoNum - 1;
+					}
+											
+					$("#recommenNum").text(recoNum);
+					
+				},
+				beforeSend : function() {
+
+					// 전송 전
+					// 이미지 보여주기
+					$('.wrap-loading').removeClass('display-none');
+					
+				},
+				error : function(request, status, error) {
+
+					// 에러 로직, 에러 로그 확인
+					alert("code:" + request.status + "\n\n" + "message:"
+							+ request.responseText + "\n\n" + "error:" + error);
+
+				},
+				complete : function() {
+
+					// 이미지 감추기 처리
+					$('.wrap-loading').addClass('display-none');
+					$("#addModal").modal("hide");
+
+				}
+			});
+		}
+		
+		function addComment() {
+			
+			if($("#inputCom").val() == "") {
+				
+				alert("내용이 비었습니다.");
+				
+			} else {
+				
+				$.ajaxSettings.traditional = true; // 배열형식으로 넘기기
+				 // 폼 데이터 받기 or Append or 인자로 form id)
+				var formData = new FormData();
+				formData.append("pno", pNo);
+				formData.append("content", $("#inputCom").val());
+				formData.append("page", i - 1);
+	
+				$.ajax({
+					type : 'POST',
+					url : 'addPostComment',
+					data : formData,
+					processData : false,
+					contentType : false,
+	
+					success : function(v) {
+						
+						// 성공처리(v는 서버로 받은 메시지, value)
+						getCommentList();
+						$("#inputCom").val("");
+						
+					},
+					beforeSend : function() {
+	
+						// 전송 전
+						// 이미지 보여주기
+						$('.wrap-loading').removeClass('display-none');
+						
+					},
+					error : function(request, status, error) {
+	
+						// 에러 로직, 에러 로그 확인
+						alert("code:" + request.status + "\n\n" + "message:"
+								+ request.responseText + "\n\n" + "error:" + error);
+	
+					},
+					complete : function() {
+	
+						// 이미지 감추기 처리
+						$('.wrap-loading').addClass('display-none');
+						$("#addModal").modal("hide");
+	
+					}
+				});
+			}
+		}
+		
+		function delComment(cNo) {
+			
+			$.ajaxSettings.traditional = true; // 배열형식으로 넘기기
+			 // 폼 데이터 받기 or Append or 인자로 form id)
+			var formData = new FormData();
+			formData.append("cno", cNo);
+
+			$.ajax({
+				type : 'POST',
+				url : 'delPostComment',
+				data : formData,
+				processData : false,
+				contentType : false,
+
+				success : function(v) {
+					
+					// 성공처리(v는 서버로 받은 메시지, value)
+					getCommentList();
+					
+				},
+				beforeSend : function() {
+
+					// 전송 전
+					// 이미지 보여주기
+					$('.wrap-loading').removeClass('display-none');
+					
+				},
+				error : function(request, status, error) {
+
+					// 에러 로직, 에러 로그 확인
+					alert("code:" + request.status + "\n\n" + "message:"
+							+ request.responseText + "\n\n" + "error:" + error);
+
+				},
+				complete : function() {
+
+					// 이미지 감추기 처리
+					$('.wrap-loading').addClass('display-none');
+					$("#addModal").modal("hide");
+
+				}
+			});
+		}
+		
+		function modifyComment(me, cNo) {
+			
+			if($("#modifyInput").val() == undefined) {
+
+			var target = $(me).parent().next(".replycontents");
+			var oldContent = target.text();
+			
+			target.empty();
+			target.append("<input id='modifyInput' style='width:300px;' type='text' />");
+			$("#modifyInput").val(oldContent.trim());
+			$("#modifyInput").focus();
+			
+			$("#modifyInput").keypress (function (key) {
+				
+				if(key.keyCode == 13) {
+					
+					var content = $("#modifyInput").val();
+					
+					if(content == "") {
+						
+						alert("내용이 비었습니다.");
+						
+					} else {
+						
+						$.ajaxSettings.traditional = true; // 배열형식으로 넘기기
+						 // 폼 데이터 받기 or Append or 인자로 form id)
+						var formData = new FormData();
+						formData.append("cno", cNo);
+						formData.append("content", content);
+
+						$.ajax({
+							type : 'POST',
+							url : 'modifyPostComment',
+							data : formData,
+							processData : false,
+							contentType : false,
+
+							success : function(v) {
+								
+								// 성공처리(v는 서버로 받은 메시지, value)
+								getCommentList();
+								
+							},
+							beforeSend : function() {
+
+								// 전송 전
+								// 이미지 보여주기
+								$('.wrap-loading').removeClass('display-none');
+								
+							},
+							error : function(request, status, error) {
+
+								// 에러 로직, 에러 로그 확인
+								alert("code:" + request.status + "\n\n" + "message:"
+										+ request.responseText + "\n\n" + "error:" + error);
+
+							},
+							complete : function() {
+
+								// 이미지 감추기 처리
+								$('.wrap-loading').addClass('display-none');
+								$("#addModal").modal("hide");
+
+							}
+						});						
+					}					
 				}
 				
 			});			
-			
+		} else {
+			alert("다른 댓글이 수정 중입니다.");
 		}
+	}
 		
 	</script>
 	<style>
@@ -722,7 +935,7 @@
 										${post.good }
 									</div>
 									<div id="recommenImg">
-										<a href="#"><img style="width:50px;"src="resources/images/recomment.png"/></a>
+										<img style="width:50px; cursor: pointer;" onclick="setRecommendation()" src="resources/images/recomment.png"/>
 									</div>
 								</div>
 							</div>
@@ -769,9 +982,9 @@
 					</div>
 					<form name="replyForm" action="" method="post">
 						<div id="replyContent">
-							<textarea class="form-control" rows="5"name="reply"></textarea>
+							<textarea id="inputCom" class="form-control" rows="5" name="reply"></textarea>
 							<div id="replybtndiv">
-								<input type="button" id="replybtn"class="btn btn-success" value="Send"/>
+								<input type="button" id="replybtn"class="btn btn-success" onclick="addComment()" value="Comment Posting!"/>
 							</div>
 						</div>
 					</form>	

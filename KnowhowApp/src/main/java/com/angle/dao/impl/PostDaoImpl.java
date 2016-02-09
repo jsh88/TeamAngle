@@ -283,16 +283,21 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	}
 
 	@Override
-	public void setRecommendPost(int pNo, String id) {
+	public boolean setRecommendPost(int pNo, String id) {
 
-		if (jdbcTemplate.queryForObject("select 1 from postrecommendation where pno = ? and id = ?",
-				new Object[] { pNo, id }, Object.class) != null)
+		try {
+
+			jdbcTemplate.update("insert into postrecommendation values(?, ?)", new Object[] { id, pNo });
+			
+			return true;
+
+		} catch (DataAccessException e) {
 
 			jdbcTemplate.update("delete from postrecommendation where pno = ? and id = ?", new Object[] { pNo, id });
+			
+			return false;
 
-		else
-
-			jdbcTemplate.update("insert into postrecommendation values(?, ?)", new Object[] { pNo, id });
+		}
 
 	}
 
@@ -437,10 +442,18 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 							} while (rs.next());
 
 						}
-						
+
 						return pComList;
 
 					}
 				});
+	}
+
+	@Override
+	public int getPostRecommendationCount(int pNo) {
+
+		return jdbcTemplate.queryForObject("select count(*) from postrecommendation where pno = ?",
+				new Object[] { pNo }, Integer.class);
+
 	}
 }

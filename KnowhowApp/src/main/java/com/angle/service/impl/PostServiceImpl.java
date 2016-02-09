@@ -3,8 +3,6 @@ package com.angle.service.impl;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -268,8 +266,6 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	public void addPostComment(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
-		@SuppressWarnings("unchecked")
-		ArrayList<PostComment> pComList = (ArrayList<PostComment>) session.getAttribute("pConList");
 		Member m = (Member) session.getAttribute("member");
 
 		PostComment pCom = new PostComment();
@@ -293,14 +289,13 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		}
 
 		pCom.setpNo(p.getpNo());
-		pCom.setPage(Integer.parseInt(request.getParameter("pageNum")));
+		pCom.setId(m.getId());
+		pCom.setPage(Integer.parseInt(request.getParameter("page")));
 		pCom.setContent(request.getParameter("content"));
 		pCom.setImage(m.getImage());
 		pCom.setNickName(m.getNickName());
 
 		postCommentDao.addPostComment(pCom);
-
-		pComList.add(pCom);
 
 	}
 
@@ -308,13 +303,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	public void modifyPostComment(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
-		@SuppressWarnings("unchecked")
-		ArrayList<PostComment> pComList = (ArrayList<PostComment>) session.getAttribute("pComList");
-		PostComment pCom = null;
-
-		for (int i = 0; i < pComList.size(); i++)
-			if (pComList.get(i).getcNo() == Integer.parseInt(request.getParameter("cno")))
-				pCom = pComList.get(Integer.parseInt(request.getParameter("cno")));
+		PostComment pCom = new PostComment();
 
 		if (request.getFile("media") != null) {
 
@@ -332,6 +321,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 		}
 
+		pCom.setcNo(Integer.parseInt(request.getParameter("cno")));
 		pCom.setContent(request.getParameter("content"));
 
 		postCommentDao.modifyPostComment(pCom);
@@ -359,8 +349,8 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	@Override
 	public void recommendPost(HttpServletRequest request, HttpSession session) {
 
-		postDao.setRecommendPost(Integer.parseInt(request.getParameter("pno")),
-				((Member) session.getAttribute("member")).getId());
+		request.setAttribute("isState", postDao.setRecommendPost(Integer.parseInt(request.getParameter("pno")),
+				((Member) session.getAttribute("member")).getId()));
 
 	}
 
@@ -471,9 +461,17 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	@Override
 	public void getCommentList(HttpServletRequest request) {
-		
+
 		request.setAttribute("pComList", postCommentDao.getPostCommentList(
 				Integer.parseInt(request.getParameter("pno")), Integer.parseInt(request.getParameter("page"))));
+
+	}
+
+	@Override
+	public void getRecommendCount(HttpServletRequest request) {
+
+		request.setAttribute("postRecommendationCount",
+				postDao.getPostRecommendationCount(Integer.parseInt(request.getParameter("pno"))));
 
 	}
 }

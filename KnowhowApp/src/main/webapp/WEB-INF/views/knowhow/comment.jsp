@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title></title>
-</head>
-<body>
 	<c:if test="${pComList ne null}">
 		<script type="text/javascript">$("#replyNum").text("${fn:length(pComList)}");</script>
 	<c:forEach items="${pComList}" var="pCom" varStatus="status">
@@ -21,14 +14,10 @@
  			</div>
  			<div class="replyDate">${pCom.wDate }</div>
 		</div>
- 			<div class="replyModifyDelete">
- 			<c:if test="${pCom.nickName eq session.member.nickName}">
- 				<a href="#"><img style="width:20px;" src="resources/images/modify.png"/></a>&nbsp;
- 				<a href="#"><img style="width:20px;" src="resources/images/delete.png"/></a>
- 			</c:if>
+ 			<div class="replyModifyDelete"> 			
  			<c:if test="${pCom.nickName ne session.member.nickName}">
- 				<a href="#"><img style="width:20px;" src="resources/images/modify.png"/></a>&nbsp;
- 				<a href="#"><img style="width:20px;" src="resources/images/delete.png"/></a>
+ 				<img class="modifyComImg" style="width:20px; cursor: pointer;" onclick="modifyComment(this, '${pCom.cNo }')" src="resources/images/modify.png"/>&nbsp; 				 				
+ 				<img style="width:20px; cursor: pointer;" onclick="delComment('${pCom.cNo }')" src="resources/images/delete.png"/>
  			</c:if>
  			</div>
  				<div class="replycontents" style="overflow: auto; overflow-x:hidden;">
@@ -39,7 +28,7 @@
  	</c:forEach>
  	</c:if>
  	<c:if test="${pComList eq null}">
- 		<center><h2>댓글이 없습니다.</h2></center>
+ 	<br>
+ 		<center><h4>댓글이 없습니다.</h4></center>
+ 		<script type="text/javascript">$("#replyNum").text("0");</script>
  	</c:if>
-</body>
-</html>
