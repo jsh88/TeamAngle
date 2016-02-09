@@ -38,7 +38,7 @@ $(document).ready(function() {
 		
 	$("#search_txt").blur(function(){
 		
-		$("#search_txt").css("background-color" , "#535353").css("color","black");
+		$("#search_txt").css("background-color" , "#535353").css("color","white");
 		$("#search_btn").css("background-color", "#535353").css("color","white");
 		
 	});
