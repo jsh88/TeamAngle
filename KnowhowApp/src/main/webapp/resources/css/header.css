@@ -8,7 +8,7 @@
 #brand {
 	margin-left: 7px;
 	margin-top: 3px;
-	color: yellow;
+	color: #FFDA00;
 
 }
 #search_form {
@@ -18,11 +18,14 @@
 	
 	border: none;
 	border-right: 2px solid #BFBCBC;
-	background-color: white;
-	color: black;
+	background-color: #535353;
+	color: white;
 }
 #search_txt {
 	border-style: none;
+	background-color: #535353;
+	color:white;
+
 }
 #loginbtn, #joinbtn, #navbtn {
 	margin-top: 7px;
@@ -32,13 +35,14 @@
 }
 #navtag {
 	margin-top:2px;
-	height: 25px;
+	height: 30px;
 	border-top: 1px solid #bfbcbc;
 }
 #navtag_lb {
 	margin-left: 145px;
 	width: 600px;
-	
+	height: 30px;
+	margin-top:5px;
 	color: white;
 }
 #nav1 {
@@ -54,6 +58,8 @@
 	border-radius: 10px;
 	float: right;
 	overflow: auto;
+	background-color: white;
+	z-index:5;
 	}
 	#nv1 {
 		padding:0;
@@ -71,11 +77,25 @@
 	text-align: center;
 }
 
+.recommenTag{
+	margin-left: 5px;
+	text-decoration: none;
+	color:white;
+}
 
+.recommenTag:hover{
+	color:#FFDA00;	
+	font-weight: bold;
+}
 
+#navTagTitle{
+	
+	font-weight: bold;
+}
 
-
-
+#myPageWrap{
+	position:absolute;
+}
 
 
 

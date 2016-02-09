@@ -10,8 +10,8 @@
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<link type="text/css" href="resources/css/main.css" rel="stylesheet">
-<script src="resources/js/ajax_header.js"></script>
+<link type="text/css" href="resources/css/header.css" rel="stylesheet">
+<script src="resources/js/header.js"></script>
 <script>
 	function modalOpen(i) {
 
@@ -94,14 +94,18 @@
 		</div>
 		<div id="navtag">
 			<div id="navtag_lb">
-				<div class="col-sm-1">Tag</div>
-				<div class="col-sm-11">#피자 #시카고 #갈릭소스</div>
+				<div class="col-sm-1 navTagTitle">Tag</div>
+				<div class="col-sm-11">
+					<a href="#" class="recommenTag">#피자</a>
+					<a href="#" class="recommenTag">#시카고</a>
+					<a href="#" class="recommenTag">#갈릭소스</a>
+				</div>
 			</div>
 		</div>
 	</nav>
 
 	<!--  마이페이지 -->
-	<div class="col-lg-12">
+	<div class="col-lg-12" id="myPageWrap">
 		<div class="col-md-9"></div>
 		<div class="col-md-3">
 			<div id="menu">
