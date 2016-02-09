@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -47,7 +48,7 @@ public class MemberController {
 	public String MemberJoinProc(HttpServletRequest request) throws IOException {
 
 		memberService.insertMemberJoin(request);
-		return "main/main";
+		return "redirect:memberJoinForm";
 	}
 	
 	// 회원탈퇴 처리 부분
@@ -81,17 +82,11 @@ public class MemberController {
 		return "member/memberAjax";
 	}
 
-	// 회원정보 수정창 전 비밀번호 확인창 콜부분
-	@RequestMapping(value = { "/memberUpdatePassCheckForm" }, method = RequestMethod.GET)
-	public String memberUpdatePassCheckForm(Model model, HttpServletRequest request) {
-		return "main/main";
-	}
-
 	// 회원정보 수정창 전 비밀번호 확인창 서비스콜 부분
 	@RequestMapping(value = { "/member/memberUpdatePassCheck.ajax" })
-	public String memeberUpdatePassCheck(Model model, HttpServletRequest request) {
+	public String memeberUpdatePassCheck(@RequestParam("passCheck") String pass, Model model, HttpSession session) {
 
-		int result = memberService.checkPw(request);
+		int result = memberService.modifyCheckPw(pass, session);
 		model.addAttribute("result", result);
 
 		return "member/memberAjax";
@@ -147,10 +142,9 @@ public class MemberController {
 	
 	// 회원 로그아웃 콜 부분
 	@RequestMapping(value = { "/logoutMember" }, method=RequestMethod.GET)
-	public String logoutMemberProc(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public String logoutMemberProc(HttpServletRequest request, HttpSession session) {
 		session.invalidate();
-		return "redirect:main";
+		return "intro";
 	}
 	
 	// 회원 로그인창 콜 부분
@@ -163,13 +157,11 @@ public class MemberController {
 	
 	// 회원 로그인 서비스 콜 부분 
 	@RequestMapping(value = {"/login/logincheck.do"}, method=RequestMethod.POST)
-	public ModelAndView loginProc(HttpServletRequest request) {
-		
-		int result = memberService.memberLoginCheck(request);
+	public ModelAndView loginProc(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpServletRequest request, HttpSession session) {
+		int result = memberService.memberLoginCheck(id, pw, request, session);
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("result", result);
-		mav.setViewName("member/memberAjax");
 		mav.setViewName("login/loginAjax");
 		
 		return mav;		

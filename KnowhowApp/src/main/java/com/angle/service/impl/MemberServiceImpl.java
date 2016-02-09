@@ -94,6 +94,17 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public int modifyCheckPw(String pass, HttpSession session) {
+		Member m = (Member)session.getAttribute("member");
+		String pw = m.getPw();
+		int result=1;
+		if(pass.equals(pw)){
+			result = 0;
+		}
+		return result;
+	}
+	
+	@Override
 	public int checkPw(HttpServletRequest request) {
 
 		String id = request.getParameter("id");
@@ -185,16 +196,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int memberLoginCheck(HttpServletRequest request) {
+	public int memberLoginCheck(String id, String pw, HttpServletRequest request, HttpSession session) {
 
-		HttpSession session = request.getSession();
 		int result = 1;
-
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		
-		/*System.out.println("MemberService - id : " + id);
-		System.out.println("MemberService - pw : " + pw);*/
 
 		Member member = memberDao.memberLogin(id);
 
@@ -202,16 +206,13 @@ public class MemberServiceImpl implements MemberService {
 			result = -1;
 		} else {
 			if(member.getPw().equals(pw)) {
-//				session.setAttribute("isLogin", true);
-				session.setAttribute("member", memberDao.getMember(id));
-				result = 0;
-				memberDao.updateLdate(member);
-
+				session.setAttribute("member", member);
 				int v_result = memberDao.getVcount(id);
-				System.out.println(v_result);
-				if(v_result != 1) {
+				if(v_result != -1) {
 					memberDao.updateVcount(member);
 				}
+				memberDao.updateLdate(member);
+				result = 0;
 			} else if(!member.getPw().equals(pw)) {
 				result = 1;
 			}

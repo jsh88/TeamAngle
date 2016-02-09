@@ -20,13 +20,15 @@ public interface MemberService {
 
 	public int checkNickName(HttpServletRequest request);
 
+	public int modifyCheckPw(String pass, HttpSession session);
+	
 	public int checkPw(HttpServletRequest request);
 
 	public void deleteMember(HttpServletRequest request);
 
 	//	public void memberLoginCheck(HttpSession session, HttpServletRequest request) throws IOException;
 
-	public int memberLoginCheck(HttpServletRequest request);
+	public int memberLoginCheck(String id, String pw, HttpServletRequest request, HttpSession session);
 
 	public Member getMember(HttpServletRequest request);
 
