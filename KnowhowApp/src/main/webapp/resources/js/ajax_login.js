@@ -1,25 +1,7 @@
 /* 회원 로그인 아작스 */
 /* 회원의 아이디 등록여부확인*/
 
-$(document).ready(function() {	
-	
-	$("#find_id").click(function(){
-		if($("#lg_findId").css("display")=='none') {
-			$("#lg_findId").show();
-		} else {
-			$("#lg_findId").hide();
-		}
-	});
-	$("#find_email").click(function(){
-		if($("#lg_findPass").css("display")=='none') {
-			$("#lg_findPass").show();
-		} else {
-			$("#lg_findPass").hide();
-		}
-	});
-	
-});
-
+/**/
 
 
 

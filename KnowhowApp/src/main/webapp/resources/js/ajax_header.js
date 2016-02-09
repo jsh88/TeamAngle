@@ -1,12 +1,16 @@
 
 $(document).ready(function() {
-/* myPage Ajax Div 움직임 */
-	$('#menu').hide();
-
-	$('#menu').css('height', $(window).height() - 80);
-
+	$('#navtag').css('width', $(window).width());
 	$(window).resize(function() {
-		$('#menu').css('height', $(window).height() - 80);
+		$('#menu').css('width', $(window).width());
+	});
+	
+	/* myPage Ajax Div 움직임 */
+	
+	$('#menu').hide();
+	$('#menu').css('height', $(window).height() - 110);
+	$(window).resize(function() {
+		$('#menu').css('height', $(window).height() - 110);
 	});
 
 	$('#navbtn').click(function() {
@@ -16,6 +20,31 @@ $(document).ready(function() {
 			$('#menu').slideUp(500);
 		}
 	});
+
+/* header search */	
+
+	$("#search_txt").text("");
+	
+	$("#search_txt").click(function (){
+		
+		if($("#search_txt").val()==null) {
+			alert("검색할 태그, 단어를 입력하세요.");
+		}
+		
+	});
+	
+	$("#search_txt").keypress(function(key){
+	
+		if(key.keyCode == 13) {
+			if($("#search_txt").val()!=null) {
+				alert("검색할 태그, 단어를 입력하세요.");
+				return false;
+			}
+		}
+		
+	});
+	
+	
 	
 /* memModify Ajax */
 	
@@ -75,23 +104,4 @@ $(document).ready(function() {
 	});
 
 /* 로그인 Ajax */
-	$("#lg_findId").hide();
-	$("#lg_findPass").hide();
-	
-	
-		$("#find_id").click(function(){
-			if($("#lg_findId").css("display")=='none') {
-				$("#lg_findId").show();
-			} else {
-				$("#lg_findId").hide();
-			}
-		});
-		$("#find_email").click(function(){
-			if($("#lg_findPass").css("display")=='none') {
-				$("#lg_findPass").show();
-			} else {
-				$("#lg_findPass").hide();
-			}
-		});
-	
 });
