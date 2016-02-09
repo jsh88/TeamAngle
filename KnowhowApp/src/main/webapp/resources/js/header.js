@@ -4,7 +4,7 @@ $(document).ready(function() {
 	$('#navtag').css('width', $(window).width());
 	
 	$(window).resize(function() {
-		$('#menu').css('width', $(window).width());
+		$('#menu').css('height', $(window).height());
 	});
 	
 	
