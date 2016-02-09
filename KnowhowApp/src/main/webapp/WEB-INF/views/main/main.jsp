@@ -9,18 +9,41 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<style>
-		body{
-			background-color: #CFCFCF;
+		#bestTitle{
+			font-size: 20px;
+			font-weight: bold;
+		}
+		
+		#mainWrap{
+			margin-top: 20px;
+		}
+		
+		#bestTitle{
+			font-size: 25px;
+			font-weight: bold;
+			margin-left: -15px;
+		}
+
+		#bestContent{
+			margin-left:-15px;
+			margin-top:10px;
+		}
+		
+		#bestLeft{
+			border: 1px solid #535353;
+			height: 430px;
 		}
 	</style>
 </head>
 	<body>
-		<div class="container-fluid">
+		<div class="container-fluid" id="mainWrap">
 			<div class="row">
-				<div id="bestTitle">
-					BestKnowhow
-				</div>
-				<div id="bestWrap">
+				<div class="col-md-1" id="test"></div>
+				<div id="bestWrap" class="col-md-10">
+					<div id="bestTitle">
+						BestKnowhow
+					</div>
+					<div id="bestContent">
 					<div id="bestLeft">
 						<div id="bestSTitle">
 						</div>
@@ -37,6 +60,8 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-md-1"></div>
 		</div>
+	</div>
 	</body>
 </html>
