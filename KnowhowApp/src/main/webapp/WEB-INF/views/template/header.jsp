@@ -94,7 +94,7 @@
 		</div>
 		<div id="navtag">
 			<div id="navtag_lb">
-				<div class="col-sm-1" id="navTagTitle">Tag </div>
+				<div class="col-sm-1 navTagTitle">Tag</div>
 				<div class="col-sm-11">
 					<a href="#" class="recommenTag">#피자</a>
 					<a href="#" class="recommenTag">#시카고</a>
@@ -105,7 +105,7 @@
 	</nav>
 
 	<!--  마이페이지 -->
-	<div class="col-lg-12">
+	<div class="col-lg-12" id="myPageWrap">
 		<div class="col-md-9"></div>
 		<div class="col-md-3">
 			<div id="menu">
