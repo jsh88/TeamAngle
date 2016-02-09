@@ -27,7 +27,7 @@ public class TagController {
 		return "knowhow/addTag";
 	}
 
-	// addTag
+	// addTag, ajax
 	@RequestMapping(value = "addTag")
 	@ResponseBody
 	public String addTag(HttpServletRequest request, HttpSession session) {
@@ -35,6 +35,15 @@ public class TagController {
 		tagService.addPostAndMemberTag(request, session);
 
 		return "success";
+	}
+
+	// addTag
+	@RequestMapping(value = "getPostTag")
+	public String getPostTag(HttpServletRequest request, HttpSession session) {
+
+		tagService.getPostTag(request, session);
+
+		return "knowhow/knowhowDetail";
 	}
 
 	// introTagList

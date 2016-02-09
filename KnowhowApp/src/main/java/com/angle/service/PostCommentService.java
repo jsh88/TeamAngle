@@ -19,4 +19,6 @@ public interface PostCommentService {
 
 	public void getPostCommentList(HttpServletRequest request, HttpSession session);
 
+	public void getCommentList(HttpServletRequest request);
+
 }

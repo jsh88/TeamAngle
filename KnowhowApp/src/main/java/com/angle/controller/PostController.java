@@ -148,8 +148,8 @@ public class PostController {
 
 		return "success"; // ajax
 	}
-	
-	// 포스트 작성 완료, ajax
+
+	// 포스트 수정 완료, ajax
 	@RequestMapping(value = "completeModify", method = RequestMethod.POST)
 	@ResponseBody
 	public String completeModify(MultipartHttpServletRequest request, HttpSession session)
@@ -170,8 +170,18 @@ public class PostController {
 	}
 
 	/**
-	 * 댓글 추가, 수정, 삭제
+	 * 댓글 조회, 추가, 수정, 삭제
 	 */
+
+	// 댓글 페이징 조회, ajax
+	@RequestMapping(value = "getCommentList", method = RequestMethod.POST)	
+	public String getCommentList(HttpServletRequest request)
+			throws IllegalStateException, IOException {
+		
+		postCommentService.getCommentList(request);
+
+		return "knowhow/comment"; // ajax
+	}
 
 	// 댓글 추가
 	@RequestMapping(value = "addPostComment", method = RequestMethod.POST)
@@ -210,10 +220,11 @@ public class PostController {
 	@RequestMapping(value = "morePost", method = RequestMethod.GET)
 	public String morePost(HttpServletRequest request, HttpSession session) {
 
+		postService.addViewCount(request);
 		postService.getPost(request, session);
-		postCommentService.getPostCommentList(request, session);
+//		postCommentService.getPostCommentList(request, session);
 
-		return "knowhow/knowhowDetail";
+		return "forward:getPostTag";
 	}
 
 	// 포스트 리스트
