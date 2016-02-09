@@ -8,7 +8,7 @@
 <title>회원가입</title>
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link href="resources/css/Member.css" rel="stylesheet" type="text/css">
+<link href="resources/css/member_join.css" rel="stylesheet" type="text/css">
 
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -21,7 +21,7 @@
 <body>
 <div class="modal-dialog">
 	<form name="mjoin" action="memberJoinProc" method="post">
-		<div class="modal-content" id="dialog">
+		<div id="mj_content" class="modal-content">
 
 			<div class="modal-body">
 				<div id="mj_head" class="col-sm-6">
