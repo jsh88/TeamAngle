@@ -27,7 +27,7 @@
 	color:white;
 
 }
-#loginbtn, #joinbtn, #navbtn {
+#loginbtn, #joinbtn, #navbtn, #logout{
 	margin-top: 7px;
 	font-size: 16px;
 	color: white;

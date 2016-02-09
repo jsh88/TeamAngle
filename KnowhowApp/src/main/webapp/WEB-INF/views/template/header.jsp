@@ -81,9 +81,9 @@
 					<%
 						} else {
 					%>
-					<li><div id="navbtn" class="btn btn-lg"
+					<li><div id="logout" class="btn btn-lg"
 							onclick="location.href='logoutMember'">Logout</div></li>
-					<li><div id="navbtn" class="btn btn-lg" onclick="navModal()">myPage</div></li>
+					<li><div id="navbtn" class="btn btn-lg">myPage</div></li>
 					<%
 						}
 					%>
