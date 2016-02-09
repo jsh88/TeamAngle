@@ -174,42 +174,44 @@ public class PostController {
 	 */
 
 	// 댓글 페이징 조회, ajax
-	@RequestMapping(value = "getCommentList", method = RequestMethod.POST)	
-	public String getCommentList(HttpServletRequest request)
-			throws IllegalStateException, IOException {
-		
+	@RequestMapping(value = "getCommentList", method = RequestMethod.POST)
+	public String getCommentList(HttpServletRequest request) throws IllegalStateException, IOException {
+
 		postCommentService.getCommentList(request);
 
 		return "knowhow/comment"; // ajax
 	}
 
-	// 댓글 추가
+	// 댓글 추가, ajax
 	@RequestMapping(value = "addPostComment", method = RequestMethod.POST)
+	@ResponseBody
 	public String addPostComment(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
 		postCommentService.addPostComment(request, session);
 
-		return null; // 어디로 가야하오
+		return "success";
 	}
 
-	// 댓글 수정
+	// 댓글 수정, ajax
 	@RequestMapping(value = "modifyPostComment", method = RequestMethod.POST)
+	@ResponseBody
 	public String modifyPostComment(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
 		postCommentService.modifyPostComment(request, session);
 
-		return null; // 어디로 가야하오
+		return "success";
 	}
 
-	// 댓글 삭제
+	// 댓글 삭제, ajax
 	@RequestMapping(value = "delPostComment")
+	@ResponseBody
 	public String delPostComment(HttpServletRequest request, HttpSession session) {
 
 		postCommentService.delPostComment(request, session);
 
-		return null; // 어디로 가야하오
+		return "success";
 	}
 
 	/**
@@ -222,7 +224,8 @@ public class PostController {
 
 		postService.addViewCount(request);
 		postService.getPost(request, session);
-//		postCommentService.getPostCommentList(request, session);
+		postService.getRecommendCount(request);
+		// postCommentService.getPostCommentList(request, session);
 
 		return "forward:getPostTag";
 	}
@@ -236,13 +239,14 @@ public class PostController {
 		return null; // 어디로 가야하오
 	}
 
-	// 포스트 추천
+	// 포스트 추천, ajax
 	@RequestMapping(value = "recommendPost")
-	public String t(HttpServletRequest request, HttpSession session) {
+	@ResponseBody
+	public String recommendPost(HttpServletRequest request, HttpSession session) {
 
 		postService.recommendPost(request, session);
 
-		return null; // 어디로 가야하오
+		return String.valueOf((boolean) request.getAttribute("isState"));
 	}
 
 }

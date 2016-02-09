@@ -24,7 +24,7 @@ public interface PostDao {
 
 	public ArrayList<Post> getTempPostList(String id);
 
-	public void setRecommendPost(int pNo, String id);
+	public boolean setRecommendPost(int pNo, String id);
 
 	public ArrayList<PostTag> completePosting(ArrayList<PostTag> pTagList);
 
@@ -37,5 +37,7 @@ public interface PostDao {
 	public void setMaxPostPage(int pNo, int mPage);
 
 	public void addViewCount(int pNo);
+
+	public int getPostRecommendationCount(int pNo);
 
 }

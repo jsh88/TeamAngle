@@ -42,4 +42,6 @@ public interface PostService {
 
 	public void addViewCount(HttpServletRequest request);
 
+	public void getRecommendCount(HttpServletRequest request);
+
 }
