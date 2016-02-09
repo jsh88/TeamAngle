@@ -78,7 +78,6 @@
 							onclick="modalOpen('1')">Join</div></li>
 					<li><div id="loginbtn" class="btn btn-lg"
 							onclick="modalOpen('2')">Login</div></li>
-					<li><div id="navbtn" class="btn btn-lg" onclick="navModal()">myPage</div></li>
 					<%
 						} else {
 					%>
@@ -107,7 +106,7 @@
 			<div id="menu">
 				<div id="profile_line" class="col-sm-12 col-xs-12 col-md-12">
 					<div id="profile_img" class="col-sm-5 col-xs-12">
-						<img src="http://placehold.it/110x110">
+						<img src="http://placehold.it/110x110" width="110px;" height="110px;">
 					</div>
 					<div id="profile_nametag" class="col-sm-7 col-xs-12">
 						<div class="col-sm-12 col-xs-12">김용유</div>
