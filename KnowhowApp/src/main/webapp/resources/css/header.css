@@ -58,6 +58,8 @@
 	border-radius: 10px;
 	float: right;
 	overflow: auto;
+	background-color: white;
+	z-index:5;
 	}
 	#nv1 {
 		padding:0;
@@ -91,7 +93,9 @@
 	font-weight: bold;
 }
 
-
+#myPageWrap{
+	position:absolute;
+}
 
 
 
