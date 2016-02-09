@@ -19,8 +19,13 @@
 
 		if (i == "1") {
 			modal = "memJoinPage";
+			$("#mj_id, #mj_nickname, #mj_pass1, #mj_pass2").val("");
+			$("#mj_id").show();
+			$("#mj_btn_submit").hide();
+			
 		} else if (i == "2") {
 			modal = "loginPage";
+			
 		} else if (i == "3") {
 			modal = "memModifyPage";
 		} else if (i == "4") {
@@ -30,7 +35,7 @@
 		}
 
 		$("#" + modal).modal();
-
+		
 	}
 </script>
 <style>
