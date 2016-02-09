@@ -110,7 +110,9 @@
 			<div id="menu">
 				<div id="profile_line" class="col-sm-12 col-xs-12 col-md-12">
 					<div id="profile_img" class="col-sm-5 col-xs-12">
-						<img src="http://placehold.it/110x110" style="width: 110px; height: 110px;">
+
+						<img src="http://placehold.it/110x110" width="110px;" height="110px;">
+
 					</div>
 					<div id="profile_nametag" class="col-sm-7 col-xs-12">
 						<div class="col-sm-12 col-xs-12">김용유</div>
