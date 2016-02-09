@@ -47,6 +47,14 @@
 			opacity:0.9;
 			cursor: pointer;
 		}
+		
+		#tSave{
+			float:right;
+			margin-top: -20px;
+			margin-right: 20px;
+			opacity:0.9;
+			cursor: pointer;
+		}
 	</style>
 	<script>
 	
@@ -374,20 +382,32 @@
 			    }
 			}); 
 		}
+		
+		function modalClose(){
+			
+			if(confirm('포스트작성을 취소합니다.') == true){
+				$("#addModal").modal('hide');
+			
+			}else{
+				
+				return ;
+			}
+		}
 	</script>
 	<style>
 	</style>
 </head>
 <body> 	
-		<div class="modal fade" id="addModal">
+<!-- 		<div class="modal fade" id="addModal" data-backdrop="static"> -->
 		<div class="modal-dialog" id="addDialog">
 				<div class="modal-content" id="addContent">
 				<div id="addWrap">
 					<div class="modal-header" id="header">
-						<div id="Closeimg"><a href="#"><img style="width:20px;" src="resources/images/close.png"/></a></div>
+						<div id="Closeimg" onclick="modalClose()"><img style="width:20px;" src="resources/images/close.png"/></div>
 						<div id="Title">${post.title }</div>
 						<div id="CreateDate">${post.wDate }</div>
 						<div id="Clear" onclick="clearPage()"><img style="width:20px;" src="resources/images/clear.png"/></div>
+						<div id="tSave" onclick=""><img style="width:25px;" src="resources/images/tsave.png"/></div>
 					</div>
 					<!-- Modal 상단-->
 						<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">				
@@ -656,6 +676,6 @@
 		</div>
 		</div>
 	</div>
-	</div>
+<!-- 	</div> -->
 </body>
 </html>

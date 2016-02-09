@@ -130,6 +130,7 @@
 			
 			#Closeimg{
 				float: right;
+				cursor: pointer;
 			}
 			
 			#Closeimg img{
