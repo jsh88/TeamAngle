@@ -115,7 +115,7 @@ margin: 0 auto;
 									<input type="password" id="lg_pass"
 									name="pw" class="form-control">
 									
-									<input type="submit" id="lg_btn" class="btn btn-success col-sm-12" value="Sign in">
+									<input type="button" id="lg_btn" class="btn btn-success col-sm-12" value="Sign in">
 									
 									
 									</div>

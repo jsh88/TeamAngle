@@ -36,10 +36,10 @@
 						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 					</button>
 					<div class="col-sm-offset-1 col-sm-11">
-							<span>Please.. Nickname..</span>
+							<span>Please.. Pass..</span>
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="text" id="nick" name="nick" class="form-control">
+							<input type="text" id="passCheck" name="pass" class="form-control">
 					</div>
 					<div class="col-sm-offset-1 col-sm-10">
 							<button id="p1" class="btn btn-warning col-sm-12  btn_choice">go to</button>

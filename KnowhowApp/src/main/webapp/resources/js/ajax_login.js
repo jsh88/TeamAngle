@@ -16,7 +16,7 @@ $("#lg_btn").click(function(e) {
 	alert(id);
 	alert(pw);
 	$.ajax({
-		url: "logincheck.do",
+		url: "login/logincheck.do",
 		type: "POST",
 		data: {"id" : id, "pw" : pw},
 		dataType: "text",
@@ -33,7 +33,7 @@ $("#lg_btn").click(function(e) {
 				alert("아이디를 확인해주세요.");
 			} else if(result == 0) {
 				alert("로그인 성공!!!");
-				window.location = "loginConfirm";   // 로그인후 이동할 페이지 설정
+				document.location.reload();
 			} else if(result == 1) {
 				alert("비밀번호를 확인해 주세요.");
 			}

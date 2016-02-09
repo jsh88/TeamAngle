@@ -64,7 +64,7 @@ $(document).ready(function(){
 });
 
 $(function() {
-	
+$("#p1").attr("disabled", "disabled");
 $("#passCheck").on("keyup", function() {
 	
 	var pw = $("#passCheck").val();
@@ -76,9 +76,9 @@ $("#passCheck").on("keyup", function() {
 		success: function(responseData, statusText, xhr) {
 			var result = responseData;
 			
-			if(result >= 1) {
+			if(result == 1) {
 				$("#passCheck").css("border", "2px solid red");
-				$("#p1").attr("disabled", "disabled");
+				
 			} else if(result == 0) {
 				$("#passCheck").css("border", "2px solid lime");
 				$("#p1").removeAttr("disabled");
