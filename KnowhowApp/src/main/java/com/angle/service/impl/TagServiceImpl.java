@@ -81,8 +81,15 @@ public class TagServiceImpl implements TagService {
 
 	@Override
 	public void introTagList(HttpServletRequest request) {
-		
+
 		request.setAttribute("iTagList", tagDao.getIntroTagList());
-		
+
+	}
+
+	@Override
+	public void getPostTag(HttpServletRequest request, HttpSession session) {
+
+		session.setAttribute("pTagList", tagDao.getPostTag(Integer.parseInt(request.getParameter("pno"))));
+
 	}
 }

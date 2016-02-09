@@ -9,4 +9,6 @@ public interface TagService {
 
 	void introTagList(HttpServletRequest request);
 
+	void getPostTag(HttpServletRequest request, HttpSession session);
+
 }

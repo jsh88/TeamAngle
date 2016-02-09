@@ -36,4 +36,6 @@ public interface PostDao {
 
 	public void setMaxPostPage(int pNo, int mPage);
 
+	public void addViewCount(int pNo);
+
 }

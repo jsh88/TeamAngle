@@ -3,6 +3,8 @@ package com.angle.service.impl;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -345,10 +347,12 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	@Override
 	public void getPostCommentList(HttpServletRequest request, HttpSession session) {
-		
+
 		Post p = (Post) session.getAttribute("post");
 
-		session.setAttribute("pComListMap", postCommentDao.getPostCommentList(p.getpNo(), p.getmPage()));
+		int page = Integer.parseInt(request.getParameter("page"));
+
+		session.setAttribute("pComList", postCommentDao.getPostCommentList(p.getpNo(), page));
 
 	}
 
@@ -424,16 +428,16 @@ public class PostServiceImpl implements PostService, PostCommentService {
 				} else if (request.getParameter("imgArr" + i).indexOf(".") > -1) {
 
 					String str = request.getParameter("imgArr" + i).substring(path.length());
-					
+
 					if (str.equals("null"))
 						pCon.setMedia("none");
 					else
 						pCon.setMedia(str);
 
 				} else {
-					
-					pCon.setMedia("none");	
-					
+
+					pCon.setMedia("none");
+
 				}
 			} else {
 
@@ -452,6 +456,24 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		// 포스트 페이지들 추가
 		postDao.addPostPage(pConList);
 		postDao.setMaxPostPage(p.getpNo(), mPage);
+
+		session.setAttribute("pTagList",
+				postDao.completePosting((ArrayList<PostTag>) luceneKoreanAnalyzer.getTags(pConList)));
+
+	}
+
+	@Override
+	public void addViewCount(HttpServletRequest request) {
+
+		postDao.addViewCount(Integer.parseInt(request.getParameter("pno")));
+
+	}
+
+	@Override
+	public void getCommentList(HttpServletRequest request) {
+		
+		request.setAttribute("pComList", postCommentDao.getPostCommentList(
+				Integer.parseInt(request.getParameter("pno")), Integer.parseInt(request.getParameter("page"))));
 
 	}
 }

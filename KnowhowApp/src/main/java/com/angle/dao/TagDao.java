@@ -16,4 +16,6 @@ public interface TagDao {
 
 	public ArrayList<Tag> getIntroTagList();
 
+	public ArrayList<PostTag> getPostTag(int pNo);
+
 }

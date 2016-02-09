@@ -91,6 +91,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 						p.setwDate(rs.getString("wdate"));
 						p.setmDate(rs.getString("mdate"));
 						p.settDate(rs.getString("tdate"));
+						p.setCount(rs.getInt("count"));
 						p.setGood(rs.getInt("good"));
 						p.setState(rs.getInt("state") == 1 ? true : false);
 
@@ -121,13 +122,14 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 								pCon.setPage(rs.getInt("page"));
 								pCon.setContent(rs.getString("content").replaceAll("\r\n", "<br>"));
 
-								if (rs.getString("media").indexOf("https:") > -1 || rs.getString("media").equals("none"))
-									
+								if (rs.getString("media").indexOf("https:") > -1
+										|| rs.getString("media").equals("none"))
+
 									// url 이거나, 미디어가 없으면 그냥 넣는다.
 									pCon.setMedia(rs.getString("media"));
-								
+
 								else
-									
+
 									// 이미지 넣는당
 									pCon.setMedia("resources/images/" + rs.getString("media"));
 
@@ -207,11 +209,11 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	}
 
 	@Override
-	public HashMap<Integer, ArrayList<PostComment>> getPostCommentList(int pNo, int mPage) {
+	public HashMap<Integer, ArrayList<PostComment>> getPostCommentListAll(int pNo, int mPage) {
 
 		HashMap<Integer, ArrayList<PostComment>> pComListMap = new HashMap<>();
-		
-		for (int i = 0; i < mPage; i++)		
+
+		for (int i = 0; i < mPage; i++)
 
 			pComListMap.put(i,
 					jdbcTemplate.query(
@@ -242,7 +244,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 											pCom.setPage(rs.getInt("page"));
 											pCom.setpNo(pNo);
 											pCom.setwDate(rs.getString("wdate"));
-											
+
 											pComList.add(pCom);
 
 										} while (rs.next());
@@ -361,7 +363,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 	@Override
 	public void addPostPage(ArrayList<PostContent> pConList) {
-		
+
 		jdbcTemplate.update("delete from postContent where pno = ?", new Object[] { pConList.get(0).getpNo() });
 
 		for (int i = 0; i < pConList.size(); i++)
@@ -390,5 +392,55 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 		jdbcTemplate.update("update post set mpage = ? where pno = ?", new Object[] { mPage, pNo });
 
+	}
+
+	@Override
+	public void addViewCount(int pNo) {
+
+		jdbcTemplate.update("update post set count = count + 1 where pno = ?", new Object[] { pNo });
+
+	}
+
+	@Override
+	public ArrayList<PostComment> getPostCommentList(int pNo, int page) {
+
+		return jdbcTemplate.query(
+				"select p.*, m.id, m.nickName, m.image from postComment p, member m where pno = ? and page = ? and p.id = m.id order by wdate asc",
+				new Object[] { pNo, page }, new ResultSetExtractor<ArrayList<PostComment>>() {
+
+					@Override
+					public ArrayList<PostComment> extractData(ResultSet rs) throws SQLException, DataAccessException {
+
+						ArrayList<PostComment> pComList = null;
+
+						if (rs.next()) {
+
+							pComList = new ArrayList<>();
+
+							do {
+
+								PostComment pCom = new PostComment();
+
+								pCom.setcNo(rs.getInt("cno"));
+								pCom.setContent(rs.getString("content"));
+								pCom.setId(rs.getString("id"));
+								pCom.setImage("resources/images/" + rs.getString("image"));
+								pCom.setmDate(rs.getString("mdate"));
+								pCom.setMedia(rs.getString("media"));
+								pCom.setNickName(rs.getString("nickname"));
+								pCom.setPage(rs.getInt("page"));
+								pCom.setpNo(pNo);
+								pCom.setwDate(rs.getString("wdate"));
+
+								pComList.add(pCom);
+
+							} while (rs.next());
+
+						}
+						
+						return pComList;
+
+					}
+				});
 	}
 }
