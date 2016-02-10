@@ -9,111 +9,125 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <style>
-	body{
-		background-color: tomato;
-	}
-
-	.searchView{
-		background-color:white;
-		border: 1px solid #666666;
-		border-radius:6px;
-		margin-right: 20px;
-	}
+		body{
+			background-color: #F3F3F3;
+		}
 		
-	.searchTitle{
-		height: 50px;
-		border-bottom: 1px solid #BFBCBC;
-	}
-	
-	.title{
-		margin-top:15px;
-		font-weight: bold;
-		font-size: 17px;
-		font-style: "맑은 고딕";
-	}
-	
-	.searchContent{
-		margin-top: 20px;
-	}
-	
-	.media{
-		margin-top: 20px;
-		height: 150px;
-	}
-	
-	.mediaIframe{
-		position: absolute;
-		z-index: 5;
-	}
-	
-	.mediaImg{
-		position:relative;
-		width:100%;
-		height:150px;
-		z-index:6;
-	}
-	
-	.content{
-		height: 80px;
-		margin-top: 10px;
-		padding-left: 10px;
-	}
-	
-	.contentFooter{
-		height:50px;
-		border-top: 1px solid #BFBCBC;
-	}
-	
-	.tags{
-		height: 20px;
-		color:#666666;
-		margin-top: 5px;
-		margin-bottom: 5px;
-	}
-	
-	#searchResultWrap{
-		margin-top: 50px;
-	}
-	
+		.searchResultTitle{
+			font-size: 25px;
+			font-weight:800;
+			margin-bottom: 30px;
+		}
+		
+		#searchWrap{
+			margin-top: 20px;
+		}
+		
+		.searchListWrap{
+			border: 1px solid #BFBCBC;
+			border-radius:6px;
+			height: 310px;
+			background-color: white;
+		}
+		
+		.searchListHeader{
+			height: 40px;
+			font-size: 17px;
+			font-weight: bold;
+			vertical-align: middle;
+			line-height: 40px;
+		}
+		
+		.searchListMedia{
+			margin-top:8px;
+			height: 110px;
+		}
+		
+		.searchListHeaderLine{
+			border-bottom: 1px solid #BFBCBC;
+		}
+		
+		.searchMediaIframe{
+			position: absolute;
+			z-index: 7;
+			margin-left: -15px;
+			width:100%;
+		}
+		
+		.searchListContent{
+			height: 80px;
+			margin-top: 10px;
+			font-size: 14px;
+		}
+		
+		.searchMediaImg{
+			position:absolute;
+			width:100%;
+			height:110px;
+			z-index:6;
+			margin-left: -15px;
+		}
+		
+		.searchListTags{
+			color: #666666;
+			font-size:13px;
+			margin-bottom: 6px;
+		}
+		
+		.searchFooterContent{
+			color: #666666;
+			font-size: 15px;
+			margin-left: -15px;
+			margin-top:5px;
+		}
+		
+		.reactionspan{
+			font-weight: bold;
+			margin-right: 10px;
+		}
+		
+		.searchFooterContentImg img{
+			margin-top: 5px;
+		}	
 </style>
 </head>
 
 <body>
-	<div class="container-fluid">
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="searchResultWrap">
+	<div class="container-fluid" id="searchWrap">
 			<div class="row">
-				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1" id="searchResult">
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="searchResult2">
-						
-						<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 searchView" >
-							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 searchTitle">
-								<div class="title">
-									<a href="#">제목이다ㅏ아ㅏㅏㅏㅏ</a>
-								</div>
+				<div class="col-md-1"></div>
+				<div  class="col-md-10">
+					<div class="searchResultTitle">
+						' title ' 에 대한 검색결과 
+					</div>
+					<div class="searchListWrap col-sm-4 col-md-2">
+						<div class="searchListHeader col-md-12">
+							title
+						</div>
+						<div class="searchListHeaderLine col-md-12"></div>
+						<div class="searchListMedia col-md-12">
+							<img src="" class="searchMediaImg img-responsive">
+							<iframe class="searchMediaIframe" src="https://www.youtube.com/embed/ZagjR-wFSNQ?modestbranding=1&rel=0&showinfo=0"  height="110px;" frameborder="0" allowfullscree></iframe>
+						</div>
+						<div class="searchListContent col-md-12" style="overflow: hidden;">
+							Lorem Ipsum is simply dummy text of the printing and typesetting industry...
+						</div>
+						<div class="searchListTags col-md-12">
+							#태그  # 태그당 # 태그
+						</div>
+						<div class="searchListHeaderLine col-md-12"></div>	
+						<div class="searchListFooter col-md-12">
+							<div class="col-md-8 searchFooterContent">
+								<span class="reactionspan">Reaction</span>12
 							</div>
-							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 searchContent">
-								<div class="media">
-									<iframe class="mediaIframe" src=""  height="150px;" frameborder="0" allowfullscree></iframe>
-									<img src="" class="mediaImg img-responsive">
-								</div>
-								<div class="content">
-									내용이당ㅇㅇㅇㅇㅇ
-								</div>
-								<div class="tags">
-									#헤헤헤  #히히히 #호호호
-								</div>
-								<div class="contentFooter">
-									<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><img src="resources/images/viewnumber.png">&nbsp;25</div>
-									<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><img style="width:45px;" src="resources/images/recomment.png">&nbsp;10</div>
-									<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><img style="width:45px;" src="resources/images/comment.png">&nbsp;3</div>
-								</div>
+							<div class="col-md-4 searchFooterContentImg" >
+								<img src="resources/images/test1.png">
 							</div>
 						</div>
-					
 					</div>
 				</div>
-			</div>
+			<div class="col-md-1"></div>
 		</div>
-	</div>	
+	</div>
 </body>
 </html>
