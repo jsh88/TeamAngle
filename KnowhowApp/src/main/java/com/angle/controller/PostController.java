@@ -222,7 +222,7 @@ public class PostController {
 	@RequestMapping(value = "morePost", method = RequestMethod.GET)
 	public String morePost(HttpServletRequest request, HttpSession session) {
 
-		postService.addViewCount(request);
+		postService.setViewInfo(request, session);
 		postService.getPost(request, session);
 		postService.getRecommendCount(request);
 		// postCommentService.getPostCommentList(request, session);

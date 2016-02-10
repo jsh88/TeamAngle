@@ -42,6 +42,7 @@ public class TagController {
 	public String getPostTag(HttpServletRequest request, HttpSession session) {
 
 		tagService.getPostTag(request, session);
+		tagService.addMemberTag(request, session);
 
 		return "knowhow/knowhowDetail";
 	}

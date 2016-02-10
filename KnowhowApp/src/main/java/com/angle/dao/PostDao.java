@@ -36,7 +36,7 @@ public interface PostDao {
 
 	public void setMaxPostPage(int pNo, int mPage);
 
-	public void addViewCount(int pNo);
+	public void setViewInfo(String id, int pNo);
 
 	public int getPostRecommendationCount(int pNo);
 

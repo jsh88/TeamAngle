@@ -288,13 +288,13 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 		try {
 
 			jdbcTemplate.update("insert into postrecommendation values(?, ?)", new Object[] { id, pNo });
-			
+
 			return true;
 
 		} catch (DataAccessException e) {
 
 			jdbcTemplate.update("delete from postrecommendation where pno = ? and id = ?", new Object[] { pNo, id });
-			
+
 			return false;
 
 		}
@@ -400,9 +400,20 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	}
 
 	@Override
-	public void addViewCount(int pNo) {
+	public void setViewInfo(String id, int pNo) {
 
 		jdbcTemplate.update("update post set count = count + 1 where pno = ?", new Object[] { pNo });
+
+		try {
+
+			jdbcTemplate.update("insert into postlog values(?, ?, 1, sysdate)", new Object[] { pNo, id });
+
+		} catch (DataAccessException e) {
+
+			jdbcTemplate.update("update postlog set count = count + 1, rdate = sysdate where pno=? and id=?",
+					new Object[] { pNo, id });
+
+		}
 
 	}
 

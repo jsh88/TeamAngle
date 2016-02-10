@@ -40,11 +40,9 @@ public class TagDaoImpl implements TagDao {
 
 			// 루트 태그 업로드
 			try {
-				System.out.println(p.getTag() + " 도전!");
 				jdbcTemplate.update("insert into tag values(?, 1, 0, sysdate, sysdate)", new Object[] { p.getTag() });
 
 			} catch (DataAccessException e) {
-				System.out.println(p.getTag() + " 이미 있다!");
 				jdbcTemplate.update("update tag set count = count + 1, rdate = sysdate where tag = ?",
 						new Object[] { p.getTag() });
 
@@ -59,12 +57,10 @@ public class TagDaoImpl implements TagDao {
 
 			// 포스트 태그 업로드
 			try {
-				System.out.println(p.getTag() + " 도전!");
 				jdbcTemplate.update("insert into posttag values(?, ?, 1, 0, sysdate, sysdate)",
 						new Object[] { p.getpNo(), p.getTag() });
 
 			} catch (DataAccessException e) {
-				System.out.println(p.getTag() + " 이미 있다!");
 				jdbcTemplate.update("update posttag set count = count + 1, rdate = sysdate where tag = ?",
 						new Object[] { p.getTag() });
 
@@ -146,6 +142,16 @@ public class TagDaoImpl implements TagDao {
 
 					}
 				});
+
+	}
+
+	@Override
+	public void updateRootTag(ArrayList<MemberTag> mTagList) {
+
+		for (MemberTag m : mTagList)
+
+			jdbcTemplate.update("update tag set count = count + 1, rdate = sysdate where tag = ?",
+					new Object[] { m.getTag() });
 
 	}
 }

@@ -453,9 +453,10 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	}
 
 	@Override
-	public void addViewCount(HttpServletRequest request) {
+	public void setViewInfo(HttpServletRequest request, HttpSession session) {
 
-		postDao.addViewCount(Integer.parseInt(request.getParameter("pno")));
+		postDao.setViewInfo(((Member) session.getAttribute("member")).getId(),
+				Integer.parseInt(request.getParameter("pno")));
 
 	}
 

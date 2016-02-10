@@ -98,6 +98,7 @@
 			<div class="row">
 				<div class="col-md-1"></div>
 				<div id="bestWrap" class="col-md-10">
+				
 					<div class="mainListWrap col-sm-4 col-md-2">
 						<div class="mainListHeader col-md-12">
 							title
@@ -123,6 +124,7 @@
 							</div>
 						</div>
 					</div>
+					
 				</div>
 			<div class="col-md-1"></div>
 		</div>
