@@ -4,7 +4,7 @@ $(document).ready(function() {
 	$('#navtag').css('width', $(window).width());
 	
 	$(window).resize(function() {
-		$('#menu').css('width', $(window).width());
+		$('#menu').css('height', $(window).height());
 	});
 	
 	
@@ -38,7 +38,7 @@ $(document).ready(function() {
 		
 	$("#search_txt").blur(function(){
 		
-		$("#search_txt").css("background-color" , "#535353").css("color","black");
+		$("#search_txt").css("background-color" , "#535353").css("color","white");
 		$("#search_btn").css("background-color", "#535353").css("color","white");
 		
 	});

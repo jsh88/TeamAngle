@@ -266,8 +266,6 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	public void addPostComment(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
-		@SuppressWarnings("unchecked")
-		ArrayList<PostComment> pComList = (ArrayList<PostComment>) session.getAttribute("pConList");
 		Member m = (Member) session.getAttribute("member");
 
 		PostComment pCom = new PostComment();
@@ -291,14 +289,13 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		}
 
 		pCom.setpNo(p.getpNo());
-		pCom.setPage(Integer.parseInt(request.getParameter("pageNum")));
+		pCom.setId(m.getId());
+		pCom.setPage(Integer.parseInt(request.getParameter("page")));
 		pCom.setContent(request.getParameter("content"));
 		pCom.setImage(m.getImage());
 		pCom.setNickName(m.getNickName());
 
 		postCommentDao.addPostComment(pCom);
-
-		pComList.add(pCom);
 
 	}
 
@@ -306,13 +303,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	public void modifyPostComment(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
-		@SuppressWarnings("unchecked")
-		ArrayList<PostComment> pComList = (ArrayList<PostComment>) session.getAttribute("pComList");
-		PostComment pCom = null;
-
-		for (int i = 0; i < pComList.size(); i++)
-			if (pComList.get(i).getcNo() == Integer.parseInt(request.getParameter("cno")))
-				pCom = pComList.get(Integer.parseInt(request.getParameter("cno")));
+		PostComment pCom = new PostComment();
 
 		if (request.getFile("media") != null) {
 
@@ -330,6 +321,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 		}
 
+		pCom.setcNo(Integer.parseInt(request.getParameter("cno")));
 		pCom.setContent(request.getParameter("content"));
 
 		postCommentDao.modifyPostComment(pCom);
@@ -345,18 +337,20 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	@Override
 	public void getPostCommentList(HttpServletRequest request, HttpSession session) {
-		
+
 		Post p = (Post) session.getAttribute("post");
 
-		session.setAttribute("pComListMap", postCommentDao.getPostCommentList(p.getpNo(), p.getmPage()));
+		int page = Integer.parseInt(request.getParameter("page"));
+
+		session.setAttribute("pComList", postCommentDao.getPostCommentList(p.getpNo(), page));
 
 	}
 
 	@Override
 	public void recommendPost(HttpServletRequest request, HttpSession session) {
 
-		postDao.setRecommendPost(Integer.parseInt(request.getParameter("pno")),
-				((Member) session.getAttribute("member")).getId());
+		request.setAttribute("isState", postDao.setRecommendPost(Integer.parseInt(request.getParameter("pno")),
+				((Member) session.getAttribute("member")).getId()));
 
 	}
 
@@ -424,16 +418,16 @@ public class PostServiceImpl implements PostService, PostCommentService {
 				} else if (request.getParameter("imgArr" + i).indexOf(".") > -1) {
 
 					String str = request.getParameter("imgArr" + i).substring(path.length());
-					
+
 					if (str.equals("null"))
 						pCon.setMedia("none");
 					else
 						pCon.setMedia(str);
 
 				} else {
-					
-					pCon.setMedia("none");	
-					
+
+					pCon.setMedia("none");
+
 				}
 			} else {
 
@@ -452,6 +446,32 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		// 포스트 페이지들 추가
 		postDao.addPostPage(pConList);
 		postDao.setMaxPostPage(p.getpNo(), mPage);
+
+		session.setAttribute("pTagList",
+				postDao.completePosting((ArrayList<PostTag>) luceneKoreanAnalyzer.getTags(pConList)));
+
+	}
+
+	@Override
+	public void addViewCount(HttpServletRequest request) {
+
+		postDao.addViewCount(Integer.parseInt(request.getParameter("pno")));
+
+	}
+
+	@Override
+	public void getCommentList(HttpServletRequest request) {
+
+		request.setAttribute("pComList", postCommentDao.getPostCommentList(
+				Integer.parseInt(request.getParameter("pno")), Integer.parseInt(request.getParameter("page"))));
+
+	}
+
+	@Override
+	public void getRecommendCount(HttpServletRequest request) {
+
+		request.setAttribute("postRecommendationCount",
+				postDao.getPostRecommendationCount(Integer.parseInt(request.getParameter("pno"))));
 
 	}
 }

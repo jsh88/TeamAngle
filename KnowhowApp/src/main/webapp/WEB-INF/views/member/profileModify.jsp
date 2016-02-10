@@ -16,12 +16,16 @@
 <script>
 
 	$(document).ready(function() {
-	
-		$(function() {
-            $("#imgurl").on('change', function(){
+		var setImage = null;
+		
+// 		$(function() {
+//             $("#imgurl").on('change', function(){
+//                 readURL(this);
+//             });
+
+ 		$("#imgurl").on('change', function(){
                 readURL(this);
-            });
-        });
+ 		});
 
         function readURL(input) {
             if (input.files && input.files[0]) {
@@ -35,7 +39,7 @@
             }
         }
 		
-		/* $('#dropbox').on('drop', function(e) {
+		$('#dropbox').on('drop', function(e) {
 
 			e.preventDefault();
 			e.stopPropagation();
@@ -43,17 +47,21 @@
 			var reader = new FileReader();
 
 			reader.onload = function(ev) {
-
-				$('#mediaImg').attr('src', ev.target.result);
-				$('#m').css("background-image", "none");
-
+				alert("이미지님 들어가신다")
+				$('#profile_Img').attr('src', ev.target.result);
+				
 			}
+			
+			setImage = e.originalEvent.dataTransfer.files[0];
 
-			imgArr = e.originalEvent.dataTransfer.files;
-
-			reader.readAsDataURL(imgArr);
-
-		}); */
+			reader.readAsDataURL(setImage);
+			if(reader.readAsDataURL(setImage) != null) {
+				alert(reader.readAsDataURL(setImage) + "없다");	
+			} else {
+				alert(reader.readAsDataURL(setImage) + "있다");
+			}
+			
+		});
 
 	});
 </script>
@@ -90,12 +98,11 @@
 				<div class="col-sm-12">
 					<div class="col-sm-12">
 					Drag &Drop
-						<div id="dropbox" class="col-sm-push-1 col-sm-10" contenteditable="false">
+						<div id="dropbox" class="col-sm-push-1 col-sm-10" contenteditable="true">
 						<img id="profile_Img" style="max-width: 100%; height: auto;" />	
 						</div>
 					</div>
 					<div class="col-sm-12">
-						<input type="file" class="col-sm-12 imgurl" id="imgurl" name="image"/>
 					</div>
 					<!-- 인삿말 등  -->
 					<div class="col-sm-12">

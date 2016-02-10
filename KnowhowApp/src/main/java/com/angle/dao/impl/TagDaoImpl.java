@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -113,5 +114,38 @@ public class TagDaoImpl implements TagDao {
 
 			}
 		});
+	}
+
+	@Override
+	public ArrayList<PostTag> getPostTag(int pNo) {
+
+		return jdbcTemplate.query("select * from posttag where pno = ? order by count desc", new Object[] { pNo },
+				new ResultSetExtractor<ArrayList<PostTag>>() {
+
+					@Override
+					public ArrayList<PostTag> extractData(ResultSet rs) throws SQLException, DataAccessException {
+
+						ArrayList<PostTag> pTagList = new ArrayList<>();
+
+						while (rs.next()) {
+
+							PostTag p = new PostTag();
+
+							p.setpNo(rs.getInt("pno"));
+							p.setCount(rs.getInt("count"));
+							p.setTag(rs.getString("tag"));
+							p.setWeight(rs.getInt("weight"));
+							p.setfDate(rs.getString("fdate"));
+							p.setrDate(rs.getString("rdate"));
+
+							pTagList.add(p);
+
+						}
+
+						return pTagList;
+
+					}
+				});
+
 	}
 }
