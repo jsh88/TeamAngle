@@ -371,7 +371,8 @@
 	         width:1000;  /*div의 전체 가로픽셀*/
 			 position:absolute;   /*테이블의 영향을받지않는 div*/
 			 left:50%;   /*div 왼쪽 top 부분이 가로 전체의 중간으로 위치하게됨*/
-			 margin-left:-500px;  /* 왼쪽 top부분이 가운데로왔으니 좌측에서 전체가로픽셀의 반을 마이너스하여 좌측으로 옮겨줌 */
+			 margin-left:-130px;  /* 왼쪽 top부분이 가운데로왔으니 좌측에서 전체가로픽셀의 반을 마이너스하여 좌측으로 옮겨줌 */
+			 margin-top: 280px;
 	  	  }
     
 	    .display-none{ /*감추기*/
