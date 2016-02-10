@@ -15,6 +15,7 @@
 	var urlArr = [10];
 	var conArr = [10];
 	var i = 1;
+	var j = 0;
 	var maxPage = 1;
 	var url = "";
 	
@@ -36,7 +37,27 @@
 			$(".p9").hide();
 			$(".p10").hide();
 			
+			$(".p"+i).css("width","65");
+			
 			/*mouseOver 처리 */
+			
+			$(".pageNumber").mouseover(function(){
+					
+				$(this).css("width" , "65");
+			
+			});
+			
+			$(".pageNumber").mouseout(function(){
+				
+				if($(this).is(".p"+i) === true){
+					
+					$(this).css("width" , "65");
+				
+				}else{
+					
+					$(this).css("width" , "55");
+				}
+			});
 			
 			
 			 /*추가 버튼*/
@@ -62,6 +83,9 @@
 					 $(".p"+ maxPage).show();
 					 
 				 }
+				 
+				 $(".p"+(i-1)).css("width","55");
+				 $(".p"+i).css("width","65");
 			}); 			 
 			 
 			 /*삭제 버튼*/
@@ -84,9 +108,10 @@
 					conArr[i - 1] = null;													// content 비우기
 					url = "";																	// url 운반 변수 비우기
 					
-					$(".p"+i).hide(); 
+					$(".p"+i).hide();
 					maxPage -=1;
 					i -= 1;
+					$(".p"+i).css("width","65");
 					$("#myCarousel").carousel(maxPage - 1);
 					
 					if(maxPage==9) {
@@ -100,72 +125,102 @@
 			$(".p1").click(function(){
 				$("#myCarousel").carousel(0);
 				modifyCon();
+				j = i;
 				i = 1;				
 				checkMaxPage();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","55");
 			});
 			
 			$(".p2").click(function(){
 				$("#myCarousel").carousel(1);
 				modifyCon();
+				j = i;
 				i = 2;				
 				checkMaxPage();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","55");
 			});
 			
 			$(".p3").click(function(){
 				$("#myCarousel").carousel(2);
 				modifyCon();
+				j = i;
 				i = 3;
 				checkMaxPage();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","55");
 			});
 			
 			$(".p4").click(function(){
 				$("#myCarousel").carousel(3);
 				modifyCon();
+				j = i;
 				i = 4;
 				checkMaxPage();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","55");
 			});
 			
 			$(".p5").click(function(){
 				$("#myCarousel").carousel(4);
 				modifyCon();
+				j = i;
 				i = 5;
 				checkMaxPage();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","55");
 			});
 			
 			$(".p6").click(function(){
 				$("#myCarousel").carousel(5);
 				modifyCon();
+				j = i;
 				i = 6;
 				checkMaxPage();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","55");
 			});
 			
 			$(".p7").click(function(){
 				$("#myCarousel").carousel(6);
 				modifyCon();
+				j = i;
 				i = 7;
 				checkMaxPage();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","55");
 			});
 			
 			$(".p8").click(function(){
 				$("#myCarousel").carousel(7);
 				modifyCon();
+				j = i;
 				i = 8;
 				checkMaxPage();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","55");
 			});
 			
 			$(".p9").click(function(){
 				$("#myCarousel").carousel(8);
 				modifyCon();
+				j = i;
 				i = 9;
 				checkMaxPage();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","55");
 			});
 			
 			$(".p10").click(function(){
 				$("#myCarousel").carousel(9);
 				$("#addbtn").hide();
 				modifyCon();
+				j = i;
 				i = 10;
 				checkMaxPage();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","55");
 			});
 			
 			/* 이미지 드래그 앤 드롭 */
