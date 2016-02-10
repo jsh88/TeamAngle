@@ -72,7 +72,7 @@
 		<div id="show2" class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-body">
-
+				<form action="updateMemberIdModify">
 					<div id="lq1" style="height: 100px;">
 						<div class="col-sm-offset-1 col-sm-11">
 							<span>Please.. Email..</span>
@@ -81,10 +81,12 @@
 							<input type="email" id="id" name="id" class="form-control">
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="submit" class="btn btn-success col-sm-12  btn_choice" value="수정">
+							<input type="submit" id="emailSubmit" class="btn btn-success col-sm-12  btn_choice" value="수정">
 						</div>
 					</div>
-
+					</form>
+					
+					<form action="updateMemberNickNameModify">
 					<div id="lq2" style="height: 100px;">
 						<div class="col-sm-offset-1 col-sm-11">
 							<span>Please.. Nickname..</span>
@@ -93,10 +95,12 @@
 							<input type="text" id="nick" name="nick" class="form-control">
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="submit" class="btn btn-success col-sm-12 btn_choice" value="수정">
+							<input type="submit" id="nickNameSubmit" class="btn btn-success col-sm-12 btn_choice" value="수정">
 						</div>
 					</div>
-
+					</form>
+					
+					<form action="updateMemberInfoPw">
 					<div id="lq3" style="height: 170px;">
 						<div class="col-sm-offset-1 col-sm-10 s1">
 							<span>Please.. changing password ..</span>
@@ -121,9 +125,10 @@
 							
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="submit" class="btn btn-success col-sm-12 btn_choice" value="수정">
+							<input type="submit" id="passSubmit" class="btn btn-success col-sm-12 btn_choice" value="수정">
 						</div>
 					</div>
+					</form>
 
 					<div id="lq4" style="height: 60px;">
 						<div class="col-sm-offset-1 col-sm-11">

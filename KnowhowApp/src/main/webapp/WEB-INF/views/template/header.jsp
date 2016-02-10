@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,7 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <link type="text/css" href="resources/css/header.css" rel="stylesheet">
 <script src="resources/js/header.js"></script>
+<script src="resources/js/ajax_myModfy.js"></script>
 <script>
 	function modalOpen(i) {
 
@@ -110,14 +112,17 @@
 			<div id="menu">
 				<div id="profile_line" class="col-sm-12 col-xs-12 col-md-12">
 					<div id="profile_img" class="col-sm-5 col-xs-12">
-
+						<c:if test="${member.image == null }">
 						<img src="http://placehold.it/110x110" width="110px;" height="110px;">
-
+						</c:if>
+						<c:if test="${member.image != null }">
+						<img src="resources/images/${member.image }" width="110px;" height="110px;">
+						</c:if>
 					</div>
 					<div id="profile_nametag" class="col-sm-7 col-xs-12">
-						<div class="col-sm-12 col-xs-12">김용유</div>
-						<div class="col-sm-12 col-xs-12">식용유같은느끼함</div>
-						<div class="col-sm-12 col-xs-12">식용유같은느끼함</div>
+						<div class="col-sm-12 col-xs-12">${member.nickName }</div>
+						<div class="col-sm-12 col-xs-12">${member.pComment }</div>
+						<div class="col-sm-12 col-xs-12">${member.lDate }</div>
 					</div>
 				</div>
 

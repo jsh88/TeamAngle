@@ -77,7 +77,7 @@
 </head>
 <body>
 	<div class="modal-dialog">
-		<form name="profile_form" action="" method="post">
+		<form name="profile_form" action="memModify" method="post" enctype="multipart/form-data">
 
 			<div id="profile_form" class="modal-content col-sm-push-1 col-sm-10">
 
@@ -102,8 +102,8 @@
 						<div id="profile_pcomm" class="col-sm-12">
 							<label for="profile_pcomm">Please you're comment</label> <input
 								id="profile_pcomm" type="text" name="pcomment"
-								class="form-control col-sm-12"> <input type="button"
-								value="Profile Edit" class="btn btn-default col-sm-12">
+								class="form-control col-sm-12"> <input type="submit"
+								value="Profile Edit" class="btn btn-default col-sm-12" >
 						</div>
 					</div>
 				</div>

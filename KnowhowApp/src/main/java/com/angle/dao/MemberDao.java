@@ -29,9 +29,9 @@ public interface MemberDao {
 
 	//	public void updateMemberInfo(Member member);
 
-	public void updateMemberInfoId(Member member);
+	public void updateMemberInfoId(Member member, String idModify);
 
-	public void updateMemberInfoNickName(Member member);
+	public void updateMemberInfoNickName(Member member, String nickNameModify);
 
 	public void updateMemberInfoPw(Member member);
 

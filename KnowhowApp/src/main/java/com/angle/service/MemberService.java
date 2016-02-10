@@ -34,17 +34,17 @@ public interface MemberService {
 
 	//	public void updateMemberInfo(HttpServletRequest request) throws IOException;
 
-	public void updateMemberInfoId(HttpServletRequest request) throws IOException;
+	public void updateMemberInfoId(HttpServletRequest request, HttpSession session) throws IOException;
 
-	public void updateMemberInfoNickName(HttpServletRequest request) throws IOException;
+	public void updateMemberInfoNickName(HttpServletRequest request, HttpSession session) throws IOException;
 
-	public void updateMemberInfoPw(HttpServletRequest request) throws IOException;
+	public void updateMemberInfoPw(HttpServletRequest request, HttpSession session) throws IOException;
 
 	public Member getMember(String id);
 
 	public void getMyLatelyPost(String id);
 
-	public void modifyMember(MultipartHttpServletRequest req);
+	public void modifyMember(MultipartHttpServletRequest req, String path, HttpSession session) throws IllegalStateException, IOException;
 
 	public void getMyConcernPost(String id);
 

@@ -252,20 +252,18 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public void updateMemberInfoId(Member member) {
-		
-		String sql = "update member set id = :id where id = :id";
-		namedParameterJdbcTemplate.update(sql,
-				new MapSqlParameterSource().addValue("id", member.getId())
-					.addValue("id", member.getId()));		
+	public void updateMemberInfoId(Member member, String idModify) {
+		SqlParameterSource idParam = new MapSqlParameterSource("idModify", idModify).addValue("id", member.getId());
+		String sql = "update member set id = :idModify where id = :id";
+		namedParameterJdbcTemplate.update(sql, idParam);		
 	}
 
 	@Override
-	public void updateMemberInfoNickName(Member member) {
+	public void updateMemberInfoNickName(Member member, String nickNameModify) {
 
 		String sql = "update member set nickname = :nickname where id = :id";
 		namedParameterJdbcTemplate.update(sql,
-				new MapSqlParameterSource().addValue("nickname", member.getNickName())
+				new MapSqlParameterSource().addValue("nickname", nickNameModify)
 					.addValue("id", member.getId()));		
 	}
 

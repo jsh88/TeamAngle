@@ -7,11 +7,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,6 +25,7 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	private static final String filePath = "/resources/images/";
 
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
@@ -83,7 +86,7 @@ public class MemberController {
 	}
 
 	// 회원정보 수정창 전 비밀번호 확인창 서비스콜 부분
-	@RequestMapping(value = { "/member/memberUpdatePassCheck.ajax" })
+	@RequestMapping(value = { "/memberUpdatePassCheck.ajax" })
 	public String memeberUpdatePassCheck(@RequestParam("passCheck") String pass, Model model, HttpSession session) {
 
 		int result = memberService.modifyCheckPw(pass, session);
@@ -111,33 +114,50 @@ public class MemberController {
 	}*/
 	
 	// 회원정보ID 수정 콜 부분
-	@RequestMapping(value = { "/updateMemberInfoId.ajax" })
+	//버튼 누르면 계속 수정되게 되어 있었음 수정함. 아이디 검색하면서 수정이 되어버림.
+	@RequestMapping(value = { "/updateMemberInfoIdCheck.ajax" })
 	public String updateMemberInfoId(Model model, HttpServletRequest request) throws IOException {
 		
 		int result = memberService.checkId(request);
 		model.addAttribute("result", result);
-		memberService.updateMemberInfoId(request);
-		return "main";
+//		memberService.updateMemberInfoId(request);
+		return "member/memberAjax";
+	}
+	
+	//아이디 적합성 판정에서 수정되던걸 때어내여 따로 수정하기를 만듬.
+	@RequestMapping(value="/updateMemberIdModify")
+	public String updateMemberIdModify(HttpServletRequest request, HttpSession session) throws IOException{
+		memberService.updateMemberInfoId(request, session);
+		return "template/header";
 	}
 	
 	// 회원정보NickName 수정 콜 부분
-	@RequestMapping(value = { "/updateMemberInfoNickName.ajax" })
+	//이메일 수정과 똑같이 해놨음 
+	@RequestMapping(value = { "/updateMemberInfoNickNameCheck.ajax" })
 	public String updateMemberInfoNickName(Model model, HttpServletRequest request) throws IOException {
 		
 		int result = memberService.checkNickName(request);
 		model.addAttribute("result", result);
-		memberService.updateMemberInfoNickName(request);
-		return "main";
+//		memberService.updateMemberInfoNickName(request);
+		return "member/memberAjax";
+	}
+	
+	//그래서 나는 똑같이 수정 했지!
+	@RequestMapping(value="/updateMemberNickNameModify")
+	public String updateMemberNickNameModify(HttpServletRequest request, HttpSession session) throws IOException{
+		memberService.updateMemberInfoNickName(request, session);
+		return "template/header";
 	}
 	
 	// 회원정보Pw 수정 콜 부분
+	//뷰단에서 이미 PW체크를 했는데 또하는게 이상하여 수정함.
 	@RequestMapping(value = { "/updateMemberInfoPw" })
-	public String updateMemberInfoPw(Model model, HttpServletRequest request) throws IOException {
+	public String updateMemberInfoPw(Model model, HttpServletRequest request, HttpSession session) throws IOException {
 		
-		int result = memberService.checkPw(request);
-		model.addAttribute("result", result);
-		memberService.updateMemberInfoPw(request);
-		return "main";
+//		int result = memberService.checkPw(request);
+//		model.addAttribute("result", result);
+		memberService.updateMemberInfoPw(request, session);
+		return "template/header";
 	}
 	
 	// 회원 로그아웃 콜 부분
@@ -159,6 +179,7 @@ public class MemberController {
 	@RequestMapping(value = {"/login/logincheck.do"}, method=RequestMethod.POST)
 	public ModelAndView loginProc(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpServletRequest request, HttpSession session) {
 		int result = memberService.memberLoginCheck(id, pw, request, session);
+		System.out.println(result);
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("result", result);
@@ -177,14 +198,12 @@ public class MemberController {
 	
 	
 	@RequestMapping("/memModify")
-	public String modifyProfile(MultipartHttpServletRequest req){
-		/*Member m = memberService.getMember(req.getParameter("id"));
-		HttpSession session = req.getSession();
-		session.setAttribute("member", m);*/
-		
-		memberService.modifyMember(req);
-		return "redirect:/";
+	public String modifyProfile(MultipartHttpServletRequest request, HttpSession session) throws IllegalStateException, IOException{
+		String path = request.getServletContext().getRealPath(filePath);
+		memberService.modifyMember(request, path, session);
+		return "redirect:memberJoinForm";
 	}
+	
 	// 마이페이지 
 	@RequestMapping("/myPage")
 	public String getMyPage(Model model){
