@@ -55,7 +55,7 @@
 				
 				}else{
 					
-					$(this).css("width" , "55");
+					$(this).css("width" , "45");
 				}
 			});
 			
@@ -84,7 +84,7 @@
 					 
 				 }
 				 
-				 $(".p"+(i-1)).css("width","55");
+				 $(".p"+(i-1)).css("width","45");
 				 $(".p"+i).css("width","65");
 			}); 			 
 			 
@@ -129,7 +129,7 @@
 				i = 1;				
 				checkMaxPage();
 				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","55");
+				$(".p"+j).css("width","45");
 			});
 			
 			$(".p2").click(function(){
@@ -139,7 +139,7 @@
 				i = 2;				
 				checkMaxPage();
 				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","55");
+				$(".p"+j).css("width","45");
 			});
 			
 			$(".p3").click(function(){
@@ -149,7 +149,7 @@
 				i = 3;
 				checkMaxPage();
 				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","55");
+				$(".p"+j).css("width","45");
 			});
 			
 			$(".p4").click(function(){
@@ -159,7 +159,7 @@
 				i = 4;
 				checkMaxPage();
 				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","55");
+				$(".p"+j).css("width","45");
 			});
 			
 			$(".p5").click(function(){
@@ -169,7 +169,7 @@
 				i = 5;
 				checkMaxPage();
 				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","55");
+				$(".p"+j).css("width","45");
 			});
 			
 			$(".p6").click(function(){
@@ -179,7 +179,7 @@
 				i = 6;
 				checkMaxPage();
 				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","55");
+				$(".p"+j).css("width","45");
 			});
 			
 			$(".p7").click(function(){
@@ -189,7 +189,7 @@
 				i = 7;
 				checkMaxPage();
 				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","55");
+				$(".p"+j).css("width","45");
 			});
 			
 			$(".p8").click(function(){
@@ -199,7 +199,7 @@
 				i = 8;
 				checkMaxPage();
 				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","55");
+				$(".p"+j).css("width","45");
 			});
 			
 			$(".p9").click(function(){
@@ -209,7 +209,7 @@
 				i = 9;
 				checkMaxPage();
 				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","55");
+				$(".p"+j).css("width","45");
 			});
 			
 			$(".p10").click(function(){
@@ -220,7 +220,7 @@
 				i = 10;
 				checkMaxPage();
 				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","55");
+				$(".p"+j).css("width","45");
 			});
 			
 			/* 이미지 드래그 앤 드롭 */
