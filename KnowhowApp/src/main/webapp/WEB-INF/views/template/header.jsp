@@ -197,12 +197,12 @@
 		<jsp:include page="../knowhow/startPosting.jsp"></jsp:include>
 	</div>
 
-	<%-- 	
-	
 	<div class="modal fade" id="addKnowhowPage" data-backdrop="static">
 		<jsp:include page="../knowhow/addKnowhow.jsp"></jsp:include>
 	</div> 
-	
+
+<%-- 	
+		
 	<div class="modal fade" id="addTagPage" data-backdrop="static" >
 		<jsp:include page="../knowhow/addTag.jsp"></jsp:include>
 	</div> 

@@ -9,53 +9,6 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="resources/css/addKnowhow.css">
-	<style>
-	
-	.wrap-loading{ /*화면 전체를 어둡게 합니다.*/
-    position: fixed;
-    left:0;
-    right:0;
-    top:0;
-    bottom:0;
-    background: rgba(0,0,0,0.2);
-    }
-    
-     .wrap-loading div{ /*로딩 이미지*/
-         width:1000;  /*div의 전체 가로픽셀*/
-		 position:absolute;   /*테이블의 영향을받지않는 div*/
-		 left:50%;   /*div 왼쪽 top 부분이 가로 전체의 중간으로 위치하게됨*/
-		 margin-left:-500px;  /* 왼쪽 top부분이 가운데로왔으니 좌측에서 전체가로픽셀의 반을 마이너스하여 좌측으로 옮겨줌 */
-    }
-    
-    .display-none{ /*감추기*/
-        display:none;
-    }
-	
-		.imgurl{
-			position: absolute;
-			width:20px;
-			height: 200px;
-			z-index:1;
-			opacity:0;
-			border:0px;
-		}
-		
-		#Clear{
-			float:right;
-			margin-top: -15px;
-			margin-right: 20px;
-			opacity:0.9;
-			cursor: pointer;
-		}
-		
-		#tSave{
-			float:right;
-			margin-top: -20px;
-			margin-right: 20px;
-			opacity:0.9;
-			cursor: pointer;
-		}
-	</style>
 	<script>
 	
 	var imgArr = [10];
@@ -82,6 +35,9 @@
 			$(".p8").hide();
 			$(".p9").hide();
 			$(".p10").hide();
+			
+			/*mouseOver 처리 */
+			
 			
 			 /*추가 버튼*/
 			 $("#addbtn").click(function(){
@@ -234,7 +190,7 @@
 
 			});		
 			
-			$("#inpuBtn").click(function(){
+			$("#inputBtn").click(function(){
 				
 				closeModal();
 				
@@ -383,8 +339,9 @@
 			}); 
 		}
 		
-		function modalClose(){
+		function modalClose(k){
 			
+		if(k == "1"){
 			if(confirm('포스트작성을 취소합니다.') == true){
 				$("#addModal").modal('hide');
 			
@@ -392,18 +349,23 @@
 				
 				return ;
 			}
+			
+		}else if(k == "2"){
+			$("#inputModal").modal('hide');	
+		}	
+		
 		}
 	</script>
 	<style>
 	</style>
 </head>
 <body> 	
-<!-- 		<div class="modal fade" id="addModal" data-backdrop="static"> -->
+<div class="modal fade" id="addModal" data-backdrop="static">
 		<div class="modal-dialog" id="addDialog">
 				<div class="modal-content" id="addContent">
 				<div id="addWrap">
 					<div class="modal-header" id="header">
-						<div id="Closeimg" onclick="modalClose()"><img style="width:20px;" src="resources/images/close.png"/></div>
+						<div id="Closeimg" onclick="modalClose('1')"><img style="width:20px;" src="resources/images/close.png"/></div>
 						<div id="Title">${post.title }</div>
 						<div id="CreateDate">${post.wDate }</div>
 						<div id="Clear" onclick="clearPage()"><img style="width:20px;" src="resources/images/clear.png"/></div>
@@ -660,7 +622,7 @@
 		<div class="modal-dialog" id="inputDialog">
 			<div class="modal-content" id="inputContent">
 				<div id="inputWrap">
-				<div id="Closeimg2"><a href=""><img style="width:20px;" src="resources/images/close.png"/></a></div>	
+				<div id="Closeimg2" onclick="modalClose('2')"><img style="width:20px;" src="resources/images/close.png"/></div>	
 					<div id="inputTitle">
 						<div class="form-group">
 							<label for="addtitle" class="col-sm-12 control-label" id="titlelabel">Please enter a Video url</label>
@@ -669,13 +631,13 @@
 							</div>
 						</div>
 						<div id="buttonGroup">
-								<button type="button" class="btn btn-success addbtn" id="inpuBtn"><b>Enter</b></button>
+								<button type="button" class="btn btn-success addbtn" id="inputBtn"><b>Enter</b></button>
 							</div>	
 					</div>
 			</div>
 		</div>
 		</div>
 	</div>
-<!-- 	</div> -->
+	</div>
 </body>
 </html>
