@@ -256,7 +256,8 @@ public class MemberServiceImpl implements MemberService {
 			m.setImage(null);
 			m.setpComment(comment);
 		}
-		memberDao.modifyMember(m);
+		int result = memberDao.modifyMember(m);
+		request.setAttribute("result", result);
 		session.setAttribute("member", m);
 	}
 

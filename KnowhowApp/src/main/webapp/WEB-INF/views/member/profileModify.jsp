@@ -5,18 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>프로필 수정</title>
-
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+<script src="resources/js/ajax_profileModify.js"></script>
 <script>
 
+	var setImage = null;
+	var comm = null;
 	$(document).ready(function() {
-		var setImage = null;
 		
 // 		$(function() {
 //             $("#imgurl").on('change', function(){
@@ -34,7 +34,6 @@
             reader.onload = function (e) {
                     $('#profile_Img').attr('src', e.target.result);
                 }
-
               reader.readAsDataURL(input.files[0]);
             }
         }
@@ -55,11 +54,6 @@
 			setImage = e.originalEvent.dataTransfer.files[0];
 
 			reader.readAsDataURL(setImage);
-			if(reader.readAsDataURL(setImage) != null) {
-				alert(reader.readAsDataURL(setImage) + "없다");	
-			} else {
-				alert(reader.readAsDataURL(setImage) + "있다");
-			}
 			
 		});
 
@@ -107,10 +101,9 @@
 					<!-- 인삿말 등  -->
 					<div class="col-sm-12">
 						<div id="profile_pcomm" class="col-sm-12">
-							<label for="profile_pcomm">Please you're comment</label> <input
-								id="profile_pcomm" type="text" name="pcomment"
-								class="form-control col-sm-12"> <input type="submit"
-								value="Profile Edit" class="btn btn-default col-sm-12" >
+							<label for="profile_pcom">Please you're comment</label> 
+							<input id="profile_pcom" type="text" name="pcomment" class="form-control col-sm-12"> <input type="button"
+								value="Profile Edit" class="btn btn-default col-sm-12" id="profileModify" >
 						</div>
 					</div>
 				</div>

@@ -39,7 +39,7 @@ public interface MemberDao {
 	
 	public List<Post> getMyLatelyPost(String id);
 
-	public void modifyMember(Member m);
+	public Integer modifyMember(Member m);
 
 	public List<Post> getMyConcernPost(String id);
 

@@ -197,11 +197,11 @@ public class MemberController {
 	}*/
 	
 	
-	@RequestMapping("/memModify")
+	@RequestMapping("/profileModify.ajax")
 	public String modifyProfile(MultipartHttpServletRequest request, HttpSession session) throws IllegalStateException, IOException{
 		String path = request.getServletContext().getRealPath(filePath);
 		memberService.modifyMember(request, path, session);
-		return "redirect:memberJoinForm";
+		return "member/memberAjax";
 	}
 	
 	// 마이페이지 

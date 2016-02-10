@@ -326,11 +326,16 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		
 		@Override
-		public void modifyMember(Member m) {
+		public Integer modifyMember(Member m) {
+			try{
 			namedParameterJdbcTemplate.update(
 					"UPDATE member SET image = :image, pComment = :pComment WHERE id = :id",
 					new BeanPropertySqlParameterSource(m));
-			
+			return 1;
+			}catch(Exception e){
+				e.printStackTrace();
+				return 0;
+			}
 		}
 		
 		@Override
