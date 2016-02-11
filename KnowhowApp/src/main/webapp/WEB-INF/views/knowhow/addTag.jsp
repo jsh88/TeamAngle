@@ -327,7 +327,7 @@
 <body>
 <div class="modal fade" id="tagModal" data-backdrop="static"> 
 		<div class="modal-dialog" id="tagDialog">
-		
+
 			<div class="wrap-loading display-none">
 		  		<div><img src="resources/images/loading2.gif" /></div>
 			</div>

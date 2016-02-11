@@ -500,18 +500,8 @@
 			width: 1000; 								/*div의 전체 가로픽셀*/
 			position: absolute; 						/*테이블의 영향을받지않는 div*/
 			left: 50%; 									/*div 왼쪽 top 부분이 가로 전체의 중간으로 위치하게됨*/
-<<<<<<< HEAD
 			margin-left:-130px;		  /* 왼쪽 top부분이 가운데로왔으니 좌측에서 전체가로픽셀의 반을 마이너스하여 좌측으로 옮겨줌 */
 			margin-top: 280px;			
-
-=======
-			margin-left:-130px;		  /* 왼쪽 top부분이 가운데로왔으니 좌측에서 전체가로픽셀의 반을 마이너스하여 좌측으로 옮겨줌 */
-<<<<<<< HEAD
-			margin-top: 280px;					
-=======
-			margin-top: 280px;			
->>>>>>> refs/heads/wjw
->>>>>>> refs/heads/crimson
 		}
 		
 		.display-none { /*감추기*/
@@ -566,7 +556,6 @@
 		
 		.replyView{
 			width:380px;
-<<<<<<< HEAD
 			margin: 0px auto;
 			margin-top:10px;
 			clear: both;
@@ -614,7 +603,6 @@
 		.replycontents{
 			float: left;
 			width:315px;
-=======
 			height: 65px;
 			margin: 0px auto;
 			margin-top:10px;
@@ -664,7 +652,6 @@
 			float: left;
 			width:315px;
 			height:40px;
->>>>>>> refs/heads/crimson
 			margin-left: 5px;
 			font-size: 13px;
 		}
@@ -895,7 +882,6 @@
 			margin: 0px auto;
 		}
 		
-<<<<<<< HEAD
 		.replyline{
 			width:100%;
 			height: 5px;
@@ -903,8 +889,6 @@
 			border-bottom: 1px solid #BFBCBC;
 		}
 		
-=======
->>>>>>> refs/heads/crimson
 		::-webkit-scrollbar {width: 8px; height: 8px; border: 3px solid #fff; }
  
 			 ::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {display: block; height: 10px; background: url('./images/bg.png') #efefef}
@@ -931,12 +915,12 @@
 					<!-- Modal 상단-->
 						<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
 							
-  							 <div class="carousel-inner" role="listbox">
-						 
-  									<div class="wrap-loading display-none">
-			  							<div><img src="resources/images/loading2.gif" /></div>
-									</div>								 
+  							 <div class="carousel-inner" role="listbox">	 
 
+							<div class="wrap-loading">
+			  					<div><img src="resources/images/loading2.gif" /></div>
+							</div>			
+									
   							 	<div class="item active">
 										<div id="content">
 											<div id="Media" class="mbackground">
@@ -1119,11 +1103,9 @@
 					</div>
 					<form name="replyForm" action="" method="post">
 						<div id="replyContent">
-<<<<<<< HEAD
+
 							<input type="text" class="form-control replybox" id="inputCom" name="reply">
-=======
-							<input type="text" class="form-control replybox" name="reply">
->>>>>>> refs/heads/crimson
+
 							<div id="replybtndiv">
 								<input type="button" id="replybtn"class="btn btn-success" onclick="addComment()" value="Comment Posting!"/>
 							</div>
