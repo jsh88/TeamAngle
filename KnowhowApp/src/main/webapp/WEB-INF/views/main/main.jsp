@@ -206,57 +206,107 @@
 var bestPostCount = 1;
 var postCount = 1;
 $(document).ready(function(){
-	for(var i = 0; i < 5; i++) {
-		getPostView();		
-	}	
+	for(var i = 0; i < 6; i++) {
+		getBestPostView();
+		getPostView();
+		bestPostCount++;
+		postCount++;
+	}
 });
 
-//포스트 리스트 가져오기
-function getPostView() {
-	// 폼 데이터 받기 or Append or 인자로 form id)
-	var formData = new FormData();
+	//포스트 리스트 가져오기
+	function getPostView() {
+		// 폼 데이터 받기 or Append or 인자로 form id)
+		var formData = new FormData();
+	
+		formData.append("no", postCount);
+	
+		$.ajax({
+			type : 'POST',
+			url : 'postView',
+			data : formData,
+	// 		async : false,
+			processData : false,
+			contentType : false,
+	
+			success : function(responseData, statusText, xhr) {
+				
+				var result = responseData;
+				$('#newPost').html($('#newPost').html() + result);
+				
+				// 성공처리(v는 서버로 받은 메시지, value)
+				
+			},
+			beforeSend : function() {
+	
+				// 전송 전
+				// 이미지 보여주기
+				$('.wrap-loading').removeClass('display-none');
+				
+			},
+			error : function(request, status, error) {
+	
+				// 에러 로직, 에러 로그 확인
+	// 			alert("code:" + request.status + "\n\n" + "message:"
+	// 					+ request.responseText + "\n\n" + "error:" + error);
+	
+			},
+			complete : function() {
+	
+				// 이미지 감추기 처리
+	//				$(location).attr('href', "이동할 페이지");
+				$('.wrap-loading').addClass('display-none');
+	
+			}				
+		});
+	}
+	
+	// 베스트 포스트 리스트 가져오기
+	function getBestPostView() {
+		// 폼 데이터 받기 or Append or 인자로 form id)
+		var formData = new FormData();
 
-	formData.append("no", bestPostCount++);
+		formData.append("no", bestPostCount);
 
-	$.ajax({
-		type : 'POST',
-		url : 'postView',
-		data : formData,
-		processData : false,
-		contentType : false,
+		$.ajax({
+			type : 'POST',
+			url : 'postView',
+			data : formData,
+//	 		async : false,
+			processData : false,
+			contentType : false,
 
-		success : function(responseData, statusText, xhr) {
-			
-			var result = responseData;
-			$('#newPost').html($('#newPost').html() + result);
-			
-			// 성공처리(v는 서버로 받은 메시지, value)
-			
-		},
-		beforeSend : function() {
+			success : function(responseData, statusText, xhr) {
+				
+				var result = responseData;
+				$('#bestPost').html($('#bestPost').html() + result);
+				
+				// 성공처리(v는 서버로 받은 메시지, value)
+				
+			},
+			beforeSend : function() {
 
-			// 전송 전
-			// 이미지 보여주기
-			$('.wrap-loading').removeClass('display-none');
-			
-		},
-		error : function(request, status, error) {
+				// 전송 전
+				// 이미지 보여주기
+				$('.wrap-loading').removeClass('display-none');
+				
+			},
+			error : function(request, status, error) {
 
-			// 에러 로직, 에러 로그 확인
-			alert("code:" + request.status + "\n\n" + "message:"
-					+ request.responseText + "\n\n" + "error:" + error);
+				// 에러 로직, 에러 로그 확인
+//	 			alert("code:" + request.status + "\n\n" + "message:"
+//	 					+ request.responseText + "\n\n" + "error:" + error);
 
-		},
-		complete : function() {
+			},
+			complete : function() {
 
-			// 이미지 감추기 처리
-//				$(location).attr('href', "이동할 페이지");
-			$('.wrap-loading').addClass('display-none');
-			$("#tagModal").modal("hide");
+				// 이미지 감추기 처리
+//					$(location).attr('href', "이동할 페이지");
+				$('.wrap-loading').addClass('display-none');
 
-		}				
-	});
-}
+			}				
+		});
+	}
 </script>
 </head>
 	<body style="overflow: auto; overflow-x:hidden;">
@@ -277,33 +327,7 @@ function getPostView() {
 						Best Knowhow
 					</div>
 					<div class="bestTitleLine col-md-12"></div>
-					
-					<div class="bestListWrap col-sm-4 col-md-2">
-						<div class="bestListHeader col-md-12">
-							<a href="#">Siatama! </a>
-						</div>
-						<div class="bestListDate col-md-6">2016-02-11</div>
-						<div class="bestListWriter col-md-6"><a href="#">와닉네임이당</a></div>
-						<div class="bestListHeaderLine col-md-12"></div>
-						<div class="bestListMedia col-md-12">
-							<img src="" class="bestMediaImg img-responsive">
-							<iframe class="bestMediaIframe" src="https://www.youtube.com/embed/ZagjR-wFSNQ?modestbranding=1&rel=0&showinfo=0"  height="110px;" frameborder="0" allowfullscree></iframe>
-						</div>
-						<div class="bestListContent col-md-12" style="overflow: hidden;">
-							Lorem Ipsum is simply dummy text of the printing and typesetting industry...
-						</div>
-						<div class="bestListTags col-md-12">
-							#태그  # 태그당 # 태그
-						</div>
-						<div class="bestListHeaderLine col-md-12"></div>	
-						<div class="bestListFooter col-md-12">
-							<div class="col-md-12 bestFooterContent">
-								<div class="col-md-4 reImg"><div class="col-md-12 reIn"><img class="img-responsive" src="resources/images/recomment.png"/>32</div></div>
-								<div class="col-md-4 vImg"><div class="col-md-12 vIn"><img class="img-responsive" src="resources/images/viewnumber.png"/>&nbsp;20</div></div>
-								<div class="col-md-4 cImg"><div class="col-md-12 cIn"><img class="img-responsive" src="resources/images/comment.png"/>11</div></div>
-							</div>
-						</div>
-					</div>
+					<div class="col-md-12" id="bestPost"></div>
 					
 					<div id="bestLastLine" class="col-md-12"></div>
 					

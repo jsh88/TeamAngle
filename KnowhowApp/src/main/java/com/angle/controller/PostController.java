@@ -245,7 +245,7 @@ public class PostController {
 
 		postService.getBestPostView(request);
 
-		return "knowhow/postList"; // 어디로 가야하오
+		return "main/postList"; // 어디로 가야하오
 	}
 
 	// 포스트 검색 -> body include

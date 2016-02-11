@@ -2,6 +2,7 @@ package com.angle.service.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -473,7 +474,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	@Override
 	public void getBestPostView(HttpServletRequest request) {
 
-		request.setAttribute("bestPostView", postDao.getBestPostInfo(Integer.parseInt(request.getParameter("no"))));
+		request.setAttribute("postView", postDao.getBestPostInfo(Integer.parseInt(request.getParameter("no"))));
 
 	}
 
