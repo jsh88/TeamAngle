@@ -23,27 +23,36 @@
 			
 			$(".tags").click(function(){			
 				
+				if($('.t').length == 20){
+					
+					alert('태그는 20개까지만 추가 가능합니다.');
+					$("#tagtext").val("");
+					
+				}else{
+				
 				var t = $(this).text();
 				var hidden  = $("#hiddentext").val();
 				var subt = t.substring(1);
 				
 				tags.push(subt);
-				alert(tags);
 				
-				$("#Tag").append("<a class='t'  href='#'>"+t+"</a>");
+				$("#Tagbox").append("<a class='t'  href='#'>"+t+"</a>");
 				$("#hiddentext").val(hidden+" "+subt);
 				
 				$(this).hide();
+							
+				$('.t').click(function(){
+					
+					$(this).remove();
+					removeTag(($(this).text()).substr(1));
+					
+				});
 				
+				}
 			});
-			
+				
 			// 추가된 태그 클릭시 태그 삭제
-			$(".t").click(function(){
-				
-				$(this).hide();
-				removeTag(($(this).text()).substr(1));
-				
-			});
+			
 			
 			$("#tagtext").keypress(function(key){
 						
@@ -57,10 +66,17 @@
 				
 				if(key.keyCode == 13){
 					
+					if($(".t").length == 20){
+						
+						alert('태그는 20개까지만 추가 가능합니다');
+						$("#tagtext").val("");
+						
+					}else{
+					
 					var n = $("#tagtext").val();
 					var h = $("#hiddentext").val();
 					
-					if( n === ""){
+					if( n == ""){
 					
 						$("#tagtext").css("border", "3px solid #FF2727").css("border-radius", "6px");
 						$("#k").show();
@@ -68,11 +84,10 @@
 						
 					}else{
 					
-						$("#Tag").append("<a class='t' href='#'>#"+n+"</a>");
+						$("#Tagbox").append("<a class='t' href='#'>#"+n+"</a>");
 						
 						oTags.push(n);
 						tags.push(n);
-						alert(oTags);
 						
 						$("#hiddentext").val(h+" "+n);
 						$("#tagtext").val("");
@@ -80,8 +95,15 @@
 						$("#k").hide();
 						$("#s").hide();
 					
+						
+						$('.t').click(function(){
+	
+							$(this).remove();
+							removeTag(($(this).text()).substr(1));
+							
+						});
 					}
-					
+					}
 				}
 				
 			});
@@ -171,7 +193,11 @@
 				
 			});
 		}
-	
+		/* header랑 추후 연결작업하면서 수정 */
+		function closeTagModal(){    
+			$("#tagModal").modal('hide');  
+		}
+		
 	</script>
 	<style>
 		
@@ -189,7 +215,8 @@
 		width: 1000; 								/*div의 전체 가로픽셀*/
 		position: absolute; 						/*테이블의 영향을받지않는 div*/
 		left: 50%; 									/*div 왼쪽 top 부분이 가로 전체의 중간으로 위치하게됨*/
-		margin-left: -500px;						/* 왼쪽 top부분이 가운데로왔으니 좌측에서 전체가로픽셀의 반을 마이너스하여 좌측으로 옮겨줌 */										
+		margin-left: -90px;						/* 왼쪽 top부분이 가운데로왔으니 좌측에서 전체가로픽셀의 반을 마이너스하여 좌측으로 옮겨줌 */										
+		margin-top: 120px;						
 	}
 	
 	.display-none { /*감추기*/
@@ -238,7 +265,7 @@
 		
 		#userTitle{
 			margin-left:20px;
-			margin-top:30px;
+			margin-top:10px;
 			font-size:17px;
 			color:white;
 			font-weight: bold;
@@ -247,6 +274,7 @@
 		#ReTag{
 			margin: 0px auto;
 			width:435px;
+			height: 70px;
 		}
 		
 		#Line{
@@ -261,10 +289,10 @@
 			padding-right: 10px;
 		}
 		
-		#Tag{
+		#Tagbox{
 			margin: 0px auto;
 			width:440px;
-			height: 120px;
+			height: 90px;
 			margin-bottom: 20px;
 			color: white;
 			
@@ -297,6 +325,7 @@
 	</style>
 	</head>
 <body>
+<div class="modal fade" id="tagModal" data-backdrop="static"> 
 		<div class="modal-dialog" id="tagDialog">
 		
 			<div class="wrap-loading display-none">
@@ -305,7 +334,11 @@
 		
 				<div class="modal-content" id="tagContent">
 				<div id="TagWrap">
+<<<<<<< HEAD
+						<div id="Tagimage"><a href=""><img style="width:20px;" src="resources/images/close.png"/></a></div>
+=======
 						<div id="Tagimage"><a href=""><img style="width:20px;" src="resources/images//close.png"/></a></div>
+>>>>>>> refs/heads/crimson
 					<div id="TagContent">
 						<div id="contentTitle">
 							Recommendation Tag
@@ -332,7 +365,7 @@
 							</div>
 							<div id="Line"></div>
 							<form name="tag" action="completePosting" method="post">
-							<div id="Tag">
+							<div id="Tagbox">
 								<input type="hidden" id="hiddentext"  name="tags"/>
 							</div>
 							<div id="Tagbtn">
@@ -344,5 +377,6 @@
 				</div>
 			</div>
 		</div>
+	</div>		
 </body>
 </html>

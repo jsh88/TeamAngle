@@ -40,11 +40,9 @@ public class TagDaoImpl implements TagDao {
 
 			// 루트 태그 업로드
 			try {
-				System.out.println(p.getTag() + " 도전!");
 				jdbcTemplate.update("insert into tag values(?, 1, 0, sysdate, sysdate)", new Object[] { p.getTag() });
 
 			} catch (DataAccessException e) {
-				System.out.println(p.getTag() + " 이미 있다!");
 				jdbcTemplate.update("update tag set count = count + 1, rdate = sysdate where tag = ?",
 						new Object[] { p.getTag() });
 
@@ -59,14 +57,12 @@ public class TagDaoImpl implements TagDao {
 
 			// 포스트 태그 업로드
 			try {
-				System.out.println(p.getTag() + " 도전!");
 				jdbcTemplate.update("insert into posttag values(?, ?, 1, 0, sysdate, sysdate)",
 						new Object[] { p.getpNo(), p.getTag() });
 
 			} catch (DataAccessException e) {
-				System.out.println(p.getTag() + " 이미 있다!");
-				jdbcTemplate.update("update posttag set count = count + 1, rdate = sysdate where tag = ?",
-						new Object[] { p.getTag() });
+				jdbcTemplate.update("update posttag set count = count + 1, rdate = sysdate where tag = ? and pno = ?",
+						new Object[] { p.getTag(), p.getpNo() });
 
 			}
 		}
@@ -78,7 +74,7 @@ public class TagDaoImpl implements TagDao {
 
 		for (MemberTag m : mTagList) {
 
-			// 포스트 태그 업로드
+			// 멤버 태그 업로드
 			try {
 
 				jdbcTemplate.update("insert into membertag values(?, ?, 1, 0, sysdate, sysdate)",
@@ -86,8 +82,8 @@ public class TagDaoImpl implements TagDao {
 
 			} catch (DataAccessException e) {
 
-				jdbcTemplate.update("update membertag set count = count + 1, rdate = sysdate where tag = ?",
-						new Object[] { m.getTag() });
+				jdbcTemplate.update("update membertag set count = count + 1, rdate = sysdate where tag = ? and id = ?",
+						new Object[] { m.getTag(), m.getId() });
 
 			}
 		}
@@ -110,7 +106,7 @@ public class TagDaoImpl implements TagDao {
 				tag.setfDate(rs.getString("fdate"));
 				tag.setrDate(rs.getString("rdate"));
 
-				return null;
+				return tag;
 
 			}
 		});
@@ -146,6 +142,16 @@ public class TagDaoImpl implements TagDao {
 
 					}
 				});
+
+	}
+	
+	@Override
+	public void updateRootTag(ArrayList<MemberTag> mTagList) {
+
+		for (MemberTag m : mTagList)
+
+			jdbcTemplate.update("update tag set count = count + 1, rdate = sysdate where tag = ?",
+					new Object[] { m.getTag() });
 
 	}
 }

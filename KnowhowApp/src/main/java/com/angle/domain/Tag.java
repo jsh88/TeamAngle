@@ -1,7 +1,14 @@
 package com.angle.domain;
 
-public class Tag {
+import java.io.Serializable;
 
+public class Tag  implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private String tag;		// 태그
 	private int count;			// 태그개수 or 조회수 or 유입수
 	private int weight;		// 가중치 : 해당 태그가 가지는 중요지수

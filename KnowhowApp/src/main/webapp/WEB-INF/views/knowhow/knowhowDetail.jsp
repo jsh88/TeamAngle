@@ -11,6 +11,7 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script>
 		var i = 1;
+		var j = 0;
 		var recoNum = 0;
 		var pNo = "";
 	
@@ -36,11 +37,15 @@
 			$(".p9").hide();
 			$(".p10").hide();
 
+			$(".p"+i).css("width","65");
+			
 			<c:forEach items="${pConList}" var="pCon" varStatus="status">
 				
 				var media = "${pCon.media}";
 				
 				if(media == "none") {
+					
+					$('#mediaiframe'+'${status.count}').attr("src" , "resources/images/nomedia.png");
 					
 // 					imgArr["${status.index}"] = null;
 // 					urlArr["${status.index}"] = undefined;
@@ -69,74 +74,134 @@
 			$("#modifyDelete").hide();
 			$("#commentContent").hide();
 			
+			$(".pageNumber").mouseover(function(){
+				
+				$(this).css("width" , "65");
+			
+			});
+			
+			$(".pageNumber").mouseout(function(){
+				
+				if($(this).is(".p"+i) === true){
+					
+					$(this).css("width" , "65");
+				
+				}else{
+					
+					$(this).css("width" , "50");
+				}
+			
+			});
+			
 			$("#replycontent").click(function(e){
 				
 				e.preventDefault();
 				e.stopPropagation();
 				
-				$("#commentContent").slideToggle(400);
-				$("#detailDialog").css("width", "1130px");
+				if($("#commentContent").css("display") == "none"){
+					
+					$("#commentContent").slideDown(400);
+					$("#detailDialog").css("width", "1130px");
+					
+				}else{
+					
+					$("#commentContent").slideUp("400", function(){
+						
+						$("#detailDialog").css("width", "760px");
+					});
+						
+				}
 				
 			});
 			
 			$(".p1").click(function(){
 				$("#myCarousel").carousel(0);
+				j = i;
 				i = 1;
 				getCommentList();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","50");
 			});
 			
 			$(".p2").click(function(){
 				$("#myCarousel").carousel(1);
+				j = i;
 				i = 2;
 				getCommentList();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","50");
 			});
 			
 			$(".p3").click(function(){
 				$("#myCarousel").carousel(2);
+				j = i;
 				i = 3;
 				getCommentList();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","50");
 			});
 			
 			$(".p4").click(function(){
 				$("#myCarousel").carousel(3);
+				j = i;
 				i = 4;
 				getCommentList();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","50");
 			});
 			
 			$(".p5").click(function(){
 				$("#myCarousel").carousel(4);
+				j = i;
 				i = 5;
 				getCommentList();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","50");
 			});
 			
 			$(".p6").click(function(){
 				$("#myCarousel").carousel(5);
+				j = i;
 				i = 6;
 				getCommentList();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","50");
 			});
 			
 			$(".p7").click(function(){
 				$("#myCarousel").carousel(6);
+				j = i;
 				i = 7;
 				getCommentList();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","50");
 			});
 			
 			$(".p8").click(function(){
 				$("#myCarousel").carousel(7);
+				j = i;
 				i = 8;
 				getCommentList();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","50");
 			});
 			
 			$(".p9").click(function(){
 				$("#myCarousel").carousel(8);
+				j = i;
 				i = 9;
 				getCommentList();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","50");
 			});
 			
 			$(".p10").click(function(){
 				$("#myCarousel").carousel(9);
+				j = i;
 				i = 10;
 				getCommentList();
+				$(".p"+i).css("width","65");
+				$(".p"+j).css("width","50");
 			});
 			
 		});
@@ -435,7 +500,18 @@
 			width: 1000; 								/*div의 전체 가로픽셀*/
 			position: absolute; 						/*테이블의 영향을받지않는 div*/
 			left: 50%; 									/*div 왼쪽 top 부분이 가로 전체의 중간으로 위치하게됨*/
-			margin-left: -500px;						/* 왼쪽 top부분이 가운데로왔으니 좌측에서 전체가로픽셀의 반을 마이너스하여 좌측으로 옮겨줌 */										
+<<<<<<< HEAD
+			margin-left:-130px;		  /* 왼쪽 top부분이 가운데로왔으니 좌측에서 전체가로픽셀의 반을 마이너스하여 좌측으로 옮겨줌 */
+			margin-top: 280px;			
+
+=======
+			margin-left:-130px;		  /* 왼쪽 top부분이 가운데로왔으니 좌측에서 전체가로픽셀의 반을 마이너스하여 좌측으로 옮겨줌 */
+<<<<<<< HEAD
+			margin-top: 280px;					
+=======
+			margin-top: 280px;			
+>>>>>>> refs/heads/wjw
+>>>>>>> refs/heads/crimson
 		}
 		
 		.display-none { /*감추기*/
@@ -463,7 +539,7 @@
 		
 		#replyDiv{
 			width:400px;
-			height: 510px;
+			height: 590px;
 			margin: 0px auto;
 			margin-top: 15px;
 			border: 1px solid #BFBCBC;
@@ -490,6 +566,55 @@
 		
 		.replyView{
 			width:380px;
+<<<<<<< HEAD
+			margin: 0px auto;
+			margin-top:10px;
+			clear: both;
+		}
+		
+		.replyProfile{
+			width:55px;
+			height:55px;
+			float:left;
+		}
+		
+		.profileImg{
+			width: 100%;
+			height: 100%;
+			display: block;	
+		}
+		
+		.replyInfo{
+			width: 240px;
+			height: 20px;
+			float: left;
+		}
+		
+		.replyModifyDelete{
+			width:50px;
+			height:20px;
+			float:left;
+			margin-left: 5px;
+		}
+		
+		.replyDate{
+			display:inline-block;
+			font-size:10px;
+			float:right;
+			margin-top: 5px;
+		}
+		
+		.replyNickname{
+			display:inline-block;
+			font-weight: bold;
+			font-size: 13px;
+			margin-left: 5px;
+		}
+		
+		.replycontents{
+			float: left;
+			width:315px;
+=======
 			height: 65px;
 			margin: 0px auto;
 			margin-top:10px;
@@ -539,12 +664,13 @@
 			float: left;
 			width:315px;
 			height:40px;
+>>>>>>> refs/heads/crimson
 			margin-left: 5px;
 			font-size: 13px;
 		}
 		
 		.pageNumber{
-				width:55px;
+				width:50px;
 				height:40px;
 				margin-bottom: 6px;
 				color:white;
@@ -629,7 +755,7 @@
 			
 			#createDate{
 				color: #666666;
-				width: 170px;
+				width: 190px;
 				font-size: 14px;
 				margin-left:20px;
 				font-weight: normal;
@@ -688,16 +814,16 @@
 		}
 		
 		#detailTag{
-			width:600px;
+			width:550px;
 			margin: 0px auto;
 			margin-bottom: 10px;
 			height: 50px;
 		}
 		
 		.tags{
-			padding-left: 20px;
+			padding-left: 13px;
 			color:#666666;
-			font-size: 17px;
+			font-size: 16px;
 		}
 	
 		
@@ -769,6 +895,16 @@
 			margin: 0px auto;
 		}
 		
+<<<<<<< HEAD
+		.replyline{
+			width:100%;
+			height: 5px;
+			clear:both;
+			border-bottom: 1px solid #BFBCBC;
+		}
+		
+=======
+>>>>>>> refs/heads/crimson
 		::-webkit-scrollbar {width: 8px; height: 8px; border: 3px solid #fff; }
  
 			 ::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {display: block; height: 10px; background: url('./images/bg.png') #efefef}
@@ -791,15 +927,16 @@
 						<div id="modifyDelete"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></div>
 						<div id="viewNum"><img src="resources/images/viewnumber.png"/>&nbsp;${post.count }</div>
 					</div>
+
 					<!-- Modal 상단-->
 						<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
 							
   							 <div class="carousel-inner" role="listbox">
-  							 
-	  							<div class="wrap-loading display-none">
-			  						<div><img src="resources/images/loading2.gif" /></div>
-								</div>
-  							 
+						 
+  									<div class="wrap-loading display-none">
+			  							<div><img src="resources/images/loading2.gif" /></div>
+									</div>								 
+
   							 	<div class="item active">
 										<div id="content">
 											<div id="Media" class="mbackground">
@@ -912,8 +1049,8 @@
   							 	</div>
   							 </div>
 						</div>
+						<div id="tagline"></div>
 						<div id="detailTag">
-							<div id="tagline"></div>
 							<c:set var="isDoing" value="true"/> 					
 							<c:forEach var="tags" items="${pTagList }" varStatus="status">
 								<c:if test="${isDoing}">
@@ -982,7 +1119,11 @@
 					</div>
 					<form name="replyForm" action="" method="post">
 						<div id="replyContent">
-							<textarea id="inputCom" class="form-control" rows="5" name="reply"></textarea>
+<<<<<<< HEAD
+							<input type="text" class="form-control replybox" id="inputCom" name="reply">
+=======
+							<input type="text" class="form-control replybox" name="reply">
+>>>>>>> refs/heads/crimson
 							<div id="replybtndiv">
 								<input type="button" id="replybtn"class="btn btn-success" onclick="addComment()" value="Comment Posting!"/>
 							</div>

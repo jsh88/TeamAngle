@@ -453,9 +453,10 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	}
 
 	@Override
-	public void addViewCount(HttpServletRequest request) {
+	public void setViewInfo(HttpServletRequest request, HttpSession session) {
 
-		postDao.addViewCount(Integer.parseInt(request.getParameter("pno")));
+		postDao.setViewInfo(((Member) session.getAttribute("member")).getId(),
+				Integer.parseInt(request.getParameter("pno")));
 
 	}
 
@@ -472,6 +473,26 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 		request.setAttribute("postRecommendationCount",
 				postDao.getPostRecommendationCount(Integer.parseInt(request.getParameter("pno"))));
+
+	}
+
+	@Override
+	public void getPostView(HttpServletRequest request) {
+
+		request.setAttribute("postView", postDao.getPostInfo(Integer.parseInt(request.getParameter("no"))));
+
+	}
+
+	@Override
+	public void getBestPostView(HttpServletRequest request) {
+
+		request.setAttribute("bestPostView", postDao.getBestPostInfo(Integer.parseInt(request.getParameter("no"))));
+
+	}
+
+	@Override
+	public void getSearchPostView(HttpServletRequest request) {
+		// TODO Auto-generated method stub
 
 	}
 }
