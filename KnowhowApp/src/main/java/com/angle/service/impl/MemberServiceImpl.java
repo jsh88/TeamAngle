@@ -267,23 +267,27 @@ public class MemberServiceImpl implements MemberService {
 
 		if (!pList.isEmpty() || pList != null) {
 			pList = memberDao.getMyConcernPost(id);
+		pList = memberDao.getMyConcernPost(id);
 		}
 	}
-
 	@Override
-	public void getMyLatelyLookupPost(String id) {
+	public List<Post> getMyLatelyLookupPost(String id) {
 		List<Post> pList = null;
 		if (!pList.isEmpty() || pList != null) {
 			pList = memberDao.getMyLatelyLookupPost(id);
 		}
+		pList = memberDao.getMyLatelyLookupPost(id);
+		return pList;
 	}
 
 	@Override
-	public void getMyMostLookupPost(String id) {
+	public List<Post> getMyMostLookupPost(String id) {
 		List<Post> pList = null;
 		if (!pList.isEmpty() || pList != null) {
 			pList = memberDao.getMyMostLookupPost(id);
 		}
+		pList = memberDao.getMyMostLookupPost(id);
+		return pList;
 	}
 
 	@Override

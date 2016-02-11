@@ -53,6 +53,7 @@
 
 		}
 	});
+<<<<<<< HEAD
 	
 	// html include
 	// 댓글 가져오기
@@ -104,6 +105,8 @@
 			});						
 		}
 	
+=======
+>>>>>>> refs/heads/crimson
 </script>
 <style type="text/css">
 	

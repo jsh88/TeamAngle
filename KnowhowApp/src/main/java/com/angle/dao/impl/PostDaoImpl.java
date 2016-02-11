@@ -334,6 +334,8 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 						new Object[] { p.getpNo(), p.getTag() });
 
 			} catch (DataAccessException e) {
+				
+				System.out.println("시도 했다?");
 
 				System.out.println("시도 했다?");
 

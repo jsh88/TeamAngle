@@ -336,7 +336,11 @@
 		
 				<div class="modal-content" id="tagContent">
 				<div id="TagWrap">
+<<<<<<< HEAD
 						<div id="Tagimage"><a href=""><img style="width:20px;" src="resources/images/close.png"/></a></div>
+=======
+						<div id="Tagimage"><a href=""><img style="width:20px;" src="resources/images//close.png"/></a></div>
+>>>>>>> refs/heads/crimson
 					<div id="TagContent">
 						<div id="contentTitle">
 							Recommendation Tag

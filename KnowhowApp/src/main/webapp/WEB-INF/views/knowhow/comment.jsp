@@ -10,6 +10,7 @@
  		</div>
  		<div class="replyInfo">
  			<div class="replyNickname">
+<<<<<<< HEAD
  			 	<a href="#">${pCom.nickName }</a>	
  			</div>
  			<div class="replyDate">${pCom.wDate }</div>
@@ -25,6 +26,23 @@
  				</div>
  		</div>
  		<div class="replyline"></div>
+=======
+ 			 	<a href="#">${pCom.nickName }</a>
+ 			</div>
+ 			<div class="replyDate">${pCom.wDate }</div>
+		</div>
+ 			<div class="replyModifyDelete"> 			
+ 			<c:if test="${pCom.nickName ne session.member.nickName}">
+ 				<img class="modifyComImg" style="width:20px; cursor: pointer;" onclick="modifyComment(this, '${pCom.cNo }')" src="resources/images/modify.png"/>&nbsp; 				 				
+ 				<img style="width:20px; cursor: pointer;" onclick="delComment('${pCom.cNo }')" src="resources/images/delete.png"/>
+ 			</c:if>
+ 			</div>
+ 				<div class="replycontents" style="overflow: auto; overflow-x:hidden;">
+ 						${pCom.content}
+ 				</div>
+ 			<div class="replyline"></div>
+ 	</div>
+>>>>>>> refs/heads/crimson
  	</c:forEach>
  	</c:if>
  	<c:if test="${pComList eq null}">
