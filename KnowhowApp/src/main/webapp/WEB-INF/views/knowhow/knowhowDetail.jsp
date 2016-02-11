@@ -501,7 +501,11 @@
 			position: absolute; 						/*테이블의 영향을받지않는 div*/
 			left: 50%; 									/*div 왼쪽 top 부분이 가로 전체의 중간으로 위치하게됨*/
 			margin-left:-130px;		  /* 왼쪽 top부분이 가운데로왔으니 좌측에서 전체가로픽셀의 반을 마이너스하여 좌측으로 옮겨줌 */
+<<<<<<< HEAD
 			margin-top: 280px;					
+=======
+			margin-top: 280px;			
+>>>>>>> refs/heads/wjw
 		}
 		
 		.display-none { /*감추기*/
@@ -858,17 +862,15 @@
 						<div id="viewNum"><img src="resources/images/viewnumber.png"/>&nbsp;${post.count }</div>
 					</div>
 
-	  							<div class="wrap-loading display-none">
-			  						<div><img src="resources/images/loading2.gif" /></div>
-								</div>
-
 					<!-- Modal 상단-->
 						<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
 							
   							 <div class="carousel-inner" role="listbox">
-  							 
+						 
+  									<div class="wrap-loading display-none">
+			  							<div><img src="resources/images/loading2.gif" /></div>
+									</div>								 
 
-  							 
   							 	<div class="item active">
 										<div id="content">
 											<div id="Media" class="mbackground">
