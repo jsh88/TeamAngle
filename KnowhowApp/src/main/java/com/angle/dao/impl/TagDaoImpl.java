@@ -61,8 +61,8 @@ public class TagDaoImpl implements TagDao {
 						new Object[] { p.getpNo(), p.getTag() });
 
 			} catch (DataAccessException e) {
-				jdbcTemplate.update("update posttag set count = count + 1, rdate = sysdate where tag = ?",
-						new Object[] { p.getTag() });
+				jdbcTemplate.update("update posttag set count = count + 1, rdate = sysdate where tag = ? and pno = ?",
+						new Object[] { p.getTag(), p.getpNo() });
 
 			}
 		}
@@ -74,7 +74,7 @@ public class TagDaoImpl implements TagDao {
 
 		for (MemberTag m : mTagList) {
 
-			// 포스트 태그 업로드
+			// 멤버 태그 업로드
 			try {
 
 				jdbcTemplate.update("insert into membertag values(?, ?, 1, 0, sysdate, sysdate)",
@@ -82,8 +82,8 @@ public class TagDaoImpl implements TagDao {
 
 			} catch (DataAccessException e) {
 
-				jdbcTemplate.update("update membertag set count = count + 1, rdate = sysdate where tag = ?",
-						new Object[] { m.getTag() });
+				jdbcTemplate.update("update membertag set count = count + 1, rdate = sysdate where tag = ? and id = ?",
+						new Object[] { m.getTag(), m.getId() });
 
 			}
 		}
@@ -106,7 +106,7 @@ public class TagDaoImpl implements TagDao {
 				tag.setfDate(rs.getString("fdate"));
 				tag.setrDate(rs.getString("rdate"));
 
-				return null;
+				return tag;
 
 			}
 		});
@@ -144,7 +144,7 @@ public class TagDaoImpl implements TagDao {
 				});
 
 	}
-
+	
 	@Override
 	public void updateRootTag(ArrayList<MemberTag> mTagList) {
 

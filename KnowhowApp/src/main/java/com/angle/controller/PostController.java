@@ -145,6 +145,7 @@ public class PostController {
 			throws IllegalStateException, IOException {
 
 		postService.completeWrite(request, session);
+		
 
 		return "success"; // ajax
 	}
