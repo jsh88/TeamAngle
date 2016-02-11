@@ -304,31 +304,41 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	@Override
 	public ArrayList<PostTag> completePosting(ArrayList<PostTag> pTagList) {
 
+		long start = System.currentTimeMillis();
+
+		// try {
+
+		// jdbcTemplate.getDataSource().getConnection().setAutoCommit(false);
+
 		for (PostTag p : pTagList) {
 
-			// 루트 태그 업로드
-			try {
-
-				jdbcTemplate.update("insert into tag values(?, ?, ?, sysdate, sysdate)",
-						new Object[] { p.getTag(), p.getCount(), p.getWeight() });
-
-			} catch (DataAccessException e) {
-
-				jdbcTemplate.update("update tag set count = count + 1, rdate = sysdate where tag = ?",
-						new Object[] { p.getTag() });
-
-			}
+			// // 루트 태그 업로드
+			// try {
+			//
+			// jdbcTemplate.update("insert into tag values(?, 1, 0, sysdate,
+			// sysdate)",
+			// new Object[] { p.getTag() });
+			//
+			// } catch (DataAccessException e) {
+			//
+			// jdbcTemplate.update("update tag set count = count + 1, rdate =
+			// sysdate where tag = ?",
+			// new Object[] { p.getTag() });
+			//
+			// }
 
 			// 포스트 태그 업로드
 			try {
 
-				jdbcTemplate.update("insert into posttag values(?, ?, ?, ?, sysdate, sysdate)",
-						new Object[] { p.getpNo(), p.getTag(), p.getCount(), p.getWeight() });
+				jdbcTemplate.update("insert into posttag values(?, ?, 1, 0, sysdate, sysdate)",
+						new Object[] { p.getpNo(), p.getTag() });
 
 			} catch (DataAccessException e) {
+				
+				System.out.println("시도 했다?");
 
-				jdbcTemplate.update("update posttag set count = count + 1, rdate = sysdate where tag = ?",
-						new Object[] { p.getTag() });
+				jdbcTemplate.update("update posttag set count = count + 1, rdate = sysdate where tag = ? and pno = ?",
+						new Object[] { p.getTag(), p.getpNo() });
 
 			}
 		}
@@ -358,10 +368,22 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 							}
 
+							long end = System.currentTimeMillis();
+
+							System.out.println("실행 시간 : " + (end - start) / 1000.0);
+							System.out.println("태그 개수 : " + pTagList.size());
+
+							// jdbcTemplate.getDataSource().getConnection().commit();
+							// jdbcTemplate.getDataSource().getConnection().setAutoCommit(true);
+
 							return pTagList;
 
 						}
 					});
+
+		// } catch (SQLException e) {
+		// e.printStackTrace();
+		// }
 
 		return null;
 	}
