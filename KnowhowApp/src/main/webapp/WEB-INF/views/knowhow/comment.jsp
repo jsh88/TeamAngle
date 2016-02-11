@@ -20,11 +20,11 @@
  				<img style="width:20px; cursor: pointer;" onclick="delComment('${pCom.cNo }')" src="resources/images/delete.png"/>
  			</c:if>
  			</div>
- 				<div class="replycontents" style="overflow: auto; overflow-x:hidden;">
+ 				<div class="replycontents">
  						${pCom.content}
  				</div>
- 			<div class="replyline"></div>
- 	</div>
+ 				 <div class="replyline"></div>
+ 		</div>
  	</c:forEach>
  	</c:if>
  	<c:if test="${pComList eq null}">
