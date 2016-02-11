@@ -279,11 +279,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void getMyMostLookupPost(String id) {
+	public List<Post> getMyMostLookupPost(String id) {
 		List<Post> pList = null;
-		if (!pList.isEmpty() || pList != null) {
-			pList = memberDao.getMyMostLookupPost(id);
-		}
+		pList = memberDao.getMyMostLookupPost(id);
+		return pList;
 	}
 
 	@Override

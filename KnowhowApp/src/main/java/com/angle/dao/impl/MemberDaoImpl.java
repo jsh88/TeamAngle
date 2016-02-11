@@ -354,10 +354,7 @@ public class MemberDaoImpl implements MemberDao {
 					"select * from post p1, (select ps.pno from postlog ps where ps.id = :id order by ps.rdate desc) p2 where p1.pno = p2.pno", 
 					new MapSqlParameterSource().addValue("id", id),
 					new postRowMapper());
-			for (Post p : pList)
-			{
-				System.out.println(p.getTitle());
-			}
+			
 			return pList;
 		}
 		

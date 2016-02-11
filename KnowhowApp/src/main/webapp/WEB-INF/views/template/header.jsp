@@ -153,10 +153,10 @@
 					</div>
 					<div id="c1" class="content col-xs-12 col-sm-12">
 						<!-- <img src="http://placehold.it/300x270"> -->
-						<c:if test="${ lately == null }">
+						<c:if test="${ empty lately }">
 						최근 조회한 포스트가 존재하지 않습니다.
 					</c:if>
-						<c:if test="${ lately != null }">
+						<c:if test="${ not empty lately }">
 							<c:forEach items="${ lately }" var="l">
 								<table>
 									<tbody>
@@ -179,7 +179,24 @@
 						<h3>많이 봤으요</h3>
 					</div>
 					<div id="c2" class="content col-xs-12 col-sm-12">
-						<img src="http://placehold.it/300x270">
+						<!-- <img src="http://placehold.it/300x270"> -->
+							<c:if test="${ empty lately }">
+						최근 조회한 포스트가 존재하지 않습니다.
+					</c:if>
+						<c:if test="${ not empty lately }">
+							<c:forEach items="${ most }" var="m">
+								<table>
+									<tbody>
+										<tr>
+											<th>${ m.title }</th>
+											<th>${ m.wDate }</th>
+											<th>${ m.good }</th>
+											<th>${ m.count }</th>
+										</tr>
+									</tbody>
+								</table>
+							</c:forEach>
+						</c:if>
 					</div>
 				</div>
 

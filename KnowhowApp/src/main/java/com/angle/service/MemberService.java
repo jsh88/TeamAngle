@@ -50,7 +50,7 @@ public interface MemberService {
 
 	public List<Post> getMyLatelyLookupPost(String id);
 
-	public void getMyMostLookupPost(String id);
+	public List<Post> getMyMostLookupPost(String id);
 
 	String emailCheck(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception;
 

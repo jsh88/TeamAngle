@@ -191,7 +191,7 @@ public class MemberController {
 		System.out.println("My lately lookup");
 		List<Post> lately = (List<Post>)memberService.getMyLatelyLookupPost(id);
 		session.setAttribute("lately", lately) ;
-		
+		List<Post> most = (List<Post>)memberService.getMyMostLookupPost(id);
 		return mav;		
 		
 	}
@@ -237,16 +237,18 @@ public class MemberController {
 		model.addAttribute("title", "어디로 가야하오");
 		return "index"; // 어디로 가야하오
 	}
-	// 내가 최근 조회한 포스트
-	@RequestMapping("/login/*") // 어디?
+	
+	// 내가 최근 조회한 포스트 로그인으로 늠
+	/*@RequestMapping("/login/*") // 어디?
 	public void getMyLatelyLookupPost(HttpServletRequest req, HttpSession session, Model model){
 		System.out.println("My lately lookup");
 		List<Post> lately = (List<Post>)memberService.getMyLatelyLookupPost(session.getId());
 		session.setAttribute("latelyPost", lately) ;
 		model.addAttribute("title", "어디로갈까나?");
-	}
+	}*/
 	
-	@RequestMapping("/getMyMostLookupPost")
+	// 로그인으로 늠
+	/*@RequestMapping("/getMyMostLookupPost")
 	public String getMyMostLookupPost(HttpServletRequest req, HttpSession session, Model model){
 		Member m = (Member) session.getAttribute("member");
 		String id = m.getId();
@@ -254,7 +256,8 @@ public class MemberController {
 		model.addAttribute("title", "어디로갈까나?");
 		return "index";
 		
-	}
+	}*/
+	
 	// 이메일 발송
 	@RequestMapping("/emailCheck")
 	public String emailCheck(HttpServletRequest req, HttpServletResponse res, HttpSession session) throws Exception{
