@@ -267,7 +267,7 @@
 		
 		#userTitle{
 			margin-left:20px;
-			margin-top:30px;
+			margin-top:10px;
 			font-size:17px;
 			color:white;
 			font-weight: bold;
@@ -276,6 +276,7 @@
 		#ReTag{
 			margin: 0px auto;
 			width:435px;
+			height: 70px;
 		}
 		
 		#Line{
@@ -293,7 +294,7 @@
 		#Tagbox{
 			margin: 0px auto;
 			width:440px;
-			height: 120px;
+			height: 90px;
 			margin-bottom: 20px;
 			color: white;
 			
@@ -335,7 +336,7 @@
 		
 				<div class="modal-content" id="tagContent">
 				<div id="TagWrap">
-						<div id="Tagimage"><a href=""><img style="width:20px;" src="resources/images//close.png"/></a></div>
+						<div id="Tagimage"><a href=""><img style="width:20px;" src="resources/images/close.png"/></a></div>
 					<div id="TagContent">
 						<div id="contentTitle">
 							Recommendation Tag

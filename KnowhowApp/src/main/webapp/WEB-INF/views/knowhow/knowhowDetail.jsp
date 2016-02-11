@@ -604,7 +604,6 @@
 		.replycontents{
 			float: left;
 			width:315px;
-			height:40px;
 			margin-left: 5px;
 			font-size: 13px;
 		}
@@ -836,6 +835,8 @@
 		}
 		
 		.replyline{
+			width:100%;
+			height: 5px;
 			clear:both;
 			border-bottom: 1px solid #BFBCBC;
 		}

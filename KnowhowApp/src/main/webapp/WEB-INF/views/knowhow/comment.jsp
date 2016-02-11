@@ -10,7 +10,7 @@
  		</div>
  		<div class="replyInfo">
  			<div class="replyNickname">
- 			 	<a href="#">${pCom.nickName }</a>
+ 			 	<a href="#">${pCom.nickName }</a>	
  			</div>
  			<div class="replyDate">${pCom.wDate }</div>
 		</div>
@@ -23,8 +23,8 @@
  				<div class="replycontents">
  						${pCom.content}
  				</div>
- 				 <div class="replyline"></div>
  		</div>
+ 		<div class="replyline"></div>
  	</c:forEach>
  	</c:if>
  	<c:if test="${pComList eq null}">
