@@ -40,4 +40,6 @@ public interface PostDao {
 
 	public int getPostRecommendationCount(int pNo);
 
+	public Post getPostInfo(int no);
+
 }

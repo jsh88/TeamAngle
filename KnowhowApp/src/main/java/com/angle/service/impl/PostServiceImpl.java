@@ -475,4 +475,11 @@ public class PostServiceImpl implements PostService, PostCommentService {
 				postDao.getPostRecommendationCount(Integer.parseInt(request.getParameter("pno"))));
 
 	}
+
+	@Override
+	public void getPostView(HttpServletRequest request) {
+
+		request.setAttribute("postView", postDao.getPostInfo(Integer.parseInt(request.getParameter("no"))));
+
+	}
 }

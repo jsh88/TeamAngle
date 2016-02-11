@@ -60,10 +60,11 @@ public class LuceneKoreanAnalyzer {
 
 										String pos = String.valueOf(o.getPos());
 
-										if (("N".equals(pos) && o.getScore() >= 70)
+										if (("N".equals(pos) && o.getScore() >= 70
+												&& o.getStem().toString().length() >= 2)
 												|| ("N".equals(pos) && o.getStem().toString().length() == 3
 														&& !(o.getStem().toString().equals("입니다")))
-												|| !(o.getStem().toString().equals("것"))) {
+														&& o.getStem().toString().length() >= 2) {
 											// 것, 그들, 이상
 
 											PostTag pTag = new PostTag();
