@@ -42,4 +42,6 @@ public interface PostDao {
 
 	public Post getPostInfo(int no);
 
+	public Post getBestPostInfo(int no);
+
 }

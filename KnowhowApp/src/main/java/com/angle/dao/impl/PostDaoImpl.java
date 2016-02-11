@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -20,7 +19,6 @@ import com.angle.domain.Post;
 import com.angle.domain.PostComment;
 import com.angle.domain.PostContent;
 import com.angle.domain.PostTag;
-import com.angle.domain.Tag;
 
 @Repository
 public class PostDaoImpl implements PostDao, PostCommentDao {
@@ -509,6 +507,78 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 						p.setGood(rs.getInt("good")); // 추천
 						p.setId(rs.getString("id")); // 아이디
 						p.setNickName(rs.getString("nickname")); // 닉네임
+						
+						System.out.println(p.getpNo());
+
+						// 내용, 미디어
+						if(rs.getInt("state") != 1 ? true : false)
+							return null;
+							
+						jdbcTemplate.queryForObject("select content, media from postContent where pno = ? and page = 0",
+								new Object[] { p.getpNo() }, new RowMapper<PostContent>() {
+
+							@Override
+							public PostContent mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+								p.setContent(rs.getString("content"));
+								p.setMedia(rs.getString("media").indexOf("https:") == -1
+										&& !rs.getString("media").equals("none")
+												? "resources/images/" + rs.getString("media") : rs.getString("media"));
+
+								return null;
+							}
+						});
+
+						// 댓글 수
+						p.setcCount(jdbcTemplate.queryForObject("select count(*) from postComment where pno = ?",
+								new Object[] { p.getpNo() }, Integer.class));
+
+						// 태그
+						p.settList((ArrayList<String>) jdbcTemplate.query(
+								"select * from postTag where pno = ? order by count desc", new Object[] { p.getpNo() },
+								new ResultSetExtractor<ArrayList<String>>() {
+
+							@Override
+							public ArrayList<String> extractData(ResultSet rs)
+									throws SQLException, DataAccessException {
+
+								ArrayList<String> tList = new ArrayList<>();
+
+								for (int i = 0; rs.next(); i++)
+									if (i == 9) {
+										tList.add(rs.getString("tag"));
+										break;
+									}
+
+								return tList;
+							}
+						}));
+
+						return p;
+
+					}
+				});
+
+		return null;
+	}
+
+	@Override
+	public Post getBestPostInfo(int no) {
+		
+		jdbcTemplate.queryForObject(
+				"select pt.*, m.nickname from (select row_number() over (order by wdate desc) no, p.* from post p) pt, member m where no = ? and m.id = pt.id",
+				new Object[] { no }, new RowMapper<Post>() {
+
+					@Override
+					public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+						Post p = new Post();
+
+						p.setpNo(rs.getInt("pno")); // 포스트 번호
+						p.setTitle(rs.getString("title")); // 타이틀
+						p.setGood(rs.getInt("good")); // 추천
+						p.setId(rs.getString("id")); // 아이디
+						p.setNickName(rs.getString("nickname")); // 닉네임
 
 						// 내용, 미디어
 						jdbcTemplate.queryForObject("select content from postContent where pno = ? and page = 0",
@@ -557,5 +627,6 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 				});
 
 		return null;
+		
 	}
 }

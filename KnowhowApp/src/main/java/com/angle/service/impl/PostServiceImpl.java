@@ -52,19 +52,6 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	@Override
 	public void addPost(HttpServletRequest request, HttpSession session) {
 
-		Member m = new Member();
-		m.setId("test");
-		m.setPw("1");
-		m.setNickName("test");
-		m.setjDate("88/05/17");
-		m.setlDate("88/05/17");
-		m.setpComment("테스트 접속");
-		m.setImage("test.gif");
-		m.setvCount(1);
-		m.setState(false);
-
-		session.setAttribute("member", m);
-
 		Post p = new Post();
 		ArrayList<PostContent> pConList = new ArrayList<>();
 
@@ -480,6 +467,19 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	public void getPostView(HttpServletRequest request) {
 
 		request.setAttribute("postView", postDao.getPostInfo(Integer.parseInt(request.getParameter("no"))));
+
+	}
+
+	@Override
+	public void getBestPostView(HttpServletRequest request) {
+
+		request.setAttribute("bestPostView", postDao.getBestPostInfo(Integer.parseInt(request.getParameter("no"))));
+
+	}
+
+	@Override
+	public void getSearchPostView(HttpServletRequest request) {
+		// TODO Auto-generated method stub
 
 	}
 }

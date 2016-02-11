@@ -46,4 +46,8 @@ public interface PostService {
 
 	public void getPostView(HttpServletRequest request);
 
+	public void getBestPostView(HttpServletRequest request);
+
+	public void getSearchPostView(HttpServletRequest request);
+
 }
