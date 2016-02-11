@@ -41,17 +41,19 @@
 				$("#hiddentext").val(hidden+" "+subt);
 				
 				$(this).hide();
+							
+				$('.t').click(function(){
+					
+					$(this).remove();
+					removeTag(($(this).text()).substr(1));
+					
+				});
 				
 				}
 			});
-			
+				
 			// 추가된 태그 클릭시 태그 삭제
-			$(".t").click(function(){
-				
-				$(this).hide();
-				removeTag(($(this).text()).substr(1));
-				
-			});
+			
 			
 			$("#tagtext").keypress(function(key){
 						
@@ -75,7 +77,7 @@
 					var n = $("#tagtext").val();
 					var h = $("#hiddentext").val();
 					
-					if( n === ""){
+					if( n == ""){
 					
 						$("#tagtext").css("border", "3px solid #FF2727").css("border-radius", "6px");
 						$("#k").show();
@@ -95,6 +97,13 @@
 						$("#k").hide();
 						$("#s").hide();
 					
+						
+						$('.t').click(function(){
+	
+							$(this).remove();
+							removeTag(($(this).text()).substr(1));
+							
+						});
 					}
 					}
 				}
