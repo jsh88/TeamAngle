@@ -197,7 +197,7 @@ public class MemberController {
 	}
 	// 마이페이지 
 	@RequestMapping("/myPage")
-	public String getMyPage(Model model){
+	public String getMyPage(HttpServletRequest req, HttpSession session, Model model){
 		// 마이 페이지 그냥 session 받아서 jsp 에서 뿌리자
 		model.addAttribute("title", "/member/myPage");
 		return "/member/myPage";		// include 한다길래 그냥 title로 써서 index 보냄
@@ -268,14 +268,14 @@ public class MemberController {
 		model.addAttribute("title","어디로가야하오");
 		return "index";
 	}
-	
+
 	// 내가 작성한 포스트 댓글순
-		@RequestMapping("/getMyPostByComments")
-		public String getMyPostByComments(HttpServletRequest req, HttpSession session, Model model){
-			
-			memberService.getMyPostByComments(req, session);
-			model.addAttribute("title","어디로가야하오");
-			return "index";
-		}
-		
+	@RequestMapping("/getMyPostByComments")
+	public String getMyPostByComments(HttpServletRequest req, HttpSession session, Model model){
+
+		memberService.getMyPostByComments(req, session);
+		model.addAttribute("title","어디로가야하오");
+		return "index";
+	}
+
 }
