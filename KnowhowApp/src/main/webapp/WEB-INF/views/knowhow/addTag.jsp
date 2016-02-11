@@ -35,7 +35,6 @@
 				var subt = t.substring(1);
 				
 				tags.push(subt);
-				alert(tags);
 				
 				$("#Tagbox").append("<a class='t'  href='#'>"+t+"</a>");
 				$("#hiddentext").val(hidden+" "+subt);
@@ -89,7 +88,6 @@
 						
 						oTags.push(n);
 						tags.push(n);
-						alert(oTags);
 						
 						$("#hiddentext").val(h+" "+n);
 						$("#tagtext").val("");
