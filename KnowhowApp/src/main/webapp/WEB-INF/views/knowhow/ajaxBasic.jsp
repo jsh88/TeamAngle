@@ -53,6 +53,60 @@
 
 		}
 	});
+<<<<<<< HEAD
+	
+	// html include
+	// 댓글 가져오기
+		function getCommentList() {
+			
+		    // 폼 데이터 받기 or Append or 인자로 form id)
+			var formData = new FormData();
+			
+			formData.append("pno", pNo);
+			formData.append("page", i - 1);
+
+			$.ajax({
+				type : 'POST',
+				url : 'getCommentList',
+				data : formData,
+				processData : false,
+				contentType : false,
+
+				success : function(responseData, statusText, xhr) {
+					
+					var result = responseData;
+					$('#replyDiv').empty();
+					$('#replyDiv').html(result);
+					// 성공처리(v는 서버로 받은 메시지, value)
+					
+				},
+				beforeSend : function() {
+
+					// 전송 전
+					// 이미지 보여주기
+					$('.wrap-loading').removeClass('display-none');
+					
+				},
+				error : function(request, status, error) {
+
+					// 에러 로직, 에러 로그 확인
+					alert("code:" + request.status + "\n\n" + "message:"
+							+ request.responseText + "\n\n" + "error:" + error);
+
+				},
+				complete : function() {
+
+					// 이미지 감추기 처리
+//					$(location).attr('href', "이동할 페이지");
+					$('.wrap-loading').addClass('display-none');
+					$("#tagModal").modal("hide");
+
+				}				
+			});						
+		}
+	
+=======
+>>>>>>> refs/heads/crimson
 </script>
 <style type="text/css">
 	

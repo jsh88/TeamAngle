@@ -42,8 +42,18 @@ public class TagController {
 	public String getPostTag(HttpServletRequest request, HttpSession session) {
 
 		tagService.getPostTag(request, session);
+		tagService.addMemberTag(request, session);
 
 		return "knowhow/knowhowDetail";
+	}
+
+	// forward:addSearchTag
+	public String addSearchTag(HttpServletRequest request, HttpSession session) {
+
+		tagService.getPostTag(request, session);
+		tagService.addMemberTag(request, session);
+
+		return "knowhow/postList";
 	}
 
 	// introTagList

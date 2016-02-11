@@ -18,4 +18,6 @@ public interface TagDao {
 
 	public ArrayList<PostTag> getPostTag(int pNo);
 
+	public void updateRootTag(ArrayList<MemberTag> mTagList);
+
 }

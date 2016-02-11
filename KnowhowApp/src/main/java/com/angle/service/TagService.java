@@ -11,4 +11,6 @@ public interface TagService {
 
 	void getPostTag(HttpServletRequest request, HttpSession session);
 
+	void addMemberTag(HttpServletRequest request, HttpSession session);
+
 }

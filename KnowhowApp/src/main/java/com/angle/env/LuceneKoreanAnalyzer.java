@@ -37,21 +37,16 @@ public class LuceneKoreanAnalyzer {
 
 					String question = pCon.getContent();
 
-					System.out.println("- 형태소 분석 시작 -\n문자열 : " + question);
-
 					try {
 
 						if (!"".equals(question)) {
 
-							long start = System.currentTimeMillis();
 							MorphAnalyzer analyzer = new MorphAnalyzer();
 							KoreanTokenizer tokenizer = new KoreanTokenizer(new StringReader(question));
 
 							Token token = null;
 
 							// 형태소 분석
-							System.out.println("- 명사 추출 시작 -");
-							start = System.currentTimeMillis();
 
 							while ((token = tokenizer.next()) != null) {
 
@@ -65,12 +60,12 @@ public class LuceneKoreanAnalyzer {
 
 										String pos = String.valueOf(o.getPos());
 
-										if (("N".equals(pos) && o.getScore() >= 70)
+										if (("N".equals(pos) && o.getScore() >= 70
+												&& o.getStem().toString().length() >= 2)
 												|| ("N".equals(pos) && o.getStem().toString().length() == 3
-														&& !(o.getStem().toString().equals("입니다")))) {
+														&& !(o.getStem().toString().equals("입니다")))
+														&& o.getStem().toString().length() >= 2) {
 											// 것, 그들, 이상
-
-											System.out.println(o.getStem().toString());
 
 											PostTag pTag = new PostTag();
 
@@ -89,8 +84,6 @@ public class LuceneKoreanAnalyzer {
 								}
 							}
 
-							System.out.println("----------------------------\n분석 시간 : "
-									+ (System.currentTimeMillis() - start) + "ms");
 						}
 					} catch (Exception e) {
 

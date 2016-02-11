@@ -222,7 +222,7 @@ public class PostController {
 	@RequestMapping(value = "morePost", method = RequestMethod.GET)
 	public String morePost(HttpServletRequest request, HttpSession session) {
 
-		postService.addViewCount(request);
+		postService.setViewInfo(request, session);
 		postService.getPost(request, session);
 		postService.getRecommendCount(request);
 		// postCommentService.getPostCommentList(request, session);
@@ -230,13 +230,31 @@ public class PostController {
 		return "forward:getPostTag";
 	}
 
-	// 포스트 리스트
-	@RequestMapping(value = "searchPostList")
-	public String searchPostList(HttpServletRequest request) {
+	// 포스트 최신 리스트 -> body include
+	@RequestMapping(value = "postView")
+	public String postList(HttpServletRequest request) {
 
-		postService.getPostList(request);
+		postService.getPostView(request);
 
-		return null; // 어디로 가야하오
+		return "main/postList"; // 어디로 가야하오
+	}
+
+	// 포스트 베스트 리스트 -> body include
+	@RequestMapping(value = "bestPostView")
+	public String bestPostList(HttpServletRequest request) {
+
+		postService.getBestPostView(request);
+
+		return "knowhow/postList"; // 어디로 가야하오
+	}
+
+	// 포스트 검색 -> body include
+	@RequestMapping(value = "searchView")
+	public String bestPostList(HttpServletRequest request, HttpSession session) {
+
+		postService.getSearchPostView(request);
+
+		return "forward:addMemberTag"; // 어디로 가야하오
 	}
 
 	// 포스트 추천, ajax

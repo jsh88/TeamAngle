@@ -40,8 +40,14 @@ public interface PostService {
 
 	public void completeModify(MultipartHttpServletRequest request, HttpSession session) throws IllegalStateException, IOException;
 
-	public void addViewCount(HttpServletRequest request);
+	public void setViewInfo(HttpServletRequest request, HttpSession session);
 
 	public void getRecommendCount(HttpServletRequest request);
+
+	public void getPostView(HttpServletRequest request);
+
+	public void getBestPostView(HttpServletRequest request);
+
+	public void getSearchPostView(HttpServletRequest request);
 
 }
