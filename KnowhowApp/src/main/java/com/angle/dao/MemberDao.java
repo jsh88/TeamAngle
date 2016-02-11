@@ -29,9 +29,9 @@ public interface MemberDao {
 
 	//	public void updateMemberInfo(Member member);
 
-	public void updateMemberInfoId(Member member);
+	public void updateMemberInfoId(Member member, String idModify);
 
-	public void updateMemberInfoNickName(Member member);
+	public void updateMemberInfoNickName(Member member, String nickNameModify);
 
 	public void updateMemberInfoPw(Member member);
 
@@ -39,7 +39,7 @@ public interface MemberDao {
 	
 	public List<Post> getMyLatelyPost(String id);
 
-	public void modifyMember(Member m);
+	public Integer modifyMember(Member m);
 
 	public List<Post> getMyConcernPost(String id);
 

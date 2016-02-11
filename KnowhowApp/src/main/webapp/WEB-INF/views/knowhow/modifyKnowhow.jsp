@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,24 +11,64 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="resources/css/addKnowhow.css">
+	<style>
+	
+		.wrap-loading{ /*화면 전체를 어둡게 합니다.*/
+	    position: fixed;
+	    left:0;
+	    right:0;
+	    top:0;
+	    bottom:0;
+	    background: rgba(0,0,0,0.2);
+	    }
+	    
+	     .wrap-loading div{ /*로딩 이미지*/
+	         width:1000;  /*div의 전체 가로픽셀*/
+			 position:absolute;   /*테이블의 영향을받지않는 div*/
+			 left:50%;   /*div 왼쪽 top 부분이 가로 전체의 중간으로 위치하게됨*/
+			 margin-left:-500px;  /* 왼쪽 top부분이 가운데로왔으니 좌측에서 전체가로픽셀의 반을 마이너스하여 좌측으로 옮겨줌 */
+	    }
+	    
+	    .display-none{ /*감추기*/
+	        display:none;
+	    }
+	    
+		.imgurl{
+			position: absolute;
+			width:20px;
+			height: 200px;
+			z-index:1;
+			opacity:0;
+			border:0px;
+		}
+		
+		#Clear{
+			float:right;
+			margin-top: -15px;
+			margin-right: 20px;
+			opacity:0.9;
+			cursor: pointer;
+		}
+	</style>
 	<script>
 	
 	var imgArr = [10];
 	var urlArr = [10];
 	var conArr = [10];
 	var i = 1;
-	var j = 0;
 	var maxPage = 1;
 	var url = "";
 	
-		$(document).ready(function(){			
+		$(document).ready(function(){		
 			
-			imgArr[0] = null;
-			conArr[0] = null;
-			urlArr[0] = undefined;
+			maxPage = parseInt("${post.mPage}");
+			
+			alert(maxPage);
 			
 			$("#addModal").modal();
 			
+			$("#addbtn").hide();
+			$("#deletebtn").hide();
 			$(".p2").hide();
 			$(".p3").hide();
 			$(".p4").hide();
@@ -36,29 +78,39 @@
 			$(".p8").hide();
 			$(".p9").hide();
 			$(".p10").hide();
+
+			<c:forEach items="${pConList}" var="pCon" varStatus="status">
 			
-			$(".p"+i).css("width","65");
-			
-			/*mouseOver 처리 */
-			
-			$(".pageNumber").mouseover(function(){
-					
-				$(this).css("width" , "65");
-			
-			});
-			
-			$(".pageNumber").mouseout(function(){
+				var media = "${pCon.media}";
 				
-				if($(this).is(".p"+i) === true){
+				if(media == "none") {
 					
-					$(this).css("width" , "65");
+					imgArr["${status.index}"] = null;
+					urlArr["${status.index}"] = undefined;
+					
+				} else if(media.indexOf("https:") > -1) {
+					
+					imgArr["${status.index}"] = null;
+					urlArr["${status.index}"] = "${pCon.media}";
+					$('#mediaiframe' + "${status.count}").attr("src", "${pCon.media}");
+					$("#mediaiframe"+ "${status.count}").css("z-index", "4");
+					
+				} else {
+					
+					imgArr["${status.index}"] = "${pCon.media}";
+					urlArr["${status.index}"] = undefined;
+					$("#mediaImg" + "${status.count}").attr("src", "${pCon.media}");
+					$('#m'+"${status.count}").css("background-image","none");
 				
-				}else{
-					
-					$(this).css("width" , "50");
 				}
-			});
-			
+				
+				var content = replaceAll("${pCon.content}", '<br>', '\r\n');
+				$("#ta" + "${status.count}").val(content);
+				conArr.push(content);
+				
+				$(".p" + "${status.count}").show();
+				
+			</c:forEach>
 			
 			 /*추가 버튼*/
 			 $("#addbtn").click(function(){
@@ -84,9 +136,8 @@
 					 
 				 }
 				 
-				 $(".p"+(i-1)).css("width","50");
-				 $(".p"+i).css("width","65");
-			}); 			 
+				 alert(maxPage);
+			});
 			 
 			 /*삭제 버튼*/
 			 $("#deletebtn").click(function(){
@@ -108,10 +159,9 @@
 					conArr[i - 1] = null;													// content 비우기
 					url = "";																	// url 운반 변수 비우기
 					
-					$(".p"+i).hide();
+					$(".p"+i).hide(); 
 					maxPage -=1;
 					i -= 1;
-					$(".p"+i).css("width","65");
 					$("#myCarousel").carousel(maxPage - 1);
 					
 					if(maxPage==9) {
@@ -125,102 +175,72 @@
 			$(".p1").click(function(){
 				$("#myCarousel").carousel(0);
 				modifyCon();
-				j = i;
 				i = 1;				
 				checkMaxPage();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
 			});
 			
 			$(".p2").click(function(){
 				$("#myCarousel").carousel(1);
 				modifyCon();
-				j = i;
 				i = 2;				
 				checkMaxPage();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
 			});
 			
 			$(".p3").click(function(){
 				$("#myCarousel").carousel(2);
 				modifyCon();
-				j = i;
 				i = 3;
 				checkMaxPage();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
 			});
 			
 			$(".p4").click(function(){
 				$("#myCarousel").carousel(3);
 				modifyCon();
-				j = i;
 				i = 4;
 				checkMaxPage();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
 			});
 			
 			$(".p5").click(function(){
 				$("#myCarousel").carousel(4);
 				modifyCon();
-				j = i;
 				i = 5;
 				checkMaxPage();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
 			});
 			
 			$(".p6").click(function(){
 				$("#myCarousel").carousel(5);
 				modifyCon();
-				j = i;
 				i = 6;
 				checkMaxPage();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
 			});
 			
 			$(".p7").click(function(){
 				$("#myCarousel").carousel(6);
 				modifyCon();
-				j = i;
 				i = 7;
 				checkMaxPage();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
 			});
 			
 			$(".p8").click(function(){
 				$("#myCarousel").carousel(7);
 				modifyCon();
-				j = i;
 				i = 8;
 				checkMaxPage();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
 			});
 			
 			$(".p9").click(function(){
 				$("#myCarousel").carousel(8);
 				modifyCon();
-				j = i;
 				i = 9;
 				checkMaxPage();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
 			});
 			
 			$(".p10").click(function(){
 				$("#myCarousel").carousel(9);
 				$("#addbtn").hide();
 				modifyCon();
-				j = i;
 				i = 10;
 				checkMaxPage();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
 			});
 			
 			/* 이미지 드래그 앤 드롭 */
@@ -245,7 +265,7 @@
 
 			});		
 			
-			$("#inputBtn").click(function(){
+			$("#inpuBtn").click(function(){
 				
 				closeModal();
 				
@@ -253,6 +273,12 @@
 			
 		});
 		//		
+		
+		function replaceAll(str, target, replacement) {
+			
+   			return str.split(target).join(replacement);
+   			
+		};
 		
 		function openModal(){
 				
@@ -314,32 +340,25 @@
 			alert("모든 요소를 비웁니다.");
 			
 			// clear 로직
-			$('#mediaiframe' + i).attr('src', "");							// 미디어 src 비우기
+			$('#mediaiframe' + maxPage).attr('src', "");				// 미디어 src 비우기
 			$('#inputurl').attr('value', "");									// 모달 위 모달 value 비우기
 			$("#ta" + i).val("");													// 컨텐트 비우기
-			$("#mediaiframe"+ i).css("z-index", "2");					// 미디어 층 내리기
-			$("#mediaImg" + i).attr("src", "");								// 이미지 비우기
-			$('#m'+i).css("background-image"," url('/KnowhowApp/resources/images/insertImage.png')"); //원래이미지로
+			$("#mediaiframe"+ maxPage).css("z-index", "2");	// 미디어 층 내리기
+			$("#mediaImg" + i).attr("src", "");							// 이미지 비우기
+			$('#m'+i).css("background-image"," url('/KnowhowApp/resources/images/insertImage.png')");//원래 이미지로 
 			imgArr[i - 1] = null;													// 파일 비우기
 			urlArr[i - 1] = undefined;											// url 비우기
 			conArr[i - 1] = null;													// content 비우기
 			url = "";																	// url 운반 변수 비우기
 			
-		}		
-
-// 			alert($("#imgurl1").val());
-// 			conArr[i - 1] = $("#ta" + i).val();
-// 			if(!imgArr[i - 1]) { imgArr[i - 1] = null }
-// 			if(!urlArr[i - 1]) { urlArr[i - 1] = null }			
-// 			for(var j = 0; j < 10; j++) {				
-// 				if(conArr[j]) {					
-// 					alert(j + "페이지\n" + "이미지 : " + imgArr[j] + "\nURL : " + urlArr[j] + "\n내용 : " + conArr[j] + "\nmaxPage : " + maxPage);					
-// 				}
-// 			}
-
-		function complete() {
+		}
+		
+		function modify() {
 			
 			for(var s = 0; s < maxPage ; s++) {
+				
+				alert(s + "페이지\n" + "이미지 : " + imgArr[s] + "\nURL : " + urlArr[s] + "\n내용 : " + conArr[s] + "\nmaxPage : " + maxPage);
+				
 				if($("#ta" + i).val() == "") {
 					alert("내용이 없는 페이지가 있습니다.");
 					return;
@@ -364,7 +383,7 @@
 		
 			$.ajax({
 				type : 'POST',
-				url		: 'completeWrite',
+				url		: 'completeModify',
 				data	: formData, 
 				processData : false,
 				contentType : false,
@@ -383,7 +402,7 @@
 					alert("code:"+request.status+"\n\n"+"message:"+request.responseText+"\n\n"+"error:"+error);
 					
 			    },
-			    complete : function(){			    				
+			    complete : function(){
 			    	
 			    	// 이미지 감추기 처리
 			    	$(location).attr('href',"addTagPage");
@@ -393,48 +412,30 @@
 			    }
 			}); 
 		}
-		
-		function modalClose(k){
-			
-		if(k == "1"){
-			if(confirm('포스트작성을 취소합니다.') == true){
-				$("#addModal").modal('hide');
-			
-			}else{
-				
-				return ;
-			}
-			
-		}else if(k == "2"){
-			$("#inputModal").modal('hide');	
-		}	
-		
-		}
 	</script>
 	<style>
 	</style>
 </head>
-<body> 	
-<div class="modal fade" id="addModal" data-backdrop="static">
+<body>
+ 	<div class="modal fade" id="addModal" data-backdrop="static">
 		<div class="modal-dialog" id="addDialog">
 				<div class="modal-content" id="addContent">
 				<div id="addWrap">
 					<div class="modal-header" id="header">
-						<div id="Closeimg" onclick="modalClose('1')"><img style="width:20px;" src="resources/images/close.png"/></div>
+						<div id="Closeimg"><a href="#"><img style="width:20px;" src="resources/images/close.png"/></a></div>
 						<div id="Title">${post.title }</div>
 						<div id="CreateDate">${post.wDate }</div>
 						<div id="Clear" onclick="clearPage()"><img style="width:20px;" src="resources/images/clear.png"/></div>
-						<div id="tSave" onclick=""><img style="width:25px;" src="resources/images/tsave.png"/></div>
 					</div>
 					<!-- Modal 상단-->
-						<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">				
+						<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
 							
   							 <div class="carousel-inner" role="listbox">
   							 
-  							  	<div class="wrap-loading display-none">
+  							 	<div class="wrap-loading display-none">
 						    		<div><img src="resources/images/loading2.gif" /></div>
 								</div>
-  							 					
+  							 
   							 	<div class="item active additem">
   							 		<form name="addKnowhowForm1" action="test.jsp" method="post">
 										<div id="addKnowhowcontent">
@@ -448,7 +449,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="Complete">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
 												</div>
 											</div>
 										</div>
@@ -467,7 +468,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
 												</div>
 											</div>
 										</div>
@@ -486,7 +487,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
 												</div>
 											</div>
 										</div>
@@ -505,7 +506,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
 												</div>
 											</div>
 										</div>
@@ -524,7 +525,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
 												</div>
 											</div>
 										</div>
@@ -543,7 +544,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
 												</div>
 											</div>
 										</div>
@@ -562,7 +563,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
 												</div>
 											</div>
 										</div>
@@ -581,7 +582,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
 												</div>
 											</div>
 										</div>
@@ -600,7 +601,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
 												</div>
 											</div>
 										</div>
@@ -619,7 +620,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
 												</div>
 											</div>
 										</div>
@@ -677,7 +678,7 @@
 		<div class="modal-dialog" id="inputDialog">
 			<div class="modal-content" id="inputContent">
 				<div id="inputWrap">
-				<div id="Closeimg2" onclick="modalClose('2')"><img style="width:20px;" src="resources/images/close.png"/></div>	
+				<div id="Closeimg2"><a href=""><img style="width:20px;" src="resources/images/close.png"/></a></div>	
 					<div id="inputTitle">
 						<div class="form-group">
 							<label for="addtitle" class="col-sm-12 control-label" id="titlelabel">Please enter a Video url</label>
@@ -686,7 +687,7 @@
 							</div>
 						</div>
 						<div id="buttonGroup">
-								<button type="button" class="btn btn-success addbtn" id="inputBtn"><b>Enter</b></button>
+								<button type="button" class="btn btn-success addbtn" id="inpuBtn"><b>Enter</b></button>
 							</div>	
 					</div>
 			</div>

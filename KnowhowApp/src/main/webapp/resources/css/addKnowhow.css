@@ -25,7 +25,6 @@
 			.addbtn{
 				margin-top: 10px;
 				margin-bottom: 10px;
-				cursor: pointer;
 			}
 			
 			#Recallingbtn, #Priorbtn{
@@ -131,6 +130,7 @@
 			
 			#Closeimg{
 				float: right;
+				cursor: pointer;
 			}
 			
 			#Closeimg img{
@@ -158,7 +158,7 @@
 				
 			}
 			
-			#content{
+			#addKnowhowcontent{
 				margin:0px auto;
 				height: 500px;
 				width: 90%;
@@ -170,9 +170,7 @@
 			}
 			
 			.mbackground{
-				background-image: url("/KnowhowApp/resources/images/insertImage.png");
-				background-size:100%, 100%;
-				background-repeat: no-repeat;
+				
 			}
 			#content_Text{
 				margin-top: 20px;
@@ -202,6 +200,7 @@
 				margin-top: 120px;
 			}
 			
+			
 			.btnSubmit{
 				width:100%;
 				height: 36px;
@@ -215,7 +214,7 @@
 				margin-top:50px;
 				width: 55px;
 				height:40px;
-				
+				cursor: pointer;
 			}
 			
 			#deletebtn{
@@ -226,7 +225,7 @@
 			}
 			
 			.pageNumber{
-				width:55px;
+				width:50px;
 				height:40px;
 				margin-bottom: 6px;
 				color:white;
@@ -294,7 +293,7 @@
 				float:left;
 			}
 			
-			.item{
+			.additem{
 			height: 700px;
 		}
 		
@@ -319,6 +318,9 @@
 			height: 300px;
 			border:0px;
 			cursor: pointer;
+			background-image: url("/KnowhowApp/resources/images/insertImage.png");
+			background-size:100%, 100%;
+			background-repeat: no-repeat;
 		}
 		
 		.mediaImg{
@@ -352,6 +354,54 @@
 		#Closeimg2{
 			float:right;
 			margin-right: 20px;
+		}
+		
+		/*로딩 이미지로 추정*/
+		
+		.wrap-loading{ /*화면 전체를 어둡게 합니다.*/
+		    position: fixed;
+		    left:0;
+		    right:0;
+		    top:0;
+		    bottom:0;
+		    background: rgba(0,0,0,0.2);
+   		 }
+    
+	     .wrap-loading div{ /*로딩 이미지*/
+	         width:1000;  /*div의 전체 가로픽셀*/
+			 position:absolute;   /*테이블의 영향을받지않는 div*/
+			 left:50%;   /*div 왼쪽 top 부분이 가로 전체의 중간으로 위치하게됨*/
+			 margin-left:-130px;  /* 왼쪽 top부분이 가운데로왔으니 좌측에서 전체가로픽셀의 반을 마이너스하여 좌측으로 옮겨줌 */
+			 margin-top: 280px;
+	  	  }
+    
+	    .display-none{ /*감추기*/
+	        display:none;
+	    }
+	
+		.imgurl{
+			position: absolute;
+			width:20px;
+			height: 200px;
+			z-index:1;
+			opacity:0;
+			border:0px;
+		}
+		
+		#Clear{
+			float:right;
+			margin-top: -15px;
+			margin-right: 20px;
+			opacity:0.9;
+			cursor: pointer;
+		}
+		
+		#tSave{
+			float:right;
+			margin-top: -20px;
+			margin-right: 20px;
+			opacity:0.9;
+			cursor: pointer;
 		}
 		
 		/*스크롤바 */

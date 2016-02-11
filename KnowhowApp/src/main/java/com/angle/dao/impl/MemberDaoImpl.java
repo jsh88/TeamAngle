@@ -181,8 +181,8 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public Member memberLogin(String id) {
 		
-		String sql = "select *from member where id = :id";
-		Member member = namedParameterJdbcTemplate.query(sql,
+		String sql = "select * from member where id = :id";
+		return namedParameterJdbcTemplate.query(sql,
 				new MapSqlParameterSource().addValue("id", id),
 				new ResultSetExtractor<Member>() {
 
@@ -194,14 +194,18 @@ public class MemberDaoImpl implements MemberDao {
 						if(rs.next()) {
 							m.setId(rs.getString("id"));
 							m.setPw(rs.getString("pw"));
-						} else if(!rs.next()) {
-							m.setId("");
-						}
-						
-						return m;
+							m.setNickName(rs.getString("nickname"));
+							m.setjDate(rs.getString("jdate"));
+							m.setlDate(rs.getString("ldate"));
+							m.setvCount(rs.getInt("vcount"));
+							m.setState(rs.getBoolean("state"));
+							m.setImage(rs.getString("image"));
+							m.setpComment(rs.getString("pcomment"));
+							return m;
+						} 						
+						return null;
 					}					
 				});		
-		return member;
 	}
 
 	
@@ -248,20 +252,18 @@ public class MemberDaoImpl implements MemberDao {
 	}
 	
 	@Override
-	public void updateMemberInfoId(Member member) {
-		
-		String sql = "update member set id = :id where id = :id";
-		namedParameterJdbcTemplate.update(sql,
-				new MapSqlParameterSource().addValue("id", member.getId())
-					.addValue("id", member.getId()));		
+	public void updateMemberInfoId(Member member, String idModify) {
+		SqlParameterSource idParam = new MapSqlParameterSource("idModify", idModify).addValue("id", member.getId());
+		String sql = "update member set id = :idModify where id = :id";
+		namedParameterJdbcTemplate.update(sql, idParam);		
 	}
 
 	@Override
-	public void updateMemberInfoNickName(Member member) {
+	public void updateMemberInfoNickName(Member member, String nickNameModify) {
 
 		String sql = "update member set nickname = :nickname where id = :id";
 		namedParameterJdbcTemplate.update(sql,
-				new MapSqlParameterSource().addValue("nickname", member.getNickName())
+				new MapSqlParameterSource().addValue("nickname", nickNameModify)
 					.addValue("id", member.getId()));		
 	}
 
@@ -278,24 +280,23 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void updateVcount(Member member) {
 		
-		String sql = "update member set vcount = :vcount +1 where id = :id";
+		String sql = "update member set vcount = :vcount where id = :id";
 		namedParameterJdbcTemplate.update(sql,
-				new MapSqlParameterSource().addValue("vcount", member.getvCount())
+				new MapSqlParameterSource().addValue("vcount", Integer.valueOf(member.getvCount())+1)
 				.addValue("id", member.getId()));
 					
 	}
 
 	@Override
 	public int getVcount(String id) {
-//		String sql = "select count(*) from member where id = :id and (trunc(sysdate) - 1/(24*60*60)) < ldate";
-		String sql = "select vcount from member where id = :id and trunc(ldate) = trunc(sysdate)";
+		String sql = "select vcount from member where id = :id and trunc(ldate) < trunc(sysdate)";
 		return namedParameterJdbcTemplate.query(sql,
 				new MapSqlParameterSource().addValue("id", id),
 				new ResultSetExtractor<Integer>() {
 
 					@Override
 					public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
-						int temp = 1;
+						int temp = -1;
 						if (rs.next()) {
 							temp = rs.getInt(1);
 						}
@@ -325,11 +326,16 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		
 		@Override
-		public void modifyMember(Member m) {
+		public Integer modifyMember(Member m) {
+			try{
 			namedParameterJdbcTemplate.update(
 					"UPDATE member SET image = :image, pComment = :pComment WHERE id = :id",
 					new BeanPropertySqlParameterSource(m));
-			
+			return 1;
+			}catch(Exception e){
+				e.printStackTrace();
+				return 0;
+			}
 		}
 		
 		@Override

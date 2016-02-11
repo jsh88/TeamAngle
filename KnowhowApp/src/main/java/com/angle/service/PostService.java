@@ -29,9 +29,19 @@ public interface PostService {
 
 	public void recommendPost(HttpServletRequest request, HttpSession session);
 
-	public void completePosting(MultipartHttpServletRequest request, HttpSession session)
+	public void completeWrite(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException;
 
 	public void getPostList(HttpServletRequest request);
+
+	public void completePosting(HttpSession session);
+
+	public void modifyTitle(HttpServletRequest request, HttpSession session);
+
+	public void completeModify(MultipartHttpServletRequest request, HttpSession session) throws IllegalStateException, IOException;
+
+	public void setViewInfo(HttpServletRequest request, HttpSession session);
+
+	public void getRecommendCount(HttpServletRequest request);
 
 }

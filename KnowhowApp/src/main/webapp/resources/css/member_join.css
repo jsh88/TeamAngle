@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+
+#mj_content {
+	height: 200px;
+	width: 550px;
+	margin: 0 auto;
+}
+
+#mj_btn_right, #mj_btn_left {
+	text-size: 100px;
+	color: black;
+}
+
+#mdf #mj_btn_submit {
+	
+}

@@ -64,40 +64,39 @@ $(document).ready(function(){
 });
 
 $(function() {
-	
+$("#p1").attr("disabled", "disabled");
 $("#passCheck").on("keyup", function() {
 	
 	var pw = $("#passCheck").val();
 	$.ajax({
 		url: "memberUpdatePassCheck.ajax",
 		type: "POST",
-		data: {"pw": pw},
+		data: {"passCheck": pw},
 		dataType: "text",
 		success: function(responseData, statusText, xhr) {
 			var result = responseData;
 			
-			if(result >= 1) {
+			if(result == 1) {
 				$("#passCheck").css("border", "2px solid red");
-				$("#p1").attr("disabled", "disabled");
+				
 			} else if(result == 0) {
 				$("#passCheck").css("border", "2px solid lime");
 				$("#p1").removeAttr("disabled");
 			}			
 		},
 		error : function(xhr, statusText, responseData) {
-			$(".chk").text("x").css("color", "red");
-			/*alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);*/
+		//	$(".chk").text("x").css("color", "red");
+			alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
 		}	
 	});	
 });
 
 
-/*// ID 사용가능 체크
+$("#emailSubmit").attr("disabled", "disabled");
 $("#id").on("keyup", function() {
-	
 	var id = $("#id").val();
 	$.ajax({
-		url: "updateMemberInfoId.ajax",
+		url: "updateMemberInfoIdCheck.ajax",
 		type: "POST",
 		data: {"id" : id},
 		dataType: "text",
@@ -105,11 +104,11 @@ $("#id").on("keyup", function() {
 			var result = responseData;
 			
 			if(result >= 1) {
-				$("#id확인후메시지뿌려지는곳id").text("사용 불가능한 아이디 입니다.").css("color", "red");
-				$("#submit 버튼id ").attr("disabled", "disabled");
+				$("#id").css("border", "2px solid red");
+				$("#emailSubmit").attr("disabled", "disabled");
 			} else if(result == 0) {
-				$("#id확인후메시지뿌려지는곳id").text("사용 가능한 아이디 입니다.").css("color", "blue");
-				$("#submit 버튼id ").removeAttr("disabled");
+				$("#id").css("border", "2px solid lime");
+				$("#emailSubmit").removeAttr("disabled");
 			}			
 		},
 		error : function(xhr, statusText, responseData) {
@@ -117,16 +116,16 @@ $("#id").on("keyup", function() {
 			alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
 		}	
 	});	
-});*/
+});
 			
 	
 //닉네임 사용가능 체크
-$("#nickname").on("keyup", function() {
-	
-	var nickname = $("#nickname").val();
+$("#nickNameSubmit").attr("disabled", "disabled");
+$("#nick").on("keyup", function() {
+	var nickname = $("#nick").val();
 	
 	$.ajax({
-		url: "updateMemberInfoNickName.ajax",
+		url: "updateMemberInfoNickNameCheck.ajax",
 		type: "POST",
 		data: {"nickname": nickname},
 		dataType: "text",
@@ -134,11 +133,11 @@ $("#nickname").on("keyup", function() {
 			var result = responseData;
 			
 			if(result >= 1) {
-				$("#nickname확인후메시지뿌려지는곳id").text("사용 불가능한 닉네임 입니다.").css("color", "red");
-				$("#submit 버튼id ").attr("disabled", "disabled");
+				$("#nick").css("border", "2px solid red");
+				$("#nickNameSubmit").attr("disabled", "disabled");
 			} else if(result == 0) {
-				$("#nickname확인후메시지뿌려지는곳id").text("사용 가능한 닉네임 입니다.").css("color", "blue");
-				$("#submit 버튼id ").removeAttr("disabled");
+				$("#nick").css("border", "2px solid lime");
+				$("#nickNameSubmit").removeAttr("disabled");
 			}			
 		},
 		error : function(xhr, statusText, responseData) {
@@ -150,18 +149,32 @@ $("#nickname").on("keyup", function() {
 	
 	
 //회원수정페이지 비밀번호 확인체크
-$("#회원수정페이지 비밀번호 입력되는곳id").on("keyup", function() {
+$("#passSubmit").attr("disabled", "disabled");
+$("#pass1").on("keyup", function() {
 	
-	var pass = $("#회원수정페이지 비밀번호 입력되는곳id").val();
-	if(pass.length < 8 || pass.length > 16) {
-		$("#회원수정페이지비밀번호메시지뿌려지는곳id").text("비밀번호는 8자 이상부터 16자 이하만 사용이 가능합니다.").css("color", "red");
-		$("#submit 버튼id ").attr("disabled", "disabled");
+	var pass1 = $("#pass1").val();
+	if(pass1.length < 8 || pass1.length > 16) {
+		$("#pass1").css("border", "2px solid red");
+		$("#passSubmit").attr("disabled", "disabled");
 	} else {
-		$("#회원수정페이지비밀번호메시지뿌려지는곳id").text("비밀번호 사용이 가능합니다.").css("color", "blue");
-		$("#submit 버튼id ").removeAttr("disabled");
+		$("#pass1").css("border", "2px solid lime");
+		$("#passSubmit").attr("disabled", "disabled");
 	}	
 });
-
+$("#pass2").on("keyup", function() {
+	var pass1 = $("#pass1").val();
+	var pass2 = $("#pass2").val();
+	if(pass2.length < 8 || pass2.length > 16) {
+		$("#pass2").css("border", "2px solid red");
+		$("#passSubmit").attr("disabled", "disabled");
+	} else {
+		$("#pass2").css("border", "2px solid lime");
+		$("#passSubmit").attr("disabled", "disabled");
+	}	
+	if(pass1 == pass2){
+		$("#passSubmit").removeAttr("disabled");
+	}
+});
 });
 
 

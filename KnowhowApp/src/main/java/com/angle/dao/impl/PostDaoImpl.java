@@ -3,6 +3,7 @@ package com.angle.dao.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -75,7 +76,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	public Post getPost(int pNo) {
 
 		return jdbcTemplate.queryForObject("select p.*, nickname from post p, member m where p.id=m.id and p.pno = ?",
-				new Object[] {}, new RowMapper<Post>() {
+				new Object[] { pNo }, new RowMapper<Post>() {
 
 					@Override
 					public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -90,6 +91,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 						p.setwDate(rs.getString("wdate"));
 						p.setmDate(rs.getString("mdate"));
 						p.settDate(rs.getString("tdate"));
+						p.setCount(rs.getInt("count"));
 						p.setGood(rs.getInt("good"));
 						p.setState(rs.getInt("state") == 1 ? true : false);
 
@@ -118,8 +120,18 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 								pCon.setpNo(pNo);
 								pCon.setPage(rs.getInt("page"));
-								pCon.setContent(rs.getString("content"));
-								pCon.setMedia(rs.getString("media"));
+								pCon.setContent(rs.getString("content").replaceAll("\r\n", "<br>"));
+
+								if (rs.getString("media").indexOf("https:") > -1
+										|| rs.getString("media").equals("none"))
+
+									// url 이거나, 미디어가 없으면 그냥 넣는다.
+									pCon.setMedia(rs.getString("media"));
+
+								else
+
+									// 이미지 넣는당
+									pCon.setMedia("resources/images/" + rs.getString("media"));
 
 								pConList.add(pCon);
 
@@ -197,44 +209,54 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	}
 
 	@Override
-	public ArrayList<PostComment> getPostCommentList(int pNo) {
+	public HashMap<Integer, ArrayList<PostComment>> getPostCommentListAll(int pNo, int mPage) {
 
-		ArrayList<PostComment> pComList = jdbcTemplate.query(
-				"select p.*, m.id, m.nickName, m.image from postComment p, member m where pno = ? and p.id = m.id order by wdate asc",
-				new Object[] { pNo }, new ResultSetExtractor<ArrayList<PostComment>>() {
+		HashMap<Integer, ArrayList<PostComment>> pComListMap = new HashMap<>();
 
-					@Override
-					public ArrayList<PostComment> extractData(ResultSet rs) throws SQLException, DataAccessException {
+		for (int i = 0; i < mPage; i++)
 
-						ArrayList<PostComment> pComList = new ArrayList<>();
+			pComListMap.put(i,
+					jdbcTemplate.query(
+							"select p.*, m.id, m.nickName, m.image from postComment p, member m where pno = ? and page = ? and p.id = m.id order by wdate asc",
+							new Object[] { pNo, i }, new ResultSetExtractor<ArrayList<PostComment>>() {
 
-						if (rs.next()) {
+								@Override
+								public ArrayList<PostComment> extractData(ResultSet rs)
+										throws SQLException, DataAccessException {
 
-							do {
+									ArrayList<PostComment> pComList = null;
 
-								PostComment pCom = new PostComment();
+									if (rs.next()) {
 
-								pCom.setcNo(rs.getInt("ono"));
-								pCom.setContent(rs.getString("content"));
-								pCom.setId(rs.getString("id"));
-								pCom.setImage(rs.getString("image"));
-								pCom.setmDate(rs.getString("mdate"));
-								pCom.setMedia(rs.getString("media"));
-								pCom.setNickName(rs.getString("nickname"));
-								pCom.setPage(rs.getInt("page"));
-								pCom.setpNo(pNo);
-								pCom.setwDate(rs.getString("wdate"));
+										pComList = new ArrayList<>();
 
-							} while (rs.next());
+										do {
 
-						}
+											PostComment pCom = new PostComment();
 
-						return pComList;
+											pCom.setcNo(rs.getInt("cno"));
+											pCom.setContent(rs.getString("content"));
+											pCom.setId(rs.getString("id"));
+											pCom.setImage(rs.getString("image"));
+											pCom.setmDate(rs.getString("mdate"));
+											pCom.setMedia(rs.getString("media"));
+											pCom.setNickName(rs.getString("nickname"));
+											pCom.setPage(rs.getInt("page"));
+											pCom.setpNo(pNo);
+											pCom.setwDate(rs.getString("wdate"));
 
-					}
-				});
+											pComList.add(pCom);
 
-		return pComList;
+										} while (rs.next());
+
+									}
+
+									return pComList;
+
+								}
+							}));
+
+		return pComListMap;
 	}
 
 	@Override
@@ -261,77 +283,210 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	}
 
 	@Override
-	public void setRecommendPost(int pNo, String id) {
+	public boolean setRecommendPost(int pNo, String id) {
 
-		if (jdbcTemplate.queryForObject("select 1 from postrecommendation where pno = ? and id = ?",
-				new Object[] { pNo, id }, Object.class) != null)
+		try {
+
+			jdbcTemplate.update("insert into postrecommendation values(?, ?)", new Object[] { id, pNo });
+
+			return true;
+
+		} catch (DataAccessException e) {
 
 			jdbcTemplate.update("delete from postrecommendation where pno = ? and id = ?", new Object[] { pNo, id });
 
-		else
+			return false;
 
-			jdbcTemplate.update("insert into postrecommendation values(?, ?)", new Object[] { pNo, id });
+		}
 
 	}
 
 	@Override
-	public void completePosting(ArrayList<PostTag> pTagList) {
+	public ArrayList<PostTag> completePosting(ArrayList<PostTag> pTagList) {
+
+		long start = System.currentTimeMillis();
+
+		// try {
+
+		// jdbcTemplate.getDataSource().getConnection().setAutoCommit(false);
 
 		for (PostTag p : pTagList) {
 
-			// 태그 업로드
-			try {
-
-				jdbcTemplate.update("insert into tag values(?, ?, ?, sysdate, sysdate)",
-						new Object[] { p.getTag(), p.getCount(), p.getWeight() });
-
-			} catch (DataAccessException e) {
-
-				jdbcTemplate.update("update tag set count = count + 1, rdate = sysdate where tag = ?",
-						new Object[] { p.getTag() });
-
-			}
+			// // 루트 태그 업로드
+			// try {
+			//
+			// jdbcTemplate.update("insert into tag values(?, 1, 0, sysdate,
+			// sysdate)",
+			// new Object[] { p.getTag() });
+			//
+			// } catch (DataAccessException e) {
+			//
+			// jdbcTemplate.update("update tag set count = count + 1, rdate =
+			// sysdate where tag = ?",
+			// new Object[] { p.getTag() });
+			//
+			// }
 
 			// 포스트 태그 업로드
 			try {
 
-				jdbcTemplate.update("insert into posttag values(?, ?, ?, ?, sysdate, sysdate)",
-						new Object[] { p.getpNo(), p.getTag(), p.getCount(), p.getWeight() });
+				jdbcTemplate.update("insert into posttag values(?, ?, 1, 0, sysdate, sysdate)",
+						new Object[] { p.getpNo(), p.getTag() });
 
 			} catch (DataAccessException e) {
+				
+				System.out.println("시도 했다?");
 
-				jdbcTemplate.update("update posttag set count = count + 1, rdate = sysdate where tag = ?",
-						new Object[] { p.getTag() });
+				jdbcTemplate.update("update posttag set count = count + 1, rdate = sysdate where tag = ? and pno = ?",
+						new Object[] { p.getTag(), p.getpNo() });
 
 			}
 		}
 
-		pTagList = jdbcTemplate.query("select * from posttag where pno = ?", new Object[] { pTagList.get(0).getpNo() },
-				new ResultSetExtractor<ArrayList<PostTag>>() {
+		if (!pTagList.isEmpty())
+
+			return jdbcTemplate.query("select * from posttag where pno = ? order by count desc",
+					new Object[] { pTagList.get(0).getpNo() }, new ResultSetExtractor<ArrayList<PostTag>>() {
+
+						@Override
+						public ArrayList<PostTag> extractData(ResultSet rs) throws SQLException, DataAccessException {
+
+							ArrayList<PostTag> pTagList = new ArrayList<>();
+
+							while (rs.next()) {
+
+								PostTag p = new PostTag();
+
+								p.setpNo(rs.getInt("pno"));
+								p.setCount(rs.getInt("count"));
+								p.setTag(rs.getString("tag"));
+								p.setWeight(rs.getInt("weight"));
+								p.setfDate(rs.getString("fdate"));
+								p.setrDate(rs.getString("rdate"));
+
+								pTagList.add(p);
+
+							}
+
+							long end = System.currentTimeMillis();
+
+							System.out.println("실행 시간 : " + (end - start) / 1000.0);
+							System.out.println("태그 개수 : " + pTagList.size());
+
+							// jdbcTemplate.getDataSource().getConnection().commit();
+							// jdbcTemplate.getDataSource().getConnection().setAutoCommit(true);
+
+							return pTagList;
+
+						}
+					});
+
+		// } catch (SQLException e) {
+		// e.printStackTrace();
+		// }
+
+		return null;
+	}
+
+	@Override
+	public void addPostPage(ArrayList<PostContent> pConList) {
+
+		jdbcTemplate.update("delete from postContent where pno = ?", new Object[] { pConList.get(0).getpNo() });
+
+		for (int i = 0; i < pConList.size(); i++)
+
+			jdbcTemplate.update("insert into postContent values(?, ?, ?, ?)", new Object[] { pConList.get(i).getpNo(),
+					pConList.get(i).getPage(), pConList.get(i).getContent(), pConList.get(i).getMedia() });
+
+	}
+
+	@Override
+	public void setPostState(int pNo) {
+
+		jdbcTemplate.update("update post set state = 1, tdate = null where pno = ?", new Object[] { pNo });
+
+	}
+
+	@Override
+	public void modifyTitle(int pNo, String title) {
+
+		jdbcTemplate.update("update post set title = ? where pno = ?", new Object[] { pNo, title });
+
+	}
+
+	@Override
+	public void setMaxPostPage(int pNo, int mPage) {
+
+		jdbcTemplate.update("update post set mpage = ? where pno = ?", new Object[] { mPage, pNo });
+
+	}
+
+	@Override
+	public void setViewInfo(String id, int pNo) {
+
+		jdbcTemplate.update("update post set count = count + 1 where pno = ?", new Object[] { pNo });
+
+		try {
+
+			jdbcTemplate.update("insert into postlog values(?, ?, 1, sysdate)", new Object[] { pNo, id });
+
+		} catch (DataAccessException e) {
+
+			jdbcTemplate.update("update postlog set count = count + 1, rdate = sysdate where pno=? and id=?",
+					new Object[] { pNo, id });
+
+		}
+
+	}
+
+	@Override
+	public ArrayList<PostComment> getPostCommentList(int pNo, int page) {
+
+		return jdbcTemplate.query(
+				"select p.*, m.id, m.nickName, m.image from postComment p, member m where pno = ? and page = ? and p.id = m.id order by wdate asc",
+				new Object[] { pNo, page }, new ResultSetExtractor<ArrayList<PostComment>>() {
 
 					@Override
-					public ArrayList<PostTag> extractData(ResultSet rs) throws SQLException, DataAccessException {
+					public ArrayList<PostComment> extractData(ResultSet rs) throws SQLException, DataAccessException {
 
-						ArrayList<PostTag> pTagList = new ArrayList<>();
+						ArrayList<PostComment> pComList = null;
 
-						while (rs.next()) {
+						if (rs.next()) {
 
-							PostTag p = new PostTag();
+							pComList = new ArrayList<>();
 
-							p.setpNo(rs.getInt("pno"));
-							p.setCount(rs.getInt("count"));
-							p.setTag(rs.getString("tag"));
-							p.setWeight(rs.getInt("weight"));
-							p.setfDate(rs.getString("fdate"));
-							p.setrDate(rs.getString("rdate"));
+							do {
 
-							pTagList.add(p);
+								PostComment pCom = new PostComment();
+
+								pCom.setcNo(rs.getInt("cno"));
+								pCom.setContent(rs.getString("content"));
+								pCom.setId(rs.getString("id"));
+								pCom.setImage("resources/images/" + rs.getString("image"));
+								pCom.setmDate(rs.getString("mdate"));
+								pCom.setMedia(rs.getString("media"));
+								pCom.setNickName(rs.getString("nickname"));
+								pCom.setPage(rs.getInt("page"));
+								pCom.setpNo(pNo);
+								pCom.setwDate(rs.getString("wdate"));
+
+								pComList.add(pCom);
+
+							} while (rs.next());
 
 						}
 
-						return pTagList;
+						return pComList;
 
 					}
 				});
+	}
+
+	@Override
+	public int getPostRecommendationCount(int pNo) {
+
+		return jdbcTemplate.queryForObject("select count(*) from postrecommendation where pno = ?",
+				new Object[] { pNo }, Integer.class);
+
 	}
 }

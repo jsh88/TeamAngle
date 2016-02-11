@@ -1,7 +1,14 @@
 package com.angle.domain;
 
-public class MemberTag extends Tag {
+import java.io.Serializable;
 
+public class MemberTag extends Tag  implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	// Member Join Info
 	private String id;
 	private String nickName;

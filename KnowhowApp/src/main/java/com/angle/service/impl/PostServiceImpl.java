@@ -22,7 +22,6 @@ import com.angle.domain.PostTag;
 import com.angle.env.LuceneKoreanAnalyzer;
 import com.angle.service.PostCommentService;
 import com.angle.service.PostService;
-import com.angle.service.TagService;
 
 @Service
 public class PostServiceImpl implements PostService, PostCommentService {
@@ -52,7 +51,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	@Override
 	public void addPost(HttpServletRequest request, HttpSession session) {
-		
+
 		Member m = new Member();
 		m.setId("test");
 		m.setPw("1");
@@ -63,7 +62,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		m.setImage("test.gif");
 		m.setvCount(1);
 		m.setState(false);
-		
+
 		session.setAttribute("member", m);
 
 		Post p = new Post();
@@ -71,7 +70,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 		p.setId(((Member) session.getAttribute("member")).getId());
 		p.setNickName(((Member) session.getAttribute("member")).getNickName());
-		p.setImage(((Member) session.getAttribute("member")).getImage());		
+		p.setImage(((Member) session.getAttribute("member")).getImage());
 		p.setTitle(request.getParameter("title"));
 
 		postDao.addPost(p);
@@ -192,8 +191,8 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		session.removeAttribute("post");
 		session.removeAttribute("pConList");
 
-		if (session.getAttribute("pComList") != null)
-			session.removeAttribute("pComList");
+		if (session.getAttribute("pComListMap") != null)
+			session.removeAttribute("pComListMap");
 
 	}
 
@@ -204,19 +203,62 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public void completePosting(MultipartHttpServletRequest request, HttpSession session)
+	public void completeWrite(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
-		ArrayList<PostTag> pTagList = (ArrayList<PostTag>) luceneKoreanAnalyzer
-				.getTags((ArrayList<PostContent>) session.getAttribute("pConList"));
+		int mPage = Integer.parseInt(request.getParameter("mpage"));
+		String[] urlArr = request.getParameter("urlArr").split("q1z,");
+		String[] conArr = request.getParameter("conArr").split("q1z,");
 
-		postDao.completePosting(pTagList);
-		
-		session.setAttribute("pTagList", pTagList);
-		
-		this.addPostPage(request, session);
+		conArr[mPage - 1] = conArr[mPage - 1].replace("q1z", "");
+		urlArr[mPage - 1] = urlArr[mPage - 1].replace("q1z", "");
+
+		Post p = (Post) session.getAttribute("post");
+		p.setmPage(mPage);
+
+		ArrayList<PostContent> pConList = new ArrayList<>();
+		MultipartFile multipartFile = null;
+		File file = null;
+
+		for (int i = 0; i < mPage; i++) {
+
+			PostContent pCon = new PostContent();
+
+			if (request.getFile("imgArr" + i) != null) {
+
+				multipartFile = request.getFile("imgArr" + i);
+
+				file = new File(request.getServletContext().getRealPath(path), multipartFile.getOriginalFilename());
+
+				multipartFile.transferTo(file);
+
+				pCon.setMedia(multipartFile.getOriginalFilename()); // 이미지 이름
+
+			} else if (!urlArr[i].equals("undefined")) {
+
+				pCon.setMedia(urlArr[i]); // 동영상 URL
+
+			} else {
+
+				pCon.setMedia("none");
+
+			}
+
+			pCon.setPage(i);
+			pCon.setpNo(p.getpNo());
+			pCon.setContent(conArr[i]);
+
+			pConList.add(pCon);
+
+		}
+
+		// 포스트 페이지들 추가
+		postDao.addPostPage(pConList);
+		postDao.setMaxPostPage(p.getpNo(), mPage);
+
+		session.setAttribute("pTagList",
+				postDao.completePosting((ArrayList<PostTag>) luceneKoreanAnalyzer.getTags(pConList)));
 
 	}
 
@@ -224,8 +266,6 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	public void addPostComment(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
-		@SuppressWarnings("unchecked")
-		ArrayList<PostComment> pComList = (ArrayList<PostComment>) session.getAttribute("pConList");
 		Member m = (Member) session.getAttribute("member");
 
 		PostComment pCom = new PostComment();
@@ -249,14 +289,13 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		}
 
 		pCom.setpNo(p.getpNo());
-		pCom.setPage(Integer.parseInt(request.getParameter("pageNum")));
+		pCom.setId(m.getId());
+		pCom.setPage(Integer.parseInt(request.getParameter("page")));
 		pCom.setContent(request.getParameter("content"));
 		pCom.setImage(m.getImage());
 		pCom.setNickName(m.getNickName());
 
 		postCommentDao.addPostComment(pCom);
-
-		pComList.add(pCom);
 
 	}
 
@@ -264,13 +303,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	public void modifyPostComment(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
-		@SuppressWarnings("unchecked")
-		ArrayList<PostComment> pComList = (ArrayList<PostComment>) session.getAttribute("pComList");
-		PostComment pCom = null;
-
-		for (int i = 0; i < pComList.size(); i++)
-			if (pComList.get(i).getcNo() == Integer.parseInt(request.getParameter("cno")))
-				pCom = pComList.get(Integer.parseInt(request.getParameter("cno")));
+		PostComment pCom = new PostComment();
 
 		if (request.getFile("media") != null) {
 
@@ -288,6 +321,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 		}
 
+		pCom.setcNo(Integer.parseInt(request.getParameter("cno")));
 		pCom.setContent(request.getParameter("content"));
 
 		postCommentDao.modifyPostComment(pCom);
@@ -304,23 +338,141 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	@Override
 	public void getPostCommentList(HttpServletRequest request, HttpSession session) {
 
-		session.setAttribute("pComList",
-				postCommentDao.getPostCommentList(Integer.parseInt(request.getParameter("pno"))));
+		Post p = (Post) session.getAttribute("post");
+
+		int page = Integer.parseInt(request.getParameter("page"));
+
+		session.setAttribute("pComList", postCommentDao.getPostCommentList(p.getpNo(), page));
 
 	}
 
 	@Override
 	public void recommendPost(HttpServletRequest request, HttpSession session) {
 
-		postDao.setRecommendPost(Integer.parseInt(request.getParameter("pno")),
-				((Member) session.getAttribute("member")).getId());
+		request.setAttribute("isState", postDao.setRecommendPost(Integer.parseInt(request.getParameter("pno")),
+				((Member) session.getAttribute("member")).getId()));
 
 	}
 
 	@Override
 	public void getPostList(HttpServletRequest request) {
-		
-		
-		
+
+	}
+
+	@Override
+	public void completePosting(HttpSession session) {
+
+		postDao.setPostState(((Post) session.getAttribute("post")).getpNo());
+
+	}
+
+	@Override
+	public void modifyTitle(HttpServletRequest request, HttpSession session) {
+
+		Post p = (Post) session.getAttribute("post");
+
+		p.setTitle(request.getParameter("title"));
+
+		postDao.modifyTitle(p.getpNo(), p.getTitle());
+
+	}
+
+	@Override
+	public void completeModify(MultipartHttpServletRequest request, HttpSession session)
+			throws IllegalStateException, IOException {
+
+		int mPage = Integer.parseInt(request.getParameter("mpage"));
+		String[] urlArr = request.getParameter("urlArr").split("q1z,");
+		String[] conArr = request.getParameter("conArr").split("q1z,");
+
+		conArr[mPage - 1] = conArr[mPage - 1].replace("q1z", "");
+		urlArr[mPage - 1] = urlArr[mPage - 1].replace("q1z", "");
+
+		Post p = (Post) session.getAttribute("post");
+		p.setmPage(mPage);
+
+		ArrayList<PostContent> pConList = new ArrayList<>();
+		MultipartFile multipartFile = null;
+		File file = null;
+
+		for (int i = 0; i < mPage; i++) {
+
+			PostContent pCon = new PostContent();
+
+			if (!urlArr[i].equals("undefined")) {
+
+				pCon.setMedia(urlArr[i]); // 동영상 URL
+
+			} else if (request.getFile("imgArr" + i) != null || request.getParameter("imgArr" + i) != null) {
+
+				multipartFile = request.getFile("imgArr" + i);
+
+				if (multipartFile != null) {
+
+					file = new File(request.getServletContext().getRealPath(path), multipartFile.getOriginalFilename());
+
+					multipartFile.transferTo(file);
+
+					pCon.setMedia(multipartFile.getOriginalFilename());
+
+				} else if (request.getParameter("imgArr" + i).indexOf(".") > -1) {
+
+					String str = request.getParameter("imgArr" + i).substring(path.length());
+
+					if (str.equals("null"))
+						pCon.setMedia("none");
+					else
+						pCon.setMedia(str);
+
+				} else {
+
+					pCon.setMedia("none");
+
+				}
+			} else {
+
+				pCon.setMedia("none");
+
+			}
+
+			pCon.setPage(i);
+			pCon.setpNo(p.getpNo());
+			pCon.setContent(conArr[i]);
+
+			pConList.add(pCon);
+
+		}
+
+		// 포스트 페이지들 추가
+		postDao.addPostPage(pConList);
+		postDao.setMaxPostPage(p.getpNo(), mPage);
+
+		session.setAttribute("pTagList",
+				postDao.completePosting((ArrayList<PostTag>) luceneKoreanAnalyzer.getTags(pConList)));
+
+	}
+
+	@Override
+	public void setViewInfo(HttpServletRequest request, HttpSession session) {
+
+		postDao.setViewInfo(((Member) session.getAttribute("member")).getId(),
+				Integer.parseInt(request.getParameter("pno")));
+
+	}
+
+	@Override
+	public void getCommentList(HttpServletRequest request) {
+
+		request.setAttribute("pComList", postCommentDao.getPostCommentList(
+				Integer.parseInt(request.getParameter("pno")), Integer.parseInt(request.getParameter("page"))));
+
+	}
+
+	@Override
+	public void getRecommendCount(HttpServletRequest request) {
+
+		request.setAttribute("postRecommendationCount",
+				postDao.getPostRecommendationCount(Integer.parseInt(request.getParameter("pno"))));
+
 	}
 }

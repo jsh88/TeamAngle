@@ -7,10 +7,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,6 +25,7 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	private static final String filePath = "/resources/images/";
 
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
@@ -39,19 +43,19 @@ public class MemberController {
 	public String MemberJoin(Model model) {
 
 		model.addAttribute("body", "member/memJoin");
-		return "member/memJoin";
+		return "template/header";
 	}
 
 	// 회원가입 서비스콜 부분
-	@RequestMapping(value = { "/member/memberJoinProc" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/memberJoinProc" }, method = RequestMethod.POST)
 	public String MemberJoinProc(HttpServletRequest request) throws IOException {
 
 		memberService.insertMemberJoin(request);
-		return "member/memJoin";
+		return "redirect:memberJoinForm";
 	}
 	
 	// 회원탈퇴 처리 부분
-	@RequestMapping(value = { "deleteMemberJoin" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/deleteMemberJoin" }, method = RequestMethod.GET)
 	public String deleteMemberJoin(Model model, HttpServletRequest request) {
 
 		memberService.deleteMember(request);
@@ -60,19 +64,19 @@ public class MemberController {
 	}
 
 	// 회원가입 아이디 중복체크 ajax 메시지처리 부분
-	@RequestMapping(value = { "/member/checkId.ajax" }, method=RequestMethod.POST)
+	@RequestMapping(value = { "/checkId.ajax" }, method=RequestMethod.POST)
 	public ModelAndView checkId(HttpServletRequest request) {
 
 		ModelAndView model = new ModelAndView();
 		model.setViewName("member/memberAjax");
 		int result = memberService.checkId(request);
 		model.addObject("result", result);
-
+		System.out.println(result + " : 0 이면 True");
 		return model;
 	}
 
 	// 회원가입 닉네임 중복체크 ajax 메시지처리 부분
-	@RequestMapping(value = { "/member/checkNickName.ajax" })
+	@RequestMapping(value = { "/checkNickName.ajax" })
 	public String checkNickName(Model model, HttpServletRequest request) {
 
 		int result = memberService.checkNickName(request);
@@ -81,19 +85,11 @@ public class MemberController {
 		return "member/memberAjax";
 	}
 
-	// 회원정보 수정창 전 비밀번호 확인창 콜부분
-	@RequestMapping(value = { "/memberUpdatePassCheckForm" }, method = RequestMethod.GET)
-	public String memberUpdatePassCheckForm(Model model, HttpServletRequest request) {
-
-		model.addAttribute("body", "member/회원정보수정전비밀번호확인폼이름");
-		return "main";
-	}
-
 	// 회원정보 수정창 전 비밀번호 확인창 서비스콜 부분
 	@RequestMapping(value = { "/memberUpdatePassCheck.ajax" })
-	public String memeberUpdatePassCheck(Model model, HttpServletRequest request) {
+	public String memeberUpdatePassCheck(@RequestParam("passCheck") String pass, Model model, HttpSession session) {
 
-		int result = memberService.checkPw(request);
+		int result = memberService.modifyCheckPw(pass, session);
 		model.addAttribute("result", result);
 
 		return "member/memberAjax";
@@ -118,41 +114,57 @@ public class MemberController {
 	}*/
 	
 	// 회원정보ID 수정 콜 부분
-	@RequestMapping(value = { "/updateMemberInfoId.ajax" })
+	//버튼 누르면 계속 수정되게 되어 있었음 수정함. 아이디 검색하면서 수정이 되어버림.
+	@RequestMapping(value = { "/updateMemberInfoIdCheck.ajax" })
 	public String updateMemberInfoId(Model model, HttpServletRequest request) throws IOException {
 		
 		int result = memberService.checkId(request);
 		model.addAttribute("result", result);
-		memberService.updateMemberInfoId(request);
-		return "main";
+//		memberService.updateMemberInfoId(request);
+		return "member/memberAjax";
+	}
+	
+	//아이디 적합성 판정에서 수정되던걸 때어내여 따로 수정하기를 만듬.
+	@RequestMapping(value="/updateMemberIdModify")
+	public String updateMemberIdModify(HttpServletRequest request, HttpSession session) throws IOException{
+		memberService.updateMemberInfoId(request, session);
+		return "template/header";
 	}
 	
 	// 회원정보NickName 수정 콜 부분
-	@RequestMapping(value = { "/updateMemberInfoNickName.ajax" })
+	//이메일 수정과 똑같이 해놨음 
+	@RequestMapping(value = { "/updateMemberInfoNickNameCheck.ajax" })
 	public String updateMemberInfoNickName(Model model, HttpServletRequest request) throws IOException {
 		
 		int result = memberService.checkNickName(request);
 		model.addAttribute("result", result);
-		memberService.updateMemberInfoNickName(request);
-		return "main";
+//		memberService.updateMemberInfoNickName(request);
+		return "member/memberAjax";
+	}
+	
+	//그래서 나는 똑같이 수정 했지!
+	@RequestMapping(value="/updateMemberNickNameModify")
+	public String updateMemberNickNameModify(HttpServletRequest request, HttpSession session) throws IOException{
+		memberService.updateMemberInfoNickName(request, session);
+		return "template/header";
 	}
 	
 	// 회원정보Pw 수정 콜 부분
+	//뷰단에서 이미 PW체크를 했는데 또하는게 이상하여 수정함.
 	@RequestMapping(value = { "/updateMemberInfoPw" })
-	public String updateMemberInfoPw(Model model, HttpServletRequest request) throws IOException {
+	public String updateMemberInfoPw(Model model, HttpServletRequest request, HttpSession session) throws IOException {
 		
-		int result = memberService.checkPw(request);
-		model.addAttribute("result", result);
-		memberService.updateMemberInfoPw(request);
-		return "main";
+//		int result = memberService.checkPw(request);
+//		model.addAttribute("result", result);
+		memberService.updateMemberInfoPw(request, session);
+		return "template/header";
 	}
 	
 	// 회원 로그아웃 콜 부분
 	@RequestMapping(value = { "/logoutMember" }, method=RequestMethod.GET)
-	public String logoutMemberProc(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public String logoutMemberProc(HttpServletRequest request, HttpSession session) {
 		session.invalidate();
-		return "redirect:main";
+		return "intro";
 	}
 	
 	// 회원 로그인창 콜 부분
@@ -165,13 +177,12 @@ public class MemberController {
 	
 	// 회원 로그인 서비스 콜 부분 
 	@RequestMapping(value = {"/login/logincheck.do"}, method=RequestMethod.POST)
-	public ModelAndView loginProc(HttpServletRequest request) {
-		
-		int result = memberService.memberLoginCheck(request);
+	public ModelAndView loginProc(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpServletRequest request, HttpSession session) {
+		int result = memberService.memberLoginCheck(id, pw, request, session);
+		System.out.println(result);
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("result", result);
-		mav.setViewName("member/memberAjax");
 		mav.setViewName("login/loginAjax");
 		
 		return mav;		
@@ -186,15 +197,13 @@ public class MemberController {
 	}*/
 	
 	
-	@RequestMapping("/memModify")
-	public String modifyProfile(MultipartHttpServletRequest req){
-		/*Member m = memberService.getMember(req.getParameter("id"));
-		HttpSession session = req.getSession();
-		session.setAttribute("member", m);*/
-		
-		memberService.modifyMember(req);
-		return "redirect:/";
+	@RequestMapping("/profileModify.ajax")
+	public String modifyProfile(MultipartHttpServletRequest request, HttpSession session) throws IllegalStateException, IOException{
+		String path = request.getServletContext().getRealPath(filePath);
+		memberService.modifyMember(request, path, session);
+		return "member/memberAjax";
 	}
+	
 	// 마이페이지 
 	@RequestMapping("/myPage")
 	public String getMyPage(HttpServletRequest req, HttpSession session, Model model){
@@ -278,4 +287,15 @@ public class MemberController {
 		return "index";
 	}
 
+	
+	// 로그인 세션 확인 부분 동작 확인 부분 처리
+	@RequestMapping(value = { "/member/loginConfrim" })
+	public String loginConfirmForm(Model model, HttpSession session)	{
+		Member m = (Member) session.getAttribute("member");
+		String id = m.getId();
+		memberService.getMember(id);
+		model.addAttribute("body", "member/loginConfirm");
+		return "member/loginConfirm";
+	}
+		
 }

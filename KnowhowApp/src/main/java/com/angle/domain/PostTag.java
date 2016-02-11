@@ -1,7 +1,14 @@
 package com.angle.domain;
 
-public class PostTag extends Tag {
+import java.io.Serializable;
 
+public class PostTag extends Tag implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	// Post Join Info
 	private int pNo;
 	

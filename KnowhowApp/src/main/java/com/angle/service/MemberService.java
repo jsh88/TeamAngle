@@ -20,29 +20,31 @@ public interface MemberService {
 
 	public int checkNickName(HttpServletRequest request);
 
+	public int modifyCheckPw(String pass, HttpSession session);
+	
 	public int checkPw(HttpServletRequest request);
 
 	public void deleteMember(HttpServletRequest request);
 
 	//	public void memberLoginCheck(HttpSession session, HttpServletRequest request) throws IOException;
 
-	public int memberLoginCheck(HttpServletRequest request);
+	public int memberLoginCheck(String id, String pw, HttpServletRequest request, HttpSession session);
 
 	public Member getMember(HttpServletRequest request);
 
 	//	public void updateMemberInfo(HttpServletRequest request) throws IOException;
 
-	public void updateMemberInfoId(HttpServletRequest request) throws IOException;
+	public void updateMemberInfoId(HttpServletRequest request, HttpSession session) throws IOException;
 
-	public void updateMemberInfoNickName(HttpServletRequest request) throws IOException;
+	public void updateMemberInfoNickName(HttpServletRequest request, HttpSession session) throws IOException;
 
-	public void updateMemberInfoPw(HttpServletRequest request) throws IOException;
+	public void updateMemberInfoPw(HttpServletRequest request, HttpSession session) throws IOException;
 
 	public Member getMember(String id);
 
 	public void getMyLatelyPost(String id);
 
-	public void modifyMember(MultipartHttpServletRequest req);
+	public void modifyMember(MultipartHttpServletRequest req, String path, HttpSession session) throws IllegalStateException, IOException;
 
 	public void getMyConcernPost(String id);
 

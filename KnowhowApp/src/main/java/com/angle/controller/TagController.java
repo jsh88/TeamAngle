@@ -6,31 +6,55 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.angle.service.PostService;
+import com.angle.service.TagService;
 
 @Controller
 public class TagController {
 
 	@Autowired
-	private PostService postService;
+	private TagService tagService;
 
-	public void setPostService(PostService postService) {
-		this.postService = postService;
+	public void setTagService(TagService tagService) {
+		this.tagService = tagService;
 	}
 
-	// 
-	@RequestMapping
-	public String recommendTag(HttpServletRequest request, HttpSession session) {
-		
-		// 
+	// addTagPage 접근
+	@RequestMapping(value = "addTagPage")
+	public String addTagPage() {
 
-		return null;	// 어디로 가야하오
+		return "knowhow/addTag";
 	}
-	
-	
-	@RequestMapping(value="/knowhowDetail")
-	public String myKnowhow(){
+
+	// addTag, ajax
+	@RequestMapping(value = "addTag")
+	@ResponseBody
+	public String addTag(HttpServletRequest request, HttpSession session) {
+
+		tagService.addPostAndMemberTag(request, session);
+
+		return "success";
+	}
+
+	// addTag
+	@RequestMapping(value = "getPostTag")
+	public String getPostTag(HttpServletRequest request, HttpSession session) {
+
+		tagService.getPostTag(request, session);
+		tagService.addMemberTag(request, session);
+
 		return "knowhow/knowhowDetail";
 	}
+
+	// introTagList
+	@RequestMapping(value = "introTagList")
+	@ResponseBody
+	public String introTagList(HttpServletRequest request) {
+
+		tagService.introTagList(request);
+
+		return "success";
+	}
+
 }

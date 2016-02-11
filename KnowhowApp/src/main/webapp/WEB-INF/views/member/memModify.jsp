@@ -14,51 +14,43 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <style>
-#content {
-	height: 300px;
+#md_content {
+	height: 260px;
 	border-radius: 6px;
-	border: 10px solid #376cbf;
-}
 
-.btn {
+}
+.btn_choice {
 	margin-top: 10px;
 }
 </style>
 
+
+
+
 </head>
 <body>
-<input type="hidden" name="id" value=""/>
-	<button id="btnpw" class="btn btn-warning btn-lg" data-toggle="modal"
-		data-target="#pwibox">PassWordInput</button>
-
-	<div class="modal fade slide" id="pwibox" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-
-		<div id="show" class="modal-dialog">
-			<div class="modal-content" style="height: 150px;">
-					<div class="modal-body">
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-						</button>
-
-
-						<div class="col-sm-offset-1 col-sm-11">
-							<span>Please.. password..</span>
+		<div id="show" class="modal-dialog"> 
+			<div class="modal-content"  style="height: 170px;">
+				<div class="modal-body">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<div class="col-sm-offset-1 col-sm-11">
+							<span>Please.. Pass..</span>
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="password" id="passCheck" class="form-control">
-						</div>
-						<div class="col-sm-offset-1 col-sm-10">
-							<button id="p1" class="btn btn-warning col-sm-12">go to</button>
-						</div>
+							<input type="text" id="passCheck" name="pass" class="form-control">
 					</div>
+					<div class="col-sm-offset-1 col-sm-10">
+							<button id="p1" class="btn btn-warning col-sm-12  btn_choice">go to</button>
+					</div>
+				</div>
+
 			</div>
 		</div>
 
-
-
 		<div id="show1" class="modal-dialog">
-			<div class="modal-content" id="content">
+			<div class="modal-content" id="md_content">
 				<div class="modal-body">
 					<button type="button" class="close" data-dismiss="modal">
 						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
@@ -69,92 +61,87 @@
 
 					<div class="list-group col-sm-offset-3 col-sm-6">
 						<button id="l1" class="btn btn-warning col-sm-12">email</button>
-						<button id="l2" class="btn btn-warning col-sm-12">nick</button>
-						<button id="l3" class="btn btn-warning col-sm-12">pass</button>
-						<button id="l4" class="btn btn-warning col-sm-12">delete</button>
+						<button id="l2" class="btn btn-warning col-sm-12 btn_choice">nick</button>
+						<button id="l3" class="btn btn-warning col-sm-12 btn_choice">pass</button>
+						<button id="l4" class="btn btn-warning col-sm-12 btn_choice">delete</button>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<div id="show2" class="modal-dialog">
-
 			<div class="modal-content">
 				<div class="modal-body">
-				
-				<form name="emailEdit" action="" method="post">
+				<form action="updateMemberIdModify">
 					<div id="lq1" style="height: 100px;">
 						<div class="col-sm-offset-1 col-sm-11">
 							<span>Please.. Email..</span>
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="email" id="edit_id" name="id" class="form-control">
+							<input type="email" id="id" name="id" class="form-control">
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="submit" class="btn btn-success col-sm-12" value="Changing Email">
+							<input type="submit" id="emailSubmit" class="btn btn-success col-sm-12  btn_choice" value="수정">
 						</div>
 					</div>
-				</form>
-				
-				<form name="nickEdit" action="" method="post">
+					</form>
+					
+					<form action="updateMemberNickNameModify">
 					<div id="lq2" style="height: 100px;">
 						<div class="col-sm-offset-1 col-sm-11">
 							<span>Please.. Nickname..</span>
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="text" id="edit_nick" name="nickname" class="form-control">
+							<input type="text" id="nick" name="nick" class="form-control">
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="submit" class="btn btn-success col-sm-12" value="Changing Nickname">
+							<input type="submit" id="nickNameSubmit" class="btn btn-success col-sm-12 btn_choice" value="수정">
 						</div>
 					</div>
-				</form>
-				
-				<form name="passEdit" action="" method="post">
+					</form>
+					
+					<form action="updateMemberInfoPw">
 					<div id="lq3" style="height: 170px;">
-						<div class="col-sm-offset-1 col-sm-10">
+						<div class="col-sm-offset-1 col-sm-10 s1">
 							<span>Please.. changing password ..</span>
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="password" id="edit_pass1"  class="form-control">
+							<input type="password" id="pass1" name="pass1"
+								class="form-control">
 						</div>
 						<div class="col-sm-1">
-							<img src="http://placehold.it/30x30">
+							
 						</div>
-						<div class="col-sm-offset-1 col-sm-10">
+						<div class="col-sm-offset-1 col-sm-10 s2">
 							<span>Please.. again ..</span>
 						</div>
 
 						<div class="col-sm-offset-1 col-sm-10">
 
-							<input type="password" id="edit_pass2" name="pw" class="form-control">
+							<input type="password" id="pass2" name="pass2"
+								class="form-control">
 						</div>
 						<div class="col-sm-1">
-							<img src="http://placehold.it/30x30">
+							
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="submit" class="btn btn-success col-sm-12" value="Changing Password">
+							<input type="submit" id="passSubmit" class="btn btn-success col-sm-12 btn_choice" value="수정">
 						</div>
 					</div>
-				</form>
+					</form>
 
-
-				<form name="deleteMem" action="" method="post">
 					<div id="lq4" style="height: 60px;">
 						<div class="col-sm-offset-1 col-sm-11">
 							<span>Please.. delete..</span>
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="submit" class="btn btn-success col-sm-12" value="Member leave..">
+							<input type="submit" class="btn btn-success col-sm-12 " value="수정">
 						</div>
 					</div>
-				</form>
-				
+
 				</div>
 			</div>
 		</div>
-	</div>
-	
-	<script src="resources/js/ajax_myModfy.js"></script>
+
 </body>
 </html>

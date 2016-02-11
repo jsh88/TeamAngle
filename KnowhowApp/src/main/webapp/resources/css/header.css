@@ -1,0 +1,111 @@
+@CHARSET "UTF-8";
+/* 최상단 header */
+#header_main {
+	background-color: black;
+	margin: 0;
+	padding: 0;
+}
+#brand {
+	margin-left: 7px;
+	margin-top: 3px;
+	color: #FFDA00;
+
+}
+#search_form {
+	margin-top: 6px;
+}
+#search_btn {
+	
+	border: none;
+	border-right: 2px solid #BFBCBC;
+	background-color: #535353;
+	color: white;
+}
+#search_txt {
+	border-style: none;
+	background-color: #535353;
+	color:white;
+
+}
+#loginbtn, #joinbtn, #navbtn, #logout{
+	margin-top: 7px;
+	font-size: 16px;
+	color: white;
+	font-weight: 600;
+}
+#navtag {
+	margin-top:2px;
+	height: 30px;
+	border-top: 1px solid #bfbcbc;
+}
+#navtag_lb {
+	margin-left: 145px;
+	width: 600px;
+	height: 30px;
+	margin-top:5px;
+	color: white;
+}
+#nav1 {
+	
+	float: right;
+	position: fixed;
+}
+/* main */
+
+	#menu {
+	margin-top: 10px;
+	border: 1px solid #CCCCCC;
+	border-radius: 10px;
+	float: right;
+	overflow: auto;
+	background-color: white;
+	z-index:5;
+	}
+	#nv1 {
+		padding:0;
+	}
+	#nv1 > button {
+		height: 40px;
+	}
+	
+	#c1, #c2 {
+	text-align: center;
+	}
+
+#profile_img, #nav1 {
+	margin-top: 5px;
+	text-align: center;
+}
+
+.recommenTag{
+	margin-left: 5px;
+	text-decoration: none;
+	color:white;
+}
+
+.recommenTag:hover{
+	color:#FFDA00;	
+	font-weight: bold;
+}
+
+#navTagTitle{
+	
+	font-weight: bold;
+}
+
+#myPageWrap{
+	position:absolute;
+}
+
+
+
+
+
+
+
+
+
+::-webkit-scrollbar {width: 8px; height: 8px; border: 3px solid #fff; }
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {display: block; height: 10px; background: url('./images/bg.png') #efefef}
+::-webkit-scrollbar-track {background: #efefef; -webkit-border-radius: 10px; border-radius:10px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.2)}			 
+::-webkit-scrollbar-thumb {height: 50px; width: 50px; background: rgba(0,0,0,.2); -webkit-border-radius: 8px; border-radius: 8px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.1)}
