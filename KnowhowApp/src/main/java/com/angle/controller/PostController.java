@@ -230,31 +230,31 @@ public class PostController {
 		return "forward:getPostTag";
 	}
 
-	// 포스트 최신 리스트
-	@RequestMapping(value = "postList")
+	// 포스트 최신 리스트 -> body include
+	@RequestMapping(value = "postView")
 	public String postList(HttpServletRequest request) {
 
 		postService.getPostView(request);
 
-		return "knowhow/postList"; // 어디로 가야하오
+		return "main/postList"; // 어디로 가야하오
 	}
 
-	// 포스트 베스트 리스트
-	@RequestMapping(value = "bestPostList")
+	// 포스트 베스트 리스트 -> body include
+	@RequestMapping(value = "bestPostView")
 	public String bestPostList(HttpServletRequest request) {
 
-//		postService.getPostList(request);
+		postService.getBestPostView(request);
 
 		return "knowhow/postList"; // 어디로 가야하오
 	}
 
-	// 포스트 검색
-	@RequestMapping(value = "searchPost")
+	// 포스트 검색 -> body include
+	@RequestMapping(value = "searchView")
 	public String bestPostList(HttpServletRequest request, HttpSession session) {
 
-//		postService.getPostList(request);
+		postService.getSearchPostView(request);
 
-		return "forward:addSearchTag"; // 어디로 가야하오
+		return "forward:addMemberTag"; // 어디로 가야하오
 	}
 
 	// 포스트 추천, ajax
