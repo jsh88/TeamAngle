@@ -9,7 +9,7 @@ public class Post {
 	private String mDate; 		// 수정일시
 	private String tDate;	 		// 임시저장일시
 	private int good; 				// 추천수
-	private boolean state; 	// 임시
+	private boolean state; 		// 임시
 	private int count;				// 포스트 조회수
 
 	// Member Join Info

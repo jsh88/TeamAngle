@@ -48,7 +48,7 @@ public interface MemberService {
 
 	public void getMyConcernPost(String id);
 
-	public void getMyLatelyLookupPost(String id);
+	public List<Post> getMyLatelyLookupPost(String id);
 
 	public void getMyMostLookupPost(String id);
 

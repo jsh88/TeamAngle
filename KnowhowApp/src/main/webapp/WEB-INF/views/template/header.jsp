@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,10 +24,10 @@
 			$("#mj_id, #mj_nickname, #mj_pass1, #mj_pass2").val("");
 			$("#mj_id").show();
 			$("#mj_btn_submit").hide();
-			
+
 		} else if (i == "2") {
 			modal = "loginPage";
-			
+
 		} else if (i == "3") {
 			modal = "memModifyPage";
 		} else if (i == "4") {
@@ -37,7 +37,7 @@
 		}
 
 		$("#" + modal).modal();
-		
+
 	}
 </script>
 <style>
@@ -65,13 +65,13 @@
 
 				<form class="navbar-form navbar-left" role="search">
 					<div id="search_form" class="input-group input-group-sm">
-					<span class="input-group-btn">
-							
+						<span class="input-group-btn">
+
 							<button class="btn btn-default" type="button" id="search_btn">
-							<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-						</span>
-						<input type="text" class="form-control" id="search_txt"
-							placeholder="Search for..." style="width: 380px;"> 
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							</button>
+						</span> <input type="text" class="form-control" id="search_txt"
+							placeholder="Search for..." style="width: 380px;">
 					</div>
 				</form>
 
@@ -102,9 +102,8 @@
 			<div id="navtag_lb">
 				<div class="col-sm-1 navTagTitle">Tag</div>
 				<div class="col-sm-11">
-					<a href="#" class="recommenTag">#피자</a>
-					<a href="#" class="recommenTag">#시카고</a>
-					<a href="#" class="recommenTag">#갈릭소스</a>
+					<a href="#" class="recommenTag">#피자</a> <a href="#"
+						class="recommenTag">#시카고</a> <a href="#" class="recommenTag">#갈릭소스</a>
 				</div>
 			</div>
 		</div>
@@ -118,10 +117,12 @@
 				<div id="profile_line" class="col-sm-12 col-xs-12 col-md-12">
 					<div id="profile_img" class="col-sm-5 col-xs-12">
 						<c:if test="${member.image == null }">
-						<img src="http://placehold.it/110x110" width="110px;" height="110px;">
+							<img src="http://placehold.it/110x110" width="110px;"
+								height="110px;">
 						</c:if>
 						<c:if test="${member.image != null }">
-						<img src="resources/images/${member.image }" width="110px;" height="110px;">
+							<img src="resources/images/${member.image }" width="110px;"
+								height="110px;">
 						</c:if>
 					</div>
 					<div id="profile_nametag" class="col-sm-7 col-xs-12">
@@ -148,17 +149,34 @@
 				<!-- 마이페이지 - 최근 본 knowhow -->
 				<div class="col-sm-12 col-xs-12">
 					<div>
-						<h3>I see you</h3>
+						<h3>최근 봤으요</h3>
 					</div>
 					<div id="c1" class="content col-xs-12 col-sm-12">
-						<img src="http://placehold.it/300x270">
+						<!-- <img src="http://placehold.it/300x270"> -->
+						<c:if test="${ lately == null }">
+						최근 조회한 포스트가 존재하지 않습니다.
+					</c:if>
+						<c:if test="${ lately != null }">
+							<c:forEach items="${ lately }" var="l">
+								<table>
+									<tbody>
+										<tr>
+											<th>${ l.title }</th>
+											<th>${ l.wDate }</th>
+											<th>${ l.good }</th>
+											<th>${ l.count }</th>
+										</tr>
+									</tbody>
+								</table>
+							</c:forEach>
+						</c:if>
 					</div>
 				</div>
 
 				<!-- 마이페이지 -  자주 본 knowhow -->
 				<div class="col-xs-12 col-sm-12">
 					<div>
-						<h3>Very I see you</h3>
+						<h3>많이 봤으요</h3>
 					</div>
 					<div id="c2" class="content col-xs-12 col-sm-12">
 						<img src="http://placehold.it/300x270">
@@ -197,11 +215,11 @@
 		<jsp:include page="../knowhow/startPosting.jsp"></jsp:include>
 	</div>
 
-<%-- 	<div class="modal fade" id="addKnowhowPage" data-backdrop="static">
+	<%-- 	<div class="modal fade" id="addKnowhowPage" data-backdrop="static">
 		<jsp:include page="../knowhow/addKnowhow.jsp"></jsp:include>
 	</div> 
  --%>
-<%-- 	
+	<%-- 	
 		
 	<div class="modal fade" id="addTagPage" data-backdrop="static" >
 		<jsp:include page="../knowhow/addTag.jsp"></jsp:include>

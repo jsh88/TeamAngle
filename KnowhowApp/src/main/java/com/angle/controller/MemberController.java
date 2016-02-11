@@ -1,6 +1,7 @@
 package com.angle.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.angle.domain.Member;
+import com.angle.domain.Post;
 import com.angle.service.MemberService;
 
 @Controller
@@ -179,11 +181,16 @@ public class MemberController {
 	@RequestMapping(value = {"/login/logincheck.do"}, method=RequestMethod.POST)
 	public ModelAndView loginProc(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpServletRequest request, HttpSession session) {
 		int result = memberService.memberLoginCheck(id, pw, request, session);
+		
 		System.out.println(result);
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("result", result);
 		mav.setViewName("login/loginAjax");
+		
+		System.out.println("My lately lookup");
+		List<Post> lately = (List<Post>)memberService.getMyLatelyLookupPost(id);
+		session.setAttribute("lately", lately) ;
 		
 		return mav;		
 		
@@ -198,10 +205,12 @@ public class MemberController {
 	
 	
 	@RequestMapping("/profileModify.ajax")
-	public String modifyProfile(MultipartHttpServletRequest request, HttpSession session) throws IllegalStateException, IOException{
+	@ResponseBody
+	public String modifyProfile(MultipartHttpServletRequest request, HttpSession session, Model model) throws IllegalStateException, IOException{
 		String path = request.getServletContext().getRealPath(filePath);
 		memberService.modifyMember(request, path, session);
-		return "member/memberAjax";
+		model.addAttribute("member/memberAjax");
+		return path;
 	}
 	
 	// 마이페이지 
@@ -209,7 +218,7 @@ public class MemberController {
 	public String getMyPage(HttpServletRequest req, HttpSession session, Model model){
 		// 마이 페이지 그냥 session 받아서 jsp 에서 뿌리자
 		model.addAttribute("title", "/member/myPage");
-		return "/member/myPage";		// include 한다길래 그냥 title로 써서 index 보냄
+		return "redirect:myPage";		// include 한다길래 그냥 title로 써서 index 보냄
 	}
 	// 내가 최근에 작성한 포인트
 	@RequestMapping("/getMyLatelyPost") // 뭘로 받지???
@@ -229,13 +238,12 @@ public class MemberController {
 		return "index"; // 어디로 가야하오
 	}
 	// 내가 최근 조회한 포스트
-	@RequestMapping("/getMyLatelyLookupPost") // 어디?
-	public String getMyLatelyLookupPost(HttpServletRequest req, HttpSession session, Model model){
-		Member m = (Member) session.getAttribute("member");
-		String id = m.getId();
-		memberService.getMyLatelyLookupPost(id);
+	@RequestMapping("/login/*") // 어디?
+	public void getMyLatelyLookupPost(HttpServletRequest req, HttpSession session, Model model){
+		System.out.println("My lately lookup");
+		List<Post> lately = (List<Post>)memberService.getMyLatelyLookupPost(session.getId());
+		session.setAttribute("latelyPost", lately) ;
 		model.addAttribute("title", "어디로갈까나?");
-		return "index";
 	}
 	
 	@RequestMapping("/getMyMostLookupPost")
