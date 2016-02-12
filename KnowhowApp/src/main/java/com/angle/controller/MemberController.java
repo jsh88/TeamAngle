@@ -190,6 +190,7 @@ public class MemberController {
 		List<Post> lately = (List<Post>)memberService.getMyLatelyLookupPost(id);
 		session.setAttribute("lately", lately) ;
 		List<Post> most = (List<Post>)memberService.getMyMostLookupPost(id);
+		session.setAttribute("most", most);
 		return mav;		
 		
 	}

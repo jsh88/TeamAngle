@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,7 @@
 			$("#mj_id, #mj_nickname, #mj_pass1, #mj_pass2").val("");
 			$("#mj_id").show();
 			$("#mj_btn_submit").hide();
+			
 		} else if (i == "2") {
 			modal = "loginPage";
 			
@@ -36,7 +38,9 @@
 		}
 
 		$("#" + modal).modal();
-	}
+		
+
+		}
 </script>
 <style>
 </style>
@@ -167,6 +171,7 @@
 		</div>
 	</div>
 
+
 	<!-- modal -->
 
 	<div class="modal fade" id="loginPage">
@@ -185,7 +190,10 @@
 		<jsp:include page="../member/profileModify.jsp"></jsp:include>
 	</div>
 
+
 	<!-- 서버단 작업끝나면 modal fade 지울 페이지  , openModal() 추가해야함 -->
+
+
 
 	<div class="modal fade" id="startPostingPage">
 		<jsp:include page="../knowhow/startPosting.jsp"></jsp:include>
@@ -310,10 +318,68 @@
 					</div>
 					<div id="c2" class="content col-xs-12 col-sm-12">
 						<!-- <img src="http://placehold.it/300x270"> -->
-							<c:if test="${ empty lately }">
+							<c:if test="${ empty most }">
 						최근 조회한 포스트가 존재하지 않습니다.
 					</c:if>
-						<c:if test="${ not empty lately }">
+						<c:if test="${ not empty most }">
+							<c:forEach items="${ most }" var="m">
+								<table>
+									<tbody>
+										<tr>
+											<th>${ m.title }</th>
+											<th>${ m.wDate }</th>
+											<th>${ m.good }</th>
+											<th>${ m.count }</th>
+										</tr>
+									</tbody>
+								</table>
+							</c:forEach>
+						</c:if>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	<!-- modal -->
+
+	<div class="modal fade" id="loginPage">
+		<jsp:include page="../login/login.jsp"></jsp:include>
+	</div>
+
+	<div class="modal fade" id="memJoinPage">
+		<jsp:include page="../member/memJoin.jsp"></jsp:include>
+	</div>
+
+	<div class="modal fade" id="memModifyPage">
+		<jsp:include page="../member/memModify.jsp"></jsp:include>
+	</div>
+
+	<div class="modal fade" id="profileModifyPage">
+		<jsp:include page="../member/profileModify.jsp"></jsp:include>
+	</div>
+
+
+	<!-- 서버단 작업끝나면 modal fade 지울 페이지  , openModal() 추가해야함 -->
+
+
+
+	<div class="modal fade" id="startPostingPage">
+		<jsp:include page="../knowhow/startPosting.jsp"></jsp:include>
+	</div>
+
+	<%-- 	<div class="modal fade" id="addKnowhowPage" data-backdrop="static">
+		<jsp:include page="../knowhow/addKnowhow.jsp"></jsp:include>
+	</div> 
+ --%>
+	<%-- 	
+=======
+							<c:if test="${ empty most }">
+						최근 조회한 포스트가 존재하지 않습니다.
+					</c:if>
+						<c:if test="${ not empty most }">
 							<c:forEach items="${ most }" var="m">
 								<table>
 									<tbody>
