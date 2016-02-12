@@ -915,12 +915,12 @@
 					<!-- Modal 상단-->
 						<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
 							
-  							 <div class="carousel-inner" role="listbox">	 
+  							 <div class="carousel-inner" role="listbox">
+						 
+  									<div class="wrap-loading display-none">
+			  							<div><img src="resources/images/loading2.gif" /></div>
+									</div>								 
 
-							<div class="wrap-loading">
-			  					<div><img src="resources/images/loading2.gif" /></div>
-							</div>			
-									
   							 	<div class="item active">
 										<div id="content">
 											<div id="Media" class="mbackground">

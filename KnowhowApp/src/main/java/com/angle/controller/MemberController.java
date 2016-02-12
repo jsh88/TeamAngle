@@ -1,6 +1,5 @@
 package com.angle.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -20,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.angle.domain.Member;
 import com.angle.domain.Post;
+import com.angle.mail.Email;
+import com.angle.mail.EmailSender;
 import com.angle.service.MemberService;
 
 @Controller
@@ -31,6 +32,13 @@ public class MemberController {
 
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
+	}
+	
+	@Autowired
+	private EmailSender emailSender;
+	
+	public void setEmailSender(EmailSender emailSender) {
+		this.emailSender = emailSender;
 	}
 
 //	// 내가 최근에 작성한 포인트
@@ -53,16 +61,21 @@ public class MemberController {
 	public String MemberJoinProc(HttpServletRequest request) throws IOException {
 
 		memberService.insertMemberJoin(request);
-		return "redirect:memberJoinForm";
+		return "redirect:./";
 	}
 	
 	// 회원탈퇴 처리 부분
-	@RequestMapping(value = { "/deleteMemberJoin" }, method = RequestMethod.GET)
-	public String deleteMemberJoin(Model model, HttpServletRequest request) {
+	@RequestMapping(value = { "/deleteMemberJoin.do" })
+	public String deleteMemberJoin(Model model, HttpServletRequest request, HttpSession session) {
 
-		memberService.deleteMember(request);
-		model.addAttribute("body", "member/맴버삭제후 이동할 파일이름");
-		return "main";
+		/*Member m = (Member) session.getAttribute("member");
+		String id = m.getId();*/
+		
+		String id = request.getParameter("id");
+		memberService.deleteMember(id);
+		model.addAttribute("body", "template/header");
+		session.invalidate();
+		return "template/header";
 	}
 
 	// 회원가입 아이디 중복체크 ajax 메시지처리 부분
@@ -99,21 +112,21 @@ public class MemberController {
 
 	// 회원정보 수정창 콜 부분 - 수정창 콜과 동시에 기본정보(아이디, 닉네임) 가져옴.
 	@RequestMapping(value = { "/updateMemberInfoForm" }, method = RequestMethod.GET)
-	public String updateMemberInfoForm(Model model, HttpServletRequest request) {
+	public String updateMemberInfoForm(Model model, HttpServletRequest request, HttpSession session) {
 
-		memberService.getMember(request);
+		Member m = memberService.getMember(request);
+		
+		/*String pw = request.getParameter("pw");
+		model.addAttribute("pw", pw);*/
+		
+		session.setAttribute("member", m);
+		
+		model.addAttribute("member", m);
 		model.addAttribute("body", "member/memModify");
 
-		return "main";
+		return "template/header";
 	}
 
-	/*// 회원정보 수정 콜 부분
-	@RequestMapping(value = { "/updateMemberInfo" }, method = RequestMethod.POST)
-	public String updateMemberInfo(Model model, HttpServletRequest request) throws IOException {
-
-		memberService.updateMemberInfo(request);
-		return "main";
-	}*/
 	
 	// 회원정보ID 수정 콜 부분
 	//버튼 누르면 계속 수정되게 되어 있었음 수정함. 아이디 검색하면서 수정이 되어버림.
@@ -166,7 +179,7 @@ public class MemberController {
 	@RequestMapping(value = { "/logoutMember" }, method=RequestMethod.GET)
 	public String logoutMemberProc(HttpServletRequest request, HttpSession session) {
 		session.invalidate();
-		return "intro";
+		return "redirect:./";
 	}
 	
 	// 회원 로그인창 콜 부분
@@ -204,13 +217,14 @@ public class MemberController {
 	}*/
 	
 	
-	@RequestMapping("/profileModify.ajax")
+	@RequestMapping(value={"/profileModify.ajax"}, produces = "application/text; charset=utf8")
 	@ResponseBody
-	public String modifyProfile(MultipartHttpServletRequest request, HttpSession session, Model model) throws IllegalStateException, IOException{
+	public String modifyProfile(MultipartHttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) throws IllegalStateException, IOException{
+		response.setContentType("text/html;charset=UTF-8");
 		String path = request.getServletContext().getRealPath(filePath);
-		String file = memberService.modifyMember(request, path, session);
+		String profileInfo = memberService.modifyMember(request, path, session);
 		model.addAttribute("member/memberAjax");
-		return file;
+		return profileInfo;
 	}
 	
 	// 마이페이지 
@@ -308,6 +322,103 @@ public class MemberController {
 		memberService.getMember(id);
 		model.addAttribute("body", "member/loginConfirm");
 		return "member/loginConfirm";
+	}
+	
+	// 아이디 찾기 이메일 발송
+	@RequestMapping("/sendId.do")
+	public String sendEmailIdAction(HttpServletRequest request, Model model) throws Exception {
+		
+		Email email = new Email();
+		String nickname = request.getParameter("nickname");
+		String pw = request.getParameter("pass");
+		String rev_email = memberService.getEmail(request);  // getEmail 에서 id를 가져옴.
+		
+		System.out.println("폼에서 받은 닉네임 : " + nickname);
+		System.out.println("폼에서 받은 비밀번호 : " + pw);
+		System.out.println("서비스에서 받은 id(Email주소) : " + rev_email);
+		
+		int result = 0;
+							
+		if(rev_email != null) {
+			email.setContent("아이디는 " + rev_email + " 입니다.");
+			email.setReciver(rev_email); 
+			email.setSubject(nickname + " 닉네임을 쓰시는분의 아이디 찾기 메일 입니다.");
+			emailSender.sendEmail(email);
+			result = 1;			
+			model.addAttribute("result", result);
+			return "login/loginAjax";
+		} else {
+			result = 0;
+			model.addAttribute("result", result);
+			return "login/loginAjax";
+		}		
+		
+	}
+	
+	
+	// 비밀번호 찾기 이메일 발송
+	@RequestMapping("/sendPw.do")
+	public String sendEmailPwAction(HttpServletRequest request, Model model, HttpSession session) throws Exception {
+		
+		Email email = new Email();
+		String id = request.getParameter("id");
+		String pw = memberService.getPw(request);
+		
+		int result = 0;
+		
+		String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://192.168.137.51:8080/KnowhowApp/updateMemberInfoForm?id="+ id + "&check=true";
+		
+		if(pw != null) {
+			email.setContent(msg);
+			email.setReciver(id);
+			email.setSubject(id + " 님의 이메일 인증 메일입니다.");
+			emailSender.sendEmail(email);
+			result = 1;
+			model.addAttribute("result", result);
+			
+			return "login/loginAjax";
+		} else {
+			result = 0;
+			model.addAttribute("result", result);
+			return "login/loginAjax";
+		}
+	}
+	
+	/*@RequestMapping("/checkPwPage.do")
+	public String checkPwPageAction(HttpServletRequest request, Model model) throws Exception {
+		String id = request.getParameter("id");
+		System.out.println("요청된 url : " + id);
+		String pw = request.getParameter("pw");
+		System.out.println("요청된 url : " + pw);
+		return null;
+	}*/
+	
+	// 회원탈퇴 인증 이메일 발송
+	@RequestMapping("/sendMemberDelete.do")
+	public String sendEmailMemberDeleteAction(HttpServletRequest request, Model model, HttpSession session) throws Exception {
+		
+		Email email = new Email();
+		Member member = (Member) session.getAttribute("member");
+		String id = member.getId();
+					
+		int result = 0;
+		
+		String msg = "아래 링크를 클릭하시면 회원탈퇴처리 됩니다.\nhttp://192.168.137.51:8080/KnowhowApp/deleteMemberJoin.do?id="+ id + "&deletecheck=true";
+		
+		if(id != null) {
+			email.setContent(msg);
+			email.setReciver(id);
+			email.setSubject(id + " 님의 회원탈퇴 확인 메일입니다.");
+			emailSender.sendEmail(email);
+			result = 1;
+			model.addAttribute("result", result);
+			
+			return "member/memberAjax";
+		} else {
+			result = 0;
+			model.addAttribute("result", result);
+			return "member/memberAjax";
+		}
 	}
 		
 }

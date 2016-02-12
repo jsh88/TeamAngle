@@ -283,6 +283,7 @@ public class MemberDaoImpl implements MemberDao {
 		String sql = "update member set vcount = :vcount where id = :id";
 		namedParameterJdbcTemplate.update(sql,
 				new MapSqlParameterSource().addValue("vcount", Integer.valueOf(member.getvCount())+1)
+//				new MapSqlParameterSource().addValue("vcount", member.getvCount())
 				.addValue("id", member.getId()));
 					
 	}
@@ -297,6 +298,7 @@ public class MemberDaoImpl implements MemberDao {
 					@Override
 					public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
 						int temp = -1;
+//						int temp = 1;
 						if (rs.next()) {
 							temp = rs.getInt(1);
 						}
@@ -394,6 +396,77 @@ public class MemberDaoImpl implements MemberDao {
 					new postRowMapper());
 			return pList;
 		}
+		
+		
+		// 아이디 찾기
+		@Override
+		public String getId(String nickname, String pw) {
+			
+			String sql = "select id from member where nickname = :nickname and pw = :pw";
+						
+			return namedParameterJdbcTemplate.query(sql,
+					new MapSqlParameterSource()
+					.addValue("nickname", nickname)
+					.addValue("pw", pw),
+					new ResultSetExtractor<String>() {
+
+						@Override
+						public String extractData(ResultSet rs) throws SQLException, DataAccessException {
+							String id = "";
+							if(rs.next()) {
+								id = rs.getString(1);
+							}
+							return id;
+						}						
+					});					
+		}
+		
+		// 비밀번호 찾기
+		@Override
+		public String getPw(String id) {
+			
+			String sql = "select pw from member where id = :id";
+			
+			return namedParameterJdbcTemplate.query(sql,
+					new MapSqlParameterSource()
+					.addValue("id", id),					
+					new ResultSetExtractor<String>() {
+
+						@Override
+						public String extractData(ResultSet rs) throws SQLException, DataAccessException {
+							String password = null;
+							if(rs.next()) {
+								password = rs.getString(1);
+							}
+							return password;
+						}
+				
+					});
+		}
+
+		@Override
+		public String getEmail(String nickname, String pw) {
+
+			String sql = "select id from member where nickname = :nickname and pw = :pw";
+			
+			return namedParameterJdbcTemplate.query(sql,
+					new MapSqlParameterSource()
+					.addValue("nickname", nickname)
+					.addValue("pw", pw),
+					new ResultSetExtractor<String>() {
+
+						@Override
+						public String extractData(ResultSet rs) throws SQLException, DataAccessException {
+							String id = null;
+							if(rs.next()) {
+								id = rs.getString(1);
+							}
+							return id;
+						}
+					});					
+		}
+		
+		
 		
 		
 		
