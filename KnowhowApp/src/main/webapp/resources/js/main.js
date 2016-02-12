@@ -3,7 +3,7 @@ var postCount = 1;
 
 $(document).ready(function() {
 	
-	for(var i = 0; i < 6; i++) {
+	for(var i = 0; i < 5; i++) {
 		getBestPostView();
 		getPostView();
 		bestPostCount++;
@@ -70,10 +70,15 @@ $(document).ready(function() {
 				return false;
 			} else {
 				
+				$("#bestTitle").html("<div class='searchResultTitle'>" + word + " 에 대한 검색결과	</div>");
+				$("#listTitle").remove();
+				$("#listLine").remove();
+				
 					// 폼 데이터 받기 or Append or 인자로 form id)
 					var formData = new FormData();
 
-					formData.append("no", postCount);
+					formData.append("word", word);
+					formData.append("");
 
 					$.ajax({
 						type : 'POST',
@@ -86,7 +91,8 @@ $(document).ready(function() {
 						success : function(responseData, statusText, xhr) {
 							
 							var result = responseData;
-							$('#newPost').html($('#newPost').html() + result);
+							
+							$('#bestPost').html($('#bestPost').html() + result);
 							
 							// 성공처리(v는 서버로 받은 메시지, value)
 							

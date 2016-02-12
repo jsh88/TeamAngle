@@ -565,7 +565,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 		Post p = new Post();
 
 		jdbcTemplate.queryForObject(
-				"select pt.*, m.nickname from (select row_number() over (order by count desc) no, p.* from post p) pt, member m where no = ? and m.id = pt.id",
+				"select pt.*, m.nickname from (select row_number() over (order by good desc) no, p.* from post p) pt, member m where no = ? and m.id = pt.id",
 				new Object[] { no }, new RowMapper<Post>() {
 
 					@Override
