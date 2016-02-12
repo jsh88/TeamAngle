@@ -13,6 +13,11 @@
 				text-align: right;
 			}
 			
+			#buttonGroup{
+				width: 97%;
+				text-align: right;
+			}
+			
 			#startModalDialog{
 				margin-top:300px;
 				width: 500px;

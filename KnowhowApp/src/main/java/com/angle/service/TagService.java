@@ -15,4 +15,6 @@ public interface TagService {
 
 	void getRecommendationTag(HttpServletRequest request);
 
+	void addSearchTag(HttpServletRequest request, HttpSession session);
+
 }

@@ -75,4 +75,17 @@ public class TagController {
 		return "index";
 	}
 
+	// 검색 start
+	@RequestMapping(value = "searchView")
+	public String addMemberTag(HttpServletRequest request, HttpSession session) {
+
+		if (session.getAttribute("mTagList") == null)
+			tagService.addSearchTag(request, session);
+
+		if (Integer.parseInt(request.getParameter("searchCount")) % 5 == 0)
+			session.removeAttribute("mTagList");
+
+		return "forward:doSearch";
+
+	}
 }
