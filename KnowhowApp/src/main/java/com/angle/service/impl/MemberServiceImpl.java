@@ -241,17 +241,19 @@ public class MemberServiceImpl implements MemberService {
 
 	//파일 업로드 처리 안해놨음. 파일 경로도 없고 그냥 셋 이미지만 되어 있었음. 폼태그에다가 enctype="multipart/form-data"이거 안해놓음.
 	@Override
-	public void modifyMember(MultipartHttpServletRequest request, String path, HttpSession session) throws IllegalStateException, IOException {
+	public String modifyMember(MultipartHttpServletRequest request, String path, HttpSession session) throws IllegalStateException, IOException {
 
 		Member m = (Member) session.getAttribute("member");
 		MultipartFile multipartFile = request.getFile("image");
 		String comment = request.getParameter("pcomment");
-
+		String fileName = null;
 		if (!multipartFile.isEmpty()) {
 			File file = new File(path, multipartFile.getOriginalFilename());
 			multipartFile.transferTo(file);
 			m.setImage(multipartFile.getOriginalFilename());
 			m.setpComment(comment);
+			fileName = file.getName();
+		
 		}else{
 			m.setImage(null);
 			m.setpComment(comment);
@@ -259,16 +261,15 @@ public class MemberServiceImpl implements MemberService {
 		int result = memberDao.modifyMember(m);
 		request.setAttribute("result", result);
 		session.setAttribute("member", m);
+		
+		return fileName;
 	}
 
 	@Override
 	public void getMyConcernPost(String id) {
 		List<Post> pList = null;
-
-		if (!pList.isEmpty() || pList != null) {
-			pList = memberDao.getMyConcernPost(id);
 		pList = memberDao.getMyConcernPost(id);
-		}
+		
 	}
 	@Override
 	public List<Post> getMyLatelyLookupPost(String id) {
