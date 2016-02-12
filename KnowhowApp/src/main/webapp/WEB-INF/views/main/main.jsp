@@ -5,12 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<script 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<link type="text/css" href="resources/css/header.css" rel="stylesheet">
-<script src="resources/js/main.js"></script>
-<script src="resources/js/ajax_myModfy.js"></script>
 <style>
 	
 		/*화면 전체를 어둡게 합니다.*/

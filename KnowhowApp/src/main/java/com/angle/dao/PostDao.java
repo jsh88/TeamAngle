@@ -45,6 +45,6 @@ public interface PostDao {
 
 	public Post getBestPostInfo(int no);
 
-	public void getSearchPostView(ArrayList<MemberTag> mTagList);
+	public Post getSearchPostView(ArrayList<MemberTag> mTagList, int no);
 
 }

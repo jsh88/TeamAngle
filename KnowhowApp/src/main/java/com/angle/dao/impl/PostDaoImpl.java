@@ -495,7 +495,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	public Post getPostInfo(int no) {
 
 		return jdbcTemplate.query(
-				"select pt.*, m.nickname from (select row_number() over (order by wdate desc) no, p.* from post p) pt, member m where no = ? and m.id = pt.id and state = 1",
+				"select pt.*, m.nickname from (select row_number() over (order by wdate desc) no, p.* from post p) pt, member m where no = ? and m.id = pt.id and pt.state = 1",
 				new Object[] { no }, new ResultSetExtractor<Post>() {
 
 					@Override
@@ -567,7 +567,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	public Post getBestPostInfo(int no) {
 
 		return jdbcTemplate.query(
-				"select pt.*, m.nickname from (select row_number() over (order by count desc) no, p.* from post p) pt, member m where no = ? and m.id = pt.id and state = 1",
+				"select pt.*, m.nickname from (select row_number() over (order by count desc) no, p.* from post p) pt, member m where no = ? and m.id = pt.id and pt.state = 1",
 				new Object[] { no }, new ResultSetExtractor<Post>() {
 
 					@Override
@@ -636,7 +636,74 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	}
 
 	@Override
-	public void getSearchPostView(ArrayList<MemberTag> mTagList) {
+	public Post getSearchPostView(ArrayList<MemberTag> mTagList, int no) {
+		
+		return jdbcTemplate.query(
+				"select pt.*, m.nickname from (select row_number() over (order by count desc) no, p.* from post p) pt, member m where no = ? and m.id = pt.id and pt.state = 1",
+				new Object[] { no }, new ResultSetExtractor<Post>() {
 
+					@Override
+					public Post extractData(ResultSet rs) throws SQLException, DataAccessException {
+
+						if (rs.next()) {
+
+							Post p = new Post();
+
+							p.setpNo(rs.getInt("pno")); // 포스트 번호
+							p.setTitle(rs.getString("title")); // 타이틀
+							p.setwDate(rs.getString("wdate")); // 작성일
+							p.setCount(rs.getInt("count")); // 조회수
+							p.setGood(rs.getInt("good")); // 추천
+							p.setId(rs.getString("id")); // 아이디
+							p.setNickName(rs.getString("nickname")); // 닉네임
+
+							// 내용, 미디어
+							jdbcTemplate.queryForObject(
+									"select content, media from postContent pc, post p where p.pno = ? and page = 0 and pc.pno = p.pno and state = 1",
+									new Object[] { p.getpNo() }, new RowMapper<PostContent>() {
+
+								@Override
+								public PostContent mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+									p.setContent(rs.getString("content")); // 내용
+									p.setMedia(rs.getString("media").indexOf("https:") == -1
+											&& !rs.getString("media").equals("none")
+													? "resources/images/" + rs.getString("media")
+													: rs.getString("media"));
+
+									return null;
+								}
+							});
+
+							// 댓글 수
+							p.setcCount(jdbcTemplate.queryForObject("select count(*) from postComment where pno = ?",
+									new Object[] { p.getpNo() }, Integer.class));
+
+							// 태그
+							p.settList((ArrayList<String>) jdbcTemplate.query(
+									"select tag from postTag where pno = ? order by count desc",
+									new Object[] { p.getpNo() }, new ResultSetExtractor<ArrayList<String>>() {
+
+								@Override
+								public ArrayList<String> extractData(ResultSet rs)
+										throws SQLException, DataAccessException {
+
+									ArrayList<String> tList = new ArrayList<>();
+
+									for (int i = 0; rs.next(); i++) {
+										tList.add(rs.getString("tag"));
+										if (i == 9)
+											break;
+									}
+									return tList;
+								}
+							}));
+
+							return p;
+
+						} else
+							return null;
+					}
+				});
 	}
 }
