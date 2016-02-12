@@ -270,14 +270,11 @@ public class MemberServiceImpl implements MemberService {
 		Member m = (Member) session.getAttribute("member");
 		MultipartFile multipartFile = request.getFile("image");
 		String comment = request.getParameter("pcomment");
-		String fileName = "";
 		if (!multipartFile.isEmpty()) {
 			File file = new File(path, multipartFile.getOriginalFilename());
 			multipartFile.transferTo(file);
 			m.setImage(multipartFile.getOriginalFilename());
 			m.setpComment(comment);
-			fileName = file.getName();
-		
 		}else{
 			m.setImage(null);
 			m.setpComment(comment);
@@ -286,7 +283,7 @@ public class MemberServiceImpl implements MemberService {
 		request.setAttribute("result", result);
 		session.setAttribute("member", m);
 		
-		return fileName;
+		return multipartFile.getOriginalFilename() + ",," + m.getpComment();
 	}
 
 	@Override

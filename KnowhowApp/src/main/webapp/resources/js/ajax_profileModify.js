@@ -12,12 +12,20 @@ $(function() {
 			processData : false,
 			contentType : false,
 			success : function(responseData, statusText, xhr) {
+				
 				var result = responseData;
-				if (result == 1) {
-					alert('프로필 수정 완료');
-				} else if (result == 0) {
-					alert('프로필 수정 실패');
-				}
+				var fileName = result.substring(0, result.indexOf(",,"));
+				alert(fileName);
+				var comment = result.substring(result.indexOf(",,") + 2);
+				alert(comment);
+				
+				$("#profile_Img").attr("src", "resources/images/" + fileName);
+				$("#myProfileImage").attr("src", "resources/images/" + fileName);
+				$("#profile_pcom").val(comment);
+				$("#myProfileComment").text(comment);
+				
+				alert("success");
+				
 			},
 			error : function(xhr, statusText, responseData) {
 				alert("error : " + statusText + "." + xhr.status

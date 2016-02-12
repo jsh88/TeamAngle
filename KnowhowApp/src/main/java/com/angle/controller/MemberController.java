@@ -217,13 +217,14 @@ public class MemberController {
 	}*/
 	
 	
-	@RequestMapping("/profileModify.ajax")
+	@RequestMapping(value={"/profileModify.ajax"}, produces = "application/text; charset=utf8")
 	@ResponseBody
-	public String modifyProfile(MultipartHttpServletRequest request, HttpSession session, Model model) throws IllegalStateException, IOException{
+	public String modifyProfile(MultipartHttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) throws IllegalStateException, IOException{
+		response.setContentType("text/html;charset=UTF-8");
 		String path = request.getServletContext().getRealPath(filePath);
-		String file = memberService.modifyMember(request, path, session);
+		String profileInfo = memberService.modifyMember(request, path, session);
 		model.addAttribute("member/memberAjax");
-		return file;
+		return profileInfo;
 	}
 	
 	// 마이페이지 
