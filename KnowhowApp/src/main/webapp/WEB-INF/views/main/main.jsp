@@ -249,7 +249,7 @@
 					<div id="listTitle" class="col-md-12">
 						New Knowhow
 					</div>
-					<div id="listLine" class="bestTitleLine col-md-12"></div>
+					<div id="listLine" class="bestTitleLine col-md-11"></div>
 					<div class="col-md-12" id="newPost"></div>
 					
 				</div>
