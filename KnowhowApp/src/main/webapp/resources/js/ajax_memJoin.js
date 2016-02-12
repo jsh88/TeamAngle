@@ -21,7 +21,8 @@ function valInputDate() {
                e.value = "";
                e.focus();
                return false;
-        }
+ }
+ 
 $(document).ready(function() {
 	// 슬라이드 해제
 	
@@ -69,6 +70,36 @@ $(function() {
 		}
 	});
 	
+	//enterkey 제어
+	
+	$("#mj_id").keypress(function(key){
+		
+		if(key.keyCode == 13){
+			return false;
+		}
+		
+	})
+	
+	$("#mj_nickname").keypress(function(key){
+		
+		if(key.keyCode == 13){
+			return false;
+		}
+	});
+	
+	$("#mj_pass1").keypress(function(key){
+		
+		if(key.keyCode == 13){
+			return false;
+		}
+	});
+	
+	$("#mj_pass2").keypress(function(key){
+		
+		if(key.keyCode == 13){
+			return false;
+		}
+	});
 	
 	
 	// 닉네임 사용가능 체크
