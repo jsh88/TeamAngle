@@ -50,8 +50,10 @@
 		.bestListWrap{
 			border: 1px solid #BFBCBC;
 			border-radius:6px;
-			height: 340px;
 			background-color: white;
+			margin-right: 5px;
+			margin-top: 5px;
+			cursor: pointer;
 		}
 		
 		.bestListHeader{
@@ -60,6 +62,7 @@
 			font-weight: bold;
 			vertical-align: middle;
 			line-height: 50px;
+			overflow: hidden;
 		}
 		
 		.bestListHeader a{
@@ -69,7 +72,7 @@
 		
 		.bestListMedia{
 			margin-top:8px;
-			height: 110px;
+			height: 150px;
 		}
 		
 		.bestListHeaderLine{
@@ -92,16 +95,29 @@
 		.bestMediaImg{
 			position:absolute;
 			width:100%;
-			height:110px;
+			height:150px;
 			z-index:6;
 			margin-left: -15px;
 		}
 		
 		.bestListTags{
-			color: #666666;
+			margin-top:5px;
+			color: #BFBCBC;
 			font-size:13px;
 			margin-bottom: 6px;
 			overflow: hidden;
+			font-style: italic;
+			font-weight: bold;
+		}
+		
+		.bestListTags a{
+			text-decoration: none;
+			color: #BFBCBC;
+		}
+		
+		.bestListTags a:hover{
+			color:black;
+			text-decoration: underline;
 		}
 		
 		.bestListDate{
@@ -115,6 +131,8 @@
 			margin:0px auto;
 			margin-top:5px;
 			font-size: 13px;
+			margin-top:10px;
+			margin-bottom: 15px;
 		}
 		
 		.reactionspan{
@@ -223,7 +241,7 @@
 					<div id="bestTitle" class="col-md-12">
 						Best Knowhow
 					</div>
-					<div class="bestTitleLine col-md-12"></div>
+					<div class="bestTitleLine col-md-11"></div>
 					<div class="col-md-12" id="bestPost"></div>
 					
 					<div id="bestLastLine" class="col-md-12"></div>
@@ -235,7 +253,7 @@
 					<div class="col-md-12" id="newPost"></div>
 					
 				</div>
-			<div class="col-md-1"></div>
+				<div class="col-md-1"></div>
 		</div>
 	</div>
 	</body>
