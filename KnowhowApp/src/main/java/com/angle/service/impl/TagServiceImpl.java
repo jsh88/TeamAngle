@@ -125,4 +125,11 @@ public class TagServiceImpl implements TagService {
 		tagDao.addMemberTag(mTagList);
 
 	}
+
+	@Override
+	public void getRecommendationTag(HttpServletRequest request) {
+		
+		request.setAttribute("tList", tagDao.getIntroTagList());
+		
+	}
 }
