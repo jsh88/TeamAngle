@@ -11,9 +11,7 @@
 	<link rel="stylesheet" href="resources/css/addKnowhow.css" type="text/css" >
 	<script>
 	$(document).ready(function(){
-		
-		$("#addModal").modal();
-		
+	
 		$("#Continuebtn").hide();
 		$("#Priorbtn").hide();
 		$("#hideList").hide();
@@ -57,23 +55,23 @@
 	</script>
 </head>
 <body>
-		<div class="modal-dialog" id="ModalDialog">
-    	<div class="modal-content" id="ModalContent">
+		<div class="modal-dialog" id="startModalDialog">
+    	<div class="modal-content" id="startModalContent">
 	<div id="addCheckWrap">
 		<div id="addForm">
 			<form name="addTitleForm" action="addPost" method="post">
-				<div id="addTitle">
+				<div id="startTitle">
 							<div class="form-group">
 								<label for="addtitle" class="col-sm-12 control-label" id="titlelabel">Please enter a post title!</label>
 								<div class="col-sm-12">
 							     	<input type="text" class="form-control" id="addtitle" name="title" maxlength="40"/> 
 								</div>
 							</div>
-							<div id="buttonGroup">
-								<button type="submit" class="btn btn-success addbtn" id="Createbtn"><b>Create Post</b></button>
-								<button type="submit" class="btn btn-success addbtn" id="Continuebtn"><b>Continue to Posting</b></button>
-								<button type="button" class="btn btn-warning addbtn" id="Recallingbtn"> <b>Recalling Post</b></button>
-								<button type="button" class="btn btn-warning addbtn" id="Priorbtn"> <b>Fold</b></button>
+							<div id="startButtonGroup">
+								<button type="submit" class="btn btn-success startbtn" id="Createbtn"><b>Create Post</b></button>
+								<button type="submit" class="btn btn-success startbtn" id="Continuebtn"><b>Continue to Posting</b></button>
+								<button type="button" class="btn btn-warning startbtn" id="Recallingbtn"> <b>Recalling Post</b></button>
+								<button type="button" class="btn btn-warning startbtn" id="Priorbtn"> <b>Fold</b></button>
 							</div>	
 					</div>
 			</form>
@@ -82,7 +80,7 @@
 		</div>
 		<div id="middle"></div> <!--  연결고리 -->
 		<div class="modal-content" id="hideList" >
-			<div id="hideListWrap" style="overflow:scroll; overflow-x:hidden;">
+			<div id="hideListWrap" style="overflow:auto; overflow-x:hidden;">
 				<div class="hideListContent">
 					<div class="Title"><a href="#" class="atitle">The work never ends ..</a><div class="contentimg"><a href=""><img style="width:15px;" src="resources/images/close.png"/></a></div></div>
 					<div class="pageNum">

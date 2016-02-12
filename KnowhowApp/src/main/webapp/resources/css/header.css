@@ -95,6 +95,7 @@
 
 #myPageWrap{
 	position:absolute;
+	z-index: 8;
 }
 
 
