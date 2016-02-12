@@ -211,7 +211,7 @@
 			font-size: 12px;
 		}
 		
-		#ListtTitle{
+		#listTitle{
 			font-size: 32px;
 			font-weight: bold;
 			margin-top: 20px;
