@@ -337,8 +337,6 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 				
 				System.out.println("시도 했다?");
 
-				System.out.println("시도 했다?");
-
 				jdbcTemplate.update("update posttag set count = count + 1, rdate = sysdate where tag = ? and pno = ?",
 						new Object[] { p.getTag(), p.getpNo() });
 
@@ -495,6 +493,8 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	@Override
 	public Post getPostInfo(int no) {
 
+		Post p = new Post();
+
 		jdbcTemplate.queryForObject(
 				"select pt.*, m.nickname from (select row_number() over (order by wdate desc) no, p.* from post p) pt, member m where no = ? and m.id = pt.id",
 				new Object[] { no }, new RowMapper<Post>() {
@@ -502,27 +502,23 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 					@Override
 					public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-						Post p = new Post();
-
 						p.setpNo(rs.getInt("pno")); // 포스트 번호
 						p.setTitle(rs.getString("title")); // 타이틀
+						p.setwDate(rs.getString("wdate")); // 작성일
+						p.setCount(rs.getInt("count")); //
 						p.setGood(rs.getInt("good")); // 추천
 						p.setId(rs.getString("id")); // 아이디
 						p.setNickName(rs.getString("nickname")); // 닉네임
-						
-						System.out.println(p.getpNo());
 
 						// 내용, 미디어
-						if(rs.getInt("state") != 1 ? true : false)
-							return null;
-							
-						jdbcTemplate.queryForObject("select content, media from postContent where pno = ? and page = 0",
+						jdbcTemplate.queryForObject(
+								"select content, media from postContent pc, post p where p.pno = ? and page = 0 and pc.pno = p.pno and state = 1",
 								new Object[] { p.getpNo() }, new RowMapper<PostContent>() {
 
 							@Override
 							public PostContent mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-								p.setContent(rs.getString("content"));
+								p.setContent(rs.getString("content")); // 내용
 								p.setMedia(rs.getString("media").indexOf("https:") == -1
 										&& !rs.getString("media").equals("none")
 												? "resources/images/" + rs.getString("media") : rs.getString("media"));
@@ -537,8 +533,8 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 						// 태그
 						p.settList((ArrayList<String>) jdbcTemplate.query(
-								"select * from postTag where pno = ? order by count desc", new Object[] { p.getpNo() },
-								new ResultSetExtractor<ArrayList<String>>() {
+								"select tag from postTag where pno = ? order by count desc",
+								new Object[] { p.getpNo() }, new ResultSetExtractor<ArrayList<String>>() {
 
 							@Override
 							public ArrayList<String> extractData(ResultSet rs)
@@ -546,12 +542,11 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 								ArrayList<String> tList = new ArrayList<>();
 
-								for (int i = 0; rs.next(); i++)
-									if (i == 9) {
-										tList.add(rs.getString("tag"));
+								for (int i = 0; rs.next(); i++) {
+									tList.add(rs.getString("tag"));
+									if (i == 9)
 										break;
-									}
-
+								}
 								return tList;
 							}
 						}));
@@ -561,35 +556,38 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 					}
 				});
 
-		return null;
+		return p;
 	}
 
 	@Override
 	public Post getBestPostInfo(int no) {
-		
+
+		Post p = new Post();
+
 		jdbcTemplate.queryForObject(
-				"select pt.*, m.nickname from (select row_number() over (order by wdate desc) no, p.* from post p) pt, member m where no = ? and m.id = pt.id",
+				"select pt.*, m.nickname from (select row_number() over (order by count desc) no, p.* from post p) pt, member m where no = ? and m.id = pt.id",
 				new Object[] { no }, new RowMapper<Post>() {
 
 					@Override
 					public Post mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-						Post p = new Post();
-
 						p.setpNo(rs.getInt("pno")); // 포스트 번호
 						p.setTitle(rs.getString("title")); // 타이틀
+						p.setwDate(rs.getString("wdate")); // 작성일
+						p.setCount(rs.getInt("count")); //
 						p.setGood(rs.getInt("good")); // 추천
 						p.setId(rs.getString("id")); // 아이디
 						p.setNickName(rs.getString("nickname")); // 닉네임
 
 						// 내용, 미디어
-						jdbcTemplate.queryForObject("select content from postContent where pno = ? and page = 0",
+						jdbcTemplate.queryForObject(
+								"select content, media from postContent pc, post p where p.pno = ? and page = 0 and pc.pno = p.pno and state = 1",
 								new Object[] { p.getpNo() }, new RowMapper<PostContent>() {
 
 							@Override
 							public PostContent mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-								p.setContent(rs.getString("content"));
+								p.setContent(rs.getString("content")); // 내용
 								p.setMedia(rs.getString("media").indexOf("https:") == -1
 										&& !rs.getString("media").equals("none")
 												? "resources/images/" + rs.getString("media") : rs.getString("media"));
@@ -604,8 +602,8 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 						// 태그
 						p.settList((ArrayList<String>) jdbcTemplate.query(
-								"select * from postTag where pno = ? order by count desc", new Object[] { p.getpNo() },
-								new ResultSetExtractor<ArrayList<String>>() {
+								"select tag from postTag where pno = ? order by count desc",
+								new Object[] { p.getpNo() }, new ResultSetExtractor<ArrayList<String>>() {
 
 							@Override
 							public ArrayList<String> extractData(ResultSet rs)
@@ -613,12 +611,11 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 								ArrayList<String> tList = new ArrayList<>();
 
-								for (int i = 0; rs.next(); i++)
-									if (i == 9) {
-										tList.add(rs.getString("tag"));
+								for (int i = 0; rs.next(); i++) {
+									tList.add(rs.getString("tag"));
+									if (i == 9)
 										break;
-									}
-
+								}
 								return tList;
 							}
 						}));
@@ -628,7 +625,6 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 					}
 				});
 
-		return null;
-		
+		return p;
 	}
 }

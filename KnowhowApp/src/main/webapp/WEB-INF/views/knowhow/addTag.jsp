@@ -35,7 +35,6 @@
 				var subt = t.substring(1);
 				
 				tags.push(subt);
-				alert(tags);
 				
 				$("#Tagbox").append("<a class='t'  href='#'>"+t+"</a>");
 				$("#hiddentext").val(hidden+" "+subt);
@@ -89,7 +88,6 @@
 						
 						oTags.push(n);
 						tags.push(n);
-						alert(oTags);
 						
 						$("#hiddentext").val(h+" "+n);
 						$("#tagtext").val("");
@@ -329,7 +327,7 @@
 <body>
 <div class="modal fade" id="tagModal" data-backdrop="static"> 
 		<div class="modal-dialog" id="tagDialog">
-		
+
 			<div class="wrap-loading display-none">
 		  		<div><img src="resources/images/loading2.gif" /></div>
 			</div>
