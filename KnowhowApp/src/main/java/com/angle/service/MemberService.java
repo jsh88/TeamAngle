@@ -1,5 +1,6 @@
 package com.angle.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -44,7 +45,7 @@ public interface MemberService {
 
 	public void getMyLatelyPost(String id);
 
-	public void modifyMember(MultipartHttpServletRequest req, String path, HttpSession session) throws IllegalStateException, IOException;
+	public String modifyMember(MultipartHttpServletRequest req, String path, HttpSession session) throws IllegalStateException, IOException;
 
 	public void getMyConcernPost(String id);
 

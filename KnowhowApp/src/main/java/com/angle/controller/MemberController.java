@@ -1,5 +1,6 @@
 package com.angle.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -207,9 +208,9 @@ public class MemberController {
 	@ResponseBody
 	public String modifyProfile(MultipartHttpServletRequest request, HttpSession session, Model model) throws IllegalStateException, IOException{
 		String path = request.getServletContext().getRealPath(filePath);
-		memberService.modifyMember(request, path, session);
+		String file = memberService.modifyMember(request, path, session);
 		model.addAttribute("member/memberAjax");
-		return path;
+		return file;
 	}
 	
 	// 마이페이지 
