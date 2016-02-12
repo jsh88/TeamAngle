@@ -51,7 +51,7 @@
 			border: 1px solid #BFBCBC;
 			border-radius:6px;
 			background-color: white;
-			margin-right: 20px;
+			margin-right: 10px;
 			margin-top: 5px;
 			cursor: pointer;
 		}

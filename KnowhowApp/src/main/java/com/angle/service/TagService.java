@@ -13,4 +13,6 @@ public interface TagService {
 
 	void addMemberTag(HttpServletRequest request, HttpSession session);
 
+	void getRecommendationTag(HttpServletRequest request);
+
 }

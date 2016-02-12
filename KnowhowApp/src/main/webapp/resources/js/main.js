@@ -1,5 +1,6 @@
 var bestPostCount = 1;
 var postCount = 1;
+var searchCount = 1;
 
 $(document).ready(function() {
 	
@@ -70,51 +71,13 @@ $(document).ready(function() {
 				return false;
 			} else {
 				
-					// 폼 데이터 받기 or Append or 인자로 form id)
-					var formData = new FormData();
-
-					formData.append("no", postCount);
-
-					$.ajax({
-						type : 'POST',
-						url : 'searchPost',
-						data : formData,
-//				 		async : false,
-						processData : false,
-						contentType : false,
-
-						success : function(responseData, statusText, xhr) {
-							
-							var result = responseData;
-							$('#newPost').html($('#newPost').html() + result);
-							
-							// 성공처리(v는 서버로 받은 메시지, value)
-							
-						},
-						beforeSend : function() {
-
-							// 전송 전
-							// 이미지 보여주기
-							$('.wrap-loading').removeClass('display-none');
-							
-						},
-						error : function(request, status, error) {
-
-							// 에러 로직, 에러 로그 확인
-//				 			alert("code:" + request.status + "\n\n" + "message:"
-//				 					+ request.responseText + "\n\n" + "error:" + error);
-
-						},
-						complete : function() {
-
-							// 이미지 감추기 처리
-//								$(location).attr('href', "이동할 페이지");
-							$('.wrap-loading').addClass('display-none');
-
-						}				
-					});
-				}
+				$("#bestTitle").html("<div class='searchResultTitle'>" + word + " 에 대한 검색결과	</div>");
+				$("#listTitle").remove();
+				$("#listLine").remove();
+				
+					getSearchPostView(word);
 			}
+		}
 	});
 	
 /* memModify JQuery */
@@ -197,6 +160,55 @@ $(document).ready(function() {
 /* 로그인 JQuery */
 });
 // ready end
+
+function getSearchPostView(word) {
+	
+	// 폼 데이터 받기 or Append or 인자로 form id)
+	var formData = new FormData();
+
+	formData.append("word", word);
+
+	$.ajax({
+		type : 'POST',
+		url : 'searchPost',
+		data : formData,
+// 		async : false,
+		processData : false,
+		contentType : false,
+
+		success : function(responseData, statusText, xhr) {
+			
+			var result = responseData;
+			
+			$('#bestPost').html($('#bestPost').html() + result);
+			
+			// 성공처리(v는 서버로 받은 메시지, value)
+			
+		},
+		beforeSend : function() {
+
+			// 전송 전
+			// 이미지 보여주기
+			$('.wrap-loading').removeClass('display-none');
+			
+		},
+		error : function(request, status, error) {
+
+			// 에러 로직, 에러 로그 확인
+// 			alert("code:" + request.status + "\n\n" + "message:"
+// 					+ request.responseText + "\n\n" + "error:" + error);
+
+		},
+		complete : function() {
+
+			// 이미지 감추기 처리
+//				$(location).attr('href', "이동할 페이지");
+			$('.wrap-loading').addClass('display-none');
+
+		}				
+	});
+	
+}
 
 //포스트 리스트 가져오기
 function getPostView() {
