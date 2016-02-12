@@ -10,7 +10,7 @@
 </c:if>
 
 <c:set value="${fn:indexOf(postView.media, 'https:') == -1}" var="isURL"></c:set>
-<div class="bestListWrap col-sm-4 col-md-2">
+<div class="bestListWrap col-sm-4 col-md-2" onclick="">
 	<div class="bestListHeader col-md-12">
 		<a href="#">${postView.title }</a>
 	</div>
@@ -27,7 +27,7 @@
 		<c:if test="${fn:indexOf(postView.media, 'https:') != -1}">
 			<iframe class="bestMediaIframe"
 				src="${postView.media }?rel=0&showinfo=0&autoplay=1&controls=0&modestbranding=1"
-				height="110px;" frameborder="0" allowfullscreen></iframe>
+				height="150px;" frameborder="0" allowfullscreen></iframe>
 		</c:if>
 		<c:if test="${isURL && postView.media ne 'none'}">
 			<img src="${postView.media }" class="bestMediaImg img-responsive">
@@ -44,7 +44,7 @@
 		</c:if>
 		<c:if test="${postView.tList ne null }">
 			<c:forEach var="tag" items="${postView.tList }">
-			#${tag }&nbsp;
+			<a href="#">#${tag }</a>&nbsp;
 		</c:forEach>
 		</c:if>
 	</div>
