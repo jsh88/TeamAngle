@@ -52,5 +52,11 @@ public interface MemberDao {
 	public List<Post> getMyPostByRecommand(String id);
 
 	public List<Post> getMyPostByComments(String id);
+	
+	public String getId(String nickname, String pw);
+	
+	public String getPw(String id);
+	
+	public String getEmail(String nickname, String pw);
 
 }

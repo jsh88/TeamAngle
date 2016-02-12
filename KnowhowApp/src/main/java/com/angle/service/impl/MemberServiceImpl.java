@@ -119,9 +119,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void deleteMember(HttpServletRequest request) {
-
-		String id = request.getParameter("id");
+	public void deleteMember(String id) {
+		
 		memberDao.deleteMember(id);
 	}
 
@@ -196,7 +195,8 @@ public class MemberServiceImpl implements MemberService {
 	public void updateMemberInfoPw(HttpServletRequest request, HttpSession session) throws IOException {
 
 		Member member = (Member)session.getAttribute("member");
-
+		System.out.println(member.getId());
+		System.out.println(request.getParameter("pass1"));
 		member.setPw(request.getParameter("pass1"));
 
 		memberDao.updateMemberInfoPw(member);
@@ -209,7 +209,7 @@ public class MemberServiceImpl implements MemberService {
 		int result = 1;
 
 		Member member = memberDao.memberLogin(id);
-		if (member.getId().equals("")) {
+		if (member == null || member.getId().equals("")) {
 			result = -1;
 		} else {
 			if (member.getPw().equals(pw)) {
@@ -226,6 +226,30 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 		return result;
+		
+		/*int result = 1;
+
+		Member member = memberDao.memberLogin(id);
+		if (member.getId().equals("")) {
+			result = -1;
+		} else {
+			if (member.getPw().equals(pw)) {
+				session.setAttribute("member", member);
+				result = 0;
+				memberDao.updateLdate(member);
+				
+				int v_result = memberDao.getVcount(id);
+				
+				if (v_result != 1) {
+					memberDao.updateVcount(member);
+				}
+				
+			} else if (!member.getPw().equals(pw)) {
+				result = 1;
+			}
+		}
+
+		return result;*/
 	}
 
 	// 내가 최근에 작성한 포인트
@@ -372,6 +396,38 @@ public class MemberServiceImpl implements MemberService {
 			pList = memberDao.getMyPostByComments(id);
 		}
 
+	}
+
+	@Override
+	public String getId(HttpServletRequest request) {
+		
+		String nickname = request.getParameter("nickname");		
+		String pass = request.getParameter("pw");
+		
+		String id = memberDao.getId(nickname, pass);
+		
+		return id;
+	}
+
+	@Override
+	public String getPw(HttpServletRequest request) {
+		
+		String id = request.getParameter("id");		
+		
+		String pw = memberDao.getPw(id);
+		
+		return pw;
+	}
+
+	@Override
+	public String getEmail(HttpServletRequest request) {
+		
+		String nickname = request.getParameter("nickname");
+		String pw = request.getParameter("pass");
+		
+		String id = memberDao.getEmail(nickname, pw);
+		
+		return id;
 	}
 
 }

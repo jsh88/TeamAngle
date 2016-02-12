@@ -177,9 +177,9 @@ $(function() {
 						$("#mj_btn_left").hide(1000);
 					}
 			} else if(pass == passCheck) {
-				$("#mj_pass2").css("border", "2px solid lime");
-				$("#mj_btn_left").hide(1000);
+				$("#mj_pass2").css("border", "2px solid lime");				
 				$("#mj_btn_submit").show(1000);
+				$("#mj_btn_left").hide(1000);
 				
 			}
 		}

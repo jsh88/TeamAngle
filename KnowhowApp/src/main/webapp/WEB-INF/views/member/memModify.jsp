@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,7 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 
 <style>
 #md_content {
@@ -72,12 +74,13 @@
 		<div id="show2" class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-body">
-				<form action="updateMemberIdModify">
+				<form name="emailEdit" action="updateMemberIdModify">
 					<div id="lq1" style="height: 100px;">
 						<div class="col-sm-offset-1 col-sm-11">
 							<span>Please.. Email..</span>
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
+							<input type="hidden" id="h_id" name="h_id" value="${ member.id }" />
 							<input type="email" id="id" name="id" class="form-control">
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
@@ -86,12 +89,13 @@
 					</div>
 					</form>
 					
-					<form action="updateMemberNickNameModify">
+					<form name="nickEdit" action="updateMemberNickNameModify">
 					<div id="lq2" style="height: 100px;">
 						<div class="col-sm-offset-1 col-sm-11">
 							<span>Please.. Nickname..</span>
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
+							<input type="hidden" id="h_nickname" name="h_nickname" value="${ member.nickName }" />
 							<input type="text" id="nick" name="nick" class="form-control">
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
@@ -129,19 +133,42 @@
 						</div>
 					</div>
 					</form>
-
-					<div id="lq4" style="height: 60px;">
-						<div class="col-sm-offset-1 col-sm-11">
-							<span>Please.. delete..</span>
+					
+					<form name="deleteMem" action="sendMemberDelete.do" method="post" >
+						<div id="lq4" style="height: 60px;">
+							<div class="col-sm-offset-1 col-sm-11">
+								<span>Please.. delete..</span>
+							</div>
+							<div class="col-sm-offset-1 col-sm-10">
+								<input type="submit" id="deleteMember" class="btn btn-success col-sm-12 " value="수정" />
+							</div>
 						</div>
-						<div class="col-sm-offset-1 col-sm-10">
-							<input type="submit" class="btn btn-success col-sm-12 " value="수정">
-						</div>
-					</div>
+					</form>
 
 				</div>
 			</div>
 		</div>
-
+	<c:if test="${ param.check == true }">
+		<script>
+		//$('#show').show();
+		window.onload = function() {
+			
+			$("#memModifyPage").modal();
+			$('#l3').trigger("click");			
+			
+		}			
+		</script>
+	</c:if>
+	
+	<c:if test="${ param.deletecheck == true }">
+		<script>
+		//$('#show').show();
+		window.onload = function() {
+			
+			alert("회원탈퇴처리 되었습니다.");
+			window.location.href="./";
+		}			
+		</script>
+	</c:if>
 </body>
 </html>

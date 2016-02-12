@@ -25,7 +25,7 @@ public interface MemberService {
 	
 	public int checkPw(HttpServletRequest request);
 
-	public void deleteMember(HttpServletRequest request);
+	public void deleteMember(String id);
 
 	//	public void memberLoginCheck(HttpSession session, HttpServletRequest request) throws IOException;
 
@@ -63,5 +63,11 @@ public interface MemberService {
 	public void getMyPostByRecommand(HttpServletRequest req, HttpSession session);
 
 	public void getMyPostByComments(HttpServletRequest req, HttpSession session);
+	
+	public String getId(HttpServletRequest request);
+	
+	public String getPw(HttpServletRequest request);
+	
+	public String getEmail(HttpServletRequest request);
 
 }

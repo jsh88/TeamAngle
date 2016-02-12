@@ -130,7 +130,7 @@ margin: 0 auto;
 			</div>
 			
 			<div id="lg_findId" class="modal-content">
-				<form name="findEmail" action="" method="post">			
+				<form name="findEmail"  method="post">			
 					<div class="col-sm-12">
 						<div id="fi" class="col-sm-12"></div>
 							<div class="form-group">
@@ -149,7 +149,7 @@ margin: 0 auto;
 									class="form-control"></div>
 						 </div>
 						 <div class="col-sm-12">
-						 	<input type="submit" value="From Confirm" class="btn btn-default col-sm-12">
+						 	<input type="submit" id="findId" value="From Confirm" class="btn btn-default col-sm-12">
 						 </div>
 					</div>
 				</form>
@@ -157,7 +157,7 @@ margin: 0 auto;
 			
 			<!-- authentication = 인증 (Email로 인증하여 비밀번호 수정란으로 이동) -->
 			<div id="lg_findPass" class="modal-content">
-				<form name="findPass" action="" method="post">			
+				<form name="findPass" method="post">			
 					<div class="col-sm-12">
 						<div id="fi" class="col-sm-12"></div>
 							<div class="form-group">
@@ -168,7 +168,7 @@ margin: 0 auto;
 									class="form-control"></div>
 							</div>
 							<div class="col-sm-12">
-								<input type="submit" value="From Confirm" class="btn btn-default col-sm-12">
+								<input type="submit" id="findPw" value="From Confirm" class="btn btn-default col-sm-12">
 							</div>
 					</div>
 				</form>
