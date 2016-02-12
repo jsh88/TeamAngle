@@ -488,6 +488,6 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		mTag.setTag(request.getParameter("word"));
 		mTagList.add(mTag);
 
-		postDao.getSearchPostView(mTagList);
+		postDao.getSearchPostView(mTagList, Integer.parseInt(request.getParameter("searchCount")));
 	}
 }
