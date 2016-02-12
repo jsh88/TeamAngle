@@ -187,10 +187,10 @@
 
 	<!-- 서버단 작업끝나면 modal fade 지울 페이지  , openModal() 추가해야함 -->
 
-	<div class="modal fade" id="startPostingPage">
+<%-- 	<div class="modal fade" id="startPostingPage">
 		<jsp:include page="../knowhow/startPosting.jsp"></jsp:include>
 	</div>
-
+ --%>
 <%-- 	<div class="modal fade" id="addKnowhowPage" data-backdrop="static">
 		<jsp:include page="../knowhow/addKnowhow.jsp"></jsp:include>
 	</div> 
