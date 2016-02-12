@@ -18,11 +18,11 @@
 				class="bestMediaImg img-responsive">
 		</c:if>
 		<c:if test="${fn:indexOf(postView.media, 'https:') != -1}">
-			<iframe class="bestMediaIframe" src="${postView.media }"
+			<iframe class="bestMediaIframe"
+				src="${postView.media }?rel=0&showinfo=0&autoplay=1&controls=0&modestbranding=1"
 				height="110px;" frameborder="0" allowfullscree></iframe>
-		</c:if>		
-		<c:if
-			test="${isURL && postView.media ne 'none'}">
+		</c:if>
+		<c:if test="${isURL && postView.media ne 'none'}">
 			<img src="${postView.media }" class="bestMediaImg img-responsive">
 		</c:if>
 
