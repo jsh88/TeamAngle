@@ -11,7 +11,7 @@
 }*/
 $(document).ready(function(){
 	
-	$(document).ready(function() {
+	//$(document).ready(function() {
 		$('#show1, #show2, #lq1, #lq2, #lq3, #lq4').hide();
 
 		$('#btnpw').click(function() {
@@ -31,17 +31,23 @@ $(document).ready(function(){
 
 		$('#l1').click(function() {
 			
+			var id = document.emailEdit.h_id.defaultValue;
+			
 			$('#show2').first().show('slow', function lq1() {
 				$('#lq1').show('slow');
 				$('#lq2, #lq3, #lq4').hide(1000);
 			});
+			document.emailEdit.id.value = id;
 		});
 		$('#l2').click(function() {
+			
+			var nickname = document.nickEdit.h_nickname.defaultValue;
 			
 			$('#show2').first().show('slow', function lq1() {
 				$('#lq2').show('slow');
 				$('#lq1, #lq3, #lq4').hide(1000);
 			});
+			document.nickEdit.nick.value = nickname;
 		});
 		$('#l3').click(function() {
 			
@@ -58,9 +64,11 @@ $(document).ready(function(){
 				$('#lq1, #lq2, #lq3').hide(1000);
 
 			});
-		});
-
-	});
+		});	
+		
+		
+		
+	//});
 });
 
 $(function() {
@@ -175,6 +183,43 @@ $("#pass2").on("keyup", function() {
 		$("#passSubmit").removeAttr("disabled");
 	}
 });
+
+
+//회원탈퇴 체크
+$("#deleteMember").click(function(e) {
+	e.preventDefault();
+	var check = confirm("정말 탈퇴하시겠습니까?");
+	if(check==true) {
+		$.ajax({
+			url: "sendMemberDelete.do",
+			type: "POST",		
+			dataType: "text",
+			success: function(responseData, statusText, xhr) {
+				var result = responseData;
+				
+				if(result == 1) {
+					alert("이메일 발송 성공!!!");
+					window.location.href="./";
+				} else {
+					alert("이메일 발송 실패!!!");
+					window.location.href="./";
+				}			
+			},
+			error : function(xhr, statusText, responseData) {
+				//$(".chk").text("x").css("color", "red");
+				alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
+			}	
+		});	
+	}
+	
+});	
+
+
+
+
+
+
+
 });
 
 
