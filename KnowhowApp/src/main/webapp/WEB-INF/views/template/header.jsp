@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<<<<<<< HEAD
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-=======
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
->>>>>>> refs/heads/crimson
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,8 +24,6 @@
 			$("#mj_id, #mj_nickname, #mj_pass1, #mj_pass2").val("");
 			$("#mj_id").show();
 			$("#mj_btn_submit").hide();
-<<<<<<< HEAD
-			
 		} else if (i == "2") {
 			modal = "loginPage";
 			
@@ -42,23 +36,6 @@
 		}
 
 		$("#" + modal).modal();
-		
-=======
-
-		} else if (i == "2") {
-			modal = "loginPage";
-
-		} else if (i == "3") {
-			modal = "memModifyPage";
-		} else if (i == "4") {
-			modal = "profileModifyPage";
-		} else if (i == "5") {
-			modal = "startPostingPage";
-		}
-
-		$("#" + modal).modal();
-
->>>>>>> refs/heads/crimson
 	}
 </script>
 <style>
@@ -86,7 +63,6 @@
 
 				<form class="navbar-form navbar-left" role="search">
 					<div id="search_form" class="input-group input-group-sm">
-<<<<<<< HEAD
 					<span class="input-group-btn">
 							
 							<button class="btn btn-default" type="button" id="search_btn">
@@ -191,7 +167,6 @@
 		</div>
 	</div>
 
-
 	<!-- modal -->
 
 	<div class="modal fade" id="loginPage">
@@ -210,10 +185,7 @@
 		<jsp:include page="../member/profileModify.jsp"></jsp:include>
 	</div>
 
-
 	<!-- 서버단 작업끝나면 modal fade 지울 페이지  , openModal() 추가해야함 -->
-
-
 
 	<div class="modal fade" id="startPostingPage">
 		<jsp:include page="../knowhow/startPosting.jsp"></jsp:include>
@@ -395,7 +367,6 @@
 	</div> 
  --%>
 	<%-- 	
-		
 	<div class="modal fade" id="addTagPage" data-backdrop="static" >
 		<jsp:include page="../knowhow/addTag.jsp"></jsp:include>
 	</div> 
