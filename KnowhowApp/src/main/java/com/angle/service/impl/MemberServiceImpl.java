@@ -246,7 +246,7 @@ public class MemberServiceImpl implements MemberService {
 		Member m = (Member) session.getAttribute("member");
 		MultipartFile multipartFile = request.getFile("image");
 		String comment = request.getParameter("pcomment");
-		String fileName = null;
+		String fileName = "";
 		if (!multipartFile.isEmpty()) {
 			File file = new File(path, multipartFile.getOriginalFilename());
 			multipartFile.transferTo(file);

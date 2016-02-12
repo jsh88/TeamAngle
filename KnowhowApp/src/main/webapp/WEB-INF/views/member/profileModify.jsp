@@ -56,8 +56,28 @@
 			reader.readAsDataURL(setImage);
 			
 		});
-
+		
+		$('#profileModify').click(function (v){
+				
+			modal.close();
+			
+			});
+		
 	});
+	
+	/* function modifyProfile(){
+		$.ajax({
+			type : "get",
+			dataType : "json",
+			data : "",
+			success : function(v){
+				$("#profile_Img").attr("src",v)
+			}
+		});
+	} */
+	
+	
+	
 </script>
 <style>
 #profile_form {
