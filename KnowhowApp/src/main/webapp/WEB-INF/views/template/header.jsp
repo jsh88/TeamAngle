@@ -223,8 +223,6 @@
 		<jsp:include page="../knowhow/addKnowhow.jsp"></jsp:include>
 	</div> 
  --%>
-<%-- 	
-=======
 						<span class="input-group-btn">
 
 							<button class="btn btn-default" type="button" id="search_btn">
@@ -397,7 +395,6 @@
 	</div> 
  --%>
 	<%-- 	
->>>>>>> refs/heads/crimson
 		
 	<div class="modal fade" id="addTagPage" data-backdrop="static" >
 		<jsp:include page="../knowhow/addTag.jsp"></jsp:include>
