@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.angle.dao.PostCommentDao;
 import com.angle.dao.PostDao;
 import com.angle.domain.Member;
+import com.angle.domain.MemberTag;
 import com.angle.domain.Post;
 import com.angle.domain.PostComment;
 import com.angle.domain.PostContent;
@@ -51,19 +52,6 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	@Override
 	public void addPost(HttpServletRequest request, HttpSession session) {
-
-		Member m = new Member();
-		m.setId("test");
-		m.setPw("1");
-		m.setNickName("test");
-		m.setjDate("88/05/17");
-		m.setlDate("88/05/17");
-		m.setpComment("테스트 접속");
-		m.setImage("test.gif");
-		m.setvCount(1);
-		m.setState(false);
-
-		session.setAttribute("member", m);
 
 		Post p = new Post();
 		ArrayList<PostContent> pConList = new ArrayList<>();
@@ -203,6 +191,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void completeWrite(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
@@ -257,8 +246,8 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		postDao.addPostPage(pConList);
 		postDao.setMaxPostPage(p.getpNo(), mPage);
 
-		session.setAttribute("pTagList",
-				postDao.completePosting((ArrayList<PostTag>) luceneKoreanAnalyzer.getTags(pConList)));
+		session.setAttribute("pTagList", (ArrayList<PostTag>) postDao
+				.completePosting((ArrayList<PostTag>) luceneKoreanAnalyzer.getTags(pConList)));
 
 	}
 
@@ -377,6 +366,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void completeModify(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
@@ -447,8 +437,8 @@ public class PostServiceImpl implements PostService, PostCommentService {
 		postDao.addPostPage(pConList);
 		postDao.setMaxPostPage(p.getpNo(), mPage);
 
-		session.setAttribute("pTagList",
-				postDao.completePosting((ArrayList<PostTag>) luceneKoreanAnalyzer.getTags(pConList)));
+		session.setAttribute("pTagList", (ArrayList<PostTag>) postDao
+				.completePosting((ArrayList<PostTag>) luceneKoreanAnalyzer.getTags(pConList)));
 
 	}
 
@@ -490,9 +480,14 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	}
 
-	@Override
-	public void getSearchPostView(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+	@SuppressWarnings("unchecked")
+	public void getSearchPostView(HttpServletRequest request, HttpSession session) {
 
+		ArrayList<MemberTag> mTagList = (ArrayList<MemberTag>) session.getAttribute("mTagList");
+		MemberTag mTag = new MemberTag();
+		mTag.setTag(request.getParameter("word"));
+		mTagList.add(mTag);
+
+		postDao.getSearchPostView(mTagList);
 	}
 }

@@ -2,6 +2,7 @@ package com.angle.service.impl;
 
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +14,7 @@ import com.angle.domain.Member;
 import com.angle.domain.MemberTag;
 import com.angle.domain.Post;
 import com.angle.domain.PostTag;
+import com.angle.env.LuceneKoreanAnalyzer;
 import com.angle.service.TagService;
 
 @Service
@@ -21,8 +23,15 @@ public class TagServiceImpl implements TagService {
 	@Autowired
 	private TagDao tagDao;
 
+	@Autowired
+	private LuceneKoreanAnalyzer luceneKoreanAnalyzer;
+
 	public void setTagDao(TagDao tagDao) {
 		this.tagDao = tagDao;
+	}
+
+	public void setLuceneKoreanAnalyzer(LuceneKoreanAnalyzer luceneKoreanAnalyzer) {
+		this.luceneKoreanAnalyzer = luceneKoreanAnalyzer;
 	}
 
 	@Override
@@ -69,7 +78,7 @@ public class TagServiceImpl implements TagService {
 			}
 
 			tagDao.addRootTag(pTagList);
-//			tagDao.addPostTag(pTagList);
+			// tagDao.addPostTag(pTagList);
 			tagDao.addMemberTag(mTagList);
 
 			session.removeAttribute("pTagList");
@@ -121,15 +130,40 @@ public class TagServiceImpl implements TagService {
 
 			}
 
-//		tagDao.updateRootTag(mTagList);
+		// tagDao.updateRootTag(mTagList);
 		tagDao.addMemberTag(mTagList);
 
 	}
 
 	@Override
 	public void getRecommendationTag(HttpServletRequest request) {
-		
+
 		request.setAttribute("tList", tagDao.getIntroTagList());
-		
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void addSearchTag(HttpServletRequest request, HttpSession session) {
+
+		Member m = (Member) session.getAttribute("member");
+
+		int searchCount = Integer.parseInt(request.getParameter("searchCount"));
+
+		ArrayList<MemberTag> mTagList = (ArrayList<MemberTag>) luceneKoreanAnalyzer
+				.getTags(request.getParameter("word"));
+
+		if (!mTagList.isEmpty()) {
+			
+			mTagList.get(0).setId(m.getId());
+			
+			if (searchCount == 1) {
+				tagDao.addMemberTag(mTagList);
+				session.setAttribute("mTagList", mTagList);
+			}		
+			
+			request.setAttribute("mTagList", mTagList);
+
+		}
 	}
 }

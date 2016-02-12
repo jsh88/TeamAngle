@@ -72,22 +72,23 @@ public class TagDaoImpl implements TagDao {
 	@Override
 	public void addMemberTag(ArrayList<MemberTag> mTagList) {
 
+		String id = mTagList.get(0).getId();
+
 		for (MemberTag m : mTagList) {
 
 			// 멤버 태그 업로드
 			try {
 
 				jdbcTemplate.update("insert into membertag values(?, ?, 1, 0, sysdate, sysdate)",
-						new Object[] { m.getId(), m.getTag() });
+						new Object[] { id, m.getTag() });
 
 			} catch (DataAccessException e) {
 
 				jdbcTemplate.update("update membertag set count = count + 1, rdate = sysdate where tag = ? and id = ?",
-						new Object[] { m.getTag(), m.getId() });
+						new Object[] { m.getTag(), id });
 
 			}
 		}
-
 	}
 
 	@Override
@@ -144,7 +145,7 @@ public class TagDaoImpl implements TagDao {
 				});
 
 	}
-	
+
 	@Override
 	public void updateRootTag(ArrayList<MemberTag> mTagList) {
 

@@ -2,6 +2,7 @@ package com.angle.dao;
 
 import java.util.ArrayList;
 
+import com.angle.domain.MemberTag;
 import com.angle.domain.Post;
 import com.angle.domain.PostContent;
 import com.angle.domain.PostTag;
@@ -43,5 +44,7 @@ public interface PostDao {
 	public Post getPostInfo(int no);
 
 	public Post getBestPostInfo(int no);
+
+	public void getSearchPostView(ArrayList<MemberTag> mTagList);
 
 }

@@ -75,7 +75,12 @@ $(document).ready(function() {
 				$("#listTitle").remove();
 				$("#listLine").remove();
 				
+				for(var i = 0 ; i < 5; i++) {
+					
 					getSearchPostView(word);
+					searchCount++;
+					
+				}					
 			}
 		}
 	});
@@ -167,10 +172,11 @@ function getSearchPostView(word) {
 	var formData = new FormData();
 
 	formData.append("word", word);
+	formData.append("searchCount", searchCount);
 
 	$.ajax({
 		type : 'POST',
-		url : 'searchPost',
+		url : 'searchView',
 		data : formData,
 // 		async : false,
 		processData : false,

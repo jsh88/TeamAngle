@@ -58,7 +58,7 @@
 		<div id="navtag">
 			<div id="navtag_lb">
 				<div class="col-sm-1 navTagTitle">Tag</div>
-				<div class="col-sm-11">
+				<div class="col-sm-9 navTags">
 				<c:set var="isDoing" value="true"/>
 					<c:forEach varStatus="status" var="tag" items="${tList }">
 						<c:if test="${isDoing}">
@@ -67,6 +67,7 @@
 							<c:set var="isDoing" value="false"/></c:if>
 						</c:if>						
 					</c:forEach>
+					<div class="col-sm-2"></div>
 				</div>
 			</div>
 		</div>

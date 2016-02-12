@@ -236,7 +236,10 @@ public class PostController {
 
 		postService.getPostView(request);
 
-		return "main/postList"; // 어디로 가야하오
+		if (request.getAttribute("postView") != null)
+			return "main/postList";
+		else
+			return "templete/empty";
 	}
 
 	// 포스트 베스트 리스트 -> body include
@@ -245,16 +248,16 @@ public class PostController {
 
 		postService.getBestPostView(request);
 
-		return "main/postList"; // 어디로 가야하오
+		return "main/postList";
 	}
 
-	// 포스트 검색 -> body include
-	@RequestMapping(value = "searchView")
-	public String bestPostList(HttpServletRequest request, HttpSession session) {
+	// 포스트 검색
+	@RequestMapping(value = "doSearch")
+	public String doSearch(HttpServletRequest request, HttpSession session) {
 
-		postService.getSearchPostView(request);
+		postService.getSearchPostView(request, session);
 
-		return "forward:addMemberTag"; // 어디로 가야하오
+		return "main/postList"; // 어디로 가야하오
 	}
 
 	// 포스트 추천, ajax
