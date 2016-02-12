@@ -70,15 +70,10 @@ $(document).ready(function() {
 				return false;
 			} else {
 				
-				$("#bestTitle").html("<div class='searchResultTitle'>" + word + " 에 대한 검색결과	</div>");
-				$("#listTitle").remove();
-				$("#listLine").remove();
-				
 					// 폼 데이터 받기 or Append or 인자로 form id)
 					var formData = new FormData();
 
-					formData.append("word", word);
-					formData.append("");
+					formData.append("no", postCount);
 
 					$.ajax({
 						type : 'POST',
@@ -91,8 +86,7 @@ $(document).ready(function() {
 						success : function(responseData, statusText, xhr) {
 							
 							var result = responseData;
-							
-							$('#bestPost').html($('#bestPost').html() + result);
+							$('#newPost').html($('#newPost').html() + result);
 							
 							// 성공처리(v는 서버로 받은 메시지, value)
 							
