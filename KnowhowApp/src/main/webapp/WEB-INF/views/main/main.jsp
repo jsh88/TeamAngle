@@ -246,10 +246,10 @@
 					
 					<div id="bestLastLine" class="col-md-12"></div>
 					
-					<div id="ListtTitle" class="col-md-12">
+					<div id="listTitle" class="col-md-12">
 						New Knowhow
 					</div>
-					<div class="bestTitleLine col-md-12"></div>
+					<div id="listLine" class="bestTitleLine col-md-12"></div>
 					<div class="col-md-12" id="newPost"></div>
 					
 				</div>

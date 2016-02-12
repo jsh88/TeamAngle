@@ -14,7 +14,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a id="brand" class="navbar-brand" href="#">KnowHow</a>
+				<a id="brand" class="navbar-brand" href="index">Knowhow</a>
 			</div>
 
 			<div class="collapse navbar-collapse">
