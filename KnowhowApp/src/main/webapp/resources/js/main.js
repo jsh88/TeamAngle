@@ -70,10 +70,14 @@ $(document).ready(function() {
 				return false;
 			} else {
 				
+				$("#bestTitle").html("<div class='searchResultTitle'>" + word + " 에 대한 검색결과	</div>");
+				$("#listTitle").remove();
+				$("#listLine").remove();
+				
 					// 폼 데이터 받기 or Append or 인자로 form id)
 					var formData = new FormData();
 
-					formData.append("no", postCount);
+					formData.append("word", word);
 
 					$.ajax({
 						type : 'POST',
@@ -86,7 +90,53 @@ $(document).ready(function() {
 						success : function(responseData, statusText, xhr) {
 							
 							var result = responseData;
-							$('#newPost').html($('#newPost').html() + result);
+							
+							$('#bestPost').html($('#bestPost').html() + result);
+							
+							// 폼 데이터 받기 or Append or 인자로 form id)
+							var formData = new FormData();
+
+							formData.append("word", word);
+
+							$.ajax({
+								type : 'POST',
+								url : 'searchPost',
+								data : formData,
+//						 		async : false,
+								processData : false,
+								contentType : false,
+
+								success : function(responseData, statusText, xhr) {
+									
+									var result = responseData;
+									
+									$('#bestPost').html($('#bestPost').html() + result);
+									
+									// 성공처리(v는 서버로 받은 메시지, value)
+									
+								},
+								beforeSend : function() {
+
+									// 전송 전
+									// 이미지 보여주기
+									$('.wrap-loading').removeClass('display-none');
+									
+								},
+								error : function(request, status, error) {
+
+									// 에러 로직, 에러 로그 확인
+//						 			alert("code:" + request.status + "\n\n" + "message:"
+//						 					+ request.responseText + "\n\n" + "error:" + error);
+
+								},
+								complete : function() {
+
+									// 이미지 감추기 처리
+//										$(location).attr('href', "이동할 페이지");
+									$('.wrap-loading').addClass('display-none');
+
+								}				
+							});
 							
 							// 성공처리(v는 서버로 받은 메시지, value)
 							

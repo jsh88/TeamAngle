@@ -7,15 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 
 	@RequestMapping(value = { "index", "/" })
-	public String index() {
+	public String index() {		
 
-		return "index";
+		return "forward:getRecommendationTag";
 	}
-	
-	@RequestMapping(value = { "main", "a" })
-	public String main() {
-
-		return "main/main";
-	}
-
 }

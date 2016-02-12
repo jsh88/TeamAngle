@@ -59,9 +59,14 @@
 			<div id="navtag_lb">
 				<div class="col-sm-1 navTagTitle">Tag</div>
 				<div class="col-sm-11">
-					<a href="#" class="recommenTag">#피자</a>
-					<a href="#" class="recommenTag">#시카고</a>
-					<a href="#" class="recommenTag">#갈릭소스</a>
+				<c:set var="isDoing" value="true"/>
+					<c:forEach varStatus="status" var="tag" items="${tList }">
+						<c:if test="${isDoing}">
+							<a href="#" class="recommenTag">#${tag.tag }</a>
+						<c:if test="${status.index eq 19}">
+							<c:set var="isDoing" value="false"/></c:if>
+						</c:if>						
+					</c:forEach>
 				</div>
 			</div>
 		</div>
