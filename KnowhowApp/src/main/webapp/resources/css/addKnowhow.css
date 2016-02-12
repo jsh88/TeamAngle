@@ -2,29 +2,26 @@
 
 /* ModalDialog  --  Title*/
 
-			#addTitle{
+			#startTitle{
 				width:480px;
-			}
-			
-			#addTitle{
 				margin: 0px auto;
 				color:white;
 			}
 			
-			#buttonGroup{
+			#startButtonGroup{
 				width: 97%;
 				text-align: right;
 			}
 			
-			#ModalDialog{
+			#startModalDialog{
 				margin-top:300px;
 				width: 500px;
 				height: 250px;
 			}
 			
-			.addbtn{
+			.startbtn{
 				margin-top: 10px;
-				margin-bottom: 10px;
+				margin-bottom: 20px;
 			}
 			
 			#Recallingbtn, #Priorbtn{
@@ -32,8 +29,10 @@
 				border: 1px solid #FFDA00;
 			}
 			
-			#ModalContent{
+			#startModalContent{
 				background-color:#376CBF;
+				width: 500px;
+				height: 134px;
 			}
 			
 			#titlelabel{
