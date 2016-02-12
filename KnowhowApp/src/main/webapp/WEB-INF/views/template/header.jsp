@@ -2,50 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<link type="text/css" href="resources/css/header.css" rel="stylesheet">
-<script src="resources/js/header.js"></script>
-<script src="resources/js/ajax_myModfy.js"></script>
-<script>
-	function modalOpen(i) {
-
-		var modal = "";
-
-		if (i == "1") {
-			modal = "memJoinPage";
-			$("#mj_id, #mj_nickname, #mj_pass1, #mj_pass2").val("");
-			$("#mj_id").show();
-			$("#mj_btn_submit").hide();
-			
-		} else if (i == "2") {
-			modal = "loginPage";
-			
-		} else if (i == "3") {
-			modal = "memModifyPage";
-		} else if (i == "4") {
-			modal = "profileModifyPage";
-		} else if (i == "5") {
-			modal = "startPostingPage";
-		}
-
-		$("#" + modal).modal();
-		
-
-		}
-</script>
-<style>
-</style>
-</head>
-<body>
 
 	<!-- header -->
 	<nav class="navbar navbar-default" id="header_main">
@@ -67,16 +23,14 @@
 
 				<form class="navbar-form navbar-left" role="search">
 					<div id="search_form" class="input-group input-group-sm">
-					<span class="input-group-btn">
-							
-							<button class="btn btn-default" type="button" id="search_btn">
+					<span class="input-group-btn">							
+							<button class="btn btn-default" type="button" id="search_btn" onclick="doSearch()">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
 						</span>
 						<input type="text" class="form-control" id="search_txt"
 							placeholder="Search for..." style="width: 380px;"> 
-					</div>
-					
-					</form>
+					</div>					
+				</form>
 
 
 				<!-- 로그인 / 로그아웃 상태창 -->
@@ -120,10 +74,10 @@
 			<div id="menu">
 				<div id="profile_line" class="col-sm-12 col-xs-12 col-md-12">
 					<div id="profile_img" class="col-sm-5 col-xs-12">
-						<c:if test="${member.image == null }">
+						<c:if test="${member.image eq null }">
 						<img src="http://placehold.it/110x110" width="110px;" height="110px;">
 						</c:if>
-						<c:if test="${member.image != null }">
+						<c:if test="${member.image ne null }">
 						<img src="resources/images/${member.image }" width="110px;" height="110px;">
 						</c:if>
 					</div>
@@ -223,8 +177,6 @@
 		<jsp:include page="../member/profileModify.jsp"></jsp:include>
 	</div>
 
-
-
 	<!-- 서버단 작업끝나면 modal fade 지울 페이지  , openModal() 추가해야함 -->
 
 
@@ -254,7 +206,3 @@
 	</div>
 	
 	--%>
-
-
-</body>
-</html>

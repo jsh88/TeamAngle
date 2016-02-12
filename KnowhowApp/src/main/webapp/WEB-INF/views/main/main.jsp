@@ -7,7 +7,10 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<link type="text/css" href="resources/css/header.css" rel="stylesheet">
+<script src="resources/js/main.js"></script>
+<script src="resources/js/ajax_myModfy.js"></script>
 <style>
 	
 		/*화면 전체를 어둡게 합니다.*/
@@ -202,112 +205,6 @@
 		}
 		
 </style>
-<script type="text/javascript">
-var bestPostCount = 1;
-var postCount = 1;
-$(document).ready(function(){
-	for(var i = 0; i < 6; i++) {
-		getBestPostView();
-		getPostView();
-		bestPostCount++;
-		postCount++;
-	}
-});
-
-	//포스트 리스트 가져오기
-	function getPostView() {
-		// 폼 데이터 받기 or Append or 인자로 form id)
-		var formData = new FormData();
-	
-		formData.append("no", postCount);
-	
-		$.ajax({
-			type : 'POST',
-			url : 'postView',
-			data : formData,
-	// 		async : false,
-			processData : false,
-			contentType : false,
-	
-			success : function(responseData, statusText, xhr) {
-				
-				var result = responseData;
-				$('#newPost').html($('#newPost').html() + result);
-				
-				// 성공처리(v는 서버로 받은 메시지, value)
-				
-			},
-			beforeSend : function() {
-	
-				// 전송 전
-				// 이미지 보여주기
-				$('.wrap-loading').removeClass('display-none');
-				
-			},
-			error : function(request, status, error) {
-	
-				// 에러 로직, 에러 로그 확인
-	// 			alert("code:" + request.status + "\n\n" + "message:"
-	// 					+ request.responseText + "\n\n" + "error:" + error);
-	
-			},
-			complete : function() {
-	
-				// 이미지 감추기 처리
-	//				$(location).attr('href', "이동할 페이지");
-				$('.wrap-loading').addClass('display-none');
-	
-			}				
-		});
-	}
-	
-	// 베스트 포스트 리스트 가져오기
-	function getBestPostView() {
-		// 폼 데이터 받기 or Append or 인자로 form id)
-		var formData = new FormData();
-
-		formData.append("no", bestPostCount);
-
-		$.ajax({
-			type : 'POST',
-			url : 'postView',
-			data : formData,
-//	 		async : false,
-			processData : false,
-			contentType : false,
-
-			success : function(responseData, statusText, xhr) {
-				
-				var result = responseData;
-				$('#bestPost').html($('#bestPost').html() + result);
-				
-				// 성공처리(v는 서버로 받은 메시지, value)
-				
-			},
-			beforeSend : function() {
-
-				// 전송 전
-				// 이미지 보여주기
-				$('.wrap-loading').removeClass('display-none');
-				
-			},
-			error : function(request, status, error) {
-
-				// 에러 로직, 에러 로그 확인
-//	 			alert("code:" + request.status + "\n\n" + "message:"
-//	 					+ request.responseText + "\n\n" + "error:" + error);
-
-			},
-			complete : function() {
-
-				// 이미지 감추기 처리
-//					$(location).attr('href', "이동할 페이지");
-				$('.wrap-loading').addClass('display-none');
-
-			}				
-		});
-	}
-</script>
 </head>
 	<body style="overflow: auto; overflow-x:hidden;">
 	
