@@ -97,10 +97,104 @@
 	margin-left: -15px;
 }
 
+/* main */
+
+
+	#nv1 {
+		padding:0;
+	}
+	#nv1 > button {
+		height: 40px;
+	}
+	
+	#c1, #c2 {
+	text-align: center;
+	}
+
+#profile_img, #nav1 {
+	margin-top: 5px;
+	text-align: center;
+}
+
+.recommenTag{
+	margin-left: 5px;
+	text-decoration: none;
+	color:white;
+}
+
+.recommenTag:hover{
+	color:#FFDA00;	
+	font-weight: bold;
+}
+
+#navTagTitle{
+	font-weight: bold;
+	margin-left: -15px;
+}
+
+/*myPage*/
+
 #myPageWrap{
 	position:absolute;
 	z-index: 8;
 }
+
+#menu {
+	margin-top: 10px;
+	border: 1px solid #BFBCBC;
+	border-radius: 6px;
+	float: right;
+	overflow: auto;
+	overflow-x:hidden;
+	background-color: white;
+	z-index:5;
+}
+
+#profile_line{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#profile_nametag{
+	margin-top: 30px;
+}
+
+#userNick{
+	font-size: 16px;
+	font-weight: bold;
+	color: black;	
+}
+
+#userMemo{
+	color: #666666;	
+}
+
+#userInDate{
+	color: #666666;
+	font-size: 13px;
+}
+
+#nv1{
+	margin-left: 1px;
+	border-top: 3px solid #BFBCBC;
+	border-bottom: 3px solid #BFBCBC;
+	background-color: #FE9A2E;
+}
+
+.myPageBtn{
+	background-color: #FE9A2E;
+	font-size: 13px;
+	color: white;
+	border-style: none;
+}
+
+.myPageBtn:hover, .myPageBtn:active, .myPageBtn:visited{
+	background-color: #FF8000;
+	font-weight: bold;
+	color:white;
+}
+
+
 
 
 
