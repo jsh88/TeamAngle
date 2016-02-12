@@ -55,7 +55,7 @@
 			
 			
 			$("#tagtext").keypress(function(key){
-						
+				
 				var re = /[~!@\#$%<>^&*\()\-=+_\']/;
 				
 				if(re){
@@ -75,6 +75,7 @@
 					
 					var n = $("#tagtext").val();
 					var h = $("#hiddentext").val();
+					var kor_check = /([^가-힣ㄱ-ㅎㅏ-ㅣ\x20])/i;
 					
 					if( n == ""){
 					
@@ -82,8 +83,12 @@
 						$("#k").show();
 						$("#s").hide();
 						
-					}else{
-					
+					}else if(n.match(re)){
+						
+						alert('등록할수 없는 태그입니다.');
+						
+					}else if(! kor_check.test(n)){
+						
 						$("#Tagbox").append("<a class='t' href='#'>#"+n+"</a>");
 						
 						oTags.push(n);
@@ -102,10 +107,10 @@
 							removeTag(($(this).text()).substr(1));
 							
 						});
+						
+							}
+						}
 					}
-					}
-				}
-				
 			});
 			
 			$("#tagtext").keydown(function(key){
@@ -334,11 +339,7 @@
 		
 				<div class="modal-content" id="tagContent">
 				<div id="TagWrap">
-<<<<<<< HEAD
 						<div id="Tagimage"><a href=""><img style="width:20px;" src="resources/images/close.png"/></a></div>
-=======
-						<div id="Tagimage"><a href=""><img style="width:20px;" src="resources/images//close.png"/></a></div>
->>>>>>> refs/heads/crimson
 					<div id="TagContent">
 						<div id="contentTitle">
 							Recommendation Tag
