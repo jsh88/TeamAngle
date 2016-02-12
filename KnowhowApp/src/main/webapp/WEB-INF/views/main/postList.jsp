@@ -2,6 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
+<c:if test="${word ne null }">
+	<div class="searchResultTitle">
+		' ${word } ' 에 대한 검색결과 
+	</div>
+</c:if>
+
 <c:set value="${fn:indexOf(postView.media, 'https:') == -1}" var="isURL"></c:set>
 <div class="bestListWrap col-sm-4 col-md-2">
 	<div class="bestListHeader col-md-12">
@@ -20,7 +27,7 @@
 		<c:if test="${fn:indexOf(postView.media, 'https:') != -1}">
 			<iframe class="bestMediaIframe"
 				src="${postView.media }?rel=0&showinfo=0&autoplay=1&controls=0&modestbranding=1"
-				height="110px;" frameborder="0" allowfullscree></iframe>
+				height="110px;" frameborder="0" allowfullscreen></iframe>
 		</c:if>
 		<c:if test="${isURL && postView.media ne 'none'}">
 			<img src="${postView.media }" class="bestMediaImg img-responsive">
