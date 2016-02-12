@@ -3,12 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<c:if test="${word ne null }">
-	<div class="searchResultTitle">
-		' ${word } ' 에 대한 검색결과 
-	</div>
-</c:if>
-
 <c:set value="${fn:indexOf(postView.media, 'https:') == -1}" var="isURL"></c:set>
 <div class="bestListWrap col-sm-4 col-md-2" onclick="">
 	<div class="bestListHeader col-md-12">

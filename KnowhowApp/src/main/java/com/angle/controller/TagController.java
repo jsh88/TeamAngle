@@ -66,4 +66,13 @@ public class TagController {
 		return "success";
 	}
 
+	// 검색 추천 태그
+	@RequestMapping(value = "getRecommendationTag")
+	public String getRecommendationTag(HttpServletRequest request) {
+
+		tagService.getRecommendationTag(request);
+
+		return "index";
+	}
+
 }

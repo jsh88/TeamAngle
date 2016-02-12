@@ -93,7 +93,7 @@ public class TagDaoImpl implements TagDao {
 	@Override
 	public ArrayList<Tag> getIntroTagList() {
 
-		return (ArrayList<Tag>) jdbcTemplate.query("select * from tag order by rdate desc", new RowMapper<Tag>() {
+		return (ArrayList<Tag>) jdbcTemplate.query("select * from tag order by count desc", new RowMapper<Tag>() {
 
 			@Override
 			public Tag mapRow(ResultSet rs, int rowNum) throws SQLException {
