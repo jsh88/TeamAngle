@@ -237,7 +237,7 @@ public class PostController {
 		postService.getPostView(request);
 
 		if (request.getAttribute("postView") != null)
-			return "main/postList";
+			return "main/innerMainPost";
 		else
 			return "templete/empty";
 	}
@@ -248,7 +248,7 @@ public class PostController {
 
 		postService.getBestPostView(request);
 
-		return "main/postList";
+		return "main/innerMainPost";
 	}
 
 	// 포스트 검색

@@ -394,6 +394,10 @@ function modalOpen(selModal) {
 		
 	} else if(selModal == "4") {
 		
+		modal = "addTag";
+		
+	} else if(selModal == "5") {
+		
 		modal = "knowhowDetail";
 		
 	}

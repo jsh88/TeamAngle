@@ -3,16 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 	<script>
-		var i = 1;
-		var j = 0;
-		var maxPage = 0;
+		var detailPagingCount = 1;
+		var detailPrePagingCount = 0;
+		var detailMaxPage = 0;
 		var recoNum = 0;
-		var pNo = "";
+		var detailPno = "";
 	
 		$(document).ready(function(){
 			
-			maxPage = parseInt("${post.mPage}");
-			pNo = "${post.pNo}";
+			detailMaxPage = parseInt("${post.mPage}");
+			detailPno = "${post.pNo}";
 			recoNum = parseInt("${postRecommendationCount}");
 			
 			$("#recommenNum").text(recoNum);
@@ -31,7 +31,7 @@
 			$(".p9").hide();
 			$(".p10").hide();
 
-			$(".p"+i).css("width","65");
+			$(".p"+detailPagingCount).css("width","65");
 			
 			<c:forEach items="${pConList}" var="pCon" varStatus="status">
 				
@@ -40,9 +40,6 @@
 				if(media == "none") {
 					
 					$('#mediaiframe'+'${status.count}').attr("src" , "resources/images/nomedia.png");
-					
-// 					imgArr["${status.index}"] = null;
-// 					urlArr["${status.index}"] = undefined;
 					
 				} else if(media.indexOf("https:") > -1) {
 					
@@ -76,7 +73,7 @@
 			
 			$(".pageNumber").mouseout(function(){
 				
-				if($(this).is(".p"+i) === true){
+				if($(this).is(".p"+detailPagingCount) === true){
 					
 					$(this).css("width" , "65");
 				
@@ -109,93 +106,93 @@
 			});
 			
 			$(".p1").click(function(){
-				$("#myCarousel").carousel(0);
-				j = i;
-				i = 1;
+				$("#detailCarousel").carousel(0);
+				detailPrePagingCount = detailPagingCount;
+				detailPagingCount = 1;
 				getCommentList();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
+				$(".p"+detailPagingCount).css("width","65");
+				$(".p"+detailPrePagingCount).css("width","50");
 			});
 			
 			$(".p2").click(function(){
-				$("#myCarousel").carousel(1);
-				j = i;
-				i = 2;
+				$("#detailCarousel").carousel(1);
+				detailPrePagingCount = detailPagingCount;
+				detailPagingCount = 2;
 				getCommentList();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
+				$(".p"+detailPagingCount).css("width","65");
+				$(".p"+detailPrePagingCount).css("width","50");
 			});
 			
 			$(".p3").click(function(){
-				$("#myCarousel").carousel(2);
-				j = i;
-				i = 3;
+				$("#detailCarousel").carousel(2);
+				detailPrePagingCount = detailPagingCount;
+				detailPagingCount = 3;
 				getCommentList();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
+				$(".p"+detailPagingCount).css("width","65");
+				$(".p"+detailPrePagingCount).css("width","50");
 			});
 			
 			$(".p4").click(function(){
-				$("#myCarousel").carousel(3);
-				j = i;
-				i = 4;
+				$("#detailCarousel").carousel(3);
+				detailPrePagingCount = detailPagingCount;
+				detailPagingCount = 4;
 				getCommentList();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
+				$(".p"+detailPagingCount).css("width","65");
+				$(".p"+detailPrePagingCount).css("width","50");
 			});
 			
 			$(".p5").click(function(){
-				$("#myCarousel").carousel(4);
-				j = i;
-				i = 5;
+				$("#detailCarousel").carousel(4);
+				detailPrePagingCount = detailPagingCount;
+				detailPagingCount = 5;
 				getCommentList();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
+				$(".p"+detailPagingCount).css("width","65");
+				$(".p"+detailPrePagingCount).css("width","50");
 			});
 			
 			$(".p6").click(function(){
-				$("#myCarousel").carousel(5);
-				j = i;
-				i = 6;
+				$("#detailCarousel").carousel(5);
+				detailPrePagingCount = detailPagingCount;
+				detailPagingCount = 6;
 				getCommentList();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
+				$(".p"+detailPagingCount).css("width","65");
+				$(".p"+detailPrePagingCount).css("width","50");
 			});
 			
 			$(".p7").click(function(){
-				$("#myCarousel").carousel(6);
-				j = i;
-				i = 7;
+				$("#detailCarousel").carousel(6);
+				detailPrePagingCount = detailPagingCount;
+				detailPagingCount = 7;
 				getCommentList();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
+				$(".p"+detailPagingCount).css("width","65");
+				$(".p"+detailPrePagingCount).css("width","50");
 			});
 			
 			$(".p8").click(function(){
-				$("#myCarousel").carousel(7);
-				j = i;
-				i = 8;
+				$("#detailCarousel").carousel(7);
+				detailPrePagingCount = detailPagingCount;
+				detailPagingCount = 8;
 				getCommentList();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
+				$(".p"+detailPagingCount).css("width","65");
+				$(".p"+detailPrePagingCount).css("width","50");
 			});
 			
 			$(".p9").click(function(){
-				$("#myCarousel").carousel(8);
-				j = i;
-				i = 9;
+				$("#detailCarousel").carousel(8);
+				detailPrePagingCount = detailPagingCount;
+				detailPagingCount = 9;
 				getCommentList();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
+				$(".p"+detailPagingCount).css("width","65");
+				$(".p"+detailPrePagingCount).css("width","50");
 			});
 			
 			$(".p10").click(function(){
-				$("#myCarousel").carousel(9);
-				j = i;
-				i = 10;
+				$("#detailCarousel").carousel(9);
+				detailPrePagingCount = detailPagingCount;
+				detailPagingCount = 10;
 				getCommentList();
-				$(".p"+i).css("width","65");
-				$(".p"+j).css("width","50");
+				$(".p"+detailPagingCount).css("width","65");
+				$(".p"+detailPrePagingCount).css("width","50");
 			});
 			
 		});
@@ -212,8 +209,8 @@
 		    // 폼 데이터 받기 or Append or 인자로 form id)
 			var formData = new FormData();
 			
-			formData.append("pno", pNo);
-			formData.append("page", i - 1);
+			formData.append("pno", detailPno);
+			formData.append("page", detailPagingCount - 1);
 
 			$.ajax({
 				type : 'POST',
@@ -260,7 +257,7 @@
 			$.ajaxSettings.traditional = true; // 배열형식으로 넘기기
 			 // 폼 데이터 받기 or Append or 인자로 form id)
 			var formData = new FormData();
-			formData.append("pno", pNo);
+			formData.append("pno", detailPno);
 
 			$.ajax({
 				type : 'POST',
@@ -316,9 +313,9 @@
 				$.ajaxSettings.traditional = true; // 배열형식으로 넘기기
 				 // 폼 데이터 받기 or Append or 인자로 form id)
 				var formData = new FormData();
-				formData.append("pno", pNo);
+				formData.append("pno", detailPno);
 				formData.append("content", $("#inputCom").val());
-				formData.append("page", i - 1);
+				formData.append("page", detailPagingCount - 1);
 	
 				$.ajax({
 					type : 'POST',
