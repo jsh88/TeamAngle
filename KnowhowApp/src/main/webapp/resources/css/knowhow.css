@@ -160,20 +160,10 @@
 				text-align: right;
 			}
 			
-			#header{
-				height: 6s0px;
-				
-			}
-			
 			#addKnowhowcontent{
 				margin:0px auto;
 				height: 500px;
 				width: 90%;
-			}
-			
-			#Media{
-				margin-top: 10px;
-				height: 300px;
 			}
 			
 			#content_Text{
@@ -506,3 +496,351 @@
 			color: #FFDA00;
 		}			
 			
+			
+/* knowhowDetail */
+
+	#detailContent{
+				width: 600px;
+				height: 740px;
+				float:left;
+				border:10px solid #535353;
+				
+			}
+			
+		#detailDialog{
+			width: 760px;
+		}
+		
+		#commentContent{
+			width:450px;
+			height: 740px;
+			float:left;
+			border:10px solid #535353;
+		}
+		
+		#replyDiv{
+			width:400px;
+			height: 590px;
+			margin: 0px auto;
+			margin-top: 15px;
+			border: 1px solid #BFBCBC;
+			border-radius:6px;
+		}
+		
+		#replyContent{
+			width:400px;
+			height: 170px;
+			margin: 0px auto;
+			margin-top: 20px;
+		}
+		
+		#replybtndiv{
+			margin-top: 10px;
+		}
+		
+		#replybtn{
+			width:100%;
+			font-weight: bold;
+			font-size: 15px;
+			height: 40px;
+		}
+		
+		.replyView{
+			width:380px;
+			margin: 0px auto;
+			margin-top:10px;
+			clear: both;
+		}
+		
+		.replyProfile{
+			width:55px;
+			height:55px;
+			float:left;
+		}
+		
+		.profileImg{
+			width: 100%;
+			height: 100%;
+			display: block;	
+		}
+		
+		.replyInfo{
+			width: 240px;
+			height: 20px;
+			float: left;
+		}
+		
+		.replyModifyDelete{
+			width:50px;
+			height:20px;
+			float:left;
+			margin-left: 5px;
+		}
+		
+		.replyDate{
+			display:inline-block;
+			font-size:10px;
+			float:right;
+			margin-top: 5px;
+		}
+		
+		.replyNickname{
+			display:inline-block;
+			font-weight: bold;
+			font-size: 13px;
+			margin-left: 5px;
+		}
+		
+		.replycontents{
+			float: left;
+			width:315px;
+			height: 65px;
+			margin: 0px auto;
+			margin-top:10px;
+			border-bottom: 1px solid #BFBCBC;
+		}
+		
+		.replyProfile{
+			width:55px;
+			height:55px;
+			float:left;
+		}
+		
+		.profileImg{
+			width: 100%;
+			height: 100%;
+			display: block;	
+		}
+		
+		.replyInfo{
+			width: 240px;
+			height: 20px;
+			float: left;
+		}
+		
+		.replyModifyDelete{
+			width:50px;
+			height:20px;
+			float:left;
+			margin-left: 5px;
+		}
+		
+		.replyDate{
+			display:inline-block;
+			font-size:10px;
+			float:right;
+			margin-top: 5px;
+		}
+		
+		.replyNickname{
+			display:inline-block;
+			font-weight: bold;
+			font-size: 13px;
+			margin-left: 5px;
+		}
+		
+		.replycontents{
+			float: left;
+			width:315px;
+			height:40px;
+			margin-left: 5px;
+			font-size: 13px;
+		}
+		
+		#pageMove{
+			margin-top:10px;
+			width:70px;
+			height: 700px;
+			float:left;
+		}
+			
+		#detailTitle{
+			margin-left: 20px;
+			font-size: 28px;
+			font-weight: bold;
+			width:95%;
+		}
+			
+		#closeimg{
+			float: right;
+		}
+			
+		#closeimg img{
+			margin-top: -15px;
+		}
+			
+			#createDate{
+				color: #666666;
+				width: 190px;
+				font-size: 14px;
+				margin-left:20px;
+				font-weight: normal;
+				float:left;
+			}
+			
+			#viewNum{
+				float:right;
+				width:150px;
+			}
+			
+			#writer{
+				float:right;
+				width:150px;
+			}
+			
+			#modifyDelete{
+				float:right;
+				width:150px;
+				text-align: center;
+				margin-top: -10px;
+			}
+			
+			#header{
+				height: 85px;
+			}
+			
+			.content_Text{
+				margin:0px auto;
+				margin-top: 20px;
+				margin-bottom: 10px;
+				width: 520px;
+				height: 200px;
+				font-size: 16px;
+			}
+			
+		.mdetail{
+			position: absolute;
+			z-index:3;
+			width:567px;
+			height: 300px;
+			border: none;
+		}
+		
+		.mediaDetailImg{
+			width:515px;
+			height:300px;
+			border:none;
+		}
+		
+		#detailTag{
+			width:550px;
+			margin: 0px auto;
+			margin-bottom: 10px;
+			height: 50px;
+		}
+		
+		.tags{
+			padding-left: 13px;
+			color:#666666;
+			font-size: 16px;
+		}
+	
+		
+		#Media{
+			margin-top: 10px;
+			height: 300px;
+		}
+		
+		#content{
+				margin:0px auto;
+				height: 500px;
+				width: 90%;
+				margin-bottom: 10px;
+		}
+		
+		#recommenBtn{
+			border-style: none;
+			background: none;
+			width: 100px;
+		}
+		
+		#footerContent{
+			width:500px;
+			margin: 0px auto;
+		}
+		
+		#recommen{
+			width:80px;
+			float:right;
+		}
+		
+		#recommenImg{
+			width:50px;
+			float:right;
+		}
+		
+		#recommenNum{
+			font-size: 17px;
+			font-weight:bold;
+			vertical-align: middle;
+			line-height: 40px;
+			text-align: center;
+			float:right;
+		}
+		
+		#reply{
+			width:80px;
+			float:right;
+		}
+		
+		#replyImg{
+			width:50px;
+			float:right;
+		}
+		
+		#replyNum{
+			font-size: 17px;
+			font-weight:bold;
+			vertical-align: middle;
+			line-height: 40px;
+			text-align: center;
+			float:right;
+		}
+		
+		#tagline{
+			width:510px;
+			height: 5px;
+			border-top: 1px solid #BFBCBC;
+			margin: 0px auto;
+		}
+		
+		.replyline{
+			width:100%;
+			height: 5px;
+			clear:both;
+			border-bottom: 1px solid #BFBCBC;
+		}			
+		
+/* 로딩 이미지 */
+
+		.wrap-loading{ /*화면 전체를 어둡게 합니다.*/
+		    position: fixed;
+		    left:0;
+		    right:0;
+		    top:0;
+		    bottom:0;
+		    background: rgba(0,0,0,0.2);
+   		 }
+    
+	     .wrap-loading div{ /*로딩 이미지*/
+	         width:1000;  /*div의 전체 가로픽셀*/
+			 position:absolute;   /*테이블의 영향을받지않는 div*/
+			 left:50%;   /*div 왼쪽 top 부분이 가로 전체의 중간으로 위치하게됨*/
+			 margin-left:-130px;  /* 왼쪽 top부분이 가운데로왔으니 좌측에서 전체가로픽셀의 반을 마이너스하여 좌측으로 옮겨줌 */
+			 margin-top: 280px;
+	  	  }
+    
+	    .display-none{ /*감추기*/
+	        display:none;
+	    }		
+		
+		
+/* 스크롤바 */		
+
+	::-webkit-scrollbar {width: 8px; height: 8px; border: 3px solid #fff; }
+ 
+	::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {display: block; height: 10px; background: url('./images/bg.png') #efefef}
+ 
+	 ::-webkit-scrollbar-track {background: #efefef; -webkit-border-radius: 10px; border-radius:10px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.2)}
+			 
+	 ::-webkit-scrollbar-thumb {height: 50px; width: 50px; background: rgba(0,0,0,.2); -webkit-border-radius: 8px; border-radius: 8px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.1)}

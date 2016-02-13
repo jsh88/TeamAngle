@@ -491,20 +491,14 @@
 					</div>
 
 					<!-- Modal 상단-->
-						<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
-							
+						<div id="detailCarousel" class="carousel slide" data-ride="carousel" data-interval="false">	
   							 <div class="carousel-inner" role="listbox">
-						 
-  									<div class="wrap-loading display-none">
-			  							<div><img src="resources/images/loading2.gif" /></div>
-									</div>								 
-
   							 	<div class="item active">
 										<div id="content">
 											<div id="Media" class="mbackground">
-												<div id="m1" class="m" onclick="openModal()"></div>
+												<div id="m1" class="mdetail"></div>
 												<iframe id="mediaiframe1" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
-												<img class="mediaImg" id="mediaImg1"/>
+												<img class="mediaDetailImg" id="mediaImg1"/>
 											</div>
 											<div id="content_Text1" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
@@ -513,9 +507,9 @@
   							 	<div class="item">
 										<div id="content">
 											<div id="Media"class="mbackground">
-												<div id="m2" class="m" onclick="openModal()"></div>
+												<div id="m2" class="mdetail" ></div>
 												<iframe id="mediaiframe2" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
-												<img class="mediaImg" id="mediaImg2"/>
+												<img class="mediaDetailImg" id="mediaImg2"/>
 											</div>
 											<div id="content_Text2" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
@@ -524,9 +518,9 @@
   							 	<div class="item">
 										<div id="content">
 											<div id="Media" class="mbackground">
-												<div id="m3" class="m"  onclick="openModal()"></div>
+												<div id="m3" class="mdetail"  ></div>
 												<iframe id="mediaiframe3" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
-												<img class="mediaImg" id="mediaImg3"/>
+												<img class="mediaDetailImg" id="mediaImg3"/>
 											</div>
 											<div id="content_Text3" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
@@ -535,9 +529,9 @@
   							 	<div class="item">
 										<div id="content">
 											<div id="Media" class="mbackground">
-												<div id="m4" class="m"  onclick="openModal()"></div>
+												<div id="m4" class="mdetail" ></div>
 												<iframe id="mediaiframe4" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
-												<img class="mediaImg" id="mediaImg4"/>
+												<img class="mediaDetailImg" id="mediaImg4"/>
 											</div>
 											<div id="content_Text4" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
@@ -546,9 +540,9 @@
   							 	<div class="item">
 										<div id="content">
 											<div id="Media" class="mbackground">
-												<div id="m5" class="m"  onclick="openModal()"></div>
+												<div id="m5" class="mdetail"  ></div>
 												<iframe id="mediaiframe5" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
-												<img class="mediaImg" id="mediaImg5"/>
+												<img class="mediaDetailImg" id="mediaImg5"/>
 											</div>
 											<div id="content_Text5" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
@@ -557,9 +551,9 @@
   							 	<div class="item">
 										<div id="content">
 											<div id="Media" class="mbackground">
-												<div id="m6" class="m"  onclick="openModal()"></div>
+												<div id="m6" class="mdetail"  ></div>
 												<iframe id="mediaiframe6" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
-												<img class="mediaImg" id="mediaImg6"/>
+												<img class="mediaDetailImg" id="mediaImg6"/>
 											</div>
 											<div id="content_Text6" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
@@ -568,9 +562,9 @@
   							 	<div class="item">
 										<div id="content">
 											<div id="Media" class="mbackground">
-												<div id="m7" class="m"  onclick="openModal()"></div>
+												<div id="m7" class="mdetail"  ></div>
 												<iframe id="mediaiframe7" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
-												<img class="mediaImg" id="mediaImg7"/>
+												<img class="mediaDetailImg" id="mediaImg7"/>
 											</div>
 											<div id="content_Text7" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
@@ -579,9 +573,9 @@
   							 	<div class="item">
 										<div id="content">
 											<div id="Media" class="mbackground">
-												<div id="m8" class="m"  onclick="openModal()"></div>
+												<div id="m8" class="mdetail"  ></div>
 												<iframe id="mediaiframe8" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
-												<img class="mediaImg" id="mediaImg8"/>
+												<img class="mediaDetailImg" id="mediaImg8"/>
 											</div>
 											<div id="content_Text8" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
@@ -590,9 +584,9 @@
   							 	<div class="item">
 										<div id="content">
 											<div id="Media" class="mbackground">
-												<div id="m9" class="m"  onclick="openModal()"></div>
+												<div id="m9" class="mdetail"  ></div>
 												<iframe id="mediaiframe9" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
-												<img class="mediaImg" id="mediaImg9"/>
+												<img class="mediaDetailImg" id="mediaImg9"/>
 											</div>
 											<div id="content_Text9" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
@@ -601,9 +595,9 @@
   							 	<div class="item">
 										<div id="content">
 											<div id="Media" class="mbackground">
-												<div id="m10" class="m"  onclick="openModal()"></div>
+												<div id="m10" class="mdetail"  ></div>
 												<iframe id="mediaiframe10" class="mediaiframe" width="517" height="300" frameborder="0" allowfullscreen></iframe>
-												<img class="mediaImg" id="mediaImg10"/>
+												<img class="mediaDetailImg" id="mediaImg10"/>
 											</div>
 											<div id="content_Text10" class="content_Text" style="overflow: auto; overflow-x:hidden;">
 											</div>
