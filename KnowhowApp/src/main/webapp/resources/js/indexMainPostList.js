@@ -1,18 +1,14 @@
-var bestPostCount = 1;
-var postCount = 1;
-var searchCount = 1;
-
-$(window).load(function() {
-	
-});
+var indexBestPostCount = 1;
+var indexPostCount = 1;
+var indexSearchCount = 1;
 
 $(document).ready(function() {
 	
 	for(var i = 0; i < 5; i++) {
 		getBestPostView();
 		getPostView();
-		bestPostCount++;
-		postCount++;
+		indexBestPostCount++;
+		indexPostCount++;
 	}
 	
 	$('#navtag').css('width', $(window).width());
@@ -84,7 +80,7 @@ $(document).ready(function() {
 				for(var i = 0 ; i < 1; i++) {					
 					
 					getSearchPostView(word);
-					searchCount++;
+					indexSearchCount++;
 					
 				}
 			}
@@ -178,7 +174,7 @@ function getSearchPostView(word) {
 	var formData = new FormData();
 
 	formData.append("word", word);
-	formData.append("searchCount", searchCount);
+	formData.append("searchCount", indexSearchCount);
 	
 	alert(word);
 
@@ -235,7 +231,7 @@ function getPostView() {
 	// 폼 데이터 받기 or Append or 인자로 form id)
 	var formData = new FormData();
 
-	formData.append("no", postCount);
+	formData.append("no", indexPostCount);
 
 	$.ajax({
 		type : 'POST',
@@ -282,7 +278,7 @@ function getBestPostView() {
 	// 폼 데이터 받기 or Append or 인자로 form id)
 	var formData = new FormData();
 
-	formData.append("no", bestPostCount);
+	formData.append("no", indexBestPostCount);
 
 	$.ajax({
 		type : 'POST',
