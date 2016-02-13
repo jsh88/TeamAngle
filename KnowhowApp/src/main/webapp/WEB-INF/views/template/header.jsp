@@ -197,12 +197,12 @@
 		<jsp:include page="../knowhow/innerStartPosting.jsp"></jsp:include>
 	</div>
 
-	<div class="modal fade" id="addKnowhow">
+	<div class="modal fade" id="addKnowhow" data-backdrop="static">
 		<jsp:include page="../knowhow/addKnowhow.jsp"></jsp:include>
 	</div>
 	
-	<div class="modal fade" id="modifyStart">
-		<jsp:include page="../knowhow/modifyStart.jsp"></jsp:include>
+	<div class="modal fade" id="startModify">
+		<jsp:include page="../knowhow/startModify.jsp"></jsp:include>
 	</div>
 
 	<div class="modal fade" id="modifyKnowhow">
@@ -213,7 +213,7 @@
 		<jsp:include page="../knowhow/addTag.jsp"></jsp:include>
 	</div>
 	
-	<div class="modal fade" id="knowhowDetail">
+	<div class="modal fade" id="knowhowDetail" data-backdrop="static">
 		<jsp:include page="../knowhow/knowhowDetail.jsp"></jsp:include>
 	</div>
 	
