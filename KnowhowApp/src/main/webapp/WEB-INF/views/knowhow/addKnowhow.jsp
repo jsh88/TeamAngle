@@ -421,8 +421,8 @@
 				<div id="addWrap">
 					<div class="modal-header" id="header">
 						<div id="Closeimg" onclick="modalClose('1')"><img style="width:20px;" src="resources/images/close.png"/></div>
-						<div id="Title">${post.title }</div>
-						<div id="CreateDate">${post.wDate }</div>
+						<div id="addTitle">${post.title }</div>
+						<div id="addCreateDate">${post.wDate }</div>
 						<div id="Clear" onclick="clearPage()"><img style="width:20px;" src="resources/images/clear.png"/></div>
 						<div id="tSave" onclick=""><img style="width:25px;" src="resources/images/tsave.png"/></div>
 					</div>
@@ -431,10 +431,6 @@
 							
   							 <div class="carousel-inner" role="listbox">
   							 
-  							  	<div class="wrap-loading display-none">
-						    		<div><img src="resources/images/loading2.gif" /></div>
-								</div>
-  							 					
   							 	<div class="item active additem">
   							 		<form name="addKnowhowForm1" action="test.jsp" method="post">
 										<div id="addKnowhowcontent">
@@ -673,9 +669,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="modal fade" id="inputModal">
-		<div class="modal-dialog" id="inputDialog">
-			<div class="modal-content" id="inputContent">
+			<div class="modal fade" id="addInputModal">
+		<div class="modal-dialog" id="addInputDialog">
+			<div class="modal-content" id="addInputContent">
 				<div id="inputWrap">
 				<div id="Closeimg2" onclick="modalClose('2')"><img style="width:20px;" src="resources/images/close.png"/></div>	
 					<div id="inputTitle">
