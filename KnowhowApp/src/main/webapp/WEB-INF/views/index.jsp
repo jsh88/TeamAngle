@@ -11,6 +11,7 @@
 <script 	src="resources/js/bootstrap.min.js"></script>
 <script src="resources/js/main.js"></script>
 <script src="resources/js/ajax_myModfy.js"></script>
+<script src="resources/js/findPass.js"></script>
 </head>
 <body>
 	<jsp:include page="template/header.jsp"></jsp:include>

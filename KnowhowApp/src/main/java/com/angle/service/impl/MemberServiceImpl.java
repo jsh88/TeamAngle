@@ -225,31 +225,8 @@ public class MemberServiceImpl implements MemberService {
 			}
 		}
 
-		return result;
+		return result;		
 		
-		/*int result = 1;
-
-		Member member = memberDao.memberLogin(id);
-		if (member.getId().equals("")) {
-			result = -1;
-		} else {
-			if (member.getPw().equals(pw)) {
-				session.setAttribute("member", member);
-				result = 0;
-				memberDao.updateLdate(member);
-				
-				int v_result = memberDao.getVcount(id);
-				
-				if (v_result != 1) {
-					memberDao.updateVcount(member);
-				}
-				
-			} else if (!member.getPw().equals(pw)) {
-				result = 1;
-			}
-		}
-
-		return result;*/
 	}
 
 	// 내가 최근에 작성한 포인트
