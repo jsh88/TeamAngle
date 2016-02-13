@@ -45,7 +45,7 @@ public class TagController {
 		tagService.getPostTag(request, session);
 		tagService.addMemberTag(request, session);
 
-		return "knowhow/morePost";
+		return "knowhow/innerKnowhowDetail";
 	}
 
 	// forward:addSearchTag
@@ -54,7 +54,7 @@ public class TagController {
 		tagService.getPostTag(request, session);
 		tagService.addMemberTag(request, session);
 
-		return "knowhow/postList";
+		return "main/innerMainPost";
 	}
 
 	// introTagList
