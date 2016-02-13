@@ -125,6 +125,7 @@ public class MemberController {
 		model.addAttribute("body", "member/memModify");
 
 		return "template/header";
+//		return "${pageContext.request.contextPath }/resources/js/member.js";
 	}
 
 	
@@ -143,7 +144,7 @@ public class MemberController {
 	@RequestMapping(value="/updateMemberIdModify")
 	public String updateMemberIdModify(HttpServletRequest request, HttpSession session) throws IOException{
 		memberService.updateMemberInfoId(request, session);
-		return "template/header";
+		return "redirect:./";
 	}
 	
 	// 회원정보NickName 수정 콜 부분
@@ -161,7 +162,7 @@ public class MemberController {
 	@RequestMapping(value="/updateMemberNickNameModify")
 	public String updateMemberNickNameModify(HttpServletRequest request, HttpSession session) throws IOException{
 		memberService.updateMemberInfoNickName(request, session);
-		return "template/header";
+		return "redirect:./";
 	}
 	
 	// 회원정보Pw 수정 콜 부분
@@ -172,7 +173,7 @@ public class MemberController {
 //		int result = memberService.checkPw(request);
 //		model.addAttribute("result", result);
 		memberService.updateMemberInfoPw(request, session);
-		return "template/header";
+		return "redirect:./";
 	}
 	
 	// 회원 로그아웃 콜 부분
@@ -366,7 +367,9 @@ public class MemberController {
 		
 		int result = 0;
 		
-		String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://192.168.137.51:8080/KnowhowApp/updateMemberInfoForm?id="+ id + "&check=true";
+//		String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://192.168.0.31:8080/KnowhowApp/updateMemberInfoForm?id="+ id + "&check=true";
+		String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://192.168.0.31:8080/KnowhowApp/updateEmailMemberInfoPwForm?id="+ id + "&check=true";
+		
 		
 		if(pw != null) {
 			email.setContent(msg);
@@ -420,5 +423,27 @@ public class MemberController {
 			return "member/memberAjax";
 		}
 	}
+	
+	// updateEmailMemberInfoPw
+	@RequestMapping(value = { "/updateEmailMemberInfoPwForm" }, method = RequestMethod.GET)
+	public String updateEmilMemberInfoPwForm(Model model, HttpServletRequest request, HttpSession session) {
+
+		Member m = memberService.getMember(request);
+		
+		/*String pw = request.getParameter("pw");
+		model.addAttribute("pw", pw);*/
+		
+		session.setAttribute("member", m);
+		
+		model.addAttribute("member", m);
+		model.addAttribute("body", "member/findPw");
+
+		return "redirect:./";
+//		return "${pageContext.request.contextPath }/resources/js/member.js";
+	}
+	
+	
+	
+	
 		
 }
