@@ -2,18 +2,9 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
-<!DOCTYPE html>
-<html>
-	<head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script>
-	
-	var oTags = [];
-	var tags = [];
+	var otherTags = [];
+	var addTags = [];
 	
 		$(document).ready(function(){
 			
@@ -21,7 +12,7 @@
 			$("#s").hide();
 			$("#k").hide();
 			
-			$(".tags").click(function(){			
+			$(".tags").click(function(){
 				
 				if($('.t').length == 20){
 					
@@ -34,7 +25,7 @@
 				var hidden  = $("#hiddentext").val();
 				var subt = t.substring(1);
 				
-				tags.push(subt);
+				addTags.push(subt);
 				
 				$("#Tagbox").append("<a class='t'  href='#'>"+t+"</a>");
 				$("#hiddentext").val(hidden+" "+subt);
@@ -91,8 +82,8 @@
 						
 						$("#Tagbox").append("<a class='t' href='#'>#"+n+"</a>");
 						
-						oTags.push(n);
-						tags.push(n);
+						otherTags.push(n);
+						addTags.push(n);
 						
 						$("#hiddentext").val(h+" "+n);
 						$("#tagtext").val("");
@@ -128,21 +119,21 @@
 		
 		function removeTag(tag) {
 			
-			for(var i = 0; i < oTags.length; i++) {
+			for(var i = 0; i < otherTags.length; i++) {
 				
-				if(oTags[i] == tag) {
+				if(otherTags[i] == tag) {
 					
-					oTags.splice(oTags[i], 1);
+					otherTags.splice(otherTags[i], 1);
 					
 				}
 				
 			}
 			
-			for(var i = 0; i < tags.length; i++) {
+			for(var i = 0; i < addTags.length; i++) {
 				
-				if(tags[i] == tag) {
+				if(addTags[i] == tag) {
 					
-					tags.splice(tags[i], 1);
+					addTags.splice(addTags[i], 1);
 					
 				}
 				
@@ -157,8 +148,8 @@
 			$.ajaxSettings.traditional = true; // 배열형식으로 넘기기
 			 // 폼 데이터 받기 or Append or 인자로 form id)
 			var formData = new FormData();
-			formData.append("tags", tags);
-			formData.append("oTags", oTags);
+			formData.append("tags", addTags);
+			formData.append("oTags", otherTags);
 
 			$.ajax({
 				type : 'POST',
