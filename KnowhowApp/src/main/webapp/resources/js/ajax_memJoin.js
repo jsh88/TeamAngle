@@ -1,12 +1,13 @@
 /* 회원가입 아작스 */
 
-// 회원가입창 Null 체크
+/*// 회원가입창 Null 체크
 function valInputDate() {
 
-	var id = document.getElementById('mj_id');
-    var nick = document.getElementById('mj_nickname');
-    var pass1 = document.getElementById('mj_pass1');
-    var pass2 = document.getElementById('mj_pass2');
+	var id = $('#mj_id').val();
+    var nick = $('#mj_nickname').val();
+    var pass1 = $('#mj_pass1').val();
+    var pass2 = $('mj_pass2').val();
+    var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
     
     if(!chk(/^[\w]{4,}@[\w]+(\.[\w-]+){1,3}$/, id, "이메일 형식에 어긋납니다."))
         return false;
@@ -22,14 +23,16 @@ function valInputDate() {
                e.focus();
                return false;
  }
- 
+ */
 $(document).ready(function() {
 	// 슬라이드 해제
 	
+	var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+	
 	$('#mj_btn_left, #mj_btn_right, #mj_btn_submit').hide();
 	$("#mj_id, #mj_nickname, #mj_pass1, #mj_pass2").val("");
+	
 
-$(function() {
 	// 버튼 움직임 함수
 	$('#mj_btn_right').click(function() {
 		$('#mj_btn_left').show();
@@ -38,9 +41,15 @@ $(function() {
 	$("#mj_id").on("keyup", function() {
 		$('#mj_btn_left').hide();
 		
-		var id = $("#mj_id").val();
 		
-		 if(id.length > 4) {
+		if(id == ""){
+			
+			alert('이메일을 입력해주세요.');
+			return false;
+			
+		}else{
+		
+		 if(regex.test(id) === true) {
 		$.ajax({
 			url: "checkId.ajax",
 			type: "POST",
@@ -68,6 +77,8 @@ $(function() {
 			$("#mj_id").css("border", "2px solid red");
 			$("#mj_btn_right").hide(1000);
 		}
+		 
+		 }
 	});
 	
 	//enterkey 제어
@@ -185,5 +196,4 @@ $(function() {
 		}
 	});
 	});
-});
 	
