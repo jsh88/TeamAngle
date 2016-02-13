@@ -54,6 +54,7 @@ public class MemberController {
 
 		model.addAttribute("body", "member/memJoin");
 		return "template/header";
+//		return "index";
 	}
 
 	// 회원가입 서비스콜 부분
@@ -73,9 +74,10 @@ public class MemberController {
 		
 		String id = request.getParameter("id");
 		memberService.deleteMember(id);
-		model.addAttribute("body", "template/header");
+		model.addAttribute("body", "index");
 		session.invalidate();
-		return "template/header";
+//		return "template/header";
+		return "index";
 	}
 
 	// 회원가입 아이디 중복체크 ajax 메시지처리 부분
@@ -124,8 +126,8 @@ public class MemberController {
 		model.addAttribute("member", m);
 		model.addAttribute("body", "member/memModify");
 
-		return "template/header";
-//		return "${pageContext.request.contextPath }/resources/js/member.js";
+//		return "template/header";
+		return "index";
 	}
 
 	
@@ -188,7 +190,8 @@ public class MemberController {
 	public String loginMemberForm(Model model)	{
 		
 		model.addAttribute("body", "login/login");
-		return "login/login";
+//		return "login/login";
+		return "index";
 	}
 	
 	// 회원 로그인 서비스 콜 부분 
@@ -406,7 +409,7 @@ public class MemberController {
 					
 		int result = 0;
 		
-		String msg = "아래 링크를 클릭하시면 회원탈퇴처리 됩니다.\nhttp://192.168.137.51:8080/KnowhowApp/deleteMemberJoin.do?id="+ id + "&deletecheck=true";
+		String msg = "아래 링크를 클릭하시면 회원탈퇴처리 됩니다.\nhttp://192.168.0.31:8080/KnowhowApp/deleteMemberJoin.do?id="+ id + "&deletecheck=true";
 		
 		if(id != null) {
 			email.setContent(msg);
@@ -424,22 +427,19 @@ public class MemberController {
 		}
 	}
 	
-	// updateEmailMemberInfoPw
+	// 비밀번호 찾기 받은 이메일 링크 클릭시 회원정보 담기 
 	@RequestMapping(value = { "/updateEmailMemberInfoPwForm" }, method = RequestMethod.GET)
 	public String updateEmilMemberInfoPwForm(Model model, HttpServletRequest request, HttpSession session) {
 
 		Member m = memberService.getMember(request);
-		
-		/*String pw = request.getParameter("pw");
-		model.addAttribute("pw", pw);*/
-		
+				
 		session.setAttribute("member", m);
 		
 		model.addAttribute("member", m);
-		model.addAttribute("body", "member/findPw");
+		model.addAttribute("body", "member/findPass");
 
-		return "redirect:./";
-//		return "${pageContext.request.contextPath }/resources/js/member.js";
+		return "index";
+
 	}
 	
 	

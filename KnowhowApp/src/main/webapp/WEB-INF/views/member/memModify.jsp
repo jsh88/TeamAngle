@@ -152,10 +152,9 @@
 		<script>
 		//$('#show').show();
 		window.onload = function() {
-				
-			/* $("#memModifyPage").modal();
-			$('#l3').trigger("click"); */
-			window.location.href="updateEmailMemberInfoPw";
+	
+			$("#findPass").modal();
+	//		$('#l3').trigger("click");	
 			
 		}			
 		</script>

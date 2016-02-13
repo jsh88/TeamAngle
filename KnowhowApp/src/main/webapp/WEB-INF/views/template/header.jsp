@@ -170,6 +170,10 @@
 	<div class="modal fade" id="loginPage">
 		<jsp:include page="../login/login.jsp"></jsp:include>
 	</div>
+	
+	<div class="modal fade" id="findPass">
+		<jsp:include page="../member/findPass.jsp"></jsp:include>
+	</div>
 
 	<div class="modal fade" id="memJoinPage">
 		<jsp:include page="../member/memJoin.jsp"></jsp:include>

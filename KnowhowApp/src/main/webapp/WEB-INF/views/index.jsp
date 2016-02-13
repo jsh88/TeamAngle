@@ -12,14 +12,14 @@
 <link type="text/css" href="resources/css/addKnowhow.css" rel="stylesheet">
 <script src="resources/js/jquery-1.11.3.min.js"></script>
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
-<script 	src="resources/js/bootstrap.min.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
 <script src="resources/js/main.js"></script>
 <script src="resources/js/ajax_myModfy.js"></script>
 <script src="resources/js/ajax_login.js"></script>
 <script src="resources/js/ajax_memJoin.js"></script>
 <script src="resources/js/ajax_profileModify.js"></script>
 <script src="resources/js/member.js"></script>
-<!-- <script src="resources/js/npm.js"></script> -->
+<script src="resources/js/findPass.js"></script>
 </head>
 <body>
 	<jsp:include page="template/header.jsp"></jsp:include>

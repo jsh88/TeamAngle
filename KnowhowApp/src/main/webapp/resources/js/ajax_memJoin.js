@@ -41,6 +41,7 @@ $(document).ready(function() {
 	$("#mj_id").on("keyup", function() {
 		$('#mj_btn_left').hide();
 		
+		var id = $('#mj_id').val();
 		
 		if(id == ""){
 			
