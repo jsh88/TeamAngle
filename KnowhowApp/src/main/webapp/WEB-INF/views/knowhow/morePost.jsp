@@ -299,7 +299,7 @@
 
 					// 이미지 감추기 처리
 					$('.wrap-loading').addClass('display-none');
-					$("#addModal").modal("hide");
+// 					$("#addModal").modal("hide");
 
 				}
 			});
@@ -352,7 +352,7 @@
 	
 						// 이미지 감추기 처리
 						$('.wrap-loading').addClass('display-none');
-						$("#addModal").modal("hide");
+// 						$("#addModal").modal("hide");
 	
 					}
 				});
@@ -397,7 +397,7 @@
 
 					// 이미지 감추기 처리
 					$('.wrap-loading').addClass('display-none');
-					$("#addModal").modal("hide");
+// 					$("#addModal").modal("hide");
 
 				}
 			});
@@ -464,7 +464,7 @@
 
 								// 이미지 감추기 처리
 								$('.wrap-loading').addClass('display-none');
-								$("#addModal").modal("hide");
+// 								$("#addModal").modal("hide");
 
 							}
 						});						

@@ -57,8 +57,6 @@
 						addConArr[0] = null;
 						addUrlArr[0] = undefined;
 
-						$("#addModal").modal();
-
 						$(".p2").hide();
 						$(".p3").hide();
 						$(".p4").hide();
@@ -429,7 +427,7 @@
 				// 이미지 감추기 처리
 				$(location).attr('href', "addTagPage");
 				$('.wrap-loading').addClass('display-none');
-				$("#addModal").modal("hide");
+// 				$("#addModal").modal("hide");
 
 			}
 		});
@@ -439,7 +437,7 @@
 
 		if (k == "1") {
 			if (confirm('포스트작성을 취소합니다.') == true) {
-				$("#addModal").modal('hide');
+// 				$("#addModal").modal('hide');
 
 			} else {
 
