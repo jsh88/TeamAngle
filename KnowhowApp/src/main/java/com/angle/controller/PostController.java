@@ -179,7 +179,7 @@ public class PostController {
 
 		postCommentService.getCommentList(request);
 
-		return "knowhow/comment"; // ajax
+		return "knowhow/comment";
 	}
 
 	// 댓글 추가, ajax
@@ -219,7 +219,7 @@ public class PostController {
 	 */
 
 	// 포스트 페이지, 댓글 일반 조회, 디테일
-	@RequestMapping(value = "morePost", method = RequestMethod.GET)
+	@RequestMapping(value = "morePost", method = RequestMethod.POST)
 	public String morePost(HttpServletRequest request, HttpSession session) {
 
 		postService.setViewInfo(request, session);
@@ -252,7 +252,7 @@ public class PostController {
 	}
 
 	// 포스트 검색
-	@RequestMapping(value = "doSearch")
+	@RequestMapping(value = "doSearch", method = RequestMethod.POST)
 	public String doSearch(HttpServletRequest request, HttpSession session) {
 
 		postService.getSearchPostView(request, session);

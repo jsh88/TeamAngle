@@ -130,7 +130,8 @@ public class TagServiceImpl implements TagService {
 			}
 
 		// tagDao.updateRootTag(mTagList);
-		tagDao.addMemberTag(mTagList);
+		if (!mTagList.isEmpty())
+			tagDao.addMemberTag(mTagList);
 
 	}
 
@@ -154,7 +155,7 @@ public class TagServiceImpl implements TagService {
 		if (!mTagList.isEmpty()) {
 
 			if ((m = (Member) session.getAttribute("member")) != null) {
-				
+
 				mTagList.get(0).setId(m.getId());
 
 				if (searchCount == 1) {
@@ -162,9 +163,9 @@ public class TagServiceImpl implements TagService {
 					request.setAttribute("mTagList", mTagList);
 				}
 			}
-			
+
 			request.setAttribute("mTagList", mTagList);
-			
+
 		}
 	}
 }

@@ -452,7 +452,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	@Override
 	public void getCommentList(HttpServletRequest request) {
-
+		
 		request.setAttribute("pComList", postCommentDao.getPostCommentList(
 				Integer.parseInt(request.getParameter("pno")), Integer.parseInt(request.getParameter("page"))));
 
