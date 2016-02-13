@@ -73,13 +73,13 @@ public class PostController {
 	}
 
 	// 포스트 수정 시작
-	@RequestMapping(value = "modifyStart", method = RequestMethod.GET)
+	@RequestMapping(value = "startModify", method = RequestMethod.GET)
 	public String modifyStart(HttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
 		postService.getPost(request, session);
 
-		return "knowhow/modifyStart";
+		return "knowhow/startModify";
 	}
 
 	// 포스트 수정 페이지로

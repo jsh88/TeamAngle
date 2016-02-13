@@ -32,7 +32,7 @@
 	}
 	</style>
 	<script>
-	var title;
+	var modifyTitle;
 	
 	$(document).ready(function(){
 		
@@ -40,52 +40,17 @@
 		
 		$("#Continuebtn").hide();
 		$("#Priorbtn").hide();
-		$("#hideList").hide();
-		$("#middle").hide();
-		
-		$("#Recallingbtn").click(function(){
-		/* 	$("#ModalDialog").css('margin-top','300px'); */
-			$("#Createbtn").hide();
-			$("#Continuebtn").show();
-			$("#Recallingbtn").hide();
-			$("#Priorbtn").show();
-			$("#middle").slideToggle(400);
-			$("#hideList").slideToggle(400);
-			$("#middle").show();
-			$("#hideList").show();
-			
-		});
-
-		$("#Priorbtn").click(function(){
-		/*  $("#ModalDialog").css('margin-top','350px'); */
-			$("#Createbtn").show();
-			$("#Recallingbtn").show();
-			$("#Priorbtn").hide();
-			$("#Continuebtn").hide();
-			$("#middle").slideToggle(400);
-			$("#hideList").slideToggle(400);
-			$("#addtitle").val("");
-			
-		});
-		
-		$(".atitle").click(function(){
-			
-			var t = $(this).text();
-			
-			$("#addtitle").val(t);
-			preventDefault();
-		});
 		
 	});
 	
 	function modifyTitle() {
 		
-		title = $("#addtitle").val();
+		modifyTitle = $("#modifyTitle").val();
 
 		$.ajaxSettings.traditional = true; // 배열형식으로 넘기기
 		 // 폼 데이터 받기 or Append or 인자로 form id)
 		var formData = new FormData();
-		formData.append("title", title);
+		formData.append("title", modifyTitle);
 	
 		$.ajax({
 			type : 'POST',
@@ -117,9 +82,9 @@
 			complete : function() {
 	
 				// 이미지 감추기 처리
-				$(location).attr('href', "modifyPost");
+// 				$(location).attr('href', "modifyPost");
 				$('.wrap-loading').addClass('display-none');
-				$("#addModal").modal("hide");
+// 				$("#addModal").modal("hide");
 	
 			}
 		});

@@ -390,7 +390,7 @@ function modalOpen(selModal) {
 		
 	} else if(selModal == "3") {
 		
-		modal = "modifyStart";
+		modal = "startModify";
 		
 	} else if(selModal == "4") {
 		

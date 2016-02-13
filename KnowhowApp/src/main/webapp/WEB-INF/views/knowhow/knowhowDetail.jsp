@@ -414,8 +414,6 @@
 			 
 			 ::-webkit-scrollbar-thumb {height: 50px; width: 50px; background: rgba(0,0,0,.2); -webkit-border-radius: 8px; border-radius: 8px; -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.1)}
 	</style>
-<!-- 	<div class="modal fade" id="detailModal" data-backdrop="static"> -->
 		<div class="modal-dialog" id="detailDialog">
 			
 		</div>
-<!-- 		</div> -->
