@@ -204,139 +204,9 @@
 		}
 		
 	</script>
-	<style>
-		
-	/*화면 전체를 어둡게 합니다.*/
-	.wrap-loading { 
-		position: fixed;
-		left: 0;
-		right: 0;
-		top: 0;
-		bottom: 0;
-		background: rgba(0, 0, 0, 0.2);
-	}
-	
-	.wrap-loading div { 							/*로딩 이미지*/
-		width: 1000; 								/*div의 전체 가로픽셀*/
-		position: absolute; 						/*테이블의 영향을받지않는 div*/
-		left: 50%; 									/*div 왼쪽 top 부분이 가로 전체의 중간으로 위치하게됨*/
-		margin-left: -90px;						/* 왼쪽 top부분이 가운데로왔으니 좌측에서 전체가로픽셀의 반을 마이너스하여 좌측으로 옮겨줌 */										
-		margin-top: 120px;						
-	}
-	
-	.display-none { /*감추기*/
-		display: none;
-	}
-	
-		#tagDialog{
-			width: 500px;
-			height: 400px;
-
-		}
-		
-		#tagContent{
-			width: 500px;
-			height: 400px;
-			background-color: #376CBF;
-		}
-		
-		#Tagimage{
-			float:right;
-			margin-right: 20px;
-			margin-top: 10px;
-		}
-		
-		#TagContent{
-			/* background-color: white; */
-			width: 480px;
-			height: 380px;
-			margin: 0px auto;
-			margin-top: 10px;
-			border-radius:6px;
-		}
-		
-		#contentTitle{
-			font-size: 19px;
-			color:white;
-			margin-left: 20px;
-			padding-top: 20px;
-			font-weight: bold;
-		}
-		
-		#inputTag{
-			margin-top: 15px;
-			margin-left: 20px;
-		}
-		
-		#userTitle{
-			margin-left:20px;
-			margin-top:10px;
-			font-size:17px;
-			color:white;
-			font-weight: bold;
-		}
-		
-		#ReTag{
-			margin: 0px auto;
-			width:435px;
-			height: 70px;
-		}
-		
-		#Line{
-			width:450px;
-			border-top: 1px solid white;
-			margin: 0px auto;
-		}
-		
-		.tags{
-			color: white;
-			font-style: italic;
-			padding-right: 10px;
-		}
-		
-		#Tagbox{
-			margin: 0px auto;
-			width:440px;
-			height: 90px;
-			margin-bottom: 20px;
-			color: white;
-			
-		}
-		
-		#Tagbtn{
-			margin: 0px auto;
-			width:440px;
-		}
-		
-		#tagsubmit{
-			padding-top:10px;
-			width:100%;
-			font-weight: bold;
-		}
-		
-		.t{
-			color: white;
-			padding-right: 10px;
-			font-style: italic;
-			cursor: pointer;
-		}
-		
-		#w{
-			height:25px;
-			margin: 0px auto;
-			width:440px;
-			color: #FFDA00;
-		}
-	</style>
 	</head>
 <body>
-<div class="modal fade" id="tagModal" data-backdrop="static"> 
 		<div class="modal-dialog" id="tagDialog">
-
-			<div class="wrap-loading display-none">
-		  		<div><img src="resources/images/loading2.gif" /></div>
-			</div>
-		
 				<div class="modal-content" id="tagContent">
 				<div id="TagWrap">
 						<div id="Tagimage"><a href=""><img style="width:20px;" src="resources/images/close.png"/></a></div>
@@ -378,6 +248,5 @@
 				</div>
 			</div>
 		</div>
-	</div>		
 </body>
 </html>

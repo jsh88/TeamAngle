@@ -396,4 +396,113 @@
 				margin-right: 20px;
 			}
 		
+			#Clear{
+				float:right;
+				margin-top: -15px;
+				margin-right: 20px;
+				opacity:0.9;
+				cursor: pointer;
+			}
+			
+/* AddTag */
+
+		#tagDialog{
+			width: 500px;
+			height: 400px;
+
+		}
+		
+		#tagContent{
+			width: 500px;
+			height: 400px;
+			background-color: #376CBF;
+		}
+		
+		#Tagimage{
+			float:right;
+			margin-right: 20px;
+			margin-top: 10px;
+		}
+		
+		#TagContent{
+			/* background-color: white; */
+			width: 480px;
+			height: 380px;
+			margin: 0px auto;
+			margin-top: 10px;
+			border-radius:6px;
+		}
+		
+		#contentTitle{
+			font-size: 19px;
+			color:white;
+			margin-left: 20px;
+			padding-top: 20px;
+			font-weight: bold;
+		}
+		
+		#inputTag{
+			margin-top: 15px;
+			margin-left: 20px;
+		}
+		
+		#userTitle{
+			margin-left:20px;
+			margin-top:10px;
+			font-size:17px;
+			color:white;
+			font-weight: bold;
+		}
+		
+		#ReTag{
+			margin: 0px auto;
+			width:435px;
+			height: 70px;
+		}
+		
+		#Line{
+			width:450px;
+			border-top: 1px solid white;
+			margin: 0px auto;
+		}
+		
+		.tags{
+			color: white;
+			font-style: italic;
+			padding-right: 10px;
+		}
+		
+		#Tagbox{
+			margin: 0px auto;
+			width:440px;
+			height: 90px;
+			margin-bottom: 20px;
+			color: white;
+			
+		}
+		
+		#Tagbtn{
+			margin: 0px auto;
+			width:440px;
+		}
+		
+		#tagsubmit{
+			padding-top:10px;
+			width:100%;
+			font-weight: bold;
+		}
+		
+		.t{
+			color: white;
+			padding-right: 10px;
+			font-style: italic;
+			cursor: pointer;
+		}
+		
+		#w{
+			height:25px;
+			margin: 0px auto;
+			width:440px;
+			color: #FFDA00;
+		}			
 			
