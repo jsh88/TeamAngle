@@ -188,30 +188,32 @@
 	</div>
 
 	<!-- 서버단 작업끝나면 modal fade 지울 페이지  , openModal() 추가해야함 -->
-
-
-	<div class="modal fade" id="startPostingPage">
+	
+	<div class="modal fade" id="startPosting">
 		<jsp:include page="../knowhow/startPosting.jsp"></jsp:include>
 	</div>
+	
+	<div class="modal fade" id="innerStartPosting">
+		<jsp:include page="../knowhow/innerStartPosting.jsp"></jsp:include>
+	</div>
 
-	<%-- 	<div class="modal fade" id="addKnowhowPage" data-backdrop="static">
+	<div class="modal fade" id="addKnowhow" data-backdrop="static">
 		<jsp:include page="../knowhow/addKnowhow.jsp"></jsp:include>
-	</div> 
- --%>
+	</div>
 	
-<!-- 	<div class="modal fade" id="addTagPage" data-backdrop="static" > -->
-<%-- 		<jsp:include page="../knowhow/addTag.jsp"></jsp:include> --%>
-<!-- 	</div>  -->
+	<div class="modal fade" id="startModify">
+		<jsp:include page="../knowhow/startModify.jsp"></jsp:include>
+	</div>
+
+	<div class="modal fade" id="modifyKnowhow">
+		<jsp:include page="../knowhow/modifyKnowhow.jsp"></jsp:include>
+	</div>
 	
-	<div class="modal fade" id="knowhowDetailPage" data-backdrop="static">
+	<div class="modal fade" id="addTag">
+		<jsp:include page="../knowhow/addTag.jsp"></jsp:include>
+	</div>
+	
+	<div class="modal fade" id="knowhowDetail" data-backdrop="static">
 		<jsp:include page="../knowhow/knowhowDetail.jsp"></jsp:include>
-	</div> 
-	
-<!-- 	<div class="modal fade" id="knowhowModifyPage" data-backdrop="static"> -->
-<%-- 		<jsp:include page="../knowhow/knowhowModify.jsp"></jsp:include> --%>
-<!-- 	</div>  -->
-	
-<!-- 	<div class="modal fade" id="myKnowhowPage" data-backdrop="static"> -->
-<%-- 		<jsp:include page="../knowhow/myKnowhow.jsp"></jsp:include> --%>
-<!-- 	</div> -->
+	</div>
 	
