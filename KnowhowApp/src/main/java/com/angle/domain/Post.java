@@ -1,8 +1,14 @@
 package com.angle.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Post {
+public class Post implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private int pNo; // 포스트 번호
 	private String title; // 포스트 제목

@@ -235,7 +235,7 @@
 					<div id="bestTitle" class="col-md-12">
 						Best Knowhow
 					</div>
-					<div class="bestTitleLine col-md-11"></div>
+					<div id="bestLine" class="bestTitleLine col-md-11"></div>
 					<div class="col-md-12" id="bestPost"></div>
 					
 					<div id="bestLastLine" class="col-md-12"></div>

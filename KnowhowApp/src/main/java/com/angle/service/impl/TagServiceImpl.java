@@ -2,7 +2,6 @@ package com.angle.service.impl;
 
 import java.util.ArrayList;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -146,24 +145,26 @@ public class TagServiceImpl implements TagService {
 	@Override
 	public void addSearchTag(HttpServletRequest request, HttpSession session) {
 
-		Member m = (Member) session.getAttribute("member");
-
+		Member m = null;
 		int searchCount = Integer.parseInt(request.getParameter("searchCount"));
 
 		ArrayList<MemberTag> mTagList = (ArrayList<MemberTag>) luceneKoreanAnalyzer
 				.getTags(request.getParameter("word"));
 
 		if (!mTagList.isEmpty()) {
-			
-			mTagList.get(0).setId(m.getId());
-			
-			if (searchCount == 1) {
-				tagDao.addMemberTag(mTagList);
-				session.setAttribute("mTagList", mTagList);
-			}		
+
+			if ((m = (Member) session.getAttribute("member")) != null) {
+				
+				mTagList.get(0).setId(m.getId());
+
+				if (searchCount == 1) {
+					tagDao.addMemberTag(mTagList);
+					request.setAttribute("mTagList", mTagList);
+				}
+			}
 			
 			request.setAttribute("mTagList", mTagList);
-
+			
 		}
 	}
 }
