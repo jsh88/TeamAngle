@@ -2,10 +2,6 @@ var bestPostCount = 1;
 var postCount = 1;
 var searchCount = 1;
 
-$(window).load(function() {
-	
-});
-
 $(document).ready(function() {
 	
 	for(var i = 0; i < 5; i++) {
@@ -377,28 +373,42 @@ function morePost(postNo) {
 	});
 }
 
-function modalOpen(i) {
+function modalOpen(selModal) {
 
 	var modal = "";
 
-	if (i == "1") {
+	if (selModal == "1") {
+		
 		modal = "memJoinPage";
 		$("#mj_id, #mj_nickname, #mj_pass1, #mj_pass2").val("");
 		$("#mj_id").show();
 		$("#mj_btn_submit").hide();
 		
-	} else if (i == "2") {
-		modal = "loginPage";
+	} else if(selModal == "2") {
 		
-	} else if (i == "3") {
-		modal = "memModifyPage";
-	} else if (i == "4") {
-		modal = "profileModifyPage";
-	} else if (i == "5") {
-		modal = "startPostingPage";
-	} else if (i == "6") {
-		modal = "knowhowDetailPage";
+		modal = "startPosting";
+		
+	} else if(selModal == "3") {
+		
+		modal = "modifyStart";
+		
+	} else if(selModal == "4") {
+		
+		modal = "knowhowDetail";
+		
 	}
+		
+//	} else if (i == "2") {
+//		modal = "loginPage";		
+//	} else if (i == "3") {
+//		modal = "memModifyPage";
+//	} else if (i == "4") {
+//		modal = "profileModifyPage";
+//	} else if (i == "5") {
+//		modal = "startPostingPage";
+//	} else if (i == "6") {
+//		modal = "knowhowDetailPage";
 
 	$("#" + modal).modal();
+	
 }
