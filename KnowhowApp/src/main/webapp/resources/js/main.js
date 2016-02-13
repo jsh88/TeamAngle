@@ -33,11 +33,8 @@ $(document).ready(function() {
 			$('#menu').slideUp(500);
 		}
 	});
-
 	
-/* header search */	
-
-	var word = $("#search_txt").val();
+/* header search */
 	
 	$("#search_txt").focus(function(){
 		
@@ -66,21 +63,26 @@ $(document).ready(function() {
 	
 		if(key.keyCode == 13) {
 			
+			var word = $("#search_txt").val();
+			
 			if(!word) {
 				alert("검색할 태그, 단어를 입력하세요.");
 				return false;
 			} else {
 				
-				$("#bestTitle").html("<div class='searchResultTitle'>" + word + " 에 대한 검색결과	</div>");
+				$("#bestTitle").html("<div class='searchResultTitle'>'" + word + "' 에 대한 검색결과	</div>");
 				$("#listTitle").remove();
 				$("#listLine").remove();
+				$("#newPost").remove();
+				$("#bestPost").remove();
+				$("#bestLine").after("<div class='col-md-12' id='bestPost'></div>");
 				
 				for(var i = 0 ; i < 5; i++) {
 					
 					getSearchPostView(word);
 					searchCount++;
 					
-				}					
+				}
 			}
 		}
 	});
@@ -184,9 +186,10 @@ function getSearchPostView(word) {
 
 		success : function(responseData, statusText, xhr) {
 			
-			var result = responseData;
+//			var result = responseData;
 			
 			$('#bestPost').html($('#bestPost').html() + result);
+			
 			
 			// 성공처리(v는 서버로 받은 메시지, value)
 			

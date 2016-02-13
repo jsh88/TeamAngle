@@ -483,11 +483,11 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	@SuppressWarnings("unchecked")
 	public void getSearchPostView(HttpServletRequest request, HttpSession session) {
 
-		ArrayList<MemberTag> mTagList = (ArrayList<MemberTag>) session.getAttribute("mTagList");
+		ArrayList<MemberTag> mTagList = (ArrayList<MemberTag>) request.getAttribute("mTagList");
 		MemberTag mTag = new MemberTag();
 		mTag.setTag(request.getParameter("word"));
-		mTagList.add(mTag);
+//		mTagList.add(mTag);
 
-		postDao.getSearchPostView(mTagList, Integer.parseInt(request.getParameter("searchCount")));
+//		postDao.getSearchPostView(mTagList, Integer.parseInt(request.getParameter("searchCount")));
 	}
 }

@@ -24,12 +24,12 @@
 				<form class="navbar-form navbar-left" role="search">
 					<div id="search_form" class="input-group input-group-sm">
 					<span class="input-group-btn">							
-							<button class="btn btn-default" type="button" id="search_btn" onclick="doSearch()">
+							<button class="btn btn-default" type="button" id="search_btn">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
 						</span>
 						<input type="text" class="form-control" id="search_txt"
 							placeholder="Search for..." style="width: 380px;"> 
-					</div>					
+					</div>
 				</form>
 
 
