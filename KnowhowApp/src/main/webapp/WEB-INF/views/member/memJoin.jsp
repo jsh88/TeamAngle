@@ -43,7 +43,7 @@
 											E-mail</label>
 										<div class="col-sm-1"></div>
 										<div class="col-sm-10">
-											<input type="email" class="form-control " id="mj_id"
+											<input type="text" class="form-control " id="mj_id"
 												name="id">
 										</div>
 										<!-- Ajax 체킹 div  -->
