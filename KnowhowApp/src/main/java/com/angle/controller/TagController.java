@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.angle.service.TagService;
@@ -38,13 +39,13 @@ public class TagController {
 	}
 
 	// addTag
-	@RequestMapping(value = "getPostTag")
+	@RequestMapping(value = "getPostTag", method = RequestMethod.POST)
 	public String getPostTag(HttpServletRequest request, HttpSession session) {
 
 		tagService.getPostTag(request, session);
 		tagService.addMemberTag(request, session);
 
-		return "knowhow/knowhowDetail";
+		return "knowhow/morePost";
 	}
 
 	// forward:addSearchTag
@@ -76,7 +77,7 @@ public class TagController {
 	}
 
 	// 검색 start
-	@RequestMapping(value = "searchView")
+	@RequestMapping(value = "searchView", method = RequestMethod.POST)
 	public String addMemberTag(HttpServletRequest request, HttpSession session) {
 
 		if (session.getAttribute("mTagList") == null)

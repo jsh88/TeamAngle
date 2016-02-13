@@ -194,21 +194,20 @@
 		<jsp:include page="../knowhow/addKnowhow.jsp"></jsp:include>
 	</div> 
  --%>
-	<%-- 	
-	<div class="modal fade" id="addTagPage" data-backdrop="static" >
-		<jsp:include page="../knowhow/addTag.jsp"></jsp:include>
-	</div> 
+	
+<!-- 	<div class="modal fade" id="addTagPage" data-backdrop="static" > -->
+<%-- 		<jsp:include page="../knowhow/addTag.jsp"></jsp:include> --%>
+<!-- 	</div>  -->
 	
 	<div class="modal fade" id="knowhowDetailPage" data-backdrop="static">
 		<jsp:include page="../knowhow/knowhowDetail.jsp"></jsp:include>
 	</div> 
 	
-	<div class="modal fade" id="knowhowModifyPage" data-backdrop="static">
-		<jsp:include page="../knowhow/knowhowModify.jsp"></jsp:include>
-	</div> 
+<!-- 	<div class="modal fade" id="knowhowModifyPage" data-backdrop="static"> -->
+<%-- 		<jsp:include page="../knowhow/knowhowModify.jsp"></jsp:include> --%>
+<!-- 	</div>  -->
 	
-	<div class="modal fade" id="myKnowhowPage" data-backdrop="static">
-		<jsp:include page="../knowhow/myKnowhow.jsp"></jsp:include>
-	</div>
+<!-- 	<div class="modal fade" id="myKnowhowPage" data-backdrop="static"> -->
+<%-- 		<jsp:include page="../knowhow/myKnowhow.jsp"></jsp:include> --%>
+<!-- 	</div> -->
 	
-	--%>

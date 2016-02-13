@@ -2,6 +2,10 @@ var bestPostCount = 1;
 var postCount = 1;
 var searchCount = 1;
 
+$(window).load(function() {
+	
+});
+
 $(document).ready(function() {
 	
 	for(var i = 0; i < 5; i++) {
@@ -77,7 +81,7 @@ $(document).ready(function() {
 				$("#bestPost").remove();
 				$("#bestLine").after("<div class='col-md-12' id='bestPost'></div>");
 				
-				for(var i = 0 ; i < 5; i++) {
+				for(var i = 0 ; i < 1; i++) {					
 					
 					getSearchPostView(word);
 					searchCount++;
@@ -175,6 +179,8 @@ function getSearchPostView(word) {
 
 	formData.append("word", word);
 	formData.append("searchCount", searchCount);
+	
+	alert(word);
 
 	$.ajax({
 		type : 'POST',
@@ -186,10 +192,11 @@ function getSearchPostView(word) {
 
 		success : function(responseData, statusText, xhr) {
 			
-//			var result = responseData;
+			var result = responseData;
 			
 			$('#bestPost').html($('#bestPost').html() + result);
 			
+			alert("성공");			
 			
 			// 성공처리(v는 서버로 받은 메시지, value)
 			
@@ -206,6 +213,8 @@ function getSearchPostView(word) {
 			// 에러 로직, 에러 로그 확인
 // 			alert("code:" + request.status + "\n\n" + "message:"
 // 					+ request.responseText + "\n\n" + "error:" + error);
+			
+			alert("에러");
 
 		},
 		complete : function() {
@@ -213,6 +222,8 @@ function getSearchPostView(word) {
 			// 이미지 감추기 처리
 //				$(location).attr('href', "이동할 페이지");
 			$('.wrap-loading').addClass('display-none');
+			
+			alert("완료");
 
 		}				
 	});
@@ -313,6 +324,59 @@ function getBestPostView() {
 	});
 }
 
+function morePost(postNo) {
+	
+	// 폼 데이터 받기 or Append or 인자로 form id)
+	var formData = new FormData();
+	
+	alert(postNo);
+
+	formData.append("pno", postNo);
+	formData.append("page", 0);
+
+	$.ajax({
+		type : 'POST',
+		url : 'morePost',
+		data : formData,
+// 		async : false,
+		processData : false,
+		contentType : false,
+
+		success : function(responseData, statusText, xhr) {
+			
+			alert("성공");
+			modalOpen(6);
+			var result = responseData;
+			$('#detailDialog').html(result);
+			
+			// 성공처리(v는 서버로 받은 메시지, value)
+			
+		},
+		beforeSend : function() {
+
+			// 전송 전
+			// 이미지 보여주기
+			$('.wrap-loading').removeClass('display-none');
+			
+		},
+		error : function(request, status, error) {
+
+			// 에러 로직, 에러 로그 확인
+// 			alert("code:" + request.status + "\n\n" + "message:"
+// 					+ request.responseText + "\n\n" + "error:" + error);
+
+		},
+		complete : function() {
+
+			// 이미지 감추기 처리
+//				$(location).attr('href', "이동할 페이지");
+			$('.wrap-loading').addClass('display-none');
+			alert("완료");
+
+		}				
+	});
+}
+
 function modalOpen(i) {
 
 	var modal = "";
@@ -332,6 +396,8 @@ function modalOpen(i) {
 		modal = "profileModifyPage";
 	} else if (i == "5") {
 		modal = "startPostingPage";
+	} else if (i == "6") {
+		modal = "knowhowDetailPage";
 	}
 
 	$("#" + modal).modal();
