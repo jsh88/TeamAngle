@@ -228,6 +228,20 @@
 				cursor: pointer;
 			}
 			
+			#modifyAddBtn{
+				margin-top:50px;
+				width: 55px;
+				height:40px;
+				cursor: pointer;
+			}
+			
+			#modifyDeleteBtn{
+				margin-top:10px;
+				width: 55px;
+				height:40px;
+				cursor: pointer;
+			}
+			
 			.pageNumber{
 				width:50px;
 				height:40px;
@@ -312,8 +326,20 @@
 				position: absolute;
 				border:0px;
 			}
-		
+			
 			.m{
+				position: absolute;
+				z-index:3;
+				width:565px;
+				height: 300px;
+				border:0px;
+				cursor: pointer;
+				background-image: url("/KnowhowApp/resources/images/insertImage.png");
+				background-size:100%, 100%;
+				background-repeat: no-repeat;
+			}
+			
+			.modifyMedia{
 				position: absolute;
 				z-index:3;
 				width:565px;
@@ -338,6 +364,18 @@
 			}
 		
 			#addInputContent{
+				background-color: #376CBF;
+				width:500px;
+				height: 150px;
+			}
+			
+			#modifyInputDialog{
+				margin-top:300px;
+				width: 600px;
+				height: 150px;
+			}
+		
+			#modifyInputContent{
 				background-color: #376CBF;
 				width:500px;
 				height: 150px;

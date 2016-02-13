@@ -92,57 +92,27 @@
 	</script>
 </head>
 <body>
-		<div class="modal fade" id="addModal">
-		<div class="modal-dialog" id="ModalDialog">
-    	<div class="modal-content" id="ModalContent">
+		<div class="modal-dialog" id="startModalDialog">
+    	<div class="modal-content" id="startModalContent">
 	<div id="addCheckWrap">
 	
-	<div class="wrap-loading display-none">
-		<div>
-			<img src="resources/images/loading2.gif" />
-			<!-- 로딩 -->
-		</div>
-	</div>
-	
 		<div id="addForm">
-			<form name="addTitleForm" action="" method="post">
-				<div id="addTitle">
+			<form name="modifyTitleForm" action="" method="post">
+				<div id="startTitle">
 							<div class="form-group">
-								<label for="addtitle" class="col-sm-12 control-label" id="titlelabel">Please enter a post title!</label>
+								<label for="modifyTitle" class="col-sm-12 control-label" id="titlelabel">Please enter a post title!</label>
 								<div class="col-sm-12">
-							     	<input type="text" class="form-control" id="addtitle" name="title" value="${post.title }" maxlength="40"/> 
+							     	<input type="text" class="form-control" id="modifyTitle" name="title" value="${post.title }" maxlength="40"/> 
 								</div>
 							</div>
-							<div id="buttonGroup">
-								<button type="button" class="btn btn-success addbtn" id="Createbtn" onclick="modifyTitle()"><b>Modify Post</b></button>
-								<button type="submit" class="btn btn-success addbtn" id="Continuebtn"><b>Continue to Posting</b></button>
-								<button type="button" class="btn btn-warning addbtn" id="Recallingbtn"> <b>Recalling Post</b></button>
-								<button type="button" class="btn btn-warning addbtn" id="Priorbtn"> <b>Fold</b></button>
+							<div id="startbuttonGroup">
+								<button type="button" class="btn btn-success addbtn" id="startModifyBtn" onclick="modifyTitle()"><b>Modify Post</b></button>
 							</div>	
 					</div>
 			</form>
 		</div>
 	</div>
 		</div>
-		<div id="middle"></div> <!--  연결고리 -->
-		<div class="modal-content" id="hideList" >
-			<div id="hideListWrap" style="overflow:scroll; overflow-x:hidden;">
-				<div class="hideListContent">
-					<div class="Title"><a href="#" class="atitle">The work never ends ..</a><div class="contentimg"><a href=""><img style="width:15px;" src="resources/images/close.png"/></a></div></div>
-					<div class="pageNum">
-						page : 7
-					</div>
-					<div class="saveDate">
-						Saved : 2016-01-29 13:31:22
-					</div>
-					<div class="createDate">
-						Created : 2016-01-29 13:31:22
-					</div>
-				</div>
-				<div class="line"></div><!-- 반복문 쓸때 hideListContent부터 line까지 묶을 것 -->
-			</div>
-		</div>
 	</div>
- </div>
 </body>
 </html>

@@ -413,210 +413,205 @@
 	</script>
 </head>
 <body>
- 	<div class="modal fade" id="addModal" data-backdrop="static">
 		<div class="modal-dialog" id="addDialog">
 				<div class="modal-content" id="addContent">
 				<div id="addWrap">
 					<div class="modal-header" id="header">
 						<div id="Closeimg"><a href="#"><img style="width:20px;" src="resources/images/close.png"/></a></div>
-						<div id="Title">${post.title }</div>
-						<div id="CreateDate">${post.wDate }</div>
-						<div id="Clear" onclick="clearPage()"><img style="width:20px;" src="resources/images/clear.png"/></div>
+						<div id="addTitle">${post.title }</div>
+						<div id="addCreateDate">${post.wDate }</div>
+						<div id="Clear" onclick="modifyClearPage()"><img style="width:20px;" src="resources/images/clear.png"/></div>
 					</div>
 					<!-- Modal 상단-->
-						<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+						<div id="modifyCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
 							
   							 <div class="carousel-inner" role="listbox">
   							 
-  							 	<div class="wrap-loading display-none">
-						    		<div><img src="resources/images/loading2.gif" /></div>
-								</div>
-  							 
   							 	<div class="item active additem">
-  							 		<form name="addKnowhowForm1" action="test.jsp" method="post">
+  							 		<form name="modifyKnowhowForm1" action="test.jsp" method="post">
 										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
-												<div id="m1" class="m" onclick="openModal()" contenteditable="true"></div>
-												<iframe id="mediaiframe1" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscree></iframe>
-												<input type="hidden" id="url1" name="videourl"/><input type="file" class="imgurl" id="imgurl1" name="media"/><img class="mediaImg" id="mediaImg1"/>
+												<div id="modifyMedia1" class="modifyMedia" onclick="modifyOpenModal()" contenteditable="true"></div>
+												<iframe id="modifyMediaIframe1" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden" id="url1" name="videourl"/><input type="file" class="imgurl" id="imgurl1" name="media"/><img class="mediaImg" id="modifyMediaImg1"/>
 											</div>
 											<div id="content_Text">
-												<textarea id="ta1" class="form-control knowhow1" name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="mta1" class="form-control knowhow1" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modifyModify()" value="Modify!">
 												</div>
 											</div>
 										</div>
 									</form>
   							 	</div>
   							 	<div class="item additem">
-  							 		<form name="addKnowhowForm2" name="knowhow" action="test.jsp" method="post">
+  							 		<form name="modifyKnowhowForm2" name="knowhow" action="test.jsp" method="post">
 										<div id="addKnowhowcontent">
 											<div id="Media"class="mbackground">
-												<div id="m2" class="m" onclick="openModal()" contenteditable="true"></div>
-												<iframe id="mediaiframe2" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden"id="url2" name="videourl"/><input type="file" class="imgurl" id="imgurl2" name="media"/><img class="mediaImg" id="mediaImg2"/>
+												<div id="modifyMedia2" class="modifyMedia" onclick="modifyOpenModal()" contenteditable="true"></div>
+												<iframe id="modifyMediaIframe2" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden"id="url2" name="videourl"/><input type="file" class="imgurl" id="imgurl2" name="media"/><img class="mediaImg" id="modifyMediaImg2"/>
 											</div>
 											<div id="content_Text">
-												<textarea id="ta2" class="form-control knowhow2" name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="mta2" class="form-control knowhow2" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modifyModify()" value="Modify!">
 												</div>
 											</div>
 										</div>
 									</form>
   							 	</div>
   							 	<div class="item additem">
-  							 		<form name="addKnowhowForm3" name="knowhow" action="test.jsp" method="post">
+  							 		<form name="modifyKnowhowForm3" name="knowhow" action="test.jsp" method="post">
 										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
-												<div id="m3" class="m"  onclick="openModal()" contenteditable="true"></div>
-												<iframe id="mediaiframe3" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden" id="url3" name="videourl"/><input type="file" class="imgurl" id="imgurl3" name="media"/><img class="mediaImg" id="mediaImg3"/>
+												<div id="modifyMedia3" class="modifyMedia"  onclick="modifyOpenModal()" contenteditable="true"></div>
+												<iframe id="modifyMediaIframe3" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden" id="url3" name="videourl"/><input type="file" class="imgurl" id="imgurl3" name="media"/><img class="mediaImg" id="modifyMediaImg3"/>
 											</div>
 											<div id="content_Text">
-												<textarea id="ta3" class="form-control knowhow3"  name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="mta3" class="form-control knowhow3"  name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modifyModify()" value="Modify!">
 												</div>
 											</div>
 										</div>
 									</form>
   							 	</div>
   							 	<div class="item additem">
-  							 		<form name="addKnowhowForm4" name="knowhow" action="test.jsp" method="post">
+  							 		<form name="modifyKnowhowForm4" name="knowhow" action="test.jsp" method="post">
 										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
-												<div id="m4" class="m"  onclick="openModal()" contenteditable="true"></div>
-												<iframe id="mediaiframe4" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden" id="url4"  name="videourl"/><input type="file" class="imgurl" id="imgurl4" name="media"/><img class="mediaImg" id="mediaImg4"/>
+												<div id="modifyMedia4" class="modifyMedia"  onclick="modifyOpenModal()" contenteditable="true"></div>
+												<iframe id="modifyMediaIframe4" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden" id="url4"  name="videourl"/><input type="file" class="imgurl" id="imgurl4" name="media"/><img class="mediaImg" id="modifyMediaImg4"/>
 											</div>
 											<div id="content_Text">
-												<textarea id="ta4" class="form-control knowhow4" name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="mta4" class="form-control knowhow4" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modifyModify()" value="Modify!">
 												</div>
 											</div>
 										</div>
 									</form>
   							 	</div>
   							 	<div class="item additem">
-  							 		<form name="addKnowhowForm5" name="knowhow" action="test.jsp" method="post">
+  							 		<form name="modifyKnowhowForm5" name="knowhow" action="test.jsp" method="post">
 										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
-												<div id="m5" class="m"  onclick="openModal()" contenteditable="true"></div>
-												<iframe id="mediaiframe5" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden"  id="url5" name="videourl"/><input type="file"  class="imgurl" id="imgurl5" name="media"/><img class="mediaImg" id="mediaImg5"/>
+												<div id="modifyMedia5" class="modifyMedia"  onclick="modifyOpenModal()" contenteditable="true"></div>
+												<iframe id="modifyMediaIframe5" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden"  id="url5" name="videourl"/><input type="file"  class="imgurl" id="imgurl5" name="media"/><img class="mediaImg" id="modifyMediaImg5"/>
 											</div>
 											<div id="content_Text">
-												<textarea id="ta5" class="form-control knowhow5" name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="mta5" class="form-control knowhow5" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modifyModify()" value="Modify!">
 												</div>
 											</div>
 										</div>
 									</form>
   							 	</div>
   							 	<div class="item additem">
-  							 		<form name="addKnowhowForm6" name="knowhow" action="test.jsp" method="post">
+  							 		<form name="modifyKnowhowForm6" name="knowhow" action="test.jsp" method="post">
 										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
-												<div id="m6" class="m"  onclick="openModal()" contenteditable="true"></div>
-												<iframe id="mediaiframe6" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden" id="url6" name="videourl"/><input type="file"  class="imgurl" id="imgurl6" name="media"/><img class="mediaImg" id="mediaImg6"/>
+												<div id="modifyMedia6" class="modifyMedia"  onclick="modifyOpenModal()" contenteditable="true"></div>
+												<iframe id="modifyMediaIframe6" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden" id="url6" name="videourl"/><input type="file"  class="imgurl" id="imgurl6" name="media"/><img class="mediaImg" id="modifyMediaImg6"/>
 											</div>
 											<div id="content_Text">
-												<textarea id="ta6" class="form-control knowhow6" name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="mta6" class="form-control knowhow6" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modifyModify()" value="Modify!">
 												</div>
 											</div>
 										</div>
 									</form>
   							 	</div>
   							 	<div class="item additem">
-  							 		<form name="addKnowhowForm7" name="knowhow" action="test.jsp" method="post">
+  							 		<form name="modifyKnowhowForm7" name="knowhow" action="test.jsp" method="post">
 										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
-												<div id="m7" class="m"  onclick="openModal()" contenteditable="true"></div>
-												<iframe id="mediaiframe7" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden" id="url7" name="videourl"/><input type="file" class="imgurl" id="imgurl7" name="media"/><img class="mediaImg" id="mediaImg7"/>
+												<div id="modifyMedia7" class="modifyMedia"  onclick="modifyOpenModal()" contenteditable="true"></div>
+												<iframe id="modifyMediaIframe7" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden" id="url7" name="videourl"/><input type="file" class="imgurl" id="imgurl7" name="media"/><img class="mediaImg" id="modifyMediaImg7"/>
 											</div>
 											<div id="content_Text">
-												<textarea id="ta7" class="form-control knowhow7" name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="mta7" class="form-control knowhow7" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modifyModify()" value="Modify!">
 												</div>
 											</div>
 										</div>
 									</form>
   							 	</div>
   							 	<div class="item additem">
-  							 		<form name="addKnowhowForm8" name="knowhow" action="test.jsp" method="post">
+  							 		<form name="modifyKnowhowForm8" name="knowhow" action="test.jsp" method="post">
 										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
-												<div id="m8" class="m"  onclick="openModal()" contenteditable="true"></div>
-												<iframe id="mediaiframe8" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden" id="url8" name="videourl"/><input type="file"  class="imgurl" id="imgurl8" name="media"/><img class="mediaImg" id="mediaImg8"/>
+												<div id="modifyMedia8" class="modifyMedia"  onclick="modifyOpenModal()" contenteditable="true"></div>
+												<iframe id="modifyMediaIframe8" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden" id="url8" name="videourl"/><input type="file"  class="imgurl" id="imgurl8" name="media"/><img class="mediaImg" id="modifyMediaImg8"/>
 											</div>
 											<div id="content_Text">
-												<textarea id="ta8" class="form-control knowhow8" name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="mta8" class="form-control knowhow8" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modifyModify()" value="Modify!">
 												</div>
 											</div>
 										</div>
 									</form>
   							 	</div>
   							 	<div class="item additem">
-  							 		<form name="addKnowhowForm9" name="knowhow" action="test.jsp" method="post">
+  							 		<form name="modifyKnowhowForm9" name="knowhow" action="test.jsp" method="post">
 										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
-												<div id="m9" class="m"  onclick="openModal()" contenteditable="true"></div>
-												<iframe id="mediaiframe9" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden" id="url9" name="videourl"/><input type="file" class="imgurl" id="imgurl9" name="media"/><img class="mediaImg" id="mediaImg9"/>
+												<div id="modifyMedia9" class="modifyMedia"  onclick="modifyOpenModal()" contenteditable="true"></div>
+												<iframe id="modifyMediaIframe9" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden" id="url9" name="videourl"/><input type="file" class="imgurl" id="imgurl9" name="media"/><img class="mediaImg" id="modifyMediaImg9"/>
 											</div>
 											<div id="content_Text">
-												<textarea id="ta9" class="form-control knowhow9" name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="mta9" class="form-control knowhow9" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modifyModify()" value="Modify!">
 												</div>
 											</div>
 										</div>
 									</form>
   							 	</div>
   							 	<div class="item additem">
-  							 		<form name="addKnowhowForm10" name="knowhow" action="test.jsp" method="post">
+  							 		<form name="modifyKnowhowForm10" name="knowhow" action="test.jsp" method="post">
 										<div id="addKnowhowcontent">
 											<div id="Media" class="mbackground">
-												<div id="m10" class="m"  onclick="openModal()" contenteditable="true"></div>
-												<iframe id="mediaiframe10" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden" id="url10" name="videourl"/><input type="file" class="imgurl" id="imgurl10" name="media"/><img class="mediaImg" id="mediaImg10"/>
+												<div id="modifyMedia10" class="modifyMedia"  onclick="modifyOpenModal()" contenteditable="true"></div>
+												<iframe id="modifyMediaIframe10" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
+												<input type="hidden" id="url10" name="videourl"/><input type="file" class="imgurl" id="imgurl10" name="media"/><img class="mediaImg" id="modifyMediaImg10"/>
 											</div>
 											<div id="content_Text">
-												<textarea id="ta10" class="form-control knowhow10" name="knowhow" rows="10" cols=""></textarea>
+												<textarea id="mta10" class="form-control knowhow10" name="knowhow" rows="10" cols=""></textarea>
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modify()" value="Modify!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="modifyModify()" value="Modify!">
 												</div>
 											</div>
 										</div>
@@ -662,34 +657,33 @@
 							10
 						</div>
 					</div>
-					<div id="addbtn">
+					<div id="modifyAddBtn">
 						<img style="width:45px; margin-left: 6px; margin-top: 5px;" src="resources/images/add.png"/>
 					</div>
-					<div id="deletebtn">
+					<div id="modifyDeleteBtn">
 						<img style="width:45px; margin-left: 6px; margin-top: 5px;"src="resources/images/subtract.png"/>
 					</div>
 				</div>
 			</div>
-			<div class="modal fade" id="inputModal">
-		<div class="modal-dialog" id="inputDialog">
-			<div class="modal-content" id="inputContent">
+			<div class="modal fade" id="modifyInputModal">
+		<div class="modal-dialog" id="modifyInputDialog">
+			<div class="modal-content" id="modifyInputContent">
 				<div id="inputWrap">
 				<div id="Closeimg2"><a href=""><img style="width:20px;" src="resources/images/close.png"/></a></div>	
 					<div id="inputTitle">
 						<div class="form-group">
 							<label for="addtitle" class="col-sm-12 control-label" id="titlelabel">Please enter a Video url</label>
 							<div class="col-sm-12">
-							<input type="text" class="form-control" id="inputurl" name="url" maxlength="80"/> 
+							<input type="text" class="form-control" id="modifyInputUrl" name="url" maxlength="80"/> 
 							</div>
 						</div>
 						<div id="buttonGroup">
-								<button type="button" class="btn btn-success addbtn" id="inpuBtn"><b>Enter</b></button>
+								<button type="button" class="btn btn-success addbtn" id="modifyInputBtn"><b>Enter</b></button>
 							</div>	
 					</div>
 			</div>
 		</div>
 		</div>
-	</div>
 	</div>
 </body>
 </html>
