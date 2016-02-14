@@ -178,8 +178,9 @@
 			success : function(v) {
 
 				// 성공처리(v는 서버로 받은 메시지, value)
-				alert("성공이당");
-
+				alert("포스트 작성 완료");
+				location.reload();
+				
 			},
 			beforeSend : function() {
 
@@ -203,12 +204,7 @@
 				// 					$("#tagModal").modal("hide");
 
 			}
-
 		});
-	}
-	/* header랑 추후 연결작업하면서 수정 */
-	function closeTagModal() {
-		// 			$("#tagModal").modal('hide');  
 	}
 </script>
 <div class="modal-content" id="tagContent">
@@ -223,8 +219,8 @@
 				<input type="text" name="tag" id="tagtext" size="57" />
 			</div>
 			<div id="w">
-				<span id="s">&nbsp; - 특수문자나 영어는 사용할 수 없습니다.</span> <span id="k">&nbsp;
-					- 태그를 입력해 주세요.</span>
+				<span id="s">&nbsp; - Can not use special characters or English</span> <span id="k">&nbsp;
+					- Please enter a tag</span>
 			</div>
 			<div id="ReTag">
 				<c:set var="isDoing" value="true" />
@@ -240,7 +236,7 @@
 			<div id="userTag">
 				<div id="userTitle">#Tags</div>
 				<div id="Line"></div>
-				<form name="tag" action="completePosting" method="post">
+				<form name="tag" action="completePosting" method="post" onsubmit="return false;">
 					<div id="Tagbox">
 						<input type="hidden" id="hiddentext" name="tags" />
 					</div>
