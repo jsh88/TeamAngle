@@ -378,14 +378,14 @@ public class MemberController {
 		
 		int result = 0;
 		
-//		String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://192.168.0.31:8080/KnowhowApp/updateMemberInfoForm?id="+ id + "&check=true";
-		String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://10.1.0.214:8080/KnowhowApp/updateEmailMemberInfoPwForm?id="+ id + "&check=true";
+		String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://192.168.0.31:8080/KnowhowApp/updateMemberInfoForm?id="+ id + "&check=true";
+//		String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://10.1.0.214:8080/KnowhowApp/updateEmailMemberInfoPwForm?id="+ id + "&check=true";
 		
 		
 		if(pw != null) {
 			email.setContent(msg);
 			email.setReciver(id);
-			email.setSubject(id + " 님의 이메일 인증 메일입니다.");
+			email.setSubject(id + " 님의 비밀번호 찾기 인증 메일입니다.");
 			emailSender.sendEmail(email);
 			result = 1;
 			model.addAttribute("result", result);
@@ -417,7 +417,8 @@ public class MemberController {
 					
 		int result = 0;
 		
-		String msg = "아래 링크를 클릭하시면 회원탈퇴처리 됩니다.\nhttp://10.1.0.214:8080/KnowhowApp/deleteMemberJoin.do?id="+ id + "&deletecheck=true";
+		String msg = "아래 링크를 클릭하시면 회원탈퇴처리 됩니다.\nhttp://192.168.0.31:8080/KnowhowApp/deleteMemberJoin.do?id="+ id + "&deletecheck=true";
+//		String msg = "아래 링크를 클릭하시면 회원탈퇴처리 됩니다.\nhttp://10.1.0.214:8080/KnowhowApp/deleteMemberJoin.do?id="+ id + "&deletecheck=true";
 		
 		if(id != null) {
 			email.setContent(msg);
