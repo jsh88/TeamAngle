@@ -53,9 +53,9 @@ public interface MemberService {
 
 	public List<Post> getMyMostLookupPost(String id);
 
-	String emailCheck(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception;
+	public void emailCheck(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception;
 
-	void getSendCodeCheck(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+	public int getSendCodeCheck(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws Exception;
 
 	public void getMyPostByViews(HttpServletRequest req, HttpSession session);

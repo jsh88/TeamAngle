@@ -59,10 +59,13 @@ public class MemberController {
 
 	// 회원가입 서비스콜 부분
 	@RequestMapping(value = { "/memberJoinProc" }, method = RequestMethod.POST)
-	public String MemberJoinProc(HttpServletRequest request) throws IOException {
+	public String MemberJoinProc(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
 
 		memberService.insertMemberJoin(request);
-		return "redirect:./";
+		memberService.emailCheck(request, response, session);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/memberAjax");
+		return "redirect:/";
 	}
 	
 	// 회원탈퇴 처리 부분
@@ -442,8 +445,15 @@ public class MemberController {
 
 	}
 	
+	// 인증 메일 확인 및 체크
+	@RequestMapping("/checkMemberJoin.do")
+	public String checkMemberJoin(HttpServletRequest request, HttpServletResponse response, HttpSession session)throws Exception{
+		memberService.getSendCodeCheck(request, response, session);
+		return "index";
+	}
 	
 	
+
 	
 		
 }

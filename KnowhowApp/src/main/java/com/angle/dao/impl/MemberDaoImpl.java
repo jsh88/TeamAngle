@@ -38,14 +38,8 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void insertMemberJoin(Member member) {
 
-		String state = "";
-
-		if (member.isState() == true) {
-			state = "1";
-		} else {
-			state = "0";
-		}
-				
+		String state = "0";
+		
 		namedParameterJdbcTemplate.update(
 				"insert into member values("
 						+ ":id, :pw, :nickname, sysdate, sysdate, :vcount, :state, :image, :pcomment)",
@@ -53,7 +47,7 @@ public class MemberDaoImpl implements MemberDao {
 						.addValue("nickname", member.getNickName())						
 						.addValue("vcount", member.getvCount())
 						.addValue("state", state).addValue("image", member.getImage())
-						.addValue("pcomment", member.getpComment()));				
+						.addValue("pcomment", member.getpComment()));					
 	}
 
 	@Override
@@ -464,7 +458,12 @@ public class MemberDaoImpl implements MemberDao {
 					});					
 		}
 		
-		
+		@Override
+		public void acceptJoin(String id) {
+			namedParameterJdbcTemplate.update(
+					"update member set state = '1' where id = :id",
+					new MapSqlParameterSource().addValue("id", id));
+		}
 		
 		
 		
