@@ -34,7 +34,8 @@ $("#lg_btn").click(function(e) {
 			}
 		},
 		error : function(xhr, statusText, responseData) {
-			alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
+			/*alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);*/
+			alert("비밀번호가 틀리거나, 아이디가 맞지 않습니다.");
 		}	
 	});
 });

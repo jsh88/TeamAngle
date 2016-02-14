@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+
+</style>
 </head>
 <body>
 	<div class="container-fluid intro4_wrap">
@@ -43,32 +46,38 @@
 
 		<!-- 점박이들 -->
 		<div class="col-md-12 centered nemo_wrap intro4_position2">
+			<div class="col-md-12 intro4_margin intro4_p">
 			<div class="col-md-12 intro4_p">
 				<%
-					for (int i = 0; i <= 40; i++) {
+					for (int i = 0; i <= 45; i++) {
 				%>
 				<div class="nemoForm n1 n2"></div>
 				<%
 					}
 				%>
 			</div>
+			</div>
+			<div class="col-md-12 intro4_margin intro4_p">
 			<div class="col-md-12 intro4_p">
 				<%
-					for (int i = 0; i <= 40; i++) {
+					for (int i = 0; i <= 45; i++) {
 				%>
 				<div class="nemoForm n1 n2"></div>
 				<%
 					}
 				%>
 			</div>
+			</div>
+			<div class="col-md-12 intro4_margin intro4_p">
 			<div class="col-md-12 intro4_p">
 				<%
-					for (int i = 0; i <= 40; i++) {
+					for (int i = 0; i <= 45; i++) {
 				%>
 				<div class="nemoForm n1 n2"></div>
 				<%
 					}
 				%>
+			</div>
 			</div>
 		</div>
 		<div class="col-md-12">

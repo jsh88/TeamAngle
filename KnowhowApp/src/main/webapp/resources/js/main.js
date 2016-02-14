@@ -180,6 +180,13 @@ $(document)
 					});
 
 					/* 로그인 JQuery */
+					/* 로그인 엔터키 */
+					
+					
+					
+					
+					
+					
 				});
 // ready end
 
@@ -569,7 +576,10 @@ function loginOpen() {
 		$("#lg_content").show();
 	}
 	
-	$("#loginPage").modal();
+	$("#loginPage").modal()
+
+	
+
 	
 }
 
