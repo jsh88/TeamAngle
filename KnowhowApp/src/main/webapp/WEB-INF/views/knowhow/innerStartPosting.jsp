@@ -4,9 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:if test="${pList eq null}">
 	<br>
-	<center>
-		<h5>Empty temporary posts.</h5>
-	</center>
+	<div id="hideListEmptyText">
+			Empty temporary posts.
+	</div>
 </c:if>
 <c:if test="${pList ne null }">
 	<c:forEach items="${pList }" var="post">
