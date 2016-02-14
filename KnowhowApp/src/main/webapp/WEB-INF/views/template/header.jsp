@@ -21,7 +21,7 @@
 
 				<!--  검색 폼 -->
 
-				<form class="navbar-form navbar-left" role="search">
+				<form class="navbar-form navbar-left" role="search" onsubmit="return false;">
 					<div id="search_form" class="input-group input-group-sm">
 					<span class="input-group-btn">							
 							<button class="btn btn-default" type="button" id="search_btn">

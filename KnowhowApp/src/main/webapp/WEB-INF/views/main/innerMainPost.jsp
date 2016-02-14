@@ -4,7 +4,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <c:set value="${fn:indexOf(postView.media, 'https:') == -1}" var="isURL"></c:set>
-<div class="bestListWrap col-sm-4 col-md-2" onclick="morePost('${postView.pNo}')">
+<%-- <c:if test="${session.member ne null }"> --%>
+	<div class="bestListWrap col-sm-4 col-md-2" onclick="morePost('${postView.pNo}')">
+<%-- </c:if> --%>
+<%-- <c:if test="${session.member eq null }"> --%>
+<!-- 	<div class="bestListWrap col-sm-4 col-md-2" onclick="alert('로그인 하세요.')"> -->
+<%-- </c:if> --%>
 	<div class="bestListHeader col-md-12">
 		<a href="#">${postView.title }</a>
 	</div>

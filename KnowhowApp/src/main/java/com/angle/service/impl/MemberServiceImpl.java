@@ -209,11 +209,13 @@ public class MemberServiceImpl implements MemberService {
 		int result = 1;
 
 		Member member = memberDao.memberLogin(id);
+		System.out.println(member);
 		if (member == null || member.getId().equals("")) {
 			result = -1;
 		} else {
 			if (member.getPw().equals(pw)) {
 				session.setAttribute("member", member);
+				System.out.println(member.getId());
 				int v_result = memberDao.getVcount(id);
 				if (v_result != -1) {
 					memberDao.updateVcount(member);
