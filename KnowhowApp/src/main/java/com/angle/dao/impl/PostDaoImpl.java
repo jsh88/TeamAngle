@@ -168,7 +168,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	@Override
 	public ArrayList<Post> getTempPostList(String id) {
 
-		return jdbcTemplate.query("select * from post where id = ? and state = 0", new Object[] { id },
+		return jdbcTemplate.query("select p.*, m.nickname from post p, member m where m.id = p.id and p.id = ? and p.state = 0", new Object[] { id },
 				new ResultSetExtractor<ArrayList<Post>>() {
 
 					@Override

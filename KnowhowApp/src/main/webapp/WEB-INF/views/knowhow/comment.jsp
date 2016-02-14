@@ -35,9 +35,9 @@
 </c:if>
 <c:if test="${pComList eq null}">
 	<br>
-	<center>
-		<h4>댓글이 없습니다.</h4>
-	</center>
+	<div class="noReply">
+		<b>Comments do not exist!</b>
+	</div>
 	<script type="text/javascript">
 		$("#replyNum").text("0");
 	</script>

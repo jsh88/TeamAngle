@@ -373,6 +373,125 @@ function morePost(postNo) {
 	});
 }
 
+function startPosting() {
+	
+	// 폼 데이터 받기 or Append or 인자로 form id)
+	$.ajax({
+		type : 'POST',
+		url : 'startPosting',
+// 		async : false,
+		processData : false,
+		contentType : false,
+
+		success : function(responseData, statusText, xhr) {
+			
+			modalOpen(5);
+			var result = responseData;
+			$('#hideListWrap').html(result);
+			
+			// 성공처리(v는 서버로 받은 메시지, value)
+			
+		},
+		beforeSend : function() {
+
+			// 전송 전
+			// 이미지 보여주기
+			$('.wrap-loading').removeClass('display-none');
+			
+		},
+		error : function(request, status, error) {
+
+			// 에러 로직, 에러 로그 확인
+// 			alert("code:" + request.status + "\n\n" + "message:"
+// 					+ request.responseText + "\n\n" + "error:" + error);
+
+		},
+		complete : function() {
+
+			// 이미지 감추기 처리
+//				$(location).attr('href', "이동할 페이지");
+			$('.wrap-loading').addClass('display-none');
+
+		}
+	});
+}
+
+function addKnowhow(){
+	
+	var formData = new FormData();
+	
+	formData.append("title", $("#addtitle").val());
+	
+	// 폼 데이터 받기 or Append or 인자로 form id)
+	$.ajax({
+		type : 'POST',
+		url : 'addPost',
+// 		async : false,
+		data : formData,
+		processData : false,
+		contentType : false,
+
+		success : function(responseData, statusText, xhr) {
+			
+			$("#startPosting").modal('hide');
+			modalOpen(9);
+			var result = responseData;
+			$('#addDialog').html(result);
+			
+			// 성공처리(v는 서버로 받은 메시지, value)
+			
+		},
+		beforeSend : function() {
+
+			// 전송 전
+			// 이미지 보여주기
+			$('.wrap-loading').removeClass('display-none');
+			
+		},
+		error : function(request, status, error) {
+
+			// 에러 로직, 에러 로그 확인
+// 			alert("code:" + request.status + "\n\n" + "message:"
+// 					+ request.responseText + "\n\n" + "error:" + error);
+
+		},
+		complete : function() {
+
+			// 이미지 감추기 처리
+//				$(location).attr('href', "이동할 페이지");
+			$('.wrap-loading').addClass('display-none');
+
+		}
+	});
+	
+}
+
+// startPosting -> 임시 포스트 불러오기
+function modifyTempPost(pNo) {
+	
+	
+	
+}
+
+function delTempPost(pNo) {
+	
+	
+	
+}
+
+function savePosting(pNo) {
+	
+	
+	
+}
+
+// addknowhow -> x 버튼 누르면 임시 저장후 모달 끄기
+function saveAndCanclePosting(pNo) {
+	
+	
+	
+}
+
 function modalOpen(selModal) {
 
 	var modal = "";
@@ -411,6 +530,10 @@ function modalOpen(selModal) {
 	} else if (selModal == "4") {
 		
 		modal = "profileModifyPage";
+		
+	} else if (selModal == "9") {
+		
+		modal = "addKnowhow";
 		
 	}
 	
