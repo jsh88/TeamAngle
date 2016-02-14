@@ -123,8 +123,10 @@ public class MemberDaoImpl implements MemberDao {
 
 		@Override
 		public Member extractData(ResultSet rs) throws SQLException, DataAccessException {
-			Member m = new Member();
+			
 			if (rs.next()) {
+				Member m = new Member();
+				
 				m.setId(rs.getString("id"));
 				m.setPw(rs.getString("pw"));
 				m.setNickName(rs.getString("nickName"));
@@ -133,8 +135,10 @@ public class MemberDaoImpl implements MemberDao {
 				m.setvCount(rs.getInt("vCount"));
 				m.setState(rs.getBoolean("state"));
 				m.setImage(rs.getString("image"));
+				
+				return m;
 			}
-			return m;
+			return null;
 		}
 
 	}
@@ -181,9 +185,9 @@ public class MemberDaoImpl implements MemberDao {
 					@Override
 					public Member extractData(ResultSet rs) throws SQLException, DataAccessException {
 						
-						Member m = new Member();
-						
 						if(rs.next()) {
+							
+							Member m = new Member();
 							m.setId(rs.getString("id"));
 							m.setPw(rs.getString("pw"));
 							m.setNickName(rs.getString("nickname"));

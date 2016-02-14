@@ -29,7 +29,7 @@ public interface MemberService {
 
 	//	public void memberLoginCheck(HttpSession session, HttpServletRequest request) throws IOException;
 
-	public int memberLoginCheck(String id, String pw, HttpServletRequest request, HttpSession session);
+	public String memberLoginCheck(String id, String pw, HttpServletRequest request, HttpSession session);
 
 	public Member getMember(HttpServletRequest request);
 

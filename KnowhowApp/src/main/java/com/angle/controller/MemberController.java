@@ -203,25 +203,28 @@ public class MemberController {
 
 	// 회원 로그인 서비스 콜 부분 
 	@RequestMapping(value = {"/login/logincheck.do"}, method=RequestMethod.POST)
-	public ModelAndView loginProc(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpServletRequest request, HttpSession session) {
-		int result = memberService.memberLoginCheck(id, pw, request, session);
+	@ResponseBody
+	public String loginProc(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpServletRequest request, HttpSession session, Model model) {
+		String result = memberService.memberLoginCheck(id, pw, request, session);
 		System.out.println(result);
 	
 		ModelAndView mav = new ModelAndView();
 
-		mav.addObject("result", result);
-		mav.setViewName("login/loginAjax");
-
-		System.out.println("My lately lookup");
-		List<Post> lately = (List<Post>)memberService.getMyLatelyLookupPost(id);
-		session.setAttribute("lately", lately) ;
-		List<Post> most = (List<Post>)memberService.getMyMostLookupPost(id);
-		session.setAttribute("most", most);
-		memberService.getMyPostByViews(request, session);
-		memberService.getMyPostByRecommand(request, session);
-		memberService.getMyPostByComments(request, session);
-		memberService.getMyLatelyPost(request, session);
-		return mav;
+//		mav.addObject("result", result);
+//		mav.setViewName("login/loginAjax");
+		model.addAttribute("login/loginAjax");
+		if(result.equals("c")){
+			System.out.println("My lately lookup");
+			List<Post> lately = (List<Post>)memberService.getMyLatelyLookupPost(id);
+			session.setAttribute("lately", lately) ;
+			List<Post> most = (List<Post>)memberService.getMyMostLookupPost(id);
+			session.setAttribute("most", most);
+			memberService.getMyPostByViews(request, session);
+			memberService.getMyPostByRecommand(request, session);
+			memberService.getMyPostByComments(request, session);
+			memberService.getMyLatelyPost(request, session);
+		}
+		return result;
 
 	}
 
@@ -377,10 +380,12 @@ public class MemberController {
 		String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://192.168.0.31:8080/KnowhowApp/updateEmailMemberInfoPwForm?id="+ id + "&check=true";
 		//String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://10.1.0.214:8080/KnowhowApp/updateEmailMemberInfoPwForm?id="+ id + "&check=true";
 		
+		
+		
 		if(pw != null) {
 			email.setContent(msg);
 			email.setReciver(id);
-			email.setSubject(id + " 님의 이메일 인증 메일입니다.");
+			email.setSubject(id + " 님의 비밀번호 찾기 인증 메일입니다.");
 			emailSender.sendEmail(email);
 			result = 1;
 			model.addAttribute("result", result);

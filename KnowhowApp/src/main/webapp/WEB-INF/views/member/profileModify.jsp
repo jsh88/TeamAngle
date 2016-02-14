@@ -167,7 +167,7 @@ $(function() {
 							<img id="profile_Img" src="resources/images/${member.image }" class="img-responsive" />	
 						</c:if>
 						<c:if test="${ member.image eq null }">
-							<img id="profile_Img" src="resources/images/loading2.gif" class="img-responsive" />	
+							<img id="profile_Img" src="resources/images/AOA_설현_2.jpg" class="img-responsive" />	
 						</c:if>
 						</div>
 					</div>
