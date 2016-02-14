@@ -64,8 +64,9 @@
 			}
 			
 			.hideListContent{
-				padding-top:10px;
+				padding-top:5px;
 				height: 70px;
+				cursor: pointer;
 			}
 			
 			.Title{
@@ -74,6 +75,7 @@
 				font-weight: bold;
 				margin-left: 20px;
 				margin-top: 5px;
+				overflow: hidden;
 			}
 			
 			.Title img{
@@ -87,19 +89,21 @@
 			.contentimg{
 				width: 25px;
 				float: right;
+				cursor:pointer;
 			}
 			
 			.pageNum{
 				color:#666666;
-				width: 58px;
-				margin-left: 23px;
+				width: 80px;
+				margin-left: 10px;
+				margin-right:5px;
 				float: left;
 				font-size: 13px;
 			}
 			
 			.createDate{
 				color:#666666;
-				width: 195px;
+				width: 190px;
 				float: left;
 				font-size: 13px;
 			}
@@ -107,17 +111,22 @@
 			.saveDate{
 				color:#666666;
 				float:left;
-				width: 195px;
+				width: 190px;
 				font-size: 13px;
 			}
 			
 			.line{
 				border-top: 1px solid #BFBCBC;
-				width:450px;
-				margin: 0px auto;
+				width:100%;
 				margin-top: 10px;
 			}
 			
+			#hideListEmptyText{
+				font-weight: bold;
+				text-align: center;
+				font-size: 16px;
+				
+			}
 
 
 /* addKnowhow & ModifyKnowhow */
