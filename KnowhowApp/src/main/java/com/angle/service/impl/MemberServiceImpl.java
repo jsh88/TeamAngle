@@ -286,12 +286,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public String emailCheck(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+	public void emailCheck(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws Exception {
-
+		
 		response.setContentType("text/html;charset=UTF-8");
 		response.setHeader("Cache-Control", "no-cache");
-		PrintWriter out = response.getWriter();
+		/*PrintWriter out = response.getWriter();*/
 		Email email = new Email();
 		String id = request.getParameter("id");
 		System.out.println(id);
@@ -306,39 +306,58 @@ public class MemberServiceImpl implements MemberService {
 			}
 		}
 		String sendCode = (support + randomInteger).trim();
-		session.setAttribute("emailSendCode", sendCode);
-		System.out.println("(세션 저장함)sendCode : " + sendCode);
+		request.getServletContext().setAttribute("sendCode", sendCode);
+		System.out.println("(어플 저장함)sendCode : " + sendCode);
 		String reciver = id;
 		String subject = "안녕하세요 세상의 모든 노하우 KnowHow 입니다.";
-		String content = "KnowHow 회원가입 인증번호 :  " + sendCode;
-
+		String content = "KnowHow 회원가입 인증 - \nhttp://172.20.10.2:8181/KnowhowApp/checkMemberJoin.do?id="+id+"&code="+sendCode;
+		
 		email.setReciver(reciver);
 		email.setSubject(subject);
 		email.setContent(content);
 		emailSender.sendEmail(email);
-		out.println("인증메일을 전송하였습니다");
-		out.close();
+		/*out.println("<script type=\'text/javascript'>"); 
+		out.println("alert('인증메일을 확인하여 주십시오.');"); 
+		out.println("</script>"); 
+		out.close();*/
 
-		return sendCode;
 	}
 
 	@Override
-	public void getSendCodeCheck(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+	public int getSendCodeCheck(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws Exception {
 
-		String getCode = request.getParameter("getCode").trim();
+		String id = request.getParameter("id");
+		System.out.println("id"+id);
+		String getCode = request.getParameter("code").trim();
 		System.out.println("getCode : " + getCode);
-		String emailSendCode = (String) session.getAttribute("emailSendCode");
-		System.out.println("emailSendCode" + emailSendCode);
+		String sendCode = (String)request.getServletContext().getAttribute("sendCode");
+		System.out.println("어플 - sendCode : " + sendCode);
 		response.setContentType("text/html;charset=UTF-8");
 		response.setHeader("Cache-Control", "no-cache");
-		PrintWriter out = response.getWriter();
-		String result = "<font color='red'>인증번호가 일치하지 않습니다</font>";
-		if (emailSendCode.equals(getCode)) {
-			result = "<font color='green'>확인 되었습니다.</font>";
+		
+		int result = 0;
+		
+		if(getCode.equals(sendCode)){
+			memberDao.acceptJoin(id);
+			result = 1;
 		}
-		out.println(result);
-		out.close();
+		
+		/*PrintWriter out = response.getWriter();*/
+		/*String result = "<font color='red'>인증번호가 일치하지 않습니다</font>";
+		if (sendCode.equals(getCode)) {
+			memberDao.acceptJoin(id);
+			result = "<font color='green'>확인 되었습니다.</font>";
+		}*/
+		/*out.println("<script type=\'text/javascript'>"); 
+		out.println("alert("+ result +");"); 
+		out.println("</script>"); 
+		out.close();*/
+		
+		
+		
+		
+		return result;
 	}
 
 	@Override

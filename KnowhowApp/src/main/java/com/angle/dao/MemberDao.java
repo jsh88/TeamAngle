@@ -59,4 +59,6 @@ public interface MemberDao {
 	
 	public String getEmail(String nickname, String pw);
 
+	public void acceptJoin(String id);
+
 }
