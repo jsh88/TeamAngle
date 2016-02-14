@@ -231,17 +231,6 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
-	// 내가 최근에 작성한 포인트
-	@Override
-	public void getMyLatelyPost(String id) {
-		List<Post> pList = null;
-
-		if (!pList.isEmpty() || pList != null) {
-			pList = memberDao.getMyLatelyPost(id);
-		}
-
-	}
-
 	//파일 업로드 처리 안해놨음. 파일 경로도 없고 그냥 셋 이미지만 되어 있었음. 폼태그에다가 enctype="multipart/form-data"이거 안해놓음.
 	@Override
 	public String modifyMember(MultipartHttpServletRequest request, String path, HttpSession session) throws IllegalStateException, IOException {
@@ -365,9 +354,18 @@ public class MemberServiceImpl implements MemberService {
 		Member m = (Member) session.getAttribute("member");
 		String id = m.getId();
 		List<Post> pList = null;
-		if (!pList.isEmpty() || pList != null) {
-			pList = memberDao.getMyPostByViews(id);
-		}
+		pList = memberDao.getMyPostByViews(id);
+		session.setAttribute("getMyPostByViews", pList);
+
+	}
+	// 내가 최근에 작성한 포인트
+	@Override
+	public void getMyLatelyPost(HttpServletRequest req, HttpSession session) {
+		Member m = (Member) session.getAttribute("member");
+		String id = m.getId();
+		List<Post> pList = null;
+		pList = memberDao.getMyLatelyPost(id);
+		session.setAttribute("getMyLatelyPost", pList);
 
 	}
 
@@ -376,9 +374,8 @@ public class MemberServiceImpl implements MemberService {
 		Member m = (Member) session.getAttribute("member");
 		String id = m.getId();
 		List<Post> pList = null;
-		if (!pList.isEmpty() || pList != null) {
-			pList = memberDao.getMyPostByRecommand(id);
-		}
+		pList = memberDao.getMyPostByRecommand(id);
+		session.setAttribute("getMyPostByRecommand", pList);
 
 	}
 
@@ -387,9 +384,8 @@ public class MemberServiceImpl implements MemberService {
 		Member m = (Member) session.getAttribute("member");
 		String id = m.getId();
 		List<Post> pList = null;
-		if (!pList.isEmpty() || pList != null) {
-			pList = memberDao.getMyPostByComments(id);
-		}
+		pList = memberDao.getMyPostByComments(id);
+		session.setAttribute("getMyPostByComments", pList);
 
 	}
 

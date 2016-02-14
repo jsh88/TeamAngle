@@ -43,8 +43,6 @@ public interface MemberService {
 
 	public Member getMember(String id);
 
-	public void getMyLatelyPost(String id);
-
 	public String modifyMember(MultipartHttpServletRequest req, String path, HttpSession session) throws IllegalStateException, IOException;
 
 	public void getMyConcernPost(String id);
@@ -69,5 +67,7 @@ public interface MemberService {
 	public String getPw(HttpServletRequest request);
 	
 	public String getEmail(HttpServletRequest request);
+
+	public void getMyLatelyPost(HttpServletRequest request, HttpSession session);
 
 }

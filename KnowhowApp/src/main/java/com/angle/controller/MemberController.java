@@ -33,20 +33,20 @@ public class MemberController {
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
-	
+
 	@Autowired
 	private EmailSender emailSender;
-	
+
 	public void setEmailSender(EmailSender emailSender) {
 		this.emailSender = emailSender;
 	}
 
-//	// 내가 최근에 작성한 포인트
-//	@RequestMapping
-//	public String getMyLatelyPost(String id) {
-//		Post p = memberService.getMyLatelyPost(id);
-//		return "redirect:/";
-//	}
+	//	// 내가 최근에 작성한 포인트
+	//	@RequestMapping
+	//	public String getMyLatelyPost(String id) {
+	//		Post p = memberService.getMyLatelyPost(id);
+	//		return "redirect:/";
+	//	}
 
 	// 회원가입 폼 콜 부분
 	@RequestMapping(value = { "/memberJoinForm" }, method = RequestMethod.GET)
@@ -54,32 +54,33 @@ public class MemberController {
 
 		model.addAttribute("body", "member/memJoin");
 		return "template/header";
-//		return "index";
+		//		return "index";
 	}
 
 	// 회원가입 서비스콜 부분
 	@RequestMapping(value = { "/memberJoinProc" }, method = RequestMethod.POST)
+	@ResponseBody
 	public String MemberJoinProc(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
 
 		memberService.insertMemberJoin(request);
 		memberService.emailCheck(request, response, session);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("member/memberAjax");
-		return "redirect:/";
+		return (String) request.getParameter("id");
 	}
-	
+
 	// 회원탈퇴 처리 부분
 	@RequestMapping(value = { "/deleteMemberJoin.do" })
 	public String deleteMemberJoin(Model model, HttpServletRequest request, HttpSession session) {
 
 		/*Member m = (Member) session.getAttribute("member");
 		String id = m.getId();*/
-		
+
 		String id = request.getParameter("id");
 		memberService.deleteMember(id);
 		model.addAttribute("body", "index");
 		session.invalidate();
-//		return "template/header";
+		//		return "template/header";
 		return "index";
 	}
 
@@ -120,110 +121,114 @@ public class MemberController {
 	public String updateMemberInfoForm(Model model, HttpServletRequest request, HttpSession session) {
 
 		Member m = memberService.getMember(request);
-		
+
 		/*String pw = request.getParameter("pw");
 		model.addAttribute("pw", pw);*/
-		
+
 		session.setAttribute("member", m);
-		
+
 		model.addAttribute("member", m);
 		model.addAttribute("body", "member/memModify");
 
-//		return "template/header";
+		//		return "template/header";
 		return "index";
 	}
 
-	
+
 	// 회원정보ID 수정 콜 부분
 	//버튼 누르면 계속 수정되게 되어 있었음 수정함. 아이디 검색하면서 수정이 되어버림.
 	@RequestMapping(value = { "/updateMemberInfoIdCheck.ajax" })
 	public String updateMemberInfoId(Model model, HttpServletRequest request) throws IOException {
-		
+
 		int result = memberService.checkId(request);
 		model.addAttribute("result", result);
-//		memberService.updateMemberInfoId(request);
+		//		memberService.updateMemberInfoId(request);
 		return "member/memberAjax";
 	}
-	
+
 	//아이디 적합성 판정에서 수정되던걸 때어내여 따로 수정하기를 만듬.
 	@RequestMapping(value="/updateMemberIdModify")
 	public String updateMemberIdModify(HttpServletRequest request, HttpSession session) throws IOException{
 		memberService.updateMemberInfoId(request, session);
 		return "redirect:./";
 	}
-	
+
 	// 회원정보NickName 수정 콜 부분
 	//이메일 수정과 똑같이 해놨음 
 	@RequestMapping(value = { "/updateMemberInfoNickNameCheck.ajax" })
 	public String updateMemberInfoNickName(Model model, HttpServletRequest request) throws IOException {
-		
+
 		int result = memberService.checkNickName(request);
 		model.addAttribute("result", result);
-//		memberService.updateMemberInfoNickName(request);
+		//		memberService.updateMemberInfoNickName(request);
 		return "member/memberAjax";
 	}
-	
+
 	//그래서 나는 똑같이 수정 했지!
 	@RequestMapping(value="/updateMemberNickNameModify")
 	public String updateMemberNickNameModify(HttpServletRequest request, HttpSession session) throws IOException{
 		memberService.updateMemberInfoNickName(request, session);
 		return "redirect:./";
 	}
-	
+
 	// 회원정보Pw 수정 콜 부분
 	//뷰단에서 이미 PW체크를 했는데 또하는게 이상하여 수정함.
 	@RequestMapping(value = { "/updateMemberInfoPw" })
 	public String updateMemberInfoPw(Model model, HttpServletRequest request, HttpSession session) throws IOException {
-		
-//		int result = memberService.checkPw(request);
-//		model.addAttribute("result", result);
+
+		//		int result = memberService.checkPw(request);
+		//		model.addAttribute("result", result);
 		memberService.updateMemberInfoPw(request, session);
 		return "redirect:./";
 	}
-	
+
 	// 회원 로그아웃 콜 부분
 	@RequestMapping(value = { "/logoutMember" }, method=RequestMethod.GET)
 	public String logoutMemberProc(HttpServletRequest request, HttpSession session) {
 		session.invalidate();
 		return "redirect:./";
 	}
-	
+
 	// 회원 로그인창 콜 부분
 	@RequestMapping(value = { "/loginMemberForm" })
 	public String loginMemberForm(Model model)	{
-		
+
 		model.addAttribute("body", "login/login");
-//		return "login/login";
+		//		return "login/login";
 		return "index";
 	}
-	
+
 	// 회원 로그인 서비스 콜 부분 
 	@RequestMapping(value = {"/login/logincheck.do"}, method=RequestMethod.POST)
 	public ModelAndView loginProc(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpServletRequest request, HttpSession session) {
 		int result = memberService.memberLoginCheck(id, pw, request, session);
 		System.out.println(result);
 		ModelAndView mav = new ModelAndView();
-		
+
 		mav.addObject("result", result);
 		mav.setViewName("login/loginAjax");
-		
+
 		System.out.println("My lately lookup");
 		List<Post> lately = (List<Post>)memberService.getMyLatelyLookupPost(id);
 		session.setAttribute("lately", lately) ;
 		List<Post> most = (List<Post>)memberService.getMyMostLookupPost(id);
 		session.setAttribute("most", most);
+		memberService.getMyPostByViews(request, session);
+		memberService.getMyPostByRecommand(request, session);
+		memberService.getMyPostByComments(request, session);
+		memberService.getMyLatelyPost(request, session);
 		return mav;
-		
+
 	}
-	
+
 	/*// 회원 로그인 콜 부분
 	@RequestMapping(value = { "/loginMemberProc" }, method=RequestMethod.POST)
 	public String loginMemberProc(HttpSession session, HttpServletRequest request) throws IOException {
 		memberService.memberLoginCheck(session, request);
 		return "redirect:main";
 	}*/
-	
-	
+
+
 	@RequestMapping(value={"/profileModify.ajax"}, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String modifyProfile(MultipartHttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) throws IllegalStateException, IOException{
@@ -233,21 +238,13 @@ public class MemberController {
 		model.addAttribute("member/memberAjax");
 		return profileInfo;
 	}
-	
+
 	// 마이페이지 
 	@RequestMapping("/myPage")
 	public String getMyPage(HttpServletRequest req, HttpSession session, Model model){
 		// 마이 페이지 그냥 session 받아서 jsp 에서 뿌리자
 		model.addAttribute("title", "/member/myPage");
 		return "redirect:myPage";		// include 한다길래 그냥 title로 써서 index 보냄
-	}
-	// 내가 최근에 작성한 포인트
-	@RequestMapping("/getMyLatelyPost") // 뭘로 받지???
-	public String getMyLatelyPost(HttpServletRequest req, HttpSession session){
-		Member m = (Member) session.getAttribute("member");
-		String id = m.getId();
-		memberService.getMyLatelyPost(id);
-		return "redirect:/";   // 어디로 보내지?
 	}
 	// 취향저걱 
 	@RequestMapping("/getMyConcertPost")
@@ -258,7 +255,7 @@ public class MemberController {
 		model.addAttribute("title", "어디로 가야하오");
 		return "index"; // 어디로 가야하오
 	}
-	
+
 	// 내가 최근 조회한 포스트 로그인으로 늠
 	/*@RequestMapping("/login/*") // 어디?
 	public void getMyLatelyLookupPost(HttpServletRequest req, HttpSession session, Model model){
@@ -267,7 +264,7 @@ public class MemberController {
 		session.setAttribute("latelyPost", lately) ;
 		model.addAttribute("title", "어디로갈까나?");
 	}*/
-	
+
 	// 로그인으로 늠
 	/*@RequestMapping("/getMyMostLookupPost")
 	public String getMyMostLookupPost(HttpServletRequest req, HttpSession session, Model model){
@@ -276,9 +273,9 @@ public class MemberController {
 		memberService.getMyMostLookupPost(id);
 		model.addAttribute("title", "어디로갈까나?");
 		return "index";
-		
+
 	}*/
-	
+
 	// 이메일 발송
 	@RequestMapping("/emailCheck")
 	public String emailCheck(HttpServletRequest req, HttpServletResponse res, HttpSession session) throws Exception{
@@ -290,21 +287,21 @@ public class MemberController {
 	public String getSendCodeCheck(HttpServletRequest req, HttpServletResponse res, HttpSession session) throws Exception{
 		memberService.getSendCodeCheck(req, res, session);
 		return "index";
-		
+
 	}
 	// 내가 작성한 포스트 조회수순
 	@RequestMapping("/getMyPostByViews")
 	public String getMyPostByViews(HttpServletRequest req, HttpSession session, Model model){
-		
+
 		memberService.getMyPostByViews(req, session);
 		model.addAttribute("title","어디로가야하오");
 		return "index";
 	}
-	
+
 	// 내가 작성한 포스트 좋아요순
 	@RequestMapping("/getMyPostByRecommand")
 	public String getMyPostByRecommand(HttpServletRequest req, HttpSession session, Model model){
-		
+
 		memberService.getMyPostByRecommand(req, session);
 		model.addAttribute("title","어디로가야하오");
 		return "index";
@@ -313,14 +310,14 @@ public class MemberController {
 	// 내가 작성한 포스트 댓글순
 	@RequestMapping("/getMyPostByComments")
 	public String getMyPostByComments(HttpServletRequest req, HttpSession session, Model model){
-		
+
 		memberService.getMyPostByComments(req, session);
 		model.addAttribute("title","어디로가야하오");
 		return "index";
 	}
-	
 
-	
+
+
 	// 로그인 세션 확인 부분 동작 확인 부분 처리
 	@RequestMapping(value = { "/member/loginConfrim" })
 	public String loginConfirmForm(Model model, HttpSession session)	{
@@ -330,22 +327,22 @@ public class MemberController {
 		model.addAttribute("body", "member/loginConfirm");
 		return "member/loginConfirm";
 	}
-	
+
 	// 아이디 찾기 이메일 발송
 	@RequestMapping("/sendId.do")
 	public String sendEmailIdAction(HttpServletRequest request, Model model) throws Exception {
-		
+
 		Email email = new Email();
 		String nickname = request.getParameter("nickname");
 		String pw = request.getParameter("pass");
 		String rev_email = memberService.getEmail(request);  // getEmail 에서 id를 가져옴.
-		
+
 		System.out.println("폼에서 받은 닉네임 : " + nickname);
 		System.out.println("폼에서 받은 비밀번호 : " + pw);
 		System.out.println("서비스에서 받은 id(Email주소) : " + rev_email);
-		
+
 		int result = 0;
-							
+
 		if(rev_email != null) {
 			email.setContent("아이디는 " + rev_email + " 입니다.");
 			email.setReciver(rev_email); 
@@ -359,24 +356,24 @@ public class MemberController {
 			model.addAttribute("result", result);
 			return "login/loginAjax";
 		}		
-		
+
 	}
-	
-	
+
+
 	// 비밀번호 찾기 이메일 발송
 	@RequestMapping("/sendPw.do")
 	public String sendEmailPwAction(HttpServletRequest request, Model model, HttpSession session) throws Exception {
-		
+
 		Email email = new Email();
 		String id = request.getParameter("id");
 		String pw = memberService.getPw(request);
-		
+
 		int result = 0;
-		
-//		String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://192.168.0.31:8080/KnowhowApp/updateMemberInfoForm?id="+ id + "&check=true";
+
+		//		String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://192.168.0.31:8080/KnowhowApp/updateMemberInfoForm?id="+ id + "&check=true";
 		String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://192.168.0.31:8080/KnowhowApp/updateEmailMemberInfoPwForm?id="+ id + "&check=true";
-		
-		
+
+
 		if(pw != null) {
 			email.setContent(msg);
 			email.setReciver(id);
@@ -384,7 +381,7 @@ public class MemberController {
 			emailSender.sendEmail(email);
 			result = 1;
 			model.addAttribute("result", result);
-			
+
 			return "login/loginAjax";
 		} else {
 			result = 0;
@@ -392,7 +389,7 @@ public class MemberController {
 			return "login/loginAjax";
 		}
 	}
-	
+
 	/*@RequestMapping("/checkPwPage.do")
 	public String checkPwPageAction(HttpServletRequest request, Model model) throws Exception {
 		String id = request.getParameter("id");
@@ -401,19 +398,19 @@ public class MemberController {
 		System.out.println("요청된 url : " + pw);
 		return null;
 	}*/
-	
+
 	// 회원탈퇴 인증 이메일 발송
 	@RequestMapping("/sendMemberDelete.do")
 	public String sendEmailMemberDeleteAction(HttpServletRequest request, Model model, HttpSession session) throws Exception {
-		
+
 		Email email = new Email();
 		Member member = (Member) session.getAttribute("member");
 		String id = member.getId();
-					
+
 		int result = 0;
-		
+
 		String msg = "아래 링크를 클릭하시면 회원탈퇴처리 됩니다.\nhttp://192.168.0.31:8080/KnowhowApp/deleteMemberJoin.do?id="+ id + "&deletecheck=true";
-		
+
 		if(id != null) {
 			email.setContent(msg);
 			email.setReciver(id);
@@ -421,7 +418,7 @@ public class MemberController {
 			emailSender.sendEmail(email);
 			result = 1;
 			model.addAttribute("result", result);
-			
+
 			return "member/memberAjax";
 		} else {
 			result = 0;
@@ -429,31 +426,35 @@ public class MemberController {
 			return "member/memberAjax";
 		}
 	}
-	
+
 	// 비밀번호 찾기 받은 이메일 링크 클릭시 회원정보 담기 
 	@RequestMapping(value = { "/updateEmailMemberInfoPwForm" }, method = RequestMethod.GET)
 	public String updateEmilMemberInfoPwForm(Model model, HttpServletRequest request, HttpSession session) {
 
 		Member m = memberService.getMember(request);
-				
+
 		session.setAttribute("member", m);
-		
+
 		model.addAttribute("member", m);
 		model.addAttribute("body", "member/findPass");
 
 		return "index";
 
 	}
-	
+
 	// 인증 메일 확인 및 체크
 	@RequestMapping("/checkMemberJoin.do")
-	public String checkMemberJoin(HttpServletRequest request, HttpServletResponse response, HttpSession session)throws Exception{
-		memberService.getSendCodeCheck(request, response, session);
-		return "index";
+	public ModelAndView checkMemberJoin(HttpServletRequest request, HttpServletResponse response, HttpSession session)throws Exception{
+		int result = memberService.getSendCodeCheck(request, response, session);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result", result);
+		System.out.println("checkMail 컨트롤러 : " + result);
+		mav.setViewName("member/checkMail");
+		return mav;
 	}
-	
-	
 
-	
-		
+
+
+
+
 }

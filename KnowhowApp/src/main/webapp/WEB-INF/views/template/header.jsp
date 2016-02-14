@@ -84,12 +84,12 @@
 						<img src="http://placehold.it/110x110" width="110px;" height="110px;">
 						</c:if>
 						<c:if test="${member.image ne null }">
-						<img src="resources/images/${member.image }" width="110px;" height="110px;">
+						<img id="myProfileImage" src="resources/images/${member.image }" width="110px;" height="110px;">
 						</c:if>
 					</div>
 					<div id="profile_nametag" class="col-sm-7 col-xs-12">
 						<div class="col-sm-12 col-xs-12">${member.nickName }</div>
-						<div class="col-sm-12 col-xs-12">${member.pComment }</div>
+						<div id="myProfileComment" class="col-sm-12 col-xs-12">${member.pComment }</div>
 						<div class="col-sm-12 col-xs-12">${member.lDate }</div>
 					</div>
 				</div>
@@ -105,7 +105,7 @@
 						Edit</button>
 					<button class="btn btn-default col-sm-3 col-xs-3"
 						onclick="startPosting()">Writing Post</button>
-					<button class="btn btn-default col-sm-3 col-xs-3">MyPost</button>
+					<button class="btn btn-default col-sm-3 col-xs-3" onclick="modalOpen('10')">MyPost</button>
 				</div>
 
 				<!-- 마이페이지 - 최근 본 knowhow -->
@@ -214,6 +214,10 @@
 		<jsp:include page="../member/profileModify.jsp"></jsp:include>
 	</div>
 
+	<div class="modal fade" id="myPostList">
+		<jsp:include page="../knowhow/myKnowhow.jsp"></jsp:include>
+	</div>
+	
 	<!-- 서버단 작업끝나면 modal fade 지울 페이지  , openModal() 추가해야함 -->
 	
 	<div class="modal fade" id="startPosting">

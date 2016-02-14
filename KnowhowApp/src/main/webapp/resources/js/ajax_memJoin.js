@@ -197,4 +197,50 @@ $(document).ready(function() {
 		}
 	});
 	});
+
+function joinAndSendEmail() {
+	
+	$.ajaxSettings.traditional = true; // 배열형식으로 넘기기
+	 // 폼 데이터 받기 or Append or 인자로 form id)
+	var formData = new FormData();
+	formData.append("id", $('#mj_id').val());
+	formData.append("pw", $('#mj_pass1').val());
+	formData.append("nickname", $('#mj_nickname').val());
+
+	$.ajax({
+		type : 'POST',
+		url : 'memberJoinProc',
+		data : formData,
+		processData : false,
+		contentType : false,
+
+		success : function(v) {
+			
+			// 성공처리(v는 서버로 받은 메시지, value)
+			alert("'" + v + "'로 인증 메일이 발송되었습니다. 인증 후 사이트 정상 이용이 가능합니다.");
+			
+		},
+		beforeSend : function() {
+
+			// 전송 전
+			// 이미지 보여주기
+			$('.wrap-loading').removeClass('display-none');
+			
+		},
+		error : function(request, status, error) {
+
+			// 에러 로직, 에러 로그 확인
+//			alert("code:" + request.status + "\n\n" + "message:"
+//					+ request.responseText + "\n\n" + "error:" + error);
+
+		},
+		complete : function() {
+			
+			location.href = "index";
+			
+		}
+	});
+	
+}
+	
 	
