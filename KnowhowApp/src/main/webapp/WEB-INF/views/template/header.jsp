@@ -85,7 +85,7 @@
 				<div id="profile_line" class="col-sm-12 col-xs-12 col-md-12">
 					<div id="profile_img" class="col-sm-5 col-xs-12">
 						<c:if test="${member.image eq null }">
-						<img src="http://placehold.it/110x110" width="110px;" height="110px;">
+						<img id="myProfileImage" src="http://placehold.it/110x110" width="110px;" height="110px;">
 						</c:if>
 						<c:if test="${member.image ne null }">
 						<img id="myProfileImage" src="resources/images/${member.image }" width="110px;" height="110px;">
@@ -109,7 +109,7 @@
 						Edit</button>
 					<button class="btn btn-default col-sm-3 col-xs-3"
 						onclick="startPosting()">Writing Post</button>
-					<button class="btn btn-default col-sm-3 col-xs-3" onclick="modalOpen('10')">MyPost</button>
+					<button class="btn btn-default col-sm-3 col-xs-3" onclick="modalOpen('11')">MyPost</button>
 				</div>
 
 				<!-- 마이페이지 - 최근 본 knowhow -->

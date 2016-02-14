@@ -205,16 +205,22 @@ public class MemberServiceImpl implements MemberService {
 
 	//로그인 세션을 잘못잡음 id와 패스워드만 잡아 놨음. 맴버 최근 접속 쿼리도 이상하여 수정. 
 	@Override
-	public int memberLoginCheck(String id, String pw, HttpServletRequest request, HttpSession session) {
+	public String memberLoginCheck(String id, String pw, HttpServletRequest request, HttpSession session) {
 
-		int result = 1;
-
+		String result = "a";
 		Member member = memberDao.memberLogin(id);
+		int bool = member.isState() ? 1:0;
 		System.out.println(member);
-		if (member == null || member.getId().equals("")) {
-			result = -1;
-		} else {
-			if (member.getPw().equals(pw)) {
+		System.out.println(member.isState());
+		System.out.println((String.valueOf(member.isState())));
+		if (member == null || member.getId().equals("") ) {
+			
+			result = "b";
+			System.out.println(result);
+		}else if (bool == 0){
+			result = "d";
+		}else {
+			if (member.getPw().equals(pw) && bool == 1) {
 				session.setAttribute("member", member);
 				System.out.println(member.getId());
 				int v_result = memberDao.getVcount(id);
@@ -222,10 +228,10 @@ public class MemberServiceImpl implements MemberService {
 					memberDao.updateVcount(member);
 				}
 				memberDao.updateLdate(member);
-				result = 0;
+				result = "c";
 			} else if (!member.getPw().equals(pw)) {
-				result = 1;
-			}
+				result = "a";
+			} 
 		}
 
 		return result;		
@@ -300,7 +306,7 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("(어플 저장함)sendCode : " + sendCode);
 		String reciver = id;
 		String subject = "안녕하세요 세상의 모든 노하우 KnowHow 입니다.";
-		String content = "KnowHow 회원가입 인증 - \nhttp://172.20.10.2:8181/KnowhowApp/checkMemberJoin.do?id="+id+"&code="+sendCode;
+		String content = "KnowHow 회원가입 인증 - \nhttp://localhost:8181/KnowhowApp/checkMemberJoin.do?id="+id+"&code="+sendCode;
 		
 		email.setReciver(reciver);
 		email.setSubject(subject);
@@ -331,6 +337,7 @@ public class MemberServiceImpl implements MemberService {
 		if(getCode.equals(sendCode)){
 			memberDao.acceptJoin(id);
 			result = 1;
+			request.setAttribute("isCheckEmail", "아");
 		}
 		
 		/*PrintWriter out = response.getWriter();*/
@@ -344,19 +351,18 @@ public class MemberServiceImpl implements MemberService {
 		out.println("</script>"); 
 		out.close();*/
 		
-		
-		
-		
 		return result;
 	}
 
 	@Override
 	public void getMyPostByViews(HttpServletRequest req, HttpSession session) {
 		Member m = (Member) session.getAttribute("member");
+		if(!m.getId().isEmpty() || m.getId() != null){
 		String id = m.getId();
 		List<Post> pList = null;
 		pList = memberDao.getMyPostByViews(id);
 		session.setAttribute("getMyPostByViews", pList);
+		}
 
 	}
 	// 내가 최근에 작성한 포인트

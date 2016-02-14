@@ -123,7 +123,7 @@
 									></span></a>
 							</div>
 							<div class="col-sm-10">
-								<input type="submit" id="mj_btn_submit"
+								<input type="button" id="mj_btn_submit" onclick="joinAndSendEmail()"
 									class="btn btn-success col-sm-12" value="등록하기">
 
 							</div>
