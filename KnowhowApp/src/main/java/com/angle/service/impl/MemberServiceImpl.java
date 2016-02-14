@@ -209,15 +209,15 @@ public class MemberServiceImpl implements MemberService {
 
 		String result = "a";
 		Member member = memberDao.memberLogin(id);
-		int bool = member.isState() ? 1:0;
+		
 		System.out.println(member);
-		System.out.println(member.isState());
-		System.out.println((String.valueOf(member.isState())));
 		if (member == null || member.getId().equals("") ) {
 			
 			result = "b";
 			System.out.println(result);
-		}else if (bool == 0){
+		}else{
+		int bool = member.isState() ? 1:0;
+		if (bool == 0){
 			result = "d";
 		}else {
 			if (member.getPw().equals(pw) && bool == 1) {
@@ -232,6 +232,7 @@ public class MemberServiceImpl implements MemberService {
 			} else if (!member.getPw().equals(pw)) {
 				result = "a";
 			} 
+		}
 		}
 
 		return result;		
