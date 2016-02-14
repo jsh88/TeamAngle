@@ -181,6 +181,7 @@
 			
 			#addDialog{
 				width: 760px;
+				margin-top: 120px;
 			}
 			
 			.btnDialog{
@@ -459,7 +460,8 @@
 		.tags{
 			color: white;
 			font-style: italic;
-			padding-right: 10px;
+			display:inline-block;
+			word-break: break-all;
 		}
 		
 		#Tagbox{

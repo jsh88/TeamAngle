@@ -223,8 +223,8 @@
 				<input type="text" name="tag" id="tagtext" size="57" />
 			</div>
 			<div id="w">
-				<span id="s">&nbsp; - 특수문자나 영어는 사용할 수 없습니다.</span> <span id="k">&nbsp;
-					- 태그를 입력해 주세요.</span>
+				<span id="s">&nbsp; - Can not use special characters or English</span> <span id="k">&nbsp;
+					- Please enter a tag</span>
 			</div>
 			<div id="ReTag">
 				<c:set var="isDoing" value="true" />
