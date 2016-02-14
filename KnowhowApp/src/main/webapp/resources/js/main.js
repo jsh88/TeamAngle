@@ -522,6 +522,47 @@ function delTempPost(me, pNo) {
 	});
 }
 
+function modifyPostStart(pNo) {
+	
+	$.ajaxSettings.traditional = true;
+	var formData = new FormData();
+	formData.append("pno", pNo);
+
+	$.ajax({
+		type : 'GET',
+		url : 'startModify',
+		data : formData,
+		processData : false,
+		contentType : false,
+		success : function(responseData, statusText, xhr) {
+
+			var result = responseData;
+
+			$("#startModify").modal();
+			$("#startModalDialog").html(result);
+
+		},
+		beforeSend : function() {
+
+			// 이미지 보여주기
+			$('.wrap-loading').removeClass('display-none');
+
+		},
+		error : function(request, status, error) {
+
+			// alert("code:" + request.status + "\n\n" + "message:"
+			// + request.responseText + "\n\n" + "error:" + error);
+
+		},
+		complete : function() {
+
+			// 이미지 감추기 처리
+			$('.wrap-loading').addClass('display-none');
+
+		}
+	});
+}
+
 function loginOpen() {
 	$("#lg_findId").hide();
 	$("#lg_findPass").hide();
@@ -533,6 +574,7 @@ function loginOpen() {
 	$("#loginPage").modal();
 	
 }
+
 function returnLoginForm(num) {
 	
 	if(num == "1") {
@@ -545,6 +587,7 @@ function returnLoginForm(num) {
 		
 	}
 }
+
 function findChecker(i) {
 	$("#lg_content").slideUp(500);
 	if(i == "1") {
@@ -553,7 +596,6 @@ function findChecker(i) {
 		$("#lg_findPass").delay(1000).slideDown(1000);
 		
 	}
-	
 }
 
 function modalOpen(selModal) {
@@ -595,6 +637,10 @@ function modalOpen(selModal) {
 
 		modal = "addKnowhow";
 
+	} else if (selModal == "10") {
+		
+		modal = "modifyKnowhow";
+		
 	}
 
 	$("#" + modal).modal('show');

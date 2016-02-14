@@ -41,7 +41,7 @@ public class PostController {
 	public String startPosting(HttpServletRequest request, HttpSession session) {
 
 		postService.getTempPostList(request, session);
-		
+
 		return "knowhow/innerStartPosting";
 	}
 
@@ -76,31 +76,30 @@ public class PostController {
 
 	// 포스트 수정 시작
 	@RequestMapping(value = "startModify", method = RequestMethod.GET)
-	public String modifyStart(HttpServletRequest request, HttpSession session)
+	public String startModify(HttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
 		postService.getPost(request, session);
 
-		return "knowhow/startModify";
+		return "knowhow/innerStartModify";
 	}
 
 	// 포스트 수정 페이지로
-	@RequestMapping(value = "modifyPost")
-	public String modifyPost(HttpServletRequest request, HttpSession session)
-			throws IllegalStateException, IOException {
-
-		return "knowhow/modifyKnowhow";
-	}
+//	@RequestMapping(value = "modifyPost")
+//	public String modifyPost(HttpServletRequest request, HttpSession session)
+//			throws IllegalStateException, IOException {
+//
+//		return "knowhow/innerModifyKnowhow";
+//	}
 
 	// 포스트 타이틀 수정
 	@RequestMapping(value = "modifyTitle")
-	@ResponseBody
 	public String modifyTitle(HttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
 		postService.modifyTitle(request, session);
 
-		return "success"; // ajax
+		return "knowhow/innerModifyKnowhow"; // ajax
 	}
 
 	// 포스트 삭제
@@ -133,13 +132,14 @@ public class PostController {
 	}
 
 	// 임시 포스트 리스트 가져오기
-//	@RequestMapping(value = "getTempPost")
-//	public String getTempPostList(HttpServletRequest request, HttpSession session) {
-//
-//		postService.getTempPostList(request, session);
-//
-//		return null; // 어디로 가야하오
-//	}
+	// @RequestMapping(value = "getTempPost")
+	// public String getTempPostList(HttpServletRequest request, HttpSession
+	// session) {
+	//
+	// postService.getTempPostList(request, session);
+	//
+	// return null; // 어디로 가야하오
+	// }
 
 	// 포스트 작성 완료, ajax
 	@RequestMapping(value = "completeWrite", method = RequestMethod.POST)
@@ -158,8 +158,8 @@ public class PostController {
 			throws IllegalStateException, IOException {
 
 		postService.completeModify(request, session);
-
-		return "success"; // ajax
+		
+		return "knowhow/innerAddTag"; // ajax
 	}
 
 	// 포스트 작성 완료, ajax
