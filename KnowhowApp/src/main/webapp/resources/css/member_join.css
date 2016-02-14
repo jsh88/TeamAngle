@@ -1,16 +1,35 @@
 @CHARSET "UTF-8";
-
-#mj_content {
-	height: 200px;
+.mj_dialog_body {
+	margin-top: 200px;
+}
+#mj_content { 
+	
+	height: 300px;
 	width: 550px;
 	margin: 0 auto;
+	border: 10px solid #535353;
 }
+#mj_head h3 {
+	padding: 0;
+	margin: 0;
+	margin-top: 30px;
+}
+#mj_head p {
+	padding: 0;
+	margin: 0;
+	margin-top: 5px;
+}
+
 
 #mj_btn_right, #mj_btn_left {
 	text-size: 100px;
 	color: black;
 }
+#mjForm {
+	margin-top: 120px;
+}
 
-#mdf #mj_btn_submit {
-	
+/* 상단바 icon */
+.icon-solt-memJoin-top {
+	margin-top: 10px;
 }

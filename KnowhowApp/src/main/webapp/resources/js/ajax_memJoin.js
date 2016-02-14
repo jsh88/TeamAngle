@@ -163,7 +163,7 @@ $(document).ready(function() {
 			$("#mj_btn_right").hide();
 			/*$("#submit 버튼id ").attr("disabled", "disabled");*/
 		} else {
-			$("#mj_pass1").css("border", "2px solid green");
+			$("#mj_pass1").css("border", "2px solid lime");
 			$("#mj_btn_right").show();
 		}	
 	});

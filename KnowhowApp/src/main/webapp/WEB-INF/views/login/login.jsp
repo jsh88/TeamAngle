@@ -42,7 +42,9 @@ function findChecker(i) {
 }
 </script>
 <style>
-
+.login_dialog_body {
+	margin-top: 200px;
+}
 #lg_content {
 margin: 0 auto;
 	width: 500px;
@@ -83,7 +85,7 @@ margin: 0 auto;
 
 </head>
 <body>
-	<div class="modal-dialog">
+	<div class="modal-dialog login_dialog_body">
 			<div id="lg_content" class="modal-content">
  				<form class="form" action="logincheck.do" method="post">
 					

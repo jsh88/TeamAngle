@@ -5,19 +5,26 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<script>
+	/* close icon 펑션 */
+		
+</script>
 <style>
+/* * { border: 1px solid black;} */
 </style>
 </head>
 <body>
-	<div class="modal-dialog">
+	<div class="modal-dialog mj_dialog_body" >
 		<form name="mjoin" action="memberJoinProc" method="post" onsubmit="return valInputDate();">
 			<div class="modal-content" id="mj_content">
-
+				<div id="closeimg" onclick="iconClickGo(1)"><img style="width:20px;" src="resources/images/close.png"/></div>
+				
 				<div  class="modal-body">
-					<div id="mj_head" class="col-sm-offset-1 col-sm-6">
+					<div id="mj_head" class="col-sm-offset-1 col-sm-11">
 						<h3>
 							<b>P</b>lease. <b>S</b>ign <b>i</b>n.
 						</h3>
+						<p>This is a form registering . Please enter your information.</p>
 					</div>
 
 					<div id="mjForm" class="carousel slide" data-interval="false">

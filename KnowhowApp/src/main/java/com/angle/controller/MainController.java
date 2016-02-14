@@ -16,4 +16,9 @@ public class MainController {
 
 		return "intro";
 	}
+	
+	@RequestMapping(value ={"myPostList"})
+	public String myPostList() {
+		return "knowhow/myKnowhow";
+	}
 }
