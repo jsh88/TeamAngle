@@ -523,16 +523,38 @@ function delTempPost(me, pNo) {
 }
 
 function loginOpen() {
-	
+	$("#lg_findId").hide();
+	$("#lg_findPass").hide();
+
 	if ($("#lg_content").css("display") == "none") {
 		$("#lg_content").show();
-		$("#lg_findId").hide();
-		$("#lg_findPass").hide();
 	}
 	
 	$("#loginPage").modal();
 	
-}	
+}
+function returnLoginForm(num) {
+	
+	if(num == "1") {
+		$("#lg_findId").slideUp(500);
+		$("#lg_content").delay(1000).slideDown(1000);
+		
+	} else if(num == "2") {
+		$("#lg_findPass").slideUp(500);
+		$("#lg_content").delay(1000).slideDown(1000);
+		
+	}
+}
+function findChecker(i) {
+	$("#lg_content").slideUp(500);
+	if(i == "1") {
+		$("#lg_findId").delay(1000).slideDown(1000);
+	} else if(i == "2") {
+		$("#lg_findPass").delay(1000).slideDown(1000);
+		
+	}
+	
+}
 
 function modalOpen(selModal) {
 

@@ -5,38 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script>
-$(document).ready(function (){
-	
-		$("#lg_content").show();
-		$("#lg_findId").hide();
-		$("#lg_findPass").hide();
-
-/* 예외처리 */
-
-function returnLoginForm(num) {
-	
-	if(num == "1") {
-		$("#lg_findId").slideUp(500);
-		$("#lg_content").delay(1000).slideDown(1000);
-		
-	} else if(num == "2") {
-		$("#lg_findPass").slideUp(500);
-		$("#lg_content").delay(1000).slideDown(1000);
-		
-	}
-}
-function findChecker(i) {
-	$("#lg_content").slideUp(500);
-	if(i == "1") {
-		$("#lg_findId").delay(1000).slideDown(1000);
-	} else if(i == "2") {
-		$("#lg_findPass").delay(1000).slideDown(1000);
-		
-	}
-	
-}
-</script>
 <style>
 .login_dialog_body {
 	margin-top: 200px;
