@@ -341,7 +341,7 @@ function morePost(postNo) {
 		success : function(responseData, statusText, xhr) {
 			
 			alert("성공");
-			modalOpen(6);
+			modalOpen(8);
 			var result = responseData;
 			$('#detailDialog').html(result);
 			
@@ -376,6 +376,8 @@ function morePost(postNo) {
 function modalOpen(selModal) {
 
 	var modal = "";
+	
+	alert(selModal);
 
 	if (selModal == "1") {
 		
@@ -384,35 +386,40 @@ function modalOpen(selModal) {
 		$("#mj_id").show();
 		$("#mj_btn_submit").hide();
 		
-	} else if(selModal == "2") {
+	} else if(selModal == "5") {
 		
 		modal = "startPosting";
 		
-	} else if(selModal == "3") {
+	} else if(selModal == "6") {
 		
 		modal = "startModify";
 		
-	} else if(selModal == "4") {
+	} else if(selModal == "7") {
 		
 		modal = "addTag";
 		
-	} else if(selModal == "5") {
+	} else if(selModal == "8") {
 		
 		modal = "knowhowDetail";
 		
-	}
+	} else if (selModal == "2") {
 		
-//	} else if (i == "2") {
-//		modal = "loginPage";		
-//	} else if (i == "3") {
-//		modal = "memModifyPage";
-//	} else if (i == "4") {
-//		modal = "profileModifyPage";
-//	} else if (i == "5") {
-//		modal = "startPostingPage";
-//	} else if (i == "6") {
-//		modal = "knowhowDetailPage";
-
-	$("#" + modal).modal();
+		alert("2");
+		
+		modal = "loginPage";	
+		
+	} else if (selModal == "3") {
+		
+		modal = "memModifyPage";
+		
+	} else if (selModal == "4") {
+		
+		modal = "profileModifyPage";
+		
+	}
+	
+	alert(modal);
+	
+	$("#" + modal).modal('show');
 	
 }

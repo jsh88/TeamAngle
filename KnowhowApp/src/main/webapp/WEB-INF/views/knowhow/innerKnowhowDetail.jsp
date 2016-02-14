@@ -195,6 +195,16 @@
 				$(".p"+detailPrePagingCount).css("width","50");
 			});
 			
+			$("#inputCom").on("keypress", function(key){
+				
+				if(key.keyCode == 13) {
+					
+					addComment();
+					
+				}
+				
+			});
+			
 		});
 		
 		function replaceAll(str, target, replacement) {
@@ -479,7 +489,7 @@
     <div class="modal-content" id="detailContent">
 					<div id="detailWrap">
 					<div class="modal-header" id="header">
-						<div id="closeimg"><a href="javascript:window.close()"><img style="width:20px;" src="resources/images/close.png"/></a></div>
+						<div id="closeimg"><a href="javascript:$('#knowhowDetail').modal('hide');"><img style="width:20px;" src="resources/images/close.png"/></a></div>
 						<div id="detailTitle">${post.title }</div>
 						<div id="createDate"><img style="width:30px;" src="resources/images/wDate.png">&nbsp;${post.wDate }</div>
 						<div id="writer"><img src="resources/images/writer.png">&nbsp;<a href="#">${post.nickName }</a></div>
@@ -670,7 +680,7 @@
 					<div id="replyDiv" style="overflow: auto; overflow-x:hidden;">
 						
 					</div>
-					<form name="replyForm" action="" method="post">
+					<form name="replyForm" action="" method="post" onsubmit="return false;">
 						<div id="replyContent">
 
 							<input type="text" class="form-control replybox" id="inputCom" name="reply">
