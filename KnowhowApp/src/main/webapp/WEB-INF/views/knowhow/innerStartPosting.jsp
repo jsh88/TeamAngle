@@ -13,11 +13,11 @@
 		<div class="hideListContent" onclick="modifyTempPost('${post.pNo}')">
 			<div class="Title">
 				<a href="#" class="atitle">${post.title }</a>
-				<div class="contentimg" onclick="delTempPost('${post.pNo}')">
+				<div class="contentimg" onclick="delTempPost(this, '${post.pNo}')">
 					<img style="width: 15px;" src="resources/images/close.png" />
 				</div>
 			</div>
-			<div class="pageNum">${post.mPage }</div>
+			<div class="pageNum">MaxPage : ${post.mPage }</div>
 			<div class="saveDate">Saved : ${post.tDate }</div>
 			<div class="createDate">Created : ${post.wDate }</div>
 		</div>

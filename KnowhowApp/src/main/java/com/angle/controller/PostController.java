@@ -104,12 +104,13 @@ public class PostController {
 	}
 
 	// 포스트 삭제
-	@RequestMapping(value = "delPost", method = RequestMethod.GET)
+	@RequestMapping(value = "delPost", method = RequestMethod.POST)
+	@ResponseBody
 	public String delPost(HttpServletRequest request) {
 
 		postService.delPost(request);
 
-		return null; // 어디로 가야하오
+		return "success"; // 어디로 가야하오
 
 	}
 
@@ -132,23 +133,22 @@ public class PostController {
 	}
 
 	// 임시 포스트 리스트 가져오기
-	@RequestMapping(value = "getTempPost")
-	public String getTempPostList(HttpServletRequest request, HttpSession session) {
-
-		postService.getTempPostList(request, session);
-
-		return null; // 어디로 가야하오
-	}
+//	@RequestMapping(value = "getTempPost")
+//	public String getTempPostList(HttpServletRequest request, HttpSession session) {
+//
+//		postService.getTempPostList(request, session);
+//
+//		return null; // 어디로 가야하오
+//	}
 
 	// 포스트 작성 완료, ajax
 	@RequestMapping(value = "completeWrite", method = RequestMethod.POST)
-	@ResponseBody
 	public String completeWrite(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
 		postService.completeWrite(request, session);
 
-		return "success"; // ajax
+		return "knowhow/innerAddTag"; // ajax
 	}
 
 	// 포스트 수정 완료, ajax

@@ -340,12 +340,9 @@ function morePost(postNo) {
 
 		success : function(responseData, statusText, xhr) {
 			
-			alert("성공");
 			modalOpen(8);
 			var result = responseData;
 			$('#detailDialog').html(result);
-			
-			// 성공처리(v는 서버로 받은 메시지, value)
 			
 		},
 		beforeSend : function() {
@@ -365,11 +362,9 @@ function morePost(postNo) {
 		complete : function() {
 
 			// 이미지 감추기 처리
-//				$(location).attr('href', "이동할 페이지");
 			$('.wrap-loading').addClass('display-none');
-			alert("완료");
 
-		}				
+		}
 	});
 }
 
@@ -462,9 +457,10 @@ function addKnowhow(){
 			$('.wrap-loading').addClass('display-none');
 
 		}
-	});
-	
+	});	
 }
+
+
 
 // startPosting -> 임시 포스트 불러오기
 function modifyTempPost(pNo) {
@@ -473,23 +469,46 @@ function modifyTempPost(pNo) {
 	
 }
 
-function delTempPost(pNo) {
+function delTempPost(me, pNo) {
 	
-	
-	
-}
+	$.ajaxSettings.traditional = true;
+	var formData = new FormData();
+	formData.append("pno", pNo);
 
-function savePosting(pNo) {
-	
-	
-	
-}
+	$.ajax({
+		type : 'POST',
+		url : 'delPost',
+		data : formData,
+		processData : false,
+		contentType : false,
+		success : function(responseData, statusText, xhr) {
+			
+			var result = responseData;
+			
+			alert("Delete! Temp Post.");
+			$(me).parent('div').parent('div').next().remove();
+			$(me).parent('div').parent('div').remove();	
+			
+		},
+		beforeSend : function() {
 
-// addknowhow -> x 버튼 누르면 임시 저장후 모달 끄기
-function saveAndCanclePosting(pNo) {
-	
-	
-	
+			// 이미지 보여주기
+			$('.wrap-loading').removeClass('display-none');
+
+		},
+		error : function(request, status, error) {
+
+//				alert("code:" + request.status + "\n\n" + "message:"
+//						+ request.responseText + "\n\n" + "error:" + error);
+
+		},
+		complete : function() {
+
+			// 이미지 감추기 처리
+			$('.wrap-loading').addClass('display-none');
+
+		}
+	});
 }
 
 function modalOpen(selModal) {

@@ -209,7 +209,7 @@ public class MemberController {
 		session.setAttribute("lately", lately) ;
 		List<Post> most = (List<Post>)memberService.getMyMostLookupPost(id);
 		session.setAttribute("most", most);
-		return mav;		
+		return mav;
 		
 	}
 	
