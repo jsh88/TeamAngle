@@ -376,7 +376,7 @@ function morePost(postNo) {
 function modalOpen(selModal) {
 
 	var modal = "";
-	
+
 	if (selModal == "1") {
 		
 		modal = "memJoinPage";
