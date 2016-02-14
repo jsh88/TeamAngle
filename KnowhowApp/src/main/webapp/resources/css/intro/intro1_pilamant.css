@@ -1,0 +1,104 @@
+@CHARSET "UTF-8";
+
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,700);
+
+#intro1_container {
+	width:auto;
+}
+.intro1_pil_margin1 {
+	margin-left: 20%;
+	margin-top: 50%;
+}
+.intro1_pil_margin2 {
+	margin-left: 30%;
+	margin-top: 50%;
+}
+
+.intro1_stick {
+padding: 0;
+width: 30px;
+height:3px;
+display:inline-block;
+}
+
+
+.intro1_stick:nth-child(n) {  
+	float:left;
+	background-color: white;
+  transform:rotate(30deg);
+  -ms-transform:rotate(30deg); /* IE 9 */
+  -webkit-transform:rotate(30deg); /* Safari and Chrome */
+   -moz-transform:rotate(30deg);
+   -webkit-animation: intro1_fall 2s infinite;
+   -moz-animation: intro1_fall 2s infinite;
+
+}
+.intro1_stick:nth-child(2n) {  
+	float:left;
+   transform:rotate(-30deg);
+  -ms-transform:rotate(-30deg); /* IE 9 */
+  -webkit-transform:rotate(-30deg); /* Safari and Chrome */
+  -moz-transform:rotate(-30deg);
+  -webkit-animation: intro1_rise 2s infinite;
+  -moz-animation: intro1_rise 2s infinite;
+
+}
+
+@-webkit-keyframes intro1_rise {
+  50% { transform:rotate(30deg);
+  -ms-transform:rotate(30deg) ; /* IE 9 */
+  -webkit-transform:rotate(30deg);
+  -moz-transform:rotate(30deg);
+    ;}
+}
+@-moz-keyframes intro1_rise {
+ 50% { transform:rotate(30deg); 
+  -ms-transform:rotate(30deg); /* IE 9 */
+  -webkit-transform:rotate(30deg);
+   -moz-transform:rotate(30deg); 
+}
+}
+@-o-keyframes intro1_rise {
+  50% { transform:rotate(30deg);
+  -ms-transform:rotate(30deg); /* IE 9 */
+  -webkit-transform:rotate(30deg);
+  -moz-transform:rotate(30deg); 
+}
+@keyframes intro1_rise {
+  50% { transform:rotate(30deg);
+  -ms-transform:rotate(30deg); /* IE 9 */
+  -webkit-transform:rotate(30deg);
+  -moz-transform:rotate(30deg);
+}
+}}
+
+@-webkit-keyframes intro1_fall {
+  50% { transform:rotate(-30deg);background-color: yellow;
+  -ms-transform:rotate(-30deg); background-color: yellow;/* IE 9 */
+  -webkit-transform:rotate(-30deg);background-color: yellow;
+  -moz-transform:rotate(-30deg); background-color: yellow;
+}
+}
+@-moz-keyframes intro1_fall {
+ 50% { transform:rotate(-30deg);background-color: yellow;
+  -ms-transform:rotate(-30deg);background-color: yellow; /* IE 9 */
+  -webkit-transform:rotate(-30deg);background-color: yellow;
+  -moz-transform:rotate(-30deg); background-color: yellow;
+ 
+ }
+}
+@-o-keyframes intro1_fall {
+  50% { transform:rotate(-30deg);background-color: yellow;
+  -ms-transform:rotate(-30deg); background-color: yellow;/* IE 9 */
+  -webkit-transform:rotate(-30deg);background-color: yellow;
+   -moz-transform:rotate(-30deg); background-color: yellow;
+
+  }
+@keyframes intro1_fall {
+  50% { transform:rotate(-30deg);background-color: yellow;
+  -ms-transform:rotate(-30deg); background-color: yellow;/* IE 9 */
+  -webkit-transform:rotate(-30deg);background-color: yellow;
+  -moz-transform:rotate(-30deg); background-color: yellow;
+
+  }
+}}

@@ -1,0 +1,166 @@
+@CHARSET "UTF-8";
+.intro4_dama_bolt {
+	margin-top: 5px;
+	border-radius: 5px 5px 5px 5px;
+	background-color: white;
+}
+.intro4_dama_bolt1 {
+	width: 80px;
+	height: 15px;
+}
+.intro4_dama_bolt2 {
+	width: 60px;
+	height: 15px;
+	margin-left: 10px;
+}
+
+.intro4_dama_nemo {
+	z-index: 3;
+	position: absolute;
+	height: 80px;
+	margin-left: 150px;	
+}
+/* 전구 */
+.dama_wrap { height: 260px;}
+.dama_cir1 {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	border-radius: 100%;
+	background-color: white;
+	margin-left: 93px;
+	margin-top: 5px;
+	z-index: 5;
+}
+.dama_cir2 {
+	position: relative;
+	z-index: 3;
+	width: 210px;
+	height: 210px;
+	border-radius: 100%;
+	margin-left: 88px;
+}
+.dama_cir3 {
+	z-index: 5;
+	position: absolute;
+	width: 82px;
+	height: 60px;
+	margin-top: 135px;
+	margin-left: 58px;
+	border-left: 5px solid navy;
+	border-right: 5px solid navy;
+}
+
+.centered { display:table; margin-left:auto; margin-right:auto; }
+
+.in_pil_margin1 {
+	position: absolute;
+	z-index: 5;
+	margin-top: 120px;
+	margin-left: 42px;
+}
+
+.in_stick {
+
+padding: 0;
+width: 19px;
+height:5px;
+display:inline-block;
+}
+#in_content {
+	
+	width: 196px;
+}
+
+.in_stick:nth-child(n) {  
+	float:left;
+	background-color: red;
+ 	 transform:rotate(30deg);
+  -ms-transform:rotate(30deg); /* IE 9 */
+  -webkit-transform:rotate(30deg); /* Safari and Chrome */
+   -moz-transform:rotate(30deg);
+   -webkit-animation: fall 2s infinite;
+   -moz-animation: fall 2s infinite;
+
+}
+.in_stick:nth-child(2n) {  
+	float:left;
+   transform:rotate(-30deg);
+  -ms-transform:rotate(-30deg); /* IE 9 */
+  -webkit-transform:rotate(-30deg); /* Safari and Chrome */
+  -moz-transform:rotate(-30deg);
+  -webkit-animation: rise 2s infinite;
+  -moz-animation: rise 2s infinite;
+  background-color: tomato;
+
+}
+.dama {
+	animation: bigger 5s infinite;
+}
+@-webkit-keyframes rise {
+50% { transform:rotate(30deg); background-color: yellow;
+  -ms-transform:rotate(30deg);background-color: yellow;/* IE 9 */
+  -webkit-transform:rotate(30deg);background-color: yellow;
+  -moz-transform:rotate(30deg);background-color: yellow;
+    ;}
+}
+@-moz-keyframes rise {
+ 50% { transform:rotate(30deg); background-color:white;
+  -ms-transform:rotate(30deg);background-color:white;/* IE 9 */
+  -webkit-transform:rotate(30deg);background-color:white;
+  -moz-transform:rotate(30deg);background-color:white;
+}
+}
+@-o-keyframes rise {
+  50% { transform:rotate(30deg); background-color: yellow;
+  -ms-transform:rotate(30deg);background-color: yellow;/* IE 9 */
+  -webkit-transform:rotate(30deg);background-color: yellow;
+  -moz-transform:rotate(30deg);background-color: yellow;
+}
+@keyframes rise {
+  50% { transform:rotate(30deg); background-color: yellow;
+  -ms-transform:rotate(30deg);background-color: yellow;/* IE 9 */
+  -webkit-transform:rotate(30deg);background-color: yellow;
+  -moz-transform:rotate(30deg);background-color: yellow;
+}
+}}
+
+@-webkit-keyframes fall {
+  50% { transform:rotate(-30deg);background-color: yellow;
+  -ms-transform:rotate(-30deg); background-color: yellow;/* IE 9 */
+  -webkit-transform:rotate(-30deg);background-color: yellow;
+  -moz-transform:rotate(-30deg); background-color: yellow;
+}
+}
+@-moz-keyframes fall {
+ 50% { transform:rotate(-30deg);background-color: yellow;
+  -ms-transform:rotate(-30deg);background-color: yellow; /* IE 9 */
+  -webkit-transform:rotate(-30deg);background-color: yellow;
+  -moz-transform:rotate(-30deg); background-color: yellow;
+ 
+ }
+}
+@-o-keyframes fall {
+  50% { transform:rotate(-30deg);background-color: yellow;
+  -ms-transform:rotate(-30deg); background-color: yellow;/* IE 9 */
+  -webkit-transform:rotate(-30deg);background-color: yellow;
+   -moz-transform:rotate(-30deg); background-color: yellow;
+
+  }
+@keyframes fall {
+  50% { transform:rotate(-30deg);background-color: yellow;
+  -ms-transform:rotate(-30deg); background-color: yellow;/* IE 9 */
+  -webkit-transform:rotate(-30deg);background-color: yellow;
+  -moz-transform:rotate(-30deg); background-color: yellow;
+
+  }
+}}
+@keyframes lighting_div {
+	
+}
+@keyframes bigger {
+	0% { transform: scale(1, 1); background-color: red; opacity: 0.6;}
+	50% { transform: scale(1.5, 1.5); background-color: yellow; opacity: 1; }
+	100% { transform: scale(0.7, 0.7); background-color: tomato; opacity: 0.6; }
+}
+/*#9932cc 보라색*/

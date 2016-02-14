@@ -1,0 +1,122 @@
+@CHARSET "UTF-8";
+/*  * { border: 1px solid black;}
+  */
+.intro1_top {
+	height: 30px;
+}
+.intro1_skip {
+	width: 250px;
+}
+/* .col-xs-12 { margin-top: 5px; }
+.col-sm-12 { margin-top: 5px; }
+.col-md-12 { margin-top: 10px; } 
+.col-lg-12 { margin-top: 20px; } */
+ 
+.intro1_text {
+	text-align: center;
+}
+.intro1_color1 {
+	color: white;
+}
+.intro1_margin {
+	margin: 0 auto;
+}
+
+.intro1_left {
+	margin-left: 50px;
+}
+.intro1_right {
+	margin-right: 100px; 
+}
+
+.b1 {
+	font-size: 120px;
+	color: white;
+}
+.b2 {
+	font-size: 140px;
+	color: white;
+}
+.intro1_wrap {
+	overflow-y:hidden;
+	overflow-x:hidden;
+	background-color: #7398d2;
+	height: 100%;
+	
+}
+.intro1_title {
+	font-size: 100px;
+	font-weight: 800;
+}
+
+.circle1 {
+	position: absolute;
+    text-align:center; 
+    line-height: 7.5em;
+}
+
+.bubble1 {
+    transition: transform 4s ease;
+    outline: 1px solid transparent;
+}
+.bubble2 {
+    transition: transform 1s ease;
+    outline: 1px solid transparent;
+}
+
+
+.size1 {
+	border: 3px solid #378cbf;
+	height:7em; 
+	width:7em; 
+	border-radius:7em; 
+     -webkit-border-radius:7em; 
+     -moz-border-radius:7em;
+    
+	}
+.size2 {
+	border: 5px solid #9F81F7;
+	height:8em; 
+	width:8em;
+	border-radius:8em; 
+     -webkit-border-radius:8em; 
+     -moz-border-radius:8em;
+     margin-left: 130px;
+}
+.size3 {
+	border: 7px solid white;
+	height:9em; 
+	width:9em;
+	border-radius:9em; 
+     -webkit-border-radius:9em; 
+     -moz-border-radius:9em;
+}
+.size4 {
+	border: 2px solid #58ACFA;
+	height:10em; 
+	width:10em;
+	border-radius:10em; 
+     -webkit-border-radius:10em; 
+     -moz-border-radius:10em;
+     margin-left: 60px;
+}
+.size5 {
+	border: 4px solid #BE81F7;
+	height:22em; 
+	width:22em;
+	border-radius:11em; 
+     -webkit-border-radius:11em; 
+     -moz-border-radius:11em;
+}
+.size6 {
+	border: 6px solid #A9D0F5;
+	height:30em; 
+	width:30em;
+	border-radius:15em; 
+     -webkit-border-radius:15em; 
+     -moz-border-radius:15em;
+     margin-top: 60px;
+}
+.btn_color_white {
+	color: white;
+}

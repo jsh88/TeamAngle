@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+.ani-bubble1 {
+	-webkit-animation: bubble1 8s infinite alternate;
+	/* Chrome, Safari, Opera */
+	animation: bubble1 8s infinite alternate;
+	
+}
+.ani-bubble2 {
+	
+	-webkit-animation: bubble2 11s infinite alternate;
+	/* Chrome, Safari, Opera */
+	animation: bubble2 11s infinite alternate;
+}
+@-webkit-keyframes bubble1 { 
+	0% { transform: scale(-0.7, -0.7); border: 2px solid #A9D0F5; }
+	25% { transform: scale(-0.1, -0.1); }
+	50% { transform: scale(-0.3, -0.3); border: 4px solid #BE81F7;}
+	75% { transform: scale(-0.1, -0.1); }
+	100% { transform: scale(1, 1); border: 6px solid #58ACFA;}
+}
+@-webkit-keyframes bubble2 { 
+	0% { transform: scale(-0.5, -0.5); }
+	50% { transform: scale(1, 1); }
+	100% { transform: scale(-0.5, -0.5); }
+}

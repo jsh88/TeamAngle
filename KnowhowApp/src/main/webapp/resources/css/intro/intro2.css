@@ -1,0 +1,160 @@
+@CHARSET "UTF-8";
+/* *{border:1px solid;}
+ *//* intro2 css */
+.intro2_wrap {
+	background-color: #f4ae46;
+	overflow-y:hidden;
+	overflow-x:hidden;
+}
+.intro2_top {
+	margin-top: 150px;
+}
+/* 태그 padding */
+.intro2_tb {
+	padding: 0;
+}
+.intro2_text {
+	text-align: center;
+}
+/* tag weight */
+.intro2_f_w {
+	font-weight: 800;
+}
+
+/* 텍스트 세로 배치 */
+.intro2_f_height {
+	height: 110px;
+}
+.intro2_d_margin_auto {
+	margin: 0 auto;
+}
+.intro2_d_margin_top1 {
+	margin-top: 5px;
+}
+.intro2_d_margin_top2 {
+	margin-top: 15px;
+}
+.intro2_d_margin_top3 {
+	margin-top: 30px;
+}
+/* tag size */
+.intro2_size1 {
+	font-size: 100px;
+}
+.intro2_size2 {
+	font-size: 25px;
+}
+.intro2_size3 {
+	font-size: 13px;
+}
+.intro2_size4 {
+	font-size: 40px;
+}
+/* div float left */
+.intro2_d_left {
+	float: left;
+}
+/* text indent */
+.intro2_t_left {
+	text-align: left;
+}
+.intro2_t_right {
+	text-align: right;
+}
+.intro2_t_indent {
+	text-indent: 30px;
+}
+.intro2_circle {
+	position: absolute;
+    text-align:center; 
+    line-height: 15em;
+    transform: rotate(30deg);
+    animation: eyes 5s infinite;
+}
+.intro2_bor_1 {
+	border: 30px solid #ffe2c6;
+}
+.intro2_bor_2 {
+	border: 20px solid white;
+}
+.intro2_c_size1 {
+	height:40em; 
+	width:40em; 
+	border-radius:40em; 
+     -webkit-border-radius:40em; 
+     -moz-border-radius:40em;
+}
+.intro2_c_size2 {
+	height:30em; 
+	width:30em; 
+	border-radius:30em; 
+     -webkit-border-radius:30em; 
+     -moz-border-radius:30em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.intro2_semo {
+position: absolute;
+width: 0px;
+height: 0px;
+border-left: 180px solid transparent;
+border-right: 180px solid transparent;
+border-top: 260px solid red;
+transform: rotate(17deg);
+margin-left: 180px;
+margin-top: 70px;
+
+}
+
+.intro2_tag {
+	overflow: hidden;
+}
+
+/* 원 컬러 */
+.intro2_c_color_1 {
+	background-color: #ff8040;
+}
+.intro2_c_color_2 {
+	background-color: #ffffff;
+}
+/* 아이콘 컬러 */
+.g_color_red { color: red; }
+.g_color { color: #05b1b6; }
+.g_color1 { color: tomato;}
+.g_color2 { color: #05b1b6; border-radius: 6.5em; background-color: #80ff80;}
+
+/* 팝오버 창 안에 css */
+.popover-title {
+      background-color: #73AD21; 
+      color: #FFFFFF; 
+      font-size: 11px;
+      padding:0;
+      text-align:center;
+  }
+  .popover-content {
+  	background-image: url('http://superkts.com/img/css/bg0426.gif');
+  	width: 210px;
+  	height: 180px;
+  }
+  
+  @keyframes eyes {
+  	0% { transform: scaleY(0.1), rotate(30deg); }
+  	50% { transform: scaleY(1); }
+  	100% { transform: scaleY(0.1), rotate(30deg); }
+  }

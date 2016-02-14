@@ -11,4 +11,9 @@ public class MainController {
 
 		return "forward:getRecommendationTag";
 	}
+	@RequestMapping(value = { "intro" })
+	public String intro() {		
+
+		return "intro";
+	}
 }

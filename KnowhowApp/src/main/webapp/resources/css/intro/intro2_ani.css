@@ -1,0 +1,40 @@
+@CHARSET "UTF-8";
+.intro2_stick {  
+ 	transform-origin: 0% 0%;
+ 	transform:rotate(-90deg);
+  	-ms-transform:rotate(-90deg); /* IE 9 */
+ 	-webkit-transform:rotate(-90deg); /* Safari and Chrome */
+    -moz-transform:rotate(-90deg);
+    -webkit-animation: intro2_rise 2s infinite;
+    -moz-animation: intro2_rise 2s infinite;
+
+}
+
+@-webkit-keyframes intro2_rise {
+  50% { transform:rotate(30deg);
+  -ms-transform:rotate(30deg) ; /* IE 9 */
+  -webkit-transform:rotate(30deg);
+  -moz-transform:rotate(30deg);
+    ;}
+}
+@-moz-keyframes intro2_rise {
+ 50% { transform:rotate(30deg); 
+  -ms-transform:rotate(30deg); /* IE 9 */
+  -webkit-transform:rotate(30deg);
+   -moz-transform:rotate(30deg); 
+}
+}
+@-o-keyframes intro2_rise {
+  50% { transform:rotate(30deg);
+  -ms-transform:rotate(30deg); /* IE 9 */
+  -webkit-transform:rotate(30deg);
+  -moz-transform:rotate(30deg); 
+}
+@keyframes intro2_rise {
+  50% { transform:rotate(30deg);
+  -ms-transform:rotate(30deg); /* IE 9 */
+  -webkit-transform:rotate(30deg);
+  -moz-transform:rotate(30deg);
+}
+}
+

@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+.intro4_wrap {
+	background-color: #a0a0ff;
+	overflow-y:hidden;
+	overflow-x:hidden;
+}
+.intro4_m { margin: 0 auto; }
+.intro4_p {
+	padding: 0;
+}
+.intro4_t1 { margin-top: 140px;}
+.intro4_t2 { margin-top: 100px;}
+.intro4_t3 { margin-top: 80px;}
+.intro4_t4 { margin-top: 60px;}
+
+.intro4_position1 { position: absolute;}
+.intro4_position2 { position: relative; }
+.btn_go_web {
+	width: 300px;
+	background-color: white;
+	color: white;
+}
+.btn_anim {
+	animation: btn_color 4s infinite;
+}
+@keyframes btn_color {
+	0% { background-color: tomato;}
+	25% { background-color: #9932cc;}
+	50% { background-color: aqua;}
+	75% { background-color: #9932cc;}
+	100% { background-color: tomato;}
+}

@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+.sendport1 {
+	-webkit-animation: move_1 6s linear 2s infinite alternate; /* Chrome, Safari, Opera */
+    animation: move_1 6s linear 2s infinite alternate;
+}
+.sendport2 {
+	-webkit-animation: move_2 6s linear 2s infinite alternate; /* Chrome, Safari, Opera */
+    animation: move_2 6s linear 2s infinite alternate;
+}
+.bangbang {
+	animation: bang 3s linear 2s infinite alternate;
+}
+
+
+
+}
+@-webkit-keyframes move_1 {
+	
+	0% { color:#05b1b6; left:0px; }
+	50% { opacity: 0; }
+	100% { color:#80ff80; left:435px;  transform:rotate(360deg);}
+}
+@keyframes move_1 {
+	0% { color:#05b1b6; left:0px; }
+	50% { opacity: 0; }
+	100% { color:#80ff80; left:435px;  transform:rotate(360deg);}
+}
+@-webkit-keyframes move_2 {
+	
+	0% { color:tomato; left:0px; }
+	50% { opacity: 0; }
+	100% { color:#8000ff; left:-435px;  transform:rotate(360deg);}
+}
+@keyframes move_2 {
+	0% { color:tomato; left:0px; }
+	50% { opacity: 0; }
+	100% { color:#8000ff; left:-435px;  transform:rotate(360deg);}
+}
+@keyframes bang {
+	0% { transform: rotate(0deg); }
+	50% { transform: rotate(360deg); }
+	100% { transform: rotate(-0deg); }
+}
+
+
+
