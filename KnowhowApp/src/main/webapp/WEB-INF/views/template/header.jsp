@@ -164,6 +164,12 @@
 		</div>
 	</div>
 
+	<!-- loading 이미지 -->
+	
+	<div class="wrap-loading">
+		<div><img src="resources/images/294.gif"/></div>
+	</div>
+
 		
 	<!-- modal -->
 
