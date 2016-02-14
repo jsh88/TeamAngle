@@ -137,7 +137,7 @@ public class MemberController {
 
 	// 회원정보ID 수정 콜 부분
 	//버튼 누르면 계속 수정되게 되어 있었음 수정함. 아이디 검색하면서 수정이 되어버림.
-	@RequestMapping(value = { "/updateMemberInfoIdCheck.ajax" })
+	@RequestMapping(value = { "/updateMemberInfoId.ajax" })
 	public String updateMemberInfoId(Model model, HttpServletRequest request) throws IOException {
 
 		int result = memberService.checkId(request);
@@ -150,6 +150,7 @@ public class MemberController {
 	@RequestMapping(value="/updateMemberIdModify")
 	public String updateMemberIdModify(HttpServletRequest request, HttpSession session) throws IOException{
 		memberService.updateMemberInfoId(request, session);
+		session.invalidate();
 		return "redirect:./";
 	}
 
@@ -168,6 +169,7 @@ public class MemberController {
 	@RequestMapping(value="/updateMemberNickNameModify")
 	public String updateMemberNickNameModify(HttpServletRequest request, HttpSession session) throws IOException{
 		memberService.updateMemberInfoNickName(request, session);
+		session.invalidate();
 		return "redirect:./";
 	}
 
@@ -179,6 +181,7 @@ public class MemberController {
 		//		int result = memberService.checkPw(request);
 		//		model.addAttribute("result", result);
 		memberService.updateMemberInfoPw(request, session);
+		session.invalidate();
 		return "redirect:./";
 	}
 
@@ -203,6 +206,7 @@ public class MemberController {
 	public ModelAndView loginProc(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpServletRequest request, HttpSession session) {
 		int result = memberService.memberLoginCheck(id, pw, request, session);
 		System.out.println(result);
+	
 		ModelAndView mav = new ModelAndView();
 
 		mav.addObject("result", result);
@@ -370,10 +374,9 @@ public class MemberController {
 
 		int result = 0;
 
-		//		String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://192.168.0.31:8080/KnowhowApp/updateMemberInfoForm?id="+ id + "&check=true";
 		String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://192.168.0.31:8080/KnowhowApp/updateEmailMemberInfoPwForm?id="+ id + "&check=true";
-
-
+		//String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://10.1.0.214:8080/KnowhowApp/updateEmailMemberInfoPwForm?id="+ id + "&check=true";
+		
 		if(pw != null) {
 			email.setContent(msg);
 			email.setReciver(id);
@@ -410,7 +413,8 @@ public class MemberController {
 		int result = 0;
 
 		String msg = "아래 링크를 클릭하시면 회원탈퇴처리 됩니다.\nhttp://192.168.0.31:8080/KnowhowApp/deleteMemberJoin.do?id="+ id + "&deletecheck=true";
-
+		//String msg = "아래 링크를 클릭하시면 회원탈퇴처리 됩니다.\nhttp://10.1.0.214:8080/KnowhowApp/deleteMemberJoin.do?id="+ id + "&deletecheck=true";
+		
 		if(id != null) {
 			email.setContent(msg);
 			email.setReciver(id);

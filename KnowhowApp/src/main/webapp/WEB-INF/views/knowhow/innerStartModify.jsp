@@ -10,7 +10,7 @@
 
 	});
 
-	function modifyTitle() {
+	function modifyTitle2() {
 
 		modifyTitle = $("#modifyTitle").val();
 
@@ -32,7 +32,7 @@
 
 				$("#startModify").modal('hide');
 				$("#modifyKnowhow").modal();
-				$("#startModalDialog").html(result);
+				$("#modifyDialog").html(result);
 
 			},
 			beforeSend : function() {
@@ -74,7 +74,7 @@
 					</div>
 					<div id="startbuttonGroup">
 						<button type="button" class="btn btn-success addbtn"
-							id="startModifyBtn" onclick="modifyTitle()">
+							id="startModifyBtn" onclick="modifyTitle2()">
 							<b>Modify Post</b>
 						</button>
 					</div>

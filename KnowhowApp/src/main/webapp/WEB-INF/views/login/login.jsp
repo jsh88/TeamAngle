@@ -51,7 +51,7 @@ margin: 0 auto;
 <body>
 	<div class="modal-dialog login_dialog_body">
 			<div id="lg_content" class="modal-content">
- 				<form class="form" action="logincheck.do" method="post">
+ 				<form class="form"  method="post">
 					
 					<div class="modal-body" id="lg_mdb">
 						<button type="button" class="close" data-dismiss="modal">

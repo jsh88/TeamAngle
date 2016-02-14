@@ -340,8 +340,6 @@ function morePost(postNo) {
 	// 폼 데이터 받기 or Append or 인자로 form id)
 	var formData = new FormData();
 
-	alert(postNo);
-
 	formData.append("pno", postNo);
 	formData.append("page", 0);
 
@@ -529,7 +527,7 @@ function modifyPostStart(pNo) {
 	formData.append("pno", pNo);
 
 	$.ajax({
-		type : 'GET',
+		type : 'POST',
 		url : 'startModify',
 		data : formData,
 		processData : false,
@@ -539,7 +537,7 @@ function modifyPostStart(pNo) {
 			var result = responseData;
 
 			$("#startModify").modal();
-			$("#startModalDialog").html(result);
+			$("#startModifyDialog").html(result);
 
 		},
 		beforeSend : function() {
@@ -640,6 +638,10 @@ function modalOpen(selModal) {
 	} else if (selModal == "10") {
 		
 		modal = "modifyKnowhow";
+		
+	} else if (selModal == "11") {
+		
+		modal = "myPostList";
 		
 	}
 

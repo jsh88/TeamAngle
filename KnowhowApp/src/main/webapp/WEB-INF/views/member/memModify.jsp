@@ -68,7 +68,7 @@
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
 							<input type="hidden" id="h_id" name="h_id" value="${ member.id }" />
-							<input type="email" id="id" name="id" class="form-control">
+							<input type="email" id="edit_id" name="id" class="form-control">
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
 							<input type="submit" id="emailSubmit" class="btn btn-success col-sm-12  btn_choice" value="수정">
@@ -97,7 +97,7 @@
 							<span>Please.. changing password ..</span>
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="password" id="pass1" name="pass1"
+							<input type="password" id="edit_pass1" name="pass1"
 								class="form-control">
 						</div>
 						<div class="col-sm-1">
@@ -109,7 +109,7 @@
 
 						<div class="col-sm-offset-1 col-sm-10">
 
-							<input type="password" id="pass2" name="pass2"
+							<input type="password" id="edit_pass2" name="pass2"
 								class="form-control">
 						</div>
 						<div class="col-sm-1">
