@@ -93,19 +93,59 @@ $(function() {
 	});
 </script>
 <style>
+#profileDropWrap{
+	margin-top: 10px;
+}	
+
+#profileBlankLine{
+	height: 20px;
+}
+
 #profile_form {
 	height: 500px;
+	border: 10px solid #535353;
 }
 
 #dropbox {
-	border: 5px dashed #bfbcbc;
-	border-radius: 20px;
+	border: 4px dashed #BFBCBC;
+	border-radius: 6px;
 	height: 300px;
 	margin: 0 auto;
+	cursor: default;
+}
+
+#profileCloseImg{
+	margin-top: 10px;
+	float: right;
 }
 
 #closeBar {
 	height: 40px;
+}
+
+#profileLabel{
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#profile_pcom{
+	margin-bottom: 5px;
+}
+
+#profileModify{
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+#profile_Img{
+	width: 100%;
+	height: 100%;
+	display: block;
+	margin-left: -15px;
+	margin-right: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	position: absolute;
 }
 </style>
 
@@ -116,27 +156,22 @@ $(function() {
 
 			<div id="profile_form" class="modal-content col-sm-push-1 col-sm-10">
 
-				<div id="closeBar" class="col-sm-12">
-					<button type="button" class="close" data-dismiss="modal">
-						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-					</button>
-				</div>
+				<div id="profileCloseImg" onclick=""><img style="width:20px;" src="resources/images/close.png"/></div>
 
-				<div class="col-sm-12">
-					<div class="col-sm-12">
-					Drag &Drop
+				<div class="col-sm-12" id="profileDropWrap">
+					<div class="col-sm-12" >
 						<div id="dropbox" class="col-sm-push-1 col-sm-10" contenteditable="true">
-						<img id="profile_Img" style="max-width: 100%; height: auto;" />	
+						<img id="profile_Img" class="img-responsive" />	
 						</div>
 					</div>
-					<div class="col-sm-12">
+					<div class="col-sm-12" id="profileBlankLine">
 					</div>
 					<!-- 인삿말 등  -->
 					<div class="col-sm-12">
 						<div id="profile_pcomm" class="col-sm-12">
-							<label for="profile_pcom">Please you're comment</label> 
-							<input id="profile_pcom" type="text" name="pcomment" class="form-control col-sm-12"> <input type="button"
-								value="Profile Edit" class="btn btn-default col-sm-12" id="profileModify" >
+							<label for="profile_pcom" id="profileLabel">Please, your comment</label> 
+							<input id="profile_pcom" type="text" name="pcomment" class="form-control col-sm-12">
+							<input type="button" value="Profile Edit" class="btn btn-success col-sm-12" id="profileModify" >
 						</div>
 					</div>
 				</div>
