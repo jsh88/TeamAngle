@@ -13,14 +13,12 @@
 <script src="resources/js/ajax_myModfy.js"></script>
 <script src="resources/js/findPass.js"></script>
 <script src="resources/js/member.js"></script>
-<link rel="stylesheet" href="resources/css/addKnowhow.css">
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/css/knowhow.css">
 <link rel="stylesheet" href="resources/css/header.css">
 <link rel="stylesheet" href="resources/css/main.css">
 <link rel="stylesheet" href="resources/css/member_join.css">
 <link rel="stylesheet" href="resources/css/myKnowhow.css">
-<link rel="stylesheet" href="resources/css/startPosting.css">
 </head>
 <body>
 	<jsp:include page="template/header.jsp"></jsp:include>

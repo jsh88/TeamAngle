@@ -641,6 +641,10 @@ function modalOpen(selModal) {
 		
 		modal = "modifyKnowhow";
 		
+	} else if (selModal == "11") {
+		
+		modal = "myPostList";
+		
 	}
 
 	$("#" + modal).modal('show');
