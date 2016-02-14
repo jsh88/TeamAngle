@@ -337,7 +337,7 @@
 
 	}
 
-	function complete() {
+	function completeWrite() {
 
 		for (var s = 0; s < addMaxPage; s++) {
 			if ($("#ta" + addPagingCount).val() == "") {
@@ -367,9 +367,13 @@
 			data : formData,
 			processData : false,
 			contentType : false,
-			success : function(v) {
-
-				alert("성공이다해!")
+			success : function(responseData, statusText, xhr) {
+				
+				var result = responseData;
+				
+				$("#addKnowhow").modal('hide');
+				$("#addTag").modal();
+				$("#tagDialog").html(result);
 
 			},
 			beforeSend : function() {
@@ -380,46 +384,146 @@
 			},
 			error : function(request, status, error) {
 
-				alert("code:" + request.status + "\n\n" + "message:"
-						+ request.responseText + "\n\n" + "error:" + error);
+// 				alert("code:" + request.status + "\n\n" + "message:"
+// 						+ request.responseText + "\n\n" + "error:" + error);
 
 			},
 			complete : function() {
 
 				// 이미지 감추기 처리
-				$(location).attr('href', "addTagPage");
 				$('.wrap-loading').addClass('display-none');
-// 				$("#addModal").modal("hide");
 
 			}
 		});
 	}
 
-	function modalClose(k) {
-
-		if (k == "1") {
-			if (confirm('포스트작성을 취소합니다.') == true) {
-// 				$("#addModal").modal('hide');
-
-			} else {
-
+	function savePosting(pNo) {
+		
+		for (var s = 0; s < addMaxPage; s++) {
+			if ($("#ta" + addPagingCount).val() == "") {
+				alert("내용이 없는 페이지가 있습니다. 임시 저장을 위해 내용을 입력해주세요.");
 				return;
 			}
-
-		} else if (k == "2") {
-			$("#addInputModal").modal('hide');
 		}
 
+		addConArr[addPagingCount - 1] = $("#ta" + addPagingCount).val();
+
+		$.ajaxSettings.traditional = true;
+		var formData = new FormData();
+		formData.append("mpage", addMaxPage);
+
+		for (var k = 0; k < addMaxPage; k++) {
+			formData.append("addImgArr" + k, addImgArr[k]);
+			addConArr[k] = addConArr[k] + "q1z";
+			addUrlArr[k] = addUrlArr[k] + "q1z";
+		}
+
+		formData.append("urlArr", addUrlArr);
+		formData.append("conArr", addConArr);
+
+		$.ajax({
+			type : 'POST',
+			url : 'completeWrite',
+			data : formData,
+			processData : false,
+			contentType : false,
+			success : function(responseData, statusText, xhr) {
+				
+				var result = responseData;
+				
+				alert("임시 저장 되었습니다.");
+
+			},
+			beforeSend : function() {
+
+				// 이미지 보여주기
+				$('.wrap-loading').removeClass('display-none');
+
+			},
+			error : function(request, status, error) {
+
+// 				alert("code:" + request.status + "\n\n" + "message:"
+// 						+ request.responseText + "\n\n" + "error:" + error);
+
+			},
+			complete : function() {
+
+				// 이미지 감추기 처리
+				$('.wrap-loading').addClass('display-none');
+
+			}
+		});
+		
+	}
+
+	// addknowhow -> x 버튼 누르면 임시 저장후 모달 끄기
+	function saveAndCanclePosting(pNo) {
+		
+		for (var s = 0; s < addMaxPage; s++) {
+			if ($("#ta" + addPagingCount).val() == "") {
+				alert("내용이 없는 페이지가 있습니다. 임시 저장을 위해 내용을 입력해주세요.");
+				return;
+			}
+		}
+
+		addConArr[addPagingCount - 1] = $("#ta" + addPagingCount).val();
+
+		$.ajaxSettings.traditional = true;
+		var formData = new FormData();
+		formData.append("mpage", addMaxPage);
+
+		for (var k = 0; k < addMaxPage; k++) {
+			formData.append("addImgArr" + k, addImgArr[k]);
+			addConArr[k] = addConArr[k] + "q1z";
+			addUrlArr[k] = addUrlArr[k] + "q1z";
+		}
+
+		formData.append("urlArr", addUrlArr);
+		formData.append("conArr", addConArr);
+
+		$.ajax({
+			type : 'POST',
+			url : 'completeWrite',
+			data : formData,
+			processData : false,
+			contentType : false,
+			success : function(responseData, statusText, xhr) {
+				
+				var result = responseData;
+				
+				alert("임시 저장 되었습니다.");
+				$("#addKnowhow").modal('hide');
+
+			},
+			beforeSend : function() {
+
+				// 이미지 보여주기
+				$('.wrap-loading').removeClass('display-none');
+
+			},
+			error : function(request, status, error) {
+
+// 				alert("code:" + request.status + "\n\n" + "message:"
+// 						+ request.responseText + "\n\n" + "error:" + error);
+
+			},
+			complete : function() {
+
+				// 이미지 감추기 처리
+				$('.wrap-loading').addClass('display-none');
+
+			}
+		});
 	}
 </script>
 <div class="modal-content" id="addContent">
 				<div id="addWrap">
 					<div class="modal-header" id="header">
-						<div id="Closeimg" onclick="modalClose('1')"><img style="width:20px;" src="resources/images/close.png"/></div>
+						<div id="Closeimg" onclick="saveAndCanclePosting('${post.pNo}')"><img style="width:20px;" src="resources/images/close.png"/></div>
 						<div id="addTitle">${post.title }</div>
 						<div id="addCreateDate">${post.wDate }</div>
 						<div id="Clear" onclick="clearPage()"><img style="width:20px;" src="resources/images/clear.png"/></div>
-						<div id="tSave" onclick=""><img style="width:25px;" src="resources/images/tsave.png"/></div>
+						<div id="tSave" onclick="savePosting('${post.pNo}')"><img style="width:25px;" src="resources/images/tsave.png"/></div>
 					</div>
 					<!-- Modal 상단-->
 						<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">				
@@ -439,7 +543,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="Complete">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="completeWrite()" value="Complete">
 												</div>
 											</div>
 										</div>
@@ -458,7 +562,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="completeWrite()" value="complete!">
 												</div>
 											</div>
 										</div>
@@ -477,7 +581,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="completeWrite()" value="complete!">
 												</div>
 											</div>
 										</div>
@@ -496,7 +600,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="completeWrite()" value="complete!">
 												</div>
 											</div>
 										</div>
@@ -515,7 +619,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="completeWrite()" value="complete!">
 												</div>
 											</div>
 										</div>
@@ -534,7 +638,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="completeWrite()" value="complete!">
 												</div>
 											</div>
 										</div>
@@ -553,7 +657,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="completeWrite()" value="complete!">
 												</div>
 											</div>
 										</div>
@@ -572,7 +676,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="completeWrite()" value="complete!">
 												</div>
 											</div>
 										</div>
@@ -591,7 +695,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="completeWrite()" value="complete!">
 												</div>
 											</div>
 										</div>
@@ -610,7 +714,7 @@
 											</div>
 											<div class="btnDialog">
 												<div class="btn_Group">
-													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="complete()" value="complete!">
+													<input class="btn btn-success .btn-lg btnSubmit" type="button" onclick="completeWrite()" value="complete!">
 												</div>
 											</div>
 										</div>

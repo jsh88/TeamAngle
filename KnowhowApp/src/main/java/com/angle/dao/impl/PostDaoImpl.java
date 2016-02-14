@@ -495,7 +495,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	public Post getPostInfo(int no) {
 
 		return jdbcTemplate.query(
-				"select pt.*, m.nickname from (select row_number() over (order by wdate desc) no, p.* from post p) pt, member m where no = ? and m.id = pt.id and pt.state = 1",
+				"select pt.*, m.nickname from (select row_number() over (order by wdate desc) no, p.* from post p where p.state = 1) pt, member m where no = ? and m.id = pt.id",
 				new Object[] { no }, new ResultSetExtractor<Post>() {
 
 					@Override
@@ -567,7 +567,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	public Post getBestPostInfo(int no) {
 
 		return jdbcTemplate.query(
-				"select pt.*, m.nickname from (select row_number() over (order by count desc) no, p.* from post p) pt, member m where no = ? and m.id = pt.id and pt.state = 1",
+				"select pt.*, m.nickname from (select row_number() over (order by good desc) no, p.* from post p where p.state = 1) pt, member m where no = ? and m.id = pt.id",
 				new Object[] { no }, new ResultSetExtractor<Post>() {
 
 					@Override
@@ -639,7 +639,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	public Post getSearchPostView(ArrayList<MemberTag> mTagList, int no) {
 		
 		return jdbcTemplate.query(
-				"select pt.*, m.nickname from (select row_number() over (order by count desc) no, p.* from post p) pt, member m where no = ? and m.id = pt.id and pt.state = 1",
+				"select pt.*, m.nickname from (select row_number() over (order by good desc) no, p.* from post p where p.state = 1) pt, member m where no = ? and m.id = pt.id",
 				new Object[] { no }, new ResultSetExtractor<Post>() {
 
 					@Override
