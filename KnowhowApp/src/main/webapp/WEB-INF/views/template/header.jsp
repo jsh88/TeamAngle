@@ -104,7 +104,7 @@
 						class="btn btn-default col-sm-3 col-xs-3" onclick="modalOpen('3')">Member
 						Edit</button>
 					<button class="btn btn-default col-sm-3 col-xs-3"
-						onclick="modalOpen('5')">Writing Post</button>
+						onclick="startPosting()">Writing Post</button>
 					<button class="btn btn-default col-sm-3 col-xs-3">MyPost</button>
 				</div>
 

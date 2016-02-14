@@ -2,17 +2,26 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<div class="hideListContent">
-	<div class="Title">
-		<a href="#" class="atitle">The work never ends ..</a>
-		<div class="contentimg">
-			<a href=""><img style="width: 15px;"
-				src="resources/images/close.png" /></a>
+<c:if test="${pList eq null}">
+	<br>
+	<center>
+		<h5>Empty temporary posts.</h5>
+	</center>
+</c:if>
+<c:if test="${pList ne null }">
+	<c:forEach items="${pList }" var="post">
+		<div class="hideListContent" onclick="modifyTempPost('${post.pNo}')">
+			<div class="Title">
+				<a href="#" class="atitle">${post.title }</a>
+				<div class="contentimg" onclick="delTempPost('${post.pNo}')">
+					<img style="width: 15px;" src="resources/images/close.png" />
+				</div>
+			</div>
+			<div class="pageNum">${post.mPage }</div>
+			<div class="saveDate">Saved : ${post.tDate }</div>
+			<div class="createDate">Created : ${post.wDate }</div>
 		</div>
-	</div>
-	<div class="pageNum">page : 7</div>
-	<div class="saveDate">Saved : 2016-01-29 13:31:22</div>
-	<div class="createDate">Created : 2016-01-29 13:31:22</div>
-</div>
-<div class="line"></div>
+		<div class="line"></div>
+	</c:forEach>
+</c:if>
 <!-- 반복문 쓸때 hideListContent부터 line까지 묶을 것 -->

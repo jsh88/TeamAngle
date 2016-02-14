@@ -40,7 +40,9 @@ public class PostController {
 	@RequestMapping(value = "startPosting")
 	public String startPosting(HttpServletRequest request, HttpSession session) {
 
-		return "knowhow/startPosting";
+		postService.getTempPostList(request, session);
+		
+		return "knowhow/innerStartPosting";
 	}
 
 	// 포스트 작성 시작
@@ -49,7 +51,7 @@ public class PostController {
 
 		postService.addPost(request, session);
 
-		return "knowhow/addKnowhow"; // 어디로 가야하오
+		return "knowhow/innerAddKnowhow"; // 어디로 가야하오
 	}
 
 	// 포스트 페이지 작성
