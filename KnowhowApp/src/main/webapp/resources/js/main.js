@@ -529,7 +529,7 @@ function modifyPostStart(pNo) {
 	formData.append("pno", pNo);
 
 	$.ajax({
-		type : 'GET',
+		type : 'POST',
 		url : 'startModify',
 		data : formData,
 		processData : false,
@@ -539,7 +539,7 @@ function modifyPostStart(pNo) {
 			var result = responseData;
 
 			$("#startModify").modal();
-			$("#startModalDialog").html(result);
+			$("#startModifyDialog").html(result);
 
 		},
 		beforeSend : function() {

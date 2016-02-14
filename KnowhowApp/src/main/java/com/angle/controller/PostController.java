@@ -75,7 +75,7 @@ public class PostController {
 	}
 
 	// 포스트 수정 시작
-	@RequestMapping(value = "startModify", method = RequestMethod.GET)
+	@RequestMapping(value = "startModify", method = RequestMethod.POST)
 	public String startModify(HttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
