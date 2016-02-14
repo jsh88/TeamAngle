@@ -17,7 +17,7 @@
 						<span>Please.. changing password ..</span>
 					</div>
 					<div class="col-sm-offset-1 col-sm-10">
-						<input type="password" id="pass1" name="pass1" class="form-control">
+						<input type="password" id="modify_pass1" name="pass1" class="form-control">
 					</div>
 					<div class="col-sm-1"></div>
 					<div class="col-sm-offset-1 col-sm-10 s2">
@@ -26,7 +26,7 @@
 
 					<div class="col-sm-offset-1 col-sm-10">
 
-						<input type="password" id="pass2" name="pw" class="form-control">
+						<input type="password" id="modify_pass2" name="pw" class="form-control">
 					</div>
 					<div class="col-sm-1"></div>
 					<div class="col-sm-offset-1 col-sm-10">

@@ -84,6 +84,7 @@ public class MemberServiceImpl implements MemberService {
 	public int checkId(HttpServletRequest request) {
 
 		String id = request.getParameter("id");
+		System.out.println("checkId : "  + id);
 		int result = memberDao.checkId(id);
 		return result;
 	}

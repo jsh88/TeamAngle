@@ -1,14 +1,12 @@
 /* 회원 로그인 아작스 */
 /* 회원의 아이디 등록여부확인*/
 
-/**/
-
-
-
-$(function() {
+//$(function() {
 /*$("#lg_btn").attr("disabled", "disabled");*/
 // 로그인 처리 조건체크	
 /*$("#lg_id").on("keyup", function() {*/
+	
+
 $("#lg_btn").click(function(e) {
 	e.preventDefault();
 	var id = $("#lg_id").val();
@@ -20,14 +18,8 @@ $("#lg_btn").click(function(e) {
 		data: {"id" : id, "pw" : pw},
 		dataType: "text",
 		success: function(responseData, statusText, xhr) {
-			var result = responseData;
+			var result = responseData;			
 			
-			/*if(result == 1) {
-				$("#lg_id").css("border", "2px solid lime");
-					
-			} else {
-				$("#lg_id").css("border", "2px solid red");
-			}*/
 			if(result == -1) {
 				alert("아이디를 확인해주세요.");
 				$("#lg_id").val("");
@@ -46,6 +38,7 @@ $("#lg_btn").click(function(e) {
 		}	
 	});
 });
+
 
 $("#findId").click(function(e) {
 	e.preventDefault();
@@ -75,6 +68,7 @@ $("#findId").click(function(e) {
 	});	
 });
 
+
 $("#findPw").click(function(e) {
 	e.preventDefault();
 	var id = $("#auth_Email").val();
@@ -87,25 +81,22 @@ $("#findPw").click(function(e) {
 		success: function(responseData, statusText, xhr) {
 		var result = responseData;
 		
-		if(result == 1) {
-			alert("이메일 발송 성공!!!");
-			document.location.reload();
-		} else {
-			alert("이메일 발송 실패!!!");
-			document.location.reload();
-		}	
-	}
-		
-});
-	
-	
+			if(result == 1) {
+				alert("이메일 발송 성공!!!");
+				document.location.reload();
+			} else {
+				alert("이메일 발송 실패!!!");
+				document.location.reload();
+			}	
+		}		
+	});	
 	
 });
 
 
 
 
-});
+//});
 	
 
 	
