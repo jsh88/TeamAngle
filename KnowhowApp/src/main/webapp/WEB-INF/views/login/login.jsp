@@ -8,37 +8,33 @@
 <script>
 $(document).ready(function (){
 	
-	$("#lg_content").show();
-	$("#lg_findId").hide();
-	$("#lg_findPass").hide();
-	
-});
+		$("#lg_content").show();
+		$("#lg_findId").hide();
+		$("#lg_findPass").hide();
+
 /* 예외처리 */
-function findChecker(i) {
 
-	if(i == "e"){ 
-		if($("#lg_findId").css("display")=='none') {
-
-			$("#lg_findId").slideDown(1000);
-			
-			if($("#lg_findPass").css("display")=='block') {
-				$("#lg_findPass").hide(1000);
-			}
-			
-		} else {
-			$("#lg_findId").hide(1000);
-			$("#lg_findPass").hide(1000);
-
-			}
-	} else {
+function returnLoginForm(num) {
 	
-		if($("#lg_findPass").css("display")=='none') {
-			$("#lg_findPass").slideDown(1000);
-		} else {
-			$("#lg_findPass").hide(1000);
-			$("#lg_findId").hide(1000);
-		}
+	if(num == "1") {
+		$("#lg_findId").slideUp(500);
+		$("#lg_content").delay(1000).slideDown(1000);
+		
+	} else if(num == "2") {
+		$("#lg_findPass").slideUp(500);
+		$("#lg_content").delay(1000).slideDown(1000);
+		
 	}
+}
+function findChecker(i) {
+	$("#lg_content").slideUp(500);
+	if(i == "1") {
+		$("#lg_findId").delay(1000).slideDown(1000);
+	} else if(i == "2") {
+		$("#lg_findPass").delay(1000).slideDown(1000);
+		
+	}
+	
 }
 </script>
 <style>
@@ -71,10 +67,10 @@ margin: 0 auto;
 	
 }
 #lg_findId {
-	height: 200px;
+	height: 230px;
 }
 #lg_findPass {
-	height: 140px;
+	height: 170px;
 }
 #lg_findId .btn, #lg_findPass .btn {
 	background-color: tomato;
@@ -115,7 +111,7 @@ margin: 0 auto;
 									
 									</div>
 									<div class="col-sm-12">
-										<a href="#" onclick="findChecker('e')" id="find_id">아이디</a>&nbsp;/&nbsp;<a href="#" onclick="findChecker('2')" id="find_pass">비밀번호</a>를 잃어버리셨나요?
+										It had lost the <a href="#" onclick="findChecker('1')" id="find_id">id</a>&nbsp;/&nbsp;<a href="#" onclick="findChecker('2')" id="find_pass">password</a> ?
 									</div>
 							</div>
 							
@@ -145,6 +141,7 @@ margin: 0 auto;
 						 </div>
 						 <div class="col-sm-12">
 						 	<input type="submit" id="findId" value="From Confirm" class="btn btn-default col-sm-12">
+						 	<a href="#" onclick="returnLoginForm('1')" id="backLoginId">Return to Login</a>
 						 </div>
 					</div>
 				</form>
@@ -164,6 +161,7 @@ margin: 0 auto;
 							</div>
 							<div class="col-sm-12">
 								<input type="submit" id="findPw" value="From Confirm" class="btn btn-default col-sm-12">
+								<a href="#" onclick="returnLoginForm('2')" id="backLoginPass">Return to Login</a>
 							</div>
 					</div>
 				</form>
