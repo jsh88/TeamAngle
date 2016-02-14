@@ -64,6 +64,7 @@
 			$("#detailModal").modal();
 			$("#modifyDelete").hide();
 			$("#commentContent").hide();
+			$("#detailDialog").css("width", "760px");
 			
 			$(".pageNumber").mouseover(function(){
 				
