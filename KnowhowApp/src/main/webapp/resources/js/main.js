@@ -376,8 +376,6 @@ function morePost(postNo) {
 function modalOpen(selModal) {
 
 	var modal = "";
-	
-	alert(selModal);
 
 	if (selModal == "1") {
 		
@@ -404,8 +402,6 @@ function modalOpen(selModal) {
 		
 	} else if (selModal == "2") {
 		
-		alert("2");
-		
 		modal = "loginPage";	
 		
 	} else if (selModal == "3") {
@@ -417,8 +413,6 @@ function modalOpen(selModal) {
 		modal = "profileModifyPage";
 		
 	}
-	
-	alert(modal);
 	
 	$("#" + modal).modal('show');
 	
