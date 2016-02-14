@@ -19,6 +19,12 @@
 				height: 250px;
 			}
 			
+			#startModifyDialog{
+				margin-top:300px;
+				width: 500px;
+				height: 250px;
+			}
+			
 			.startbtn{
 				margin-top: 10px;
 				margin-bottom: 20px;
@@ -189,6 +195,11 @@
 			}
 			
 			#addDialog{
+				width: 760px;
+				margin-top: 120px;
+			}
+			
+			#modifyDialog{
 				width: 760px;
 				margin-top: 120px;
 			}
