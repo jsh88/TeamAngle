@@ -21,15 +21,18 @@
 
 		$.ajax({
 			type : 'POST',
-			url : 'modifyPost',
+			url : 'modifyTitle',
 			data : formData,
 			processData : false,
 			contentType : false,
 
-			success : function(v) {
+			success : function(responseData, statusText, xhr) {
 
-				// 성공처리(v는 서버로 받은 메시지, value)
-				alert("성공이다해");
+				var result = responseData;
+
+				$("#startModify").modal('hide');
+				$("#modifyKnowhow").modal();
+				$("#startModalDialog").html(result);
 
 			},
 			beforeSend : function() {
@@ -42,16 +45,14 @@
 			error : function(request, status, error) {
 
 				// 에러 로직, 에러 로그 확인
-				alert("code:" + request.status + "\n\n" + "message:"
-						+ request.responseText + "\n\n" + "error:" + error);
+// 				alert("code:" + request.status + "\n\n" + "message:"
+// 						+ request.responseText + "\n\n" + "error:" + error);
 
 			},
 			complete : function() {
 
 				// 이미지 감추기 처리
-				// 				$(location).attr('href', "modifyPost");
 				$('.wrap-loading').addClass('display-none');
-				// 				$("#addModal").modal("hide");
 
 			}
 		});
@@ -61,7 +62,7 @@
 	<div id="addCheckWrap">
 
 		<div id="addForm">
-			<form name="modifyTitleForm" action="" method="post">
+			<form name="modifyTitleForm" action="" method="post" onsubmit="return false;">
 				<div id="startTitle">
 					<div class="form-group">
 						<label for="modifyTitle" class="col-sm-12 control-label"
