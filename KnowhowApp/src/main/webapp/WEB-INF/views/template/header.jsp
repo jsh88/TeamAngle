@@ -115,50 +115,71 @@
 				<!-- 마이페이지 - 최근 본 knowhow -->
 				<div class="col-sm-12 col-xs-12">
 					<div>
-						<h3>I see you</h3>
+						<div id="recentlyTitle">Recently Viewed Knowhow list</div>
 					</div>
+					<div class="myPageBlankLine">&nbsp;</div>
 					<div id="c1" class="content col-xs-12 col-sm-12">
 						<c:if test="${ empty lately }">
-							최근 조회한 포스트가 존재하지 않습니다.
+							Recently viewed Post does not exist
 						</c:if>
 						<c:if test="${ not empty lately }">
 							<c:forEach items="${ lately }" var="l">
-								<table>
-									<tbody>
-										<tr>
-											<th>${ l.title }</th>
-											<th>${ l.wDate }</th>
-											<th>${ l.good }</th>
-											<th>${ l.count }</th>
-										</tr>
-									</tbody>
-								</table>
+							
+								<div class="recentlyViewedWrap">
+									<div class="recentlyListTitle">
+										<a href="#" class="recentlyListDetailTitle">${ l.title }</a>
+					
+										<div class="recentlyClose" onclick="">
+											<img style="width: 15px;" src="resources/images/close.png" />
+										</div>
+										
+									</div>
+									<div class="recentlyDate">CreateDate : ${ l.wDate }</div>
+									
+									<div class="recentlyNum">
+										<div class="recentlyGood">Good : ${ l.good }</div>
+										<div class="recentlyCount">ViewCount : ${ l.count }</div>
+									</div>
+								</div>
+								<div class="recentlyLine"></div>
+								
 							</c:forEach>
 						</c:if>
 					</div>
 				</div>
-
+				<div class="myPageBlankLine">&nbsp;</div>
+				<div class="myPageBlankLine">&nbsp;</div>
 				<!-- 마이페이지 -  자주 본 knowhow -->
 				<div class="col-xs-12 col-sm-12">
 					<div>
-						<h3>Very I see you</h3>
+						<div id="mostTitle">Most Viewed Knowhow list</div>
 					</div>
+					<div class="myPageBlankLine">&nbsp;</div>
 					<div id="c2" class="content col-xs-12 col-sm-12">
 							<c:if test="${ empty most }">
-								최근 조회한 포스트가 존재하지 않습니다.
+								Recently viewed Post does not exist
 							</c:if>
 							<c:if test="${ not empty most }">
 								<c:forEach items="${ most }" var="m">
-									<table>
-										<tbody>
-											<tr>
-												<th>${ m.title }</th>
-												<th>${ m.wDate }</th>
-												<th>${ m.good }</th>
-												<th>${ m.count }</th>
-											</tr>
-										</tbody>
-									</table>
+									
+									<div class="mostViewedWrap">
+										<div class="mostListTitle">
+											<a href="#" class="mostListDetailTitle">${ m.title }</a>
+						
+											<div class="mostClose" onclick="">
+												<img style="width: 15px;" src="resources/images/close.png" />
+											</div>
+											
+										</div>
+										<div class="mostDate">CreateDate : ${ m.wDate }</div>
+										
+										<div class="mostNum">
+											<div class="mostGood">Good : ${ m.good }</div>
+											<div class="mostCount">ViewCount : ${ m.count }</div>
+										</div>
+									</div>
+								<div class="mostLine"></div>
+									
 							</c:forEach>
 						</c:if>
 					</div>

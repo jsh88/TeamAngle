@@ -340,8 +340,6 @@ function morePost(postNo) {
 	// 폼 데이터 받기 or Append or 인자로 form id)
 	var formData = new FormData();
 
-	alert(postNo);
-
 	formData.append("pno", postNo);
 	formData.append("page", 0);
 

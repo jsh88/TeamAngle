@@ -153,7 +153,6 @@ public class PostController {
 
 	// 포스트 수정 완료, ajax
 	@RequestMapping(value = "completeModify", method = RequestMethod.POST)
-	@ResponseBody
 	public String completeModify(MultipartHttpServletRequest request, HttpSession session)
 			throws IllegalStateException, IOException {
 
