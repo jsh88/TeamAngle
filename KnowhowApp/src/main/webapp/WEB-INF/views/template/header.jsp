@@ -41,7 +41,7 @@
 					<li><div id="joinbtn" class="btn btn-lg"
 							onclick="modalOpen('1')">Join</div></li>
 					<li><div id="loginbtn" class="btn btn-lg"
-							onclick="modalOpen('2')">Login</div></li>
+							onclick="loginOpen()">Login</div></li>
 					<%
 						} else {
 					%>
