@@ -68,11 +68,11 @@
 									<c:forEach items="${ getMyPostByViews }" var="v">
 										
 										<div class="knowhowlist" >
-												<span><a href="#"><b>${ v.title }</b></a></span>
+												<span onclick="morePost('${ v.pNo }')"><a href="#"><b>${ v.title }</b></a></span>
 												<div id="list">
 														<span class="l">${ v.wDate }</span>
 														<span class="l" onclick="modifyPostStart('${ v.pNo }')"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a></span>
-														<span><a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></span>
+														<span onclick="delPost('${v.pNo}')"><a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></span>
 												</div>
 												<div id="listline"></div>
 										</div>
@@ -88,11 +88,11 @@
 									<c:forEach items="${ getMyLatelyPost }" var="n">
 										
 										<div class="knowhowlist" >
-												<span><a href="#"><b>${ n.title }</b></a></span>
+												<span onclick="morePost('${ n.pNo }')"><a href="#"><b>${ n.title }</b></a></span>
 												<div id="list">
 														<span class="l">${ n.wDate }</span>
-														<span class="l"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a></span>
-														<span><a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></span>
+														<span class="l" onclick="modifyPostStart('${ n.pNo }')"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a></span>
+														<span onclick="delPost('${n.pNo}')"><a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></span>
 												</div>
 												<div id="listline"></div>
 										</div>										
@@ -108,11 +108,11 @@
 									<c:forEach items="${ getMyPostByComments }" var="c">
 										
 										<div class="knowhowlist" >
-												<span><a href="#"><b>${ c.title }</b></a></span>
+												<span onclick="morePost('${ c.pNo }')"><a href="#"><b>${ c.title }</b></a></span>
 													<div id="list">
 														<span class="l">${ c.wDate }</span>
-														<span class="l"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a></span>
-														<span><a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></span>
+														<span class="l" onclick="modifyPostStart('${ c.pNo }')"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a></span>
+														<span onclick="delPost('${c.pNo}')"><a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></span>
 													</div>
 												<div id="listline"></div>
 										</div>																			
@@ -129,11 +129,11 @@
 									<c:forEach items="${ getMyPostByRecommand }" var="r">
 										
 										<div class="knowhowlist" >
-												<span><a href="#"><b>${ r.title }</b></a></span>
+												<span onclick="morePost('${ r.pNo }')"><a href="#"><b>${ r.title }</b></a></span>
 													<div id="list">
 														<span class="l">${ r.wDate }</span>
-														<span class="l"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a></span>
-														<span><a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></span>
+														<span class="l" onclick="modifyPostStart('${ r.pNo }')"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a></span>
+														<span onclick="delPost('${r.pNo}')"><a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></span>
 													</div>
 												<div id="listline"></div>
 										</div>																			
