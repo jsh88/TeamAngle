@@ -7,6 +7,7 @@
 <meta http-equiv="Expires" content="0"/> 
 <meta http-equiv="Pragma" content="no-cache"/>
 <title>회원가입</title>
+<link rel="stylesheet" type="text/css" href="resources/css/backgroundUrl.css">
 </head>
 <body>
 	<div class="modal-dialog mj_dialog_body" >
@@ -15,7 +16,7 @@
 				<div  class="modal-body">
 					<div id="mj_head" class="col-sm-offset-1 col-sm-11">
 						<h3>
-							<b>P</b>lease. <b>S</b>ign <b>i</b>n.
+							<b>Please. Sign in.</b>
 						</h3>
 						<p>This is a form registering . Please enter your information.</p>
 					</div>
