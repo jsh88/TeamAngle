@@ -26,6 +26,7 @@ function valInputDate() {
  */
 $(document).ready(function() {
 	// 슬라이드 해제
+	$('#navtag').css('width', $(window).width());
 	
 	var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 	

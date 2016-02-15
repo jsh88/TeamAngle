@@ -10,7 +10,8 @@
 	}
 }*/
 $(document).ready(function(){
-	
+		
+	$('#navtag').css('width', $(window).width());	
 	//$(document).ready(function() {
 		$('#show1, #show2, #lq1, #lq2, #lq3, #lq4').hide();
 

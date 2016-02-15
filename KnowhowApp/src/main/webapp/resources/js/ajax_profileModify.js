@@ -1,4 +1,6 @@
 $(function() {
+	$('#navtag').css('width', $(window).width());
+	
 	$('#profileModify').click(function() {
 
 		$.ajaxSettings.traditional = true;
