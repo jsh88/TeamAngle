@@ -33,9 +33,14 @@
 	color: white;
 	font-weight: 600;
 }
+
+#navLine{
+	border-top: 1px solid #bfbcbc;
+	
+}
+
 #navtag {
 	margin-top:2px;
-	border-top: 1px solid #bfbcbc;
 }
 #navtag_lb {
 	margin-left: 135px;
@@ -72,6 +77,8 @@
 	margin-left: 5px;
 	text-decoration: none;
 	color:white;
+	display: inline-block;
+	word-break: break-all;
 }
 
 .recommenTag:hover{

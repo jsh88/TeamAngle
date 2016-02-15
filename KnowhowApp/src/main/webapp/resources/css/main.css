@@ -7,6 +7,7 @@ body {
 #bestTitle {
 	font-size: 20px;
 	font-weight: bold;
+	padding-left: 10px;
 }
 
 #bestWrap {
@@ -17,7 +18,6 @@ body {
 	border: 1px solid #BFBCBC;
 	border-radius: 6px;
 	background-color: white;
-	margin-right: 10px;
 	margin-top: 5px;
 	cursor: pointer;
 	margin-bottom: 20px;
@@ -169,7 +169,6 @@ body {
 #bestTitle {
 	font-size: 32px;
 	font-weight: bold;
-	margin-left: -15px;
 	margin-top: 20px;
 }
 
@@ -192,6 +191,7 @@ body {
 .bestTitleLine {
 	border-bottom: 1px solid #BFBCBC;
 	margin-bottom: 20px;
+	margin-left: 10px;
 }
 
 /* login css */
@@ -245,7 +245,6 @@ body {
 .login-btn-top { color: white; }
 .login-a-left { float: right; }
 
-<<<<<<< HEAD
 #md_content {
 	height: 330px;
 	border-radius: 6px;
