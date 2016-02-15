@@ -7,6 +7,7 @@
 	var modifyUrlArr = [ 10 ];
 	var modifyConArr = [ 10 ];
 	var modifyPagingCount = 1;
+	var modifyPrePagingCount = 0;
 	var modifyMaxPage = 1;
 	var modifyUrl = "";
 
@@ -30,6 +31,29 @@
 						$(".p9").hide();
 						$(".p10").hide();
 
+						$(".p" + modifyPagingCount).css("width", "65");
+
+						/* mouseOver 처리 */
+
+						$(".pageNumber").mouseover(function() {
+
+							$(this).css("width", "65");
+
+						});
+
+						$(".pageNumber").mouseout(function() {
+
+							if ($(this).is(".p" + modifyPagingCount) === true) {
+
+								$(this).css("width", "65");
+
+							} else {
+
+								$(this).css("width", "50");
+							}
+						});
+
+						
 						<c:forEach items="${pConList}" var="pCon" varStatus="status">
 
 						var media = "${pCon.media}";
@@ -150,72 +174,102 @@
 						$(".p1").click(function() {
 							$("#modifyCarousel").carousel(0);
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 1;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						$(".p2").click(function() {
 							$("#modifyCarousel").carousel(1);
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 2;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						$(".p3").click(function() {
 							$("#modifyCarousel").carousel(2);
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 3;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						$(".p4").click(function() {
 							$("#modifyCarousel").carousel(3);
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 4;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						$(".p5").click(function() {
 							$("#modifyCarousel").carousel(4);
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 5;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						$(".p6").click(function() {
 							$("#modifyCarousel").carousel(5);
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 6;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						$(".p7").click(function() {
 							$("#modifyCarousel").carousel(6);
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 7;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						$(".p8").click(function() {
 							$("#modifyCarousel").carousel(7);
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 8;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						$(".p9").click(function() {
 							$("#modifyCarousel").carousel(8);
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 9;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						$(".p10").click(function() {
 							$("#modifyCarousel").carousel(9);
 							$("#modifyAddBtn").hide();
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 10;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						/* 이미지 드래그 앤 드롭 */
