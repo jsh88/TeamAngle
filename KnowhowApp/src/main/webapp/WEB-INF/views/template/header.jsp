@@ -90,7 +90,7 @@
 							<tr>
 								<th rowspan="3" class="main-padding-mypage mypage-td">
 										<c:if test="${member.image eq null }">
-										<img id="myProfileImage" src="http://placehold.it/110x110">
+										<img id="myProfileImage" src="resources/images/noImg.png" style="width:110px; height:110px;">
 										</c:if>
 										<c:if test="${member.image ne null }">
 										<img id="myProfileImage" src="resources/images/${member.image }" style="width:110px; height:110px;">
