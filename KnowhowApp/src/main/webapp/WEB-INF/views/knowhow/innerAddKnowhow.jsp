@@ -408,7 +408,7 @@
 		formData.append("mpage", addMaxPage);
 
 		for (var k = 0; k < addMaxPage; k++) {
-			formData.append("addImgArr" + k, addImgArr[k]);
+			formData.append("imgArr" + k, addImgArr[k]);
 			addConArr[k] = addConArr[k] + "q1z";
 			addUrlArr[k] = addUrlArr[k] + "q1z";
 		}
@@ -468,7 +468,7 @@
 		formData.append("mpage", addMaxPage);
 
 		for (var k = 0; k < addMaxPage; k++) {
-			formData.append("addImgArr" + k, addImgArr[k]);
+			formData.append("imgArr" + k, addImgArr[k]);
 			addConArr[k] = addConArr[k] + "q1z";
 			addUrlArr[k] = addUrlArr[k] + "q1z";
 		}

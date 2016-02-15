@@ -517,6 +517,48 @@ function delTempPost(me, pNo) {
 	});
 }
 
+function delPost(pNo) {
+
+	$.ajaxSettings.traditional = true;
+	var formData = new FormData();
+	formData.append("pno", pNo);
+
+	$.ajax({
+		type : 'POST',
+		url : 'delPost',
+		data : formData,
+		processData : false,
+		contentType : false,
+		success : function(responseData, statusText, xhr) {
+
+			var result = responseData;
+
+			alert("Delete! Post.");
+//			$(me).parent('div').parent('div').next().remove();
+//			$(me).parent('div').parent('div').remove();
+
+		},
+		beforeSend : function() {
+
+			// 이미지 보여주기
+			$('.wrap-loading').removeClass('display-none');
+
+		},
+		error : function(request, status, error) {
+
+			// alert("code:" + request.status + "\n\n" + "message:"
+			// + request.responseText + "\n\n" + "error:" + error);
+
+		},
+		complete : function() {
+
+			// 이미지 감추기 처리
+			$('.wrap-loading').addClass('display-none');
+
+		}
+	});
+}
+
 function modifyPostStart(pNo) {
 	
 	$.ajaxSettings.traditional = true;
