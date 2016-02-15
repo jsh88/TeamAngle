@@ -280,6 +280,9 @@
 			$("#addInputModal").modal('hide');
 
 		} else {
+			
+			addUrl = "https://www.youtube.com/embed/" + addUrl.substr(17);
+			alert(addUrl);
 
 			$("#addInputModal").modal('hide');
 			addUrlArr[addPagingCount - 1] = addUrl;

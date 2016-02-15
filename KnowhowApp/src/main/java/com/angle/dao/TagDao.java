@@ -1,6 +1,7 @@
 package com.angle.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.angle.domain.MemberTag;
 import com.angle.domain.PostTag;
@@ -19,5 +20,7 @@ public interface TagDao {
 	public ArrayList<PostTag> getPostTag(int pNo);
 
 	public void updateRootTag(ArrayList<MemberTag> mTagList);
+
+	public List<String> getTagList(String keyword);
 
 }

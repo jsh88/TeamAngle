@@ -1,8 +1,11 @@
 package com.angle.service.impl;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -167,5 +170,30 @@ public class TagServiceImpl implements TagService {
 			request.setAttribute("mTagList", mTagList);
 
 		}
+	}
+
+	@Override
+	public void autoSearch(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
+		
+		String keyword = request.getParameter("keyword");
+		List<String> tagList = tagDao.getTagList(keyword);
+		
+		response.setContentType("text/html;charset=UTF-8");
+		
+        try {
+			response.setHeader("Cache-Control", "no-cache");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        PrintWriter out = response.getWriter();
+        for(int i = 0; i < tagList.size(); i++) {
+    		String key = (String)tagList.get(i);
+    		out.print("<li class='searchList'>" + key + "</li>");
+    		// 자동완성 리스트를 15개로 한정
+    		if(i >= 14) {
+    			break;
+    		}		
+    	}
+        out.close();
 	}
 }

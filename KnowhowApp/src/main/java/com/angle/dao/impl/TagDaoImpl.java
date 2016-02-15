@@ -3,13 +3,16 @@ package com.angle.dao.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.angle.dao.TagDao;
@@ -63,10 +66,8 @@ public class TagDaoImpl implements TagDao {
 			} catch (DataAccessException e) {
 				jdbcTemplate.update("update posttag set count = count + 1, rdate = sysdate where tag = ? and pno = ?",
 						new Object[] { p.getTag(), p.getpNo() });
-
 			}
 		}
-
 	}
 
 	@Override
@@ -154,5 +155,21 @@ public class TagDaoImpl implements TagDao {
 			jdbcTemplate.update("update tag set count = count + 1, rdate = sysdate where tag = ?",
 					new Object[] { m.getTag() });
 
+	}
+
+	@Override
+	public List<String> getTagList(String keyword) {
+
+		String sql = "select tag from tag where tag like :keyword";
+
+		SqlParameterSource namedParam = new MapSqlParameterSource("keyword", keyword + "%");
+
+		return namedParameterJdbcTemplate.query(sql, namedParam, new RowMapper<String>() {
+
+			@Override
+			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+				return rs.getString(1);
+			}
+		});
 	}
 }

@@ -6,6 +6,15 @@ $(document)
 		.ready(
 				function() {
 
+					$(window).scroll(
+							function() {
+								if ($(window).scrollTop() >= $(document)
+										.height()
+										- $(window).height()) {
+									showPostView();
+								}
+							});
+
 					for (var i = 0; i < 5; i++) {
 						getBestPostView();
 						getPostView();
@@ -175,14 +184,42 @@ $(document)
 
 					});
 
-					/* 로그인 JQuery */
-					/* 로그인 엔터키 */
-					
-					
-					
-					
-					
-					
+					$("#listBox").hide();
+					$("#search_txt").on("keyup", function(e) {
+						var keyword = $("#search_txt").val();
+						var params = "keyword=" + keyword;
+						$.ajax({
+							type: "POST",
+							url: "autoSearch",
+							data: params,
+							success: function(data, textStatus, xhr) {
+								$("#listBox").show()	
+									.css("border", "1px solid #a8a8a8")
+									.css("border-top", "1px solid #1EB501")
+									.css("z-index", "9999");
+								
+								$("#resultList").html(data);
+								$("#resultList li").hover(function() {
+									$(this).addClass("hover").css("cursor", "pointer");					
+								}, function() {
+									$(this).removeClass("hover");
+								});
+							},
+							error: function(xhr, textStatus) {
+							}
+						});		 
+					}).on("blur", function(e) {
+						setTimeout(function() {
+							$("#listBox").hide();
+						}, 150);	
+					}).on("focus", function(e) {
+						$("#listBox").show();
+					});	
+					$("#resultList").on("click", "li.searchList", function(e) {
+						$("#toId").val($(this).text());
+						$("#listBox").hide();
+					});
+
 				});
 // ready end
 
@@ -534,8 +571,8 @@ function delPost(pNo) {
 			var result = responseData;
 
 			alert("Delete! Post.");
-//			$(me).parent('div').parent('div').next().remove();
-//			$(me).parent('div').parent('div').remove();
+			// $(me).parent('div').parent('div').next().remove();
+			// $(me).parent('div').parent('div').remove();
 
 		},
 		beforeSend : function() {
@@ -560,7 +597,7 @@ function delPost(pNo) {
 }
 
 function modifyPostStart(pNo) {
-	
+
 	$.ajaxSettings.traditional = true;
 	var formData = new FormData();
 	formData.append("pno", pNo);
@@ -607,31 +644,40 @@ function loginOpen() {
 	if ($("#lg_content").css("display") == "none") {
 		$("#lg_content").show();
 	}
-	
+
 	$("#loginPage").modal()
 }
 
 function returnLoginForm(num) {
-	
-	if(num == "1") {
+
+	if (num == "1") {
 		$("#lg_findId").slideUp(500);
 		$("#lg_content").delay(1000).slideDown(1000);
-		
-	} else if(num == "2") {
+
+	} else if (num == "2") {
 		$("#lg_findPass").slideUp(500);
 		$("#lg_content").delay(1000).slideDown(1000);
-		
+
 	}
 }
 
 function findChecker(i) {
 	$("#lg_content").slideUp(500);
-	if(i == "1") {
+	if (i == "1") {
 		$("#lg_findId").delay(1000).slideDown(1000);
-	} else if(i == "2") {
+	} else if (i == "2") {
 		$("#lg_findPass").delay(1000).slideDown(1000);
-		
+
 	}
+}
+
+function showPostView() {
+
+	for (var i = 0; i < 5; i++) {
+		getPostView();
+		postCount++;
+	}
+
 }
 
 function modalOpen(selModal) {
@@ -674,13 +720,13 @@ function modalOpen(selModal) {
 		modal = "addKnowhow";
 
 	} else if (selModal == "10") {
-		
+
 		modal = "modifyKnowhow";
-		
+
 	} else if (selModal == "11") {
-		
+
 		modal = "myPostList";
-		
+
 	}
 
 	$("#" + modal).modal('show');

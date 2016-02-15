@@ -1,6 +1,7 @@
 package com.angle.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,5 +89,12 @@ public class TagController {
 
 		return "forward:doSearch";
 
+	}
+
+	// autoSearch
+	@RequestMapping(value = "autoSearch", method = RequestMethod.POST)
+	public void autoSearch(HttpServletRequest request, HttpServletResponse response, HttpSession session)
+			throws Exception {
+		tagService.autoSearch(request, response, session);
 	}
 }

@@ -23,12 +23,14 @@
 
 				<form class="navbar-form navbar-left" role="search" onsubmit="return false;">
 					<div id="search_form" class="input-group input-group-sm">
-					<span class="input-group-btn">							
+						<span class="input-group-btn">
 							<button class="btn btn-default" type="button" id="search_btn">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
 						</span>
-						<input type="text" class="form-control" id="search_txt"
-							placeholder="Search for..." style="width: 380px;">
+						<input type="text" class="form-control" id="search_txt" placeholder="Search for..." style="width: 380px;">
+<!-- 						<div id="listBox"> -->
+<!-- 							<ul id="resultList"></ul> -->
+<!-- 						</div> -->
 					</div>
 				</form>
 

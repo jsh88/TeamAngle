@@ -16,6 +16,8 @@
 					function() {
 
 						modifyMaxPage = parseInt("${post.mPage}");
+						
+						checkModifyMaxPage();
 
 // 						alert(modifyMaxPage);
 
@@ -344,6 +346,8 @@
 			$("#modifyInputModal").modal('hide');
 
 		} else {
+			
+			modifyUrl = "https://www.youtube.com/embed/" + modifyUrl.substr(17);
 
 			$("#modifyInputModal").modal('hide');
 			modifyUrlArr[modifyPagingCount - 1] = modifyUrl;

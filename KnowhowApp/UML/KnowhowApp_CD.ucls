@@ -1,600 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.9" icons="true" automaticImage="PNG" always-add-relationships="true" generalizations="true" 
   realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="com.angle.service.impl.MemberServiceImpl" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/service/impl/MemberServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="495" width="411" x="2589" y="342"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="2" language="java" name="com.angle.dao.MemberDao" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/dao/MemberDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="441" width="237" x="2851" y="931"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="3" language="java" name="com.angle.domain.MemberTag" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/domain/MemberTag.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="147" x="2135" y="1430"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="4" language="java" name="com.angle.env.LuceneKoreanAnalyzer" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/env/LuceneKoreanAnalyzer.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="201" x="1310" y="931"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="com.angle.domain.Post" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/domain/Post.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="837" width="147" x="2322" y="1430"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="com.angle.controller.PostController" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/controller/PostController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="495" width="356" x="250" y="342"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="7" language="java" name="com.angle.service.MemberService" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/service/MemberService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="459" width="411" x="3149" y="931"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <interface id="8" language="java" name="com.angle.service.PostCommentService" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/service/PostCommentService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="153" width="348" x="434" y="931"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <interface id="9" language="java" name="com.angle.dao.TagDao" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/dao/TagDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="153" width="242" x="2022" y="342"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="10" language="java" name="com.angle.dao.impl.MemberDaoImpl.postRowMapper" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/dao/impl/MemberDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="161" x="2629" y="931"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="11" language="java" name="com.angle.service.impl.PostServiceImpl" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/service/impl/PostServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="531" width="348" x="1146" y="342"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="12" language="java" name="com.angle.domain.Tag" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/domain/Tag.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="351" width="126" x="2106" y="931"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="13" language="java" name="com.angle.dao.impl.PostDaoImpl" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/dao/impl/PostDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="531" width="385" x="1534" y="342"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="14" language="java" name="com.angle.dao.impl.MemberDaoImpl" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/dao/impl/MemberDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="531" width="366" x="3212" y="342"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="15" language="java" name="com.angle.domain.PostContent" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/domain/PostContent.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="297" width="137" x="1418" y="1430"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="16" language="java" name="com.angle.service.TagService" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/service/TagService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="117" width="325" x="781" y="342"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="17" language="java" name="com.angle.env.LogAspect" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/env/LogAspect.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="81" width="87" x="360" y="59"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="18" language="java" name="com.angle.controller.TagController" project="KnowhowApp" 
+  <class id="1" language="java" name="com.angle.controller.TagController" project="KnowhowApp" 
     file="/KnowhowApp/src/main/java/com/angle/controller/TagController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="171" width="272" x="781" y="59"/>    
+    <position height="-1" width="-1" x="175" y="148"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="com.angle.mail.EmailSender" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/mail/EmailSender.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="201" x="2367" y="931"/>    
+  <class id="2" language="java" name="com.angle.env.LuceneKoreanAnalyzer" project="KnowhowApp" 
+    file="/KnowhowApp/src/main/java/com/angle/env/LuceneKoreanAnalyzer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="590" y="615"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="com.angle.dao.impl.TagDaoImpl" project="KnowhowApp" 
+  <interface id="3" language="java" name="com.angle.dao.TagDao" project="KnowhowApp" 
+    file="/KnowhowApp/src/main/java/com/angle/dao/TagDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="593" y="424"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="4" language="java" name="com.angle.dao.impl.TagDaoImpl" project="KnowhowApp" 
     file="/KnowhowApp/src/main/java/com/angle/dao/impl/TagDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="243" width="366" x="2305" y="59"/>    
+    <position height="-1" width="-1" x="593" y="156"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="com.angle.controller.MemberController" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/controller/MemberController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="549" width="419" x="3618" y="342"/>    
+  <class id="5" language="java" name="com.angle.domain.Tag" project="KnowhowApp" 
+    file="/KnowhowApp/src/main/java/com/angle/domain/Tag.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="945" y="323"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="com.angle.service.impl.TagServiceImpl" project="KnowhowApp" 
+  <interface id="6" language="java" name="com.angle.service.TagService" project="KnowhowApp" 
+    file="/KnowhowApp/src/main/java/com/angle/service/TagService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="173" y="389"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="7" language="java" name="com.angle.service.impl.TagServiceImpl" project="KnowhowApp" 
     file="/KnowhowApp/src/main/java/com/angle/service/impl/TagServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="153" width="325" x="1940" y="59"/>    
+    <position height="-1" width="-1" x="173" y="614"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="23" language="java" name="com.angle.domain.Member" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/domain/Member.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="567" width="150" x="3322" y="1430"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="24" language="java" name="com.angle.domain.PostComment" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/domain/PostComment.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="621" width="147" x="843" y="1430"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="25" language="java" name="com.angle.domain.PostTag" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/domain/PostTag.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="102" x="1940" y="1430"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="26" language="java" name="com.angle.dao.impl.MemberDaoImpl.memberResultSetExtrctor" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/dao/impl/MemberDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="177" x="3600" y="931"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="27" language="java" name="com.angle.service.PostService" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/service/PostService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="351" width="328" x="66" y="931"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="28" language="java" name="com.angle.mail.Email" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/mail/Email.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="297" width="140" x="2589" y="1430"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="29" language="java" name="com.angle.dao.impl.MemberDaoImpl.memberRowMapper" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/dao/impl/MemberDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="99" width="178" x="3817" y="931"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="30" language="java" name="com.angle.dao.PostCommentDao" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/dao/PostCommentDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="153" width="385" x="843" y="931"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <interface id="31" language="java" name="com.angle.dao.PostDao" project="KnowhowApp" 
-    file="/KnowhowApp/src/main/java/com/angle/dao/PostDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="351" width="305" x="1593" y="931"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <dependency id="32">    
-    <bendpoint x="2054" y="931"/>    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="25"/>  
-  </dependency>  
-  <generalization id="33">    
-    <end type="SOURCE" refId="25"/>    
-    <end type="TARGET" refId="12"/>  
-  </generalization>  
-  <realization id="34">    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="9"/>  
-  </realization>  
-  <association id="35">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="36" name="postService"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="27" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="38">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="39">    
-    <bendpoint x="812" y="931"/>    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="24"/>  
-  </dependency>  
-  <association id="40">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="41" name="postCommentDao"/>      
-      <multiplicity id="42" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="30" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="43">    
-    <bendpoint x="2315" y="342"/>    
-    <bendpoint x="2315" y="931"/>    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="44">    
-    <bendpoint x="1541" y="931"/>    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="25"/>  
-  </dependency>  
-  <dependency id="45">    
-    <bendpoint x="1970" y="342"/>    
-    <bendpoint x="2033" y="931"/>    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="46">    
-    <bendpoint x="2262" y="931"/>    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="47">    
-    <bendpoint x="2294" y="342"/>    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
-  <dependency id="48">    
-    <bendpoint x="1970" y="931"/>    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <nesting id="49">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="10"/>  
-  </nesting>  
-  <realization id="50">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="30"/>  
-  </realization>  
-  <dependency id="51">    
-    <bendpoint x="1562" y="931"/>    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="15"/>  
-  </dependency>  
-  <dependency id="52">    
-    <bendpoint x="1928" y="931"/>    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="25"/>  
-  </dependency>  
-  <dependency id="53">    
-    <bendpoint x="4025" y="931"/>    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="23"/>  
-  </dependency>  
-  <dependency id="54">    
-    <bendpoint x="2075" y="931"/>    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="23"/>  
-  </dependency>  
-  <association id="55">    
-    <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="56" name="tagService"/>      
-      <multiplicity id="57" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="58">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
-  <dependency id="59">    
-    <bendpoint x="3118" y="931"/>    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="23"/>  
-  </dependency>  
-  <dependency id="60">    
-    <bendpoint x="1949" y="342"/>    
-    <bendpoint x="1949" y="931"/>    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="25"/>  
-  </dependency>  
-  <dependency id="61">    
-    <bendpoint x="1258" y="931"/>    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="15"/>  
-  </dependency>  
-  <association id="62">    
+  <association id="8">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="63" name="memberDao"/>      
-      <multiplicity id="64" minimum="0" maximum="1"/>    
+      <attribute id="9" name="tagService"/>      
+      <multiplicity id="10" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="11">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="12" name="luceneKoreanAnalyzer"/>      
+      <multiplicity id="13" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="65">    
-    <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="66" name="memberService"/>      
-      <multiplicity id="67" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="68">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="23"/>  
-  </dependency>  
-  <dependency id="69">    
-    <bendpoint x="1991" y="342"/>    
-    <bendpoint x="1991" y="931"/>    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="25"/>  
-  </dependency>  
-  <association id="70">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="71" name="postCommentService"/>      
-      <multiplicity id="72" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="73">    
-    <bendpoint x="2012" y="931"/>    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="74">    
-    <end type="SOURCE" refId="31"/>    
-    <end type="TARGET" refId="15"/>  
-  </dependency>  
-  <realization id="75">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="8"/>  
-  </realization>  
-  <dependency id="76">    
-    <end type="SOURCE" refId="31"/>    
-    <end type="TARGET" refId="25"/>  
-  </dependency>  
-  <nesting id="77">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="29"/>  
-  </nesting>  
-  <dependency id="78">    
-    <bendpoint x="2336" y="931"/>    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="79">    
-    <bendpoint x="2598" y="931"/>    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="28"/>  
-  </dependency>  
-  <association id="80">    
-    <end type="SOURCE" refId="22" navigable="false">      
-      <attribute id="81" name="tagDao"/>      
-      <multiplicity id="82" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="83">    
-    <bendpoint x="2820" y="931"/>    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <association id="84">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="85" name="luceneKoreanAnalyzer"/>      
-      <multiplicity id="86" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="87">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="88">    
-    <end type="SOURCE" refId="31"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <association id="89">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="90" name="pTagList"/>      
-      <multiplicity id="91" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="25" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="92">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="31"/>  
-  </realization>  
-  <dependency id="93">    
-    <bendpoint x="1279" y="931"/>    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="24"/>  
-  </dependency>  
-  <association id="94">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="95" name="emailSender"/>      
-      <multiplicity id="96" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="97">    
-    <end type="SOURCE" refId="30"/>    
-    <end type="TARGET" refId="24"/>  
-  </dependency>  
-  <realization id="98">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <dependency id="99">    
-    <bendpoint x="2336" y="342"/>    
-    <bendpoint x="2294" y="931"/>    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <nesting id="100">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="26"/>  
-  </nesting>  
-  <dependency id="101">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="28"/>  
-  </dependency>  
-  <generalization id="102">    
+  <dependency id="14">    
     <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="12"/>  
-  </generalization>  
-  <association id="103">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="104" name="postDao"/>      
-      <multiplicity id="105" minimum="0" maximum="1"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <realization id="15">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <realization id="16">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <association id="17">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="18" name="tagDao"/>      
+      <multiplicity id="19" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="31" navigable="true"/>    
+    <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="106">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="107" name="pConList"/>      
-      <multiplicity id="108" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="109">    
-    <end type="SOURCE" refId="29"/>    
-    <end type="TARGET" refId="23"/>  
-  </dependency>  
-  <realization id="110">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="7"/>  
-  </realization>  
-  <realization id="111">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="16"/>  
-  </realization>  
-  <dependency id="112">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="23"/>  
-  </dependency>  
-  <dependency id="113">    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="23"/>  
-  </dependency>  
-  <realization id="114">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="27"/>  
-  </realization>  
-  <dependency id="115">    
-    <bendpoint x="4046" y="931"/>    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="23"/>  
+  <dependency id="20">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="5"/>  
   </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
