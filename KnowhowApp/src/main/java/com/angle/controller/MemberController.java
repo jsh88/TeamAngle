@@ -377,11 +377,9 @@ public class MemberController {
 
 		int result = 0;
 
-		String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://192.168.0.31:8080/KnowhowApp/updateEmailMemberInfoPwForm?id="+ id + "&check=true";
+		String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://192.168.137.51:8080/KnowhowApp/updateEmailMemberInfoPwForm?id="+ id + "&check=true";
 		//String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://10.1.0.214:8080/KnowhowApp/updateEmailMemberInfoPwForm?id="+ id + "&check=true";
-		
-		
-		
+				
 		if(pw != null) {
 			email.setContent(msg);
 			email.setReciver(id);
@@ -417,7 +415,7 @@ public class MemberController {
 
 		int result = 0;
 
-		String msg = "아래 링크를 클릭하시면 회원탈퇴처리 됩니다.\nhttp://192.168.0.31:8080/KnowhowApp/deleteMemberJoin.do?id="+ id + "&deletecheck=true";
+		String msg = "아래 링크를 클릭하시면 회원탈퇴처리 됩니다.\nhttp://192.168.137.51:8080/KnowhowApp/deleteMemberJoin.do?id="+ id + "&deletecheck=true";
 		//String msg = "아래 링크를 클릭하시면 회원탈퇴처리 됩니다.\nhttp://10.1.0.214:8080/KnowhowApp/deleteMemberJoin.do?id="+ id + "&deletecheck=true";
 		
 		if(id != null) {
@@ -427,7 +425,7 @@ public class MemberController {
 			emailSender.sendEmail(email);
 			result = 1;
 			model.addAttribute("result", result);
-
+			
 			return "member/memberAjax";
 		} else {
 			result = 0;
@@ -463,7 +461,15 @@ public class MemberController {
 	}
 
 
-
+	// 회원탈퇴 세션끊기
+	@RequestMapping("/deleteMemberSession.do")
+	public String deleteMemberSession(HttpSession session) {
+		
+		session.invalidate();
+	
+		return "index";
+	}
+	
 
 
 }
