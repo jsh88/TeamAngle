@@ -563,6 +563,7 @@
 						<div id="addTitle">${post.title }</div>
 						<div id="addCreateDate">${post.wDate }</div>
 						<div id="Clear" onclick="modifyClearPage()"><img style="width:20px;" src="resources/images/clear.png"/></div>
+						<div id="tSave" onclick="savePosting('${post.pNo}')"><img style="width:25px;" src="resources/images/tsave.png"/></div>
 					</div>
 					<!-- Modal 상단-->
 						<div id="modifyCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
