@@ -15,16 +15,12 @@ $(document)
 
 					$('#navtag').css('width', $(window).width());
 
-					$(window).resize(function() {
-						$('#menu').css('height', $(window).height());
-					});
-
 					/* myPage JQuery Div 움직임 */
 
 					$('#menu').hide();
-					$('#menu').css('height', $(window).height() - 110);
+					$('#menu').css('height', $(window).height() - 150);
 					$(window).resize(function() {
-						$('#menu').css('height', $(window).height() - 110);
+						$('#menu').css('height', $(window).height() - 150);
 					});
 
 					$('#navbtn').click(function() {

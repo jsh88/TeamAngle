@@ -78,23 +78,33 @@
 	</nav>
 
 	<!--  마이페이지 -->
-	<div class="col-lg-12" id="myPageWrap">
+	<div class="col-lg-12 main-padding-mypage" id="myPageWrap">
 		<div class="col-md-9"></div>
-		<div class="col-md-3">
+		<div class="col-md-3 main-padding-mypage">
 			<div id="menu">
 				<div id="profile_line" class="col-sm-12 col-xs-12 col-md-12">
-					<div id="profile_img" class="col-sm-5 col-xs-12">
-						<c:if test="${member.image eq null }">
-						<img id="myProfileImage" src="http://placehold.it/110x110" width="110px;" height="110px;">
-						</c:if>
-						<c:if test="${member.image ne null }">
-						<img id="myProfileImage" src="resources/images/${member.image }" width="110px;" height="110px;">
-						</c:if>
-					</div>
-					<div id="profile_nametag" class="col-sm-7 col-xs-12">
-						<div class="col-sm-12 col-xs-12">${member.nickName }</div>
-						<div id="myProfileComment" class="col-sm-12 col-xs-12">${member.pComment }</div>
-						<div class="col-sm-12 col-xs-12">${member.lDate }</div>
+					
+					<div id="profile_nametag" class="col-sm-12 col-xs-12">
+					
+						<table id="mypageTable" class="table table-bordered radius-table">
+							<tr>
+								<th rowspan="3" class="main-padding-mypage mypage-td">
+										<c:if test="${member.image eq null }">
+										<img id="myProfileImage" src="http://placehold.it/110x110">
+										</c:if>
+										<c:if test="${member.image ne null }">
+										<img id="myProfileImage" src="resources/images/${member.image }" style="width:110px; height:110px;">
+									</c:if>
+								</th>
+								<td class="active">${member.nickName }</td>
+							</tr>
+							<tr>
+								<td>${member.pComment }</td>
+							</tr>
+							<tr>
+								<td>마지막 접속시간 : ${member.lDate }</td>
+							</tr>
+						</table>
 					</div>
 				</div>
 
@@ -102,14 +112,14 @@
 				<div id="nv1"
 					class="col-sm-12 col-xs-12 btn-group btn-group-xs btn-group-sm btn-group-lg"
 					role="group">
-					<button id="edit_Profile" class="btn btn-default col-sm-3 col-xs-3"
+					<button id="edit_Profile" class="btn col-sm-3 col-xs-3 btn-choose-height"
 						onclick="modalOpen('4')">Profile Edit</button>
 					<button id="edit_MemModify"
-						class="btn btn-default col-sm-3 col-xs-3" onclick="modalOpen('3')">Member
+						class="btn col-sm-3 col-xs-3" onclick="modalOpen('3')">Member
 						Edit</button>
-					<button class="btn btn-default col-sm-3 col-xs-3"
+					<button class="btn col-sm-3 col-xs-3 btn-choose-height"
 						onclick="startPosting()">Writing Post</button>
-					<button class="btn btn-default col-sm-3 col-xs-3" onclick="modalOpen('11')">MyPost</button>
+					<button class="btn col-sm-3 col-xs-3 btn-choose-height" onclick="modalOpen('11')">MyPost</button>
 				</div>
 
 				<!-- 마이페이지 - 최근 본 knowhow -->
