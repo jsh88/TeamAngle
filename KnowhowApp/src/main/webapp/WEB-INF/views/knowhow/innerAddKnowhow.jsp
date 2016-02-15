@@ -11,9 +11,7 @@
 	var addMaxPage = 1;
 	var addUrl = "";
 
-	$(document)
-			.ready(
-					function() {
+	$(document)	.ready(function() {
 
 						addImgArr[0] = null;
 						addConArr[0] = null;
@@ -223,10 +221,7 @@
 						});
 
 						/* 이미지 드래그 앤 드롭 */
-						$('.m')
-								.on(
-										'drop',
-										function(e) {
+						$('.m').on('drop', function(e) {
 
 											e.preventDefault();
 											e.stopPropagation();
@@ -353,7 +348,7 @@
 		formData.append("mpage", addMaxPage);
 
 		for (var k = 0; k < addMaxPage; k++) {
-			formData.append("addImgArr" + k, addImgArr[k]);
+			formData.append("imgArr" + k, addImgArr[k]);
 			addConArr[k] = addConArr[k] + "q1z";
 			addUrlArr[k] = addUrlArr[k] + "q1z";
 		}
