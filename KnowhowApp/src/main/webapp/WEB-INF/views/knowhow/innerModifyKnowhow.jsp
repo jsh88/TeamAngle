@@ -52,6 +52,23 @@
 								$(this).css("width", "50");
 							}
 						});
+						
+						$("#modifyModalInfoImg").mouseover(function(){
+							
+							$("#modifyKnowhowInfoModal").modal();
+							
+						});
+						
+						$("#modifyInfoViewImg").mouseout(function(){
+							
+							$("#modifyKnowhowInfoModal").modal('hide');
+							
+							if (addImgArr[modifyPagingCount - 1]) {
+								
+							}else{
+								$('#m' + modifyPagingCount).css("background-image","none");
+							}
+						});
 
 						
 						<c:forEach items="${pConList}" var="pCon" varStatus="status">
@@ -530,6 +547,13 @@
 	}
 	
 </script>
+ 	<div id="modifyModalInfo">
+ 		<div id="modifyModalBlankLine">&nbsp;</div>
+ 		<div id="modifyModalInfoImg">
+ 			<img style="width:55px;" src="resources/images/Info.png"/>
+ 		</div>
+ 	</div>
+
 <div class="modal-content" id="addContent">
 				<div id="addWrap">
 					<div class="modal-header" id="header">

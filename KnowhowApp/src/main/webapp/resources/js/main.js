@@ -1,17 +1,29 @@
 var bestPostCount = 1;
 var postCount = 1;
 var searchCount = 1;
+var searchWord = "";
+var isSearch = false;
 
 $(document)
 		.ready(
 				function() {
 
+					// 스크롤 이벤트
 					$(window).scroll(
 							function() {
 								if ($(window).scrollTop() >= $(document)
 										.height()
 										- $(window).height()) {
-									showPostView();
+									
+									if(!searchWord) {
+										
+										morePostView();
+										
+									} else if(searchWord) {
+										
+										moreSearchPostView();
+										
+									}
 								}
 							});
 
@@ -77,9 +89,9 @@ $(document)
 
 										if (key.keyCode == 13) {
 
-											var word = $("#search_txt").val();
+											searchWord = $("#search_txt").val();
 
-											if (!word) {
+											if (!searchWord) {
 												alert("검색할 태그, 단어를 입력하세요.");
 												return false;
 											} else {
@@ -87,7 +99,7 @@ $(document)
 												$("#bestTitle")
 														.html(
 																"<div class='searchResultTitle'>'"
-																		+ word
+																		+ searchWord
 																		+ "' 에 대한 검색결과	</div>");
 												$("#listTitle").remove();
 												$("#listLine").remove();
@@ -96,10 +108,12 @@ $(document)
 												$("#bestLine")
 														.after(
 																"<div class='col-md-12' id='bestPost'></div>");
+												
+												isSearch = false;
 
-												for (var i = 0; i < 1; i++) {
+												for (var i = 0; i < 10; i++) {
 
-													getSearchPostView(word);
+													getSearchPostView();
 													searchCount++;
 
 												}
@@ -222,16 +236,15 @@ $(document)
 
 				});
 // ready end
-
-function getSearchPostView(word) {
-
+//@
+function getSearchPostView() {
+	
 	// 폼 데이터 받기 or Append or 인자로 form id)
 	var formData = new FormData();
 
-	formData.append("word", word);
-	formData.append("searchCount", searchCount);
-
-	alert(word);
+	formData.append("word", searchWord);
+	formData.append("no", searchCount);
+	formData.append("isSearch", isSearch);
 
 	$.ajax({
 		type : 'POST',
@@ -242,7 +255,9 @@ function getSearchPostView(word) {
 		contentType : false,
 
 		success : function(responseData, statusText, xhr) {
-
+			
+			isSearch = true;
+			
 			var result = responseData;
 
 			$('#bestPost').html($('#bestPost').html() + result);
@@ -251,7 +266,6 @@ function getSearchPostView(word) {
 
 		},
 		beforeSend : function() {
-
 			// 전송 전
 			// 이미지 보여주기
 			$('.wrap-loading').removeClass('display-none');
@@ -671,13 +685,22 @@ function findChecker(i) {
 	}
 }
 
-function showPostView() {
+function morePostView() {
 
 	for (var i = 0; i < 5; i++) {
 		getPostView();
 		postCount++;
 	}
 
+}
+
+function moreSearchPostView() {
+	
+	for (var i = 0; i < 5; i++) {
+		getSearchPostView();
+		searchCount++;
+	}
+	
 }
 
 function modalOpen(selModal) {

@@ -614,7 +614,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	public Post getSearchPostView(ArrayList<MemberTag> mTagList, int no) {
 
 		return jdbcTemplate.query(
-				"select pt.*, m.nickname from (select row_number() over (order by good desc) no, p.* from post p where p.state = 1) pt, member m where no = ? and m.id = pt.id",
+				"select pt.*, m.nickname from (select row_number() over (order by wdate desc) no, p.* from post p where p.state = 1 and p.id is not null) pt, member m where no = ? and m.id = pt.id",
 				new Object[] { no }, new ResultSetExtractor<Post>() {
 
 					@Override

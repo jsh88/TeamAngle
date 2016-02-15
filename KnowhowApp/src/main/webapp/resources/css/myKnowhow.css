@@ -5,6 +5,27 @@
 		height: 600px;
 	}
 	
+	#myModalInfo{
+		width:640px;
+	
+	}
+	
+	#myModalBlankLine{
+		width:500px;
+		display: inline-block;
+	}
+	
+	#myModalInfoImg{
+		width:55px;
+		display: inline-block;
+		cursor: pointer;
+	}
+	
+	#myKnowhowInfoDialog{
+		width:720px;
+		margin-top: 100px;
+	}
+	
 	#myContent{
 		width: 500px;
 		height: 600px;

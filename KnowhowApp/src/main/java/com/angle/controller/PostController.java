@@ -255,10 +255,13 @@ public class PostController {
 	// 포스트 검색
 	@RequestMapping(value = "doSearch", method = RequestMethod.POST)
 	public String doSearch(HttpServletRequest request, HttpSession session) {
-
+		
 		postService.getSearchPostView(request, session);
 
-		return "main/postList"; // 어디로 가야하오
+		if (request.getAttribute("postView") != null)
+			return "main/innerMainPost";
+		else
+			return "templete/empty";
 	}
 
 	// 포스트 추천, ajax

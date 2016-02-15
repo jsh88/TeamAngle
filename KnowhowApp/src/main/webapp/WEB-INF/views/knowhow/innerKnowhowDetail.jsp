@@ -85,6 +85,23 @@
 			
 			});
 			
+			$("#detailModalInfoImg").mouseover(function(){
+				
+				$("#detailInfoModal").modal();
+				
+			});
+			
+			$("#detailInfoViewImg").mouseout(function(){
+				
+				$("#detailInfoModal").modal('hide');
+				
+				if (addImgArr[detailPagingCount - 1]) {
+					
+				}else{
+					$('#m' + detailPagingCount).css("background-image","none");
+				}
+			});
+			
 			$("#replycontent").click(function(e){
 				
 				e.preventDefault();
@@ -486,7 +503,12 @@
 	}
 		
 	</script>
-
+ 	<div id="detailModalInfo">
+ 		<div id="detailModalBlankLine">&nbsp;</div>
+ 		<div id="detailModalInfoImg">
+ 			<img style="width:55px;" src="resources/images/Info.png"/>
+ 		</div>
+ 	</div>
     <div class="modal-content" id="detailContent">
 					<div id="detailWrap">
 					<div class="modal-header" id="header">
