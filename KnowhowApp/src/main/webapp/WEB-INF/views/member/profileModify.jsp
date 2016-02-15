@@ -108,7 +108,7 @@ $(function() {
 							<c:if test="${ member.pComment ne null }">
 								<input id="profile_pcom" type="text" name="pcomment" class="form-control col-sm-12" value="${member.pComment }">
 							</c:if>	
-							<input type="button"
+							<input type="submit"
 								value="Profile Edit" class="btn btn-success col-sm-12"
 								id="profileModify">
 						</div>

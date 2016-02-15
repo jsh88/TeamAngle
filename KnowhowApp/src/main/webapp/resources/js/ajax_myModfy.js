@@ -89,7 +89,7 @@ $(function() {
 				
 				if(result == 1) {
 					$("#passCheck").css("border", "2px solid red");
-					
+					$("#p1").attr("disabled", "disabled");
 				} else if(result == 0) {
 					$("#passCheck").css("border", "2px solid lime");
 					$("#p1").removeAttr("disabled");
