@@ -68,12 +68,12 @@
 									<c:forEach items="${ getMyPostByViews }" var="v">
 										
 										<div class="knowhowlist" >
-												<div><a href="#"><b>${ v.title }</b></a></div>
-													<div id="list">
+												<span><a href="#"><b>${ v.title }</b></a></span>
+												<div id="list">
 														<span class="l">${ v.wDate }</span>
 														<span class="l"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a></span>
 														<span><a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></span>
-													</div>
+												</div>
 												<div id="listline"></div>
 										</div>
 									
@@ -88,12 +88,12 @@
 									<c:forEach items="${ getMyLatelyPost }" var="n">
 										
 										<div class="knowhowlist" >
-												<div><a href="#"><b>${ n.title }</b></a></div>
-													<div id="list">
+												<span><a href="#"><b>${ n.title }</b></a></span>
+												<div id="list">
 														<span class="l">${ n.wDate }</span>
 														<span class="l"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a></span>
 														<span><a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></span>
-													</div>
+												</div>
 												<div id="listline"></div>
 										</div>										
 						
@@ -108,7 +108,7 @@
 									<c:forEach items="${ getMyPostByComments }" var="c">
 										
 										<div class="knowhowlist" >
-												<div><a href="#"><b>${ c.title }</b></a></div>
+												<span><a href="#"><b>${ c.title }</b></a></span>
 													<div id="list">
 														<span class="l">${ c.wDate }</span>
 														<span class="l"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a></span>
@@ -129,7 +129,7 @@
 									<c:forEach items="${ getMyPostByRecommand }" var="r">
 										
 										<div class="knowhowlist" >
-												<div><a href="#"><b>${ r.title }</b></a></div>
+												<span><a href="#"><b>${ r.title }</b></a></span>
 													<div id="list">
 														<span class="l">${ r.wDate }</span>
 														<span class="l"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a></span>
