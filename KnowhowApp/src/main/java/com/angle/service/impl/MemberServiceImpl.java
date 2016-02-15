@@ -120,7 +120,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void deleteMember(String id) {
-		
+
 		memberDao.deleteMember(id);
 	}
 
@@ -208,33 +208,33 @@ public class MemberServiceImpl implements MemberService {
 
 		String result = "a";
 		Member member = memberDao.memberLogin(id);
-		
+
 		if (member == null || member.getId().equals("") ) {
-			
+
 			result = "b";
 		}else{
-		int bool = member.isState() ? 1:0;
-		if (bool == 0){
-			result = "d";
-		}else {
-			if (member.getPw().equals(pw) && bool == 1) {
-				session.setAttribute("member", member);
-				session.setMaxInactiveInterval(24 * 60 * 60);
-				int v_result = memberDao.getVcount(id);
-				if (v_result != -1) {
-					memberDao.updateVcount(member);
-				}
-				memberDao.updateLdate(member);
-				result = "c";
-			} else if (!member.getPw().equals(pw)) {
-				result = "a";
-			} 
+			int bool = member.isState() ? 1:0;
+			if (bool == 0){
+				result = "d";
+			}else {
+				if (member.getPw().equals(pw) && bool == 1) {
+					session.setAttribute("member", member);
+					session.setMaxInactiveInterval(24 * 60 * 60);
+					int v_result = memberDao.getVcount(id);
+					if (v_result != -1) {
+						memberDao.updateVcount(member);
+					}
+					memberDao.updateLdate(member);
+					result = "c";
+				} else if (!member.getPw().equals(pw)) {
+					result = "a";
+				} 
+			}
 		}
-		}
-		
+
 		System.out.println("로그인 : " + result);
 		return result;		
-		
+
 	}
 
 	@Override
@@ -259,7 +259,7 @@ public class MemberServiceImpl implements MemberService {
 		int result = memberDao.modifyMember(m);
 		request.setAttribute("result", result);
 		session.setAttribute("member", m);
-		
+
 		return m.getImage() + ",," + m.getpComment();
 	}
 
@@ -286,7 +286,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void emailCheck(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws Exception {
-		
+
 		response.setContentType("text/html;charset=UTF-8");
 		response.setHeader("Cache-Control", "no-cache");
 		Email email = new Email();
@@ -323,89 +323,75 @@ public class MemberServiceImpl implements MemberService {
 		String sendCode = (String)request.getServletContext().getAttribute("sendCode");
 		response.setContentType("text/html;charset=UTF-8");
 		response.setHeader("Cache-Control", "no-cache");
-		
+
 		int result = 0;
-		
+
 		if(getCode.equals(sendCode)){
 			memberDao.acceptJoin(id);
 			result = 1;
 			request.setAttribute("isCheckEmail", "아");
 		}
-		
+
 		return result;
 	}
 
 	@Override
 	public void getMyPostByViews(HttpServletRequest req, HttpSession session) {
 		Member m = (Member) session.getAttribute("member");
-		if(!m.getId().isEmpty() || m.getId() != null){
-		String id = m.getId();
-		List<Post> pList = null;
-		pList = memberDao.getMyPostByViews(id);
-		session.setAttribute("getMyPostByViews", pList);
-		}
+		req.setAttribute("mypList", memberDao.getMyPostByViews(m.getId()));
 
 	}
+
 	// 내가 최근에 작성한 포인트
 	@Override
 	public void getMyLatelyPost(HttpServletRequest req, HttpSession session) {
 		Member m = (Member) session.getAttribute("member");
-		String id = m.getId();
-		List<Post> pList = null;
-		pList = memberDao.getMyLatelyPost(id);
-		session.setAttribute("getMyLatelyPost", pList);
+		req.setAttribute("mypList", memberDao.getMyLatelyPost(m.getId()));
 
 	}
 
 	@Override
 	public void getMyPostByRecommand(HttpServletRequest req, HttpSession session) {
 		Member m = (Member) session.getAttribute("member");
-		String id = m.getId();
-		List<Post> pList = null;
-		pList = memberDao.getMyPostByRecommand(id);
-		session.setAttribute("getMyPostByRecommand", pList);
+		req.setAttribute("mypList", memberDao.getMyPostByRecommand(m.getId()));
 
 	}
 
 	@Override
 	public void getMyPostByComments(HttpServletRequest req, HttpSession session) {
 		Member m = (Member) session.getAttribute("member");
-		String id = m.getId();
-		List<Post> pList = null;
-		pList = memberDao.getMyPostByComments(id);
-		session.setAttribute("getMyPostByComments", pList);
-
+		req.setAttribute("mypList", memberDao.getMyPostByComments(m.getId()));
 	}
 
 	@Override
 	public String getId(HttpServletRequest request) {
-		
+
 		String nickname = request.getParameter("nickname");		
 		String pass = request.getParameter("pw");
-		
+
 		String id = memberDao.getId(nickname, pass);
-		
+
 		return id;
 	}
 
 	@Override
 	public String getPw(HttpServletRequest request) {
-		
+
 		String id = request.getParameter("id");		
-		
+
 		String pw = memberDao.getPw(id);
-		
+
 		return pw;
 	}
 
 	@Override
 	public String getEmail(HttpServletRequest request) {
-		
+
 		String nickname = request.getParameter("nickname");
 		String pw = request.getParameter("pass");
-		
+
 		String id = memberDao.getEmail(nickname, pw);
-		
+
 		return id;
 	}
 

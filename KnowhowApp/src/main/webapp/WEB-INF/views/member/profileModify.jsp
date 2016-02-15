@@ -9,11 +9,13 @@
 <script>
 var setImage = null;
 var comm = null;
-$(function() {
+$(function () {
 	
-	$('#profileModify').click(function() {
-
+	$('#profileModify').click(function(e) {
+		
+		e.preventDefault();
 		$.ajaxSettings.traditional = true;
+		var frm = $('#profile_for');
 		var formData = new FormData();
 		formData.append("image", setImage);
 		formData.append("pcomment", $("#profile_pcom").val());
@@ -27,16 +29,18 @@ $(function() {
 				
 				var result = responseData;
 				var fileName = result.substring(0, result.indexOf(",,"));
-// 				alert(fileName);
+				alert(fileName);
 				var comment = result.substring(result.indexOf(",,") + 2);
-// 				alert(comment);
+				alert(comment);
 				
 				$("#profile_Img").attr("src", "resources/images/" + fileName);
 				$("#myProfileImage").attr("src", "resources/images/" + fileName);
 				$("#profile_pcom").val(comment);
 				$("#myProfileComment").text(comment);
 				
-// 				alert("success");
+				alert("success");
+				
+				$("#profileModifyPage").modal("hide");
 				
 			},
 			error : function(xhr, statusText, responseData) {
@@ -55,7 +59,7 @@ $(function() {
 
 		reader.onload = function(ev) {
 			
-// 			alert("이미지님 들어가신다");
+			alert("이미지님 들어가신다");
 			
 			$('#profile_Img').attr('src', ev.target.result);
 			
@@ -70,13 +74,69 @@ $(function() {
 	});
 	
 });
+
 </script>
+<style>
+#profileDropWrap {
+	margin-top: 10px;
+}
+
+#profileBlankLine {
+	height: 20px;
+}
+
+#profile_form {
+	height: 500px;
+	border: 10px solid #535353;
+}
+
+#dropbox {
+	border: 4px dashed #BFBCBC;
+	border-radius: 6px;
+	height: 300px;
+	margin: 0 auto;
+	cursor: default;
+}
+
+#profileCloseImg {
+	margin-top: 10px;
+	float: right;
+}
+
+#closeBar {
+	height: 40px;
+}
+
+#profileLabel {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#profile_pcom {
+	margin-bottom: 5px;
+}
+
+#profileModify {
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+#profile_Img {
+	width: 100%;
+	height: 100%;
+	display: block;
+	margin-left: -15px;
+	margin-right: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	position: absolute;
+}
+</style>
 
 </head>
 <body>
 	<div class="modal-dialog">
-		<form name="profile_form" action="memModify" method="post" onsubmit="return false;"
-			enctype="multipart/form-data">
+		<form name="profile_form" action="memModify" method="post" onsubmit="return false;">
 
 			<div id="profile_form" class="modal-content col-sm-push-1 col-sm-10">
 
@@ -88,7 +148,7 @@ $(function() {
 					<div class="col-sm-12">
 						<div id="dropbox" class="col-sm-push-1 col-sm-10"
 							contenteditable="true">
-						<c:if test="${ member.image ne null }">
+							<c:if test="${ member.image ne null }">
 							<img id="profile_Img" src="resources/images/${member.image }" class="img-responsive" />	
 						</c:if>
 						<c:if test="${ member.image eq null }">
@@ -110,7 +170,7 @@ $(function() {
 							</c:if>	
 							<input type="submit"
 								value="Profile Edit" class="btn btn-success col-sm-12"
-								id="profileModify">
+								id="profileModify" data-dismiss="modal-dialog" aria-label="Close">
 						</div>
 					</div>
 				</div>
