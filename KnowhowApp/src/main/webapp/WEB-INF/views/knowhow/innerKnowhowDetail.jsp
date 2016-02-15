@@ -248,8 +248,8 @@
 				error : function(request, status, error) {
 
 					// 에러 로직, 에러 로그 확인
-					alert("code:" + request.status + "\n\n" + "message:"
-							+ request.responseText + "\n\n" + "error:" + error);
+// 					alert("code:" + request.status + "\n\n" + "message:"
+// 							+ request.responseText + "\n\n" + "error:" + error);
 
 				},
 				complete : function() {
@@ -299,8 +299,8 @@
 				error : function(request, status, error) {
 
 					// 에러 로직, 에러 로그 확인
-					alert("code:" + request.status + "\n\n" + "message:"
-							+ request.responseText + "\n\n" + "error:" + error);
+// 					alert("code:" + request.status + "\n\n" + "message:"
+// 							+ request.responseText + "\n\n" + "error:" + error);
 
 				},
 				complete : function() {
@@ -352,8 +352,8 @@
 					error : function(request, status, error) {
 	
 						// 에러 로직, 에러 로그 확인
-						alert("code:" + request.status + "\n\n" + "message:"
-								+ request.responseText + "\n\n" + "error:" + error);
+// 						alert("code:" + request.status + "\n\n" + "message:"
+// 								+ request.responseText + "\n\n" + "error:" + error);
 	
 					},
 					complete : function() {
@@ -397,8 +397,8 @@
 				error : function(request, status, error) {
 
 					// 에러 로직, 에러 로그 확인
-					alert("code:" + request.status + "\n\n" + "message:"
-							+ request.responseText + "\n\n" + "error:" + error);
+// 					alert("code:" + request.status + "\n\n" + "message:"
+// 							+ request.responseText + "\n\n" + "error:" + error);
 
 				},
 				complete : function() {
@@ -464,8 +464,8 @@
 							error : function(request, status, error) {
 
 								// 에러 로직, 에러 로그 확인
-								alert("code:" + request.status + "\n\n" + "message:"
-										+ request.responseText + "\n\n" + "error:" + error);
+// 								alert("code:" + request.status + "\n\n" + "message:"
+// 										+ request.responseText + "\n\n" + "error:" + error);
 
 							},
 							complete : function() {

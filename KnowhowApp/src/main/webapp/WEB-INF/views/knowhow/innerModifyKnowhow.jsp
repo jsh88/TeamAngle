@@ -16,7 +16,7 @@
 
 						modifyMaxPage = parseInt("${post.mPage}");
 
-						alert(modifyMaxPage);
+// 						alert(modifyMaxPage);
 
 						$("#modifyAddBtn").hide();
 						$("#modifyDeleteBtn").hide();
@@ -97,7 +97,7 @@
 
 											}
 
-											alert(modifyMaxPage);
+// 											alert(modifyMaxPage);
 										});
 
 						/*삭제 버튼*/
@@ -349,9 +349,9 @@
 
 		for (var s = 0; s < modifyMaxPage; s++) {
 
-			alert(s + "페이지\n" + "이미지 : " + modifyImgArr[s] + "\nURL : "
-					+ modifyUrlArr[s] + "\n내용 : " + modifyConArr[s]
-					+ "\nmodifyMaxPage : " + modifyMaxPage);
+// 			alert(s + "페이지\n" + "이미지 : " + modifyImgArr[s] + "\nURL : "
+// 					+ modifyUrlArr[s] + "\n내용 : " + modifyConArr[s]
+// 					+ "\nmodifyMaxPage : " + modifyMaxPage);
 
 			if ($("#mta" + modifyPagingCount).val() == "") {
 				alert("내용이 없는 페이지가 있습니다.");
@@ -398,8 +398,8 @@
 			},
 			error : function(request, status, error) {
 
-				alert("code:" + request.status + "\n\n" + "message:"
-						+ request.responseText + "\n\n" + "error:" + error);
+// 				alert("code:" + request.status + "\n\n" + "message:"
+// 						+ request.responseText + "\n\n" + "error:" + error);
 
 			},
 			complete : function() {

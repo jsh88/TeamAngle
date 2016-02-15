@@ -42,16 +42,12 @@
 							onclick="modalOpen('1')">Join</div></li>
 					<li><div id="loginbtn" class="btn btn-lg"
 							onclick="loginOpen()">Login</div></li>
-							<li><div id="testBtn" class="btn btn-lg"
-							onclick="modifyPostStart('63')">test</div></li>
 					<%
 						} else {
 					%>
 					<li><div id="logout" class="btn btn-lg"
 							onclick="location.href='logoutMember'">Logout</div></li>
 					<li><div id="navbtn" class="btn btn-lg">myPage</div></li>
-					<li><div id="testBtn" class="btn btn-lg"
-							onclick="modifyPostStart('63')">test</div></li>
 					<%
 						}
 					%>

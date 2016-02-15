@@ -30,7 +30,6 @@ $(function() {
 			beforeSend : function() {
 
 				// 전송 전
-				// 이미지 보여주기
 				$('.wrap-loading').removeClass('display-none');
 
 			},
@@ -40,8 +39,6 @@ $(function() {
 			},
 			complete : function() {
 
-				// 이미지 감추기 처리
-				// $(location).attr('href', "이동할 페이지");
 				$('.wrap-loading').addClass('display-none');
 
 			}
