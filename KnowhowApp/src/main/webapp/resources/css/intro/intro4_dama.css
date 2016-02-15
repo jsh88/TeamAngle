@@ -18,7 +18,7 @@
 	z-index: 3;
 	position: absolute;
 	height: 80px;
-	margin-left: 180px;	
+	margin-left: 150px;	
 }
 /* 전구 */
 .dama_wrap { height: 260px;}
@@ -28,7 +28,7 @@
 	height: 200px;
 	border-radius: 100%;
 	background-color: white;
-	margin-left: 120px;
+	margin-left: 90px;
 	margin-top: 5px;
 	z-index: 5;
 }
@@ -38,7 +38,7 @@
 	width: 210px;
 	height: 210px;
 	border-radius: 100%;
-	margin-left: 115px;
+	margin-left: 85px;
 }
 .dama_cir3 {
 	z-index: 5;

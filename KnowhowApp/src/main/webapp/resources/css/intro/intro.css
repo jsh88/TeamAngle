@@ -10,9 +10,9 @@
 		opacity: 0.6;
 
 	}
-	.btn-circle-go:hover { background-color: white; }
-	.list-top-margine1 { margin-top: 230px;}
-	.list-top-margine2 { margin-top: 270px;}
-	.list-top-margine3 { margin-top: 310px;}
-	.list-top-margine4 { margin-top: 350px;}
+	.btn-circle-go:hover { background-color: white; cursor: pointer; }
+	.list-top-margine1 { margin-top: 340px;}
+	.list-top-margine2 { margin-top: 380px;}
+	.list-top-margine3 { margin-top: 420px;}
+	.list-top-margine4 { margin-top: 460px;}
 	.t-styles { text-align:center; font-size: 18px; font-weight: 600;}

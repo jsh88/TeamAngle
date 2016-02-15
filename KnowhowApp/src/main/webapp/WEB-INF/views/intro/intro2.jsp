@@ -27,7 +27,7 @@
 		HTML도 넣을 수 있음 --%>
 		
 		<!-- 시작 -->
-		<div class="container intro2_d_margin_auto intro2_d_margin_top3">
+		<div class="container intro2_d_margin_auto intro2_d_margin_top4">
 			<div class="col-md-3">
 			<!-- 배경 -->
 				<div class="intro2_circle intro2_c_color_1 intro2_bor_1 intro2_c_size1"></div>
@@ -57,7 +57,7 @@
 			<div class="col-md-12"></div>
 			<div class="col-md-3 intro2_tb"></div>
 			<div class="col-md-7 intro2_size3 intro2_text intro2_t_left intro2_f_w">
-				<span class="glyphicon glyphicon-pencil "></span>&nbsp;&nbsp;연관태그가 많을 수록 나의 포스팅을 많은 사람들에게 정확하고 빠르게 공유할 수 있어요!
+				<span class="glyphicon glyphicon-pencil "></span>&nbsp;&nbsp;포스팅의 이미지와 영상을 올려 더욱 멋진 포스팅을 만들 수 있습니다!
 			</div>
 			<div class="col-md-2 intro2_tb"></div>
 			
@@ -79,26 +79,29 @@
 		<div class="container">
 			<div class="col-md-12 intro2_text intro2_tag">
 <% for(int i = 0; i < 10; i ++) { %>
-						<a href="#" data-toggle="popover" 
+						<a href="#" data-toggle="popover"
+						data-placement="top"
 						data-html="true" 
-						title="태그!" 
-						data-content="">#킀부장님</a>
+						title="tagging! 검색을 쉽게!" 
+						data-content="<h4>빠른 검색을 위해 태그는 필수!</h4>">#tagging</a>
 <% } %>						
 			</div>
 			<div class="col-md-12 intro2_text intro2_tag">
 <% for(int i = 10; i < 18; i ++) { %>
-						<a href="#" data-toggle="popover" 
+						<a href="#" data-toggle="popover"
+						data-placement="right"
 						data-html="true" 
-						title="태그!" 
-						data-content="">#마법사의노예css</a>
+						title="명사만 뽑아가는 태깅시스템" 
+						data-content="<h4>우리만의 독특한 시스템입니다</h4>">#명사</a>
 <% } %>						
 			</div>
 			<div class="col-md-12 intro2_text intro2_tag">
 <% for(int i = 18; i < 25; i ++) { %>
-						<a href="#" data-toggle="popover" 
+						<a href="#" data-toggle="popover"
+						data-placement="bottom"
 						data-html="true" 
-						title="태그!" 
-						data-content="">#졸립다.</a>
+						title="Posting's" 
+						data-content="<h4>태그와 포스트를 함께 올리세요~</h4>">#화이팅</a>
 <% } %>						
 			</div>
 		</div>
