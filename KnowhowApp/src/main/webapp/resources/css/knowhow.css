@@ -855,7 +855,8 @@
 	         width:100%;  /*div의 전체 가로픽셀*/
 			 position:absolute;   /*테이블의 영향을받지않는 div*/
 			 left:50%;   /*div 왼쪽 top 부분이 가로 전체의 중간으로 위치하게됨*/
-			 margin-top: 80px;
+			 margin-top: -50px;
+			 margin-left: -500px;
 	  	  }
 	  	  
 	  	  .wrap-loading img{
