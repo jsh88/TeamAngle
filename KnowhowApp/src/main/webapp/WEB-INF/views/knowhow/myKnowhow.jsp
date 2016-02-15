@@ -65,37 +65,6 @@
 		
 		});
 	
- 	$('#postByViews').click(function(){
-		
-			$("#viewListDes").show();
-			$("#recommenListDes").hide();
-			$("#newListDes").hide();
-			$("#commenListDes").hide();
-	});
- 	$('#postByNews').click(function(){
-		
-			$("#recommenListDes").show();
-			$("#viewListDes").hide();
-			$("#newListDes").hide();
-			$("#commenListDes").hide();
-	});		
-			
- 	$('#postByReply').click(function(){
-		
-			$("#newListDes").show();
-			$("#recommenListDes").hide();
-			$("#viewListDes").hide();
-			$("#commenListDes").hide();
-	});
- 	$('#postByRcomm').click(function(){
-		
-			$("#commenListDes").show();
-			$("#recommenListDes").hide();
-			$("#newListDes").hide();
-			$("#viewListDes").hide();
-	});
-	
-	
 </script>
 </head>
 <body>
