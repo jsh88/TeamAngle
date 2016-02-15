@@ -153,6 +153,9 @@
 		window.onload = function() {
 			
 			alert("회원탈퇴처리 되었습니다.");
+//			window.location.href="deleteMemberSession.do";
+			/* self.opener = self;
+			window.close(); */
 			window.location.href="./";
 		}			
 		</script>
