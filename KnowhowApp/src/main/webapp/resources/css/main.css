@@ -300,6 +300,7 @@ body {
 #profileCloseImg {
 	margin-top: 10px;
 	float: right;
+	cursor: pointer;
 }
 
 #closeBar {

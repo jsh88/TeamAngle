@@ -20,7 +20,7 @@
 			</div>
 			<div class="replyModifyDelete">
 
-				<c:if test="${pCom.nickName eq session.member.nickName}">
+				<c:if test="${pCom.nickName eq member.nickName}">
 
 					<img class="modifyComImg" style="width: 20px; cursor: pointer;"
 						onclick="modifyComment(this, '${pCom.cNo }')"

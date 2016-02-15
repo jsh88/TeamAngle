@@ -75,12 +75,12 @@ $(function() {
 </head>
 <body>
 	<div class="modal-dialog">
-		<form name="profile_form" action="memModify" method="post"
+		<form name="profile_form" action="memModify" method="post" onsubmit="return false;"
 			enctype="multipart/form-data">
 
 			<div id="profile_form" class="modal-content col-sm-push-1 col-sm-10">
 
-				<div id="profileCloseImg" onclick="">
+				<div id="profileCloseImg" onclick="$('#profileModifyPage').modal('hide')">
 					<img style="width: 20px;" src="resources/images/close.png" />
 				</div>
 
