@@ -201,7 +201,7 @@ public class MemberController {
 	public String loginProc(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpServletRequest request, HttpSession session, Model model) {
 		String result = memberService.memberLoginCheck(id, pw, request, session);
 		System.out.println(result);
-	
+
 		ModelAndView mav = new ModelAndView();
 
 		model.addAttribute("login/loginAjax");
@@ -211,10 +211,10 @@ public class MemberController {
 			session.setAttribute("lately", lately) ;
 			List<Post> most = (List<Post>)memberService.getMyMostLookupPost(id);
 			session.setAttribute("most", most);
-			memberService.getMyPostByViews(request, session);
-			memberService.getMyPostByRecommand(request, session);
-			memberService.getMyPostByComments(request, session);
-			memberService.getMyLatelyPost(request, session);
+//			memberService.getMyPostByViews(request, session);
+//			memberService.getMyPostByRecommand(request, session);
+//			memberService.getMyPostByComments(request, session);
+//			memberService.getMyLatelyPost(request, session);
 		}
 		return result;
 
@@ -238,12 +238,6 @@ public class MemberController {
 		return profileInfo;
 	}
 
-	// 마이페이지 
-	@RequestMapping("/myPage")
-	public String getMyPage(HttpServletRequest req, HttpSession session, Model model){
-		model.addAttribute("title", "/member/myPage");
-		return "redirect:myPage";
-	}
 	// 취향저걱 
 	@RequestMapping("/getMyConcertPost")
 	public String getMyConcernPost(HttpServletRequest req, HttpSession session, Model model){
@@ -268,22 +262,20 @@ public class MemberController {
 		return "index";
 
 	}
+	
 	// 내가 작성한 포스트 조회수순
 	@RequestMapping("/getMyPostByViews")
 	public String getMyPostByViews(HttpServletRequest req, HttpSession session, Model model){
-
 		memberService.getMyPostByViews(req, session);
-		model.addAttribute("title","어디로가야하오");
-		return "index";
+		return "knowhow/myKnowhowAjax";
 	}
 
 	// 내가 작성한 포스트 좋아요순
 	@RequestMapping("/getMyPostByRecommand")
 	public String getMyPostByRecommand(HttpServletRequest req, HttpSession session, Model model){
-
+		
 		memberService.getMyPostByRecommand(req, session);
-		model.addAttribute("title","어디로가야하오");
-		return "index";
+		return "knowhow/myKnowhowAjax";
 	}
 
 	// 내가 작성한 포스트 댓글순
@@ -291,11 +283,16 @@ public class MemberController {
 	public String getMyPostByComments(HttpServletRequest req, HttpSession session, Model model){
 
 		memberService.getMyPostByComments(req, session);
-		model.addAttribute("title","어디로가야하오");
-		return "index";
+		return "knowhow/myKnowhowAjax";
 	}
 
+	// 내가 작성한 포스트 최신순
+	@RequestMapping("/getMyPostByNews")
+	public String getMyPostByNews(HttpServletRequest req, HttpSession session, Model model){
 
+		memberService.getMyLatelyPost(req, session);
+		return "knowhow/myKnowhowAjax";
+	}
 
 	// 로그인 세션 확인 부분 동작 확인 부분 처리
 	@RequestMapping(value = { "/member/loginConfrim" })
