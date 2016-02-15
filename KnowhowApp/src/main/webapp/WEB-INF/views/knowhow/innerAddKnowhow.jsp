@@ -13,6 +13,8 @@
 
 	$(document)	.ready(function() {
 
+		$('#header_main').css('width', $(window).width());
+		
 						addImgArr[0] = null;
 						addConArr[0] = null;
 						addUrlArr[0] = undefined;

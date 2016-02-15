@@ -5,6 +5,8 @@
 
 	$(document).ready(function() {
 
+		$('#header_main').css('width', $(window).width());
+		
 		$("#Continuebtn").hide();
 		$("#Priorbtn").hide();
 		

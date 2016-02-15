@@ -27,7 +27,6 @@
 		<iframe class="bestMediaIframe"
 			src="${postView.media }?rel=0&showinfo=0&autoplay=0&controls=0&modestbranding=1"
 			height="150px;" frameborder="0" allowfullscreen></iframe>
-
 	</c:if>
 	<c:if test="${isURL && postView.media ne 'none'}">
 		<img src="${postView.media }" class="bestMediaImg img-responsive">
