@@ -412,11 +412,72 @@
 			}
 		});
 	}
+
+	// modifyknowhow -> x 버튼 누르면 임시 저장후 모달 끄기
+	function mSaveAndCanclePosting(pNo) {
+		
+		for (var s = 0; s < modifyMaxPage; s++) {
+			if ($("#mta" + modifyPagingCount).val() == "") {
+				alert("내용이 없는 페이지가 있습니다. 임시 저장을 위해 내용을 입력해주세요.");
+				return;
+			}
+		}
+
+		modifyConArr[modifyPagingCount - 1] = $("#mta" + modifyPagingCount).val();
+
+		$.ajaxSettings.traditional = true;
+		var formData = new FormData();
+		formData.append("mpage", modifyMaxPage);
+
+		for (var k = 0; k < modifyMaxPage; k++) {
+			formData.append("imgArr" + k, modifyImgArr[k]);
+			modifyConArr[k] = modifyConArr[k] + "q1z";
+			modifyUrlArr[k] = modifyUrlArr[k] + "q1z";
+		}
+
+		formData.append("urlArr", modifyUrlArr);
+		formData.append("conArr", modifyConArr);
+
+		$.ajax({
+			type : 'POST',
+			url : 'completeWrite',
+			data : formData,
+			processData : false,
+			contentType : false,
+			success : function(responseData, statusText, xhr) {
+				
+				var result = responseData;
+				
+				alert("임시 저장 되었습니다.");
+				$("#modifyKnowhow").modal('hide');
+
+			},
+			beforeSend : function() {
+
+				// 이미지 보여주기
+				$('.wrap-loading').removeClass('display-none');
+
+			},
+			error : function(request, status, error) {
+
+// 				alert("code:" + request.status + "\n\n" + "message:"
+// 						+ request.responseText + "\n\n" + "error:" + error);
+
+			},
+			complete : function() {
+
+				// 이미지 감추기 처리
+				$('.wrap-loading').addClass('display-none');
+
+			}
+		});
+	}
+	
 </script>
 <div class="modal-content" id="addContent">
 				<div id="addWrap">
 					<div class="modal-header" id="header">
-						<div id="Closeimg"><a href="#"><img style="width:20px;" src="resources/images/close.png"/></a></div>
+						<div id="Closeimg" onclick="mSaveAndCanclePosting('${post.pNo}')"><img style="width:20px;" src="resources/images/close.png"/></div>
 						<div id="addTitle">${post.title }</div>
 						<div id="addCreateDate">${post.wDate }</div>
 						<div id="Clear" onclick="modifyClearPage()"><img style="width:20px;" src="resources/images/clear.png"/></div>
