@@ -18,8 +18,6 @@
 
 						alert(modifyMaxPage);
 
-						$("#modifyAddBtn").hide();
-						$("#modifyDeleteBtn").hide();
 						$(".p2").hide();
 						$(".p3").hide();
 						$(".p4").hide();
