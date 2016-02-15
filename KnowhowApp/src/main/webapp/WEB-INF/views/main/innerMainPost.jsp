@@ -13,8 +13,8 @@
 <div class="bestListHeader col-md-12">
 	<a href="#">${postView.title }</a>
 </div>
-<div class="bestListDate col-md-6">${fn:substring(postView.wDate, 0, 10) }</div>
-<div class="bestListWriter col-md-6">
+<div class="bestListDate col-md-7">${fn:substring(postView.wDate, 0, 10) }</div>
+<div class="bestListWriter col-md-5">
 	<a href="#">${postView.nickName }</a>
 </div>
 <div class="bestListHeaderLine col-md-12"></div>
