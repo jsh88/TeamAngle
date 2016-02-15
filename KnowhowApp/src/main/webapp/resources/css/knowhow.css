@@ -26,8 +26,38 @@
 			
 			#startModifyDialog{
 				margin-top:300px;
-				width: 500px;
+				width: 570px;
 				height: 250px;
+			}
+			
+			#startModalInfo,#startModifyInfo,#addTagModalInfo{
+				width:570px;
+			}
+			
+			#startModalBlankLine,#startModifyBlankLine,#addTagModalBlankLine{
+				width:500px;
+				display: inline-block;
+			}
+			
+			#startModalInfoImg,#startModifyInfoImg,#addTagModalInfoImg{
+				width:55px;
+				display: inline-block;
+				cursor: pointer;
+			}
+			
+			#startPostingInfoDialog{
+				width: 700px;
+				margin-top: 130px;
+			}
+			
+			#startModifyInfoDialog{
+				width: 930px;
+				margin-top: 260px;
+			}
+			
+			#tagInfoDialog{
+				width: 700px;
+				margin-top: 130px;				
 			}
 			
 			.startbtn{
@@ -202,6 +232,35 @@
 			#addDialog{
 				width: 760px;
 				margin-top: 120px;
+			}
+			
+			#addKnowhowInfoDialog,#detailInfoDialog,#modifyKnowhowInfoDialog{
+				margin-top: 240px;
+				width:780px;
+			}
+			
+			#addModalInfo,#modifyModalInfo{
+				width: 760px;
+			}
+			
+			#detailModalInfo{
+				width:730px;
+			}
+			
+			#addModalBlankLine,#modifyModalBlankLine{
+				width:650px;
+				display: inline-block;
+			}
+			
+			#detailModalBlankLine{
+				width: 600px;
+				display: inline-block;
+			}			
+			
+			#addModalInfoImg,#detailModalInfoImg,#modifyModalInfoImg{
+				width: 55px;
+				cursor: pointer;
+				display: inline-block;
 			}
 			
 			#modifyDialog{

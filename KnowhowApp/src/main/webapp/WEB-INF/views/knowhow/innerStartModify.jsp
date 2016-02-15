@@ -7,6 +7,18 @@
 
 		$("#Continuebtn").hide();
 		$("#Priorbtn").hide();
+		
+		$("#startModifyInfoImg").mouseover(function(){
+			
+			$("#startModifyInfoModal").modal();
+			
+		});
+		
+		$("#startModifyInfoViewImg").mouseout(function(){
+			
+			$("#startModifyInfoModal").modal('hide');
+			
+		});
 
 	});
 
@@ -58,6 +70,12 @@
 		});
 	}
 </script>
+ 	<div id="startModifyInfo">
+ 		<div id="startModifyBlankLine">&nbsp;</div>
+ 		<div id="startModifyInfoImg">
+ 			<img style="width:55px;" src="resources/images/Info.png"/>
+ 		</div>
+ 	</div>
 <div class="modal-content" id="startModalContent">
 	<div id="addCheckWrap">
 

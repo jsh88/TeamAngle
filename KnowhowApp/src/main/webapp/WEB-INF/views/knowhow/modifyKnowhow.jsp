@@ -29,3 +29,10 @@
 		</div>
 	</div>
 </div>
+	<div id="modifyKnowhowInfoModal" class="modal fade">
+		<div class="modal-dialog" id="modifyKnowhowInfoDialog">
+			<div id ="modifyInfoViewImg">
+				<img src="resources/images/modifyKnowhow.png"/>
+			</div>
+		</div>
+	</div>	

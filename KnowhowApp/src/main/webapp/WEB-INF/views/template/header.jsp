@@ -70,8 +70,8 @@
 							<c:set var="isDoing" value="false"/></c:if>
 						</c:if>						
 					</c:forEach>
-					<div class="col-sm-2"></div>
 				</div>
+				<div class="col-sm-2"></div>
 			</div>
 		</div>
 	</nav>
@@ -257,3 +257,4 @@
 		<jsp:include page="../knowhow/knowhowDetail.jsp"></jsp:include>
 	</div>
 	
+		
