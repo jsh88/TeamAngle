@@ -2,23 +2,62 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<script>
+	$(".mainTags").click(function(){
+		
+		var mainTag = $(this).text();
+		var mainTagSub = mainTag.substring(1);
+		
+		$("#search_txt").val(mainTagSub);
+		
+	});
+	
+
+	
+	$(".listWriterId").mouseover(function(){
+		
+		var writer = $(this).text();
+		
+		$(this).popover({
+			html : true,
+			title : 
+				'<div id="popoverWrap"><div id="popoverImg"><img style="width:50px;"src="resources/images/test.gif"/></div><div id="popoverUserNick">Test</div></div>',
+			content : '<div id="popoverList"><a href="#" class="popoverTags">#야호</a></div>',
+			trigger: 'hover'
+		});
+	
+		
+		$(document).on("click", ".popoverTags", function(){
+			
+			var popoverTag = $(this).text();
+			var popoverTagSub = popoverTag.substring(1);
+			
+			$("#search_txt").val(popoverTagSub);
+			
+		});
+		
+	});
+
+	
+	
+	
+</script>
 <c:set value="${fn:indexOf(postView.media, 'https:') == -1}" var="isURL"></c:set>
 <c:if test="${member eq null }">
 	<div class="bestListWrap col-sm-4 col-md-3 col-lg-2" onclick="alert('로그인 하세요.')">
 </c:if>
 <c:if test="${member ne null }">
-	<div class="bestListWrap col-sm-4 col-md-3 col-lg-2"
-		onclick="morePost('${postView.pNo}')">
+	<div class="bestListWrap col-sm-4 col-md-3 col-lg-2">
 </c:if>
-<div class="bestListHeader col-md-12">
+<div class="bestListHeader col-md-12" onclick="morePost('${postView.pNo}')">
 	<a href="#">${postView.title }</a>
 </div>
-<div class="bestListDate col-md-7">${fn:substring(postView.wDate, 0, 10) }</div>
-<div class="bestListWriter col-md-5">
-	<a href="#">${postView.nickName }</a>
+<div class="bestListDate col-md-7" onclick="morePost('${postView.pNo}')">${fn:substring(postView.wDate, 0, 10) }</div>
+<div class="bestListWriter col-md-5" >
+	<a href="#" class="listWriterId">${postView.nickName }</a>
 </div>
-<div class="bestListHeaderLine col-md-12"></div>
-<div class="bestListMedia col-md-12">
+<div class="bestListHeaderLine col-md-12" onclick="morePost('${postView.pNo}')"></div>
+<div class="bestListMedia col-md-12" onclick="morePost('${postView.pNo}')">
 	<c:if test="${postView.media eq 'none' }">
 		<img src="resources/images/nomedia.png"
 			class="bestMediaImg img-responsive">
@@ -33,7 +72,7 @@
 	</c:if>
 
 </div>
-<div class="bestListContent col-md-12" style="overflow: hidden;">
+<div class="bestListContent col-md-12" style="overflow: hidden;" onclick="morePost('${postView.pNo}')">
 	${postView.content }</div>
 <div class="bestListTags col-md-12">
 	<c:if test="${postView.tList eq null }">
@@ -47,8 +86,8 @@
 		</c:forEach>
 	</c:if>
 </div>
-<div class="bestListHeaderLine col-md-12"></div>
-<div class="bestListFooter col-md-12">
+<div class="bestListHeaderLine col-md-12" onclick="morePost('${postView.pNo}')"></div>
+<div class="bestListFooter col-md-12" onclick="morePost('${postView.pNo}')">
 	<div class="col-md-12 bestFooterContent">
 		<div class="col-md-4 reImg">
 			<div class="col-md-12 reIn">

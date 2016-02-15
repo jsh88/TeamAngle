@@ -331,3 +331,25 @@ body {
 	padding-right: 0px;
 	position: absolute;
 }
+
+#popoverWrap{
+	width:200px;
+}
+
+#popoverImg{
+	width:50px;
+	display:inline-block;
+}
+
+#popoverUserNick{
+	font-weight: bold;
+	font-size: 16px;
+	display:inline-block;
+	margin-left: 10px;
+}
+
+#popoverList{
+	height: 60px;
+	overflow: hidden;
+	
+}
