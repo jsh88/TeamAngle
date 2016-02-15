@@ -57,37 +57,46 @@
 						<div id="Closeimg" onclick="javascript:$('#myPostList').modal('hide');"><a href="#"><img style="width:20px;" src="resources/images/close.png"/></a></div>
 						<div id="Title">MyKnowhow</div>
 						<div id="description">
-							<span class="d" id="o">&nbsp;-조회 수 높은 knowhow
-								<c:if test="${ empty getMyPostByViews }">
+							
+						</div>
+						<div id="listDiv" style="overflow:scroll; overflow-x:hidden;">
+						<span class="d" id="o">&nbsp;-조회 수 높은 knowhow
+							<c:if test="${ empty getMyPostByViews }">
 								내가 작성한 포스트가 존재하지 않습니다.
 								</c:if>
 								<c:if test="${ not empty getMyPostByViews }">
 									<c:forEach items="${ getMyPostByViews }" var="v">
-										<table>
-											<tbody>
-												<tr>
-													<th>${ v.title }</th>
-													<th>${ v.wDate }</th>
-												</tr>
-											</tbody>
-										</table>
+										
+										<div class="knowhowlist" >
+												<div><a href="#"><b>${ v.title }</b></a></div>
+													<div id="list">
+														<span class="l">${ v.wDate }</span>
+														<span class="l"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a></span>
+														<span><a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></span>
+													</div>
+												<div id="listline"></div>
+										</div>
+									
 									</c:forEach>
 								</c:if>
-							</span>
+								</span>
 							<span class="d" id="n">&nbsp;-최근 knowhow
 							<c:if test="${ empty getMyLatelyPost }">
 								내가 작성한 포스트가 존재하지 않습니다.
 								</c:if>
 								<c:if test="${ not empty getMyLatelyPost }">
 									<c:forEach items="${ getMyLatelyPost }" var="n">
-										<table>
-											<tbody>
-												<tr>
-													<th>${ n.title }</th>
-													<th>${ n.wDate }</th>
-												</tr>
-											</tbody>
-										</table>
+										
+										<div class="knowhowlist" >
+												<div><a href="#"><b>${ n.title }</b></a></div>
+													<div id="list">
+														<span class="l">${ n.wDate }</span>
+														<span class="l"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a></span>
+														<span><a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></span>
+													</div>
+												<div id="listline"></div>
+										</div>										
+						
 									</c:forEach>
 								</c:if>
 							</span>
@@ -97,14 +106,17 @@
 								</c:if>
 								<c:if test="${ not empty getMyPostByComments }">
 									<c:forEach items="${ getMyPostByComments }" var="c">
-										<table>
-											<tbody>
-												<tr>
-													<th>${ c.title }</th>
-													<th>${ c.wDate }</th>
-												</tr>
-											</tbody>
-										</table>
+										
+										<div class="knowhowlist" >
+												<div><a href="#"><b>${ c.title }</b></a></div>
+													<div id="list">
+														<span class="l">${ c.wDate }</span>
+														<span class="l"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a></span>
+														<span><a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></span>
+													</div>
+												<div id="listline"></div>
+										</div>																			
+
 									</c:forEach>
 								</c:if>
 							</span>
@@ -115,21 +127,20 @@
 								</c:if>
 								<c:if test="${ not empty getMyPostByRecommand }">
 									<c:forEach items="${ getMyPostByRecommand }" var="r">
-										<table>
-											<tbody>
-												<tr>
-													<th>${ r.title }</th>
-													<th>${ r.wDate }</th>
-												</tr>
-											</tbody>
-										</table>
+										
+										<div class="knowhowlist" >
+												<div><a href="#"><b>${ r.title }</b></a></div>
+													<div id="list">
+														<span class="l">${ r.wDate }</span>
+														<span class="l"><a href="#"><img style="width:30px;" src="resources/images/modify.png"/></a></span>
+														<span><a href="#"><img style="width:30px;" src="resources/images/delete.png"/></a></span>
+													</div>
+												<div id="listline"></div>
+										</div>																			
+										
 									</c:forEach>
-								</c:if>
+								</c:if>	
 							</span>
-						</div>
-						<div id="listDiv" style="overflow:scroll; overflow-x:hidden;">
-						<iframe id="listIframe" width="460" height="100%" frameborder="0" allowfullscreen >
-						</iframe>
 						</div>
 					</div>
 				</div>
@@ -137,17 +148,17 @@
 				<div id="knowhowCList">
 					<div id="lineback"></div>
 					<div id="postit">
-						<div class="category1">
-							<a id="showViews" href="#" onclick="showViews();">Views</a>
+						<div class="cate1" onclick="showViews();">
+							Views
 						</div>
-						<div class="category2">
-							<a id="showViews" href="#" onclick="showNews();">News</a>
+						<div class="cate2" onclick="showNews();">
+							News
 						</div>
-						<div class="category3">
-							<a id="showViews" href="#" onclick="showReply();">Reply</a>
+						<div class="cate3" onclick="showReply();">
+							Reply
 						</div>
-						<div class="category4">
-							<a id="showRcomm" href="#" onclick="showRcomm();">Rcomm</a>
+						<div class="cate4" onclick="showRcomm();">
+							Rcomm
 						</div>
 					</div>
 				</div>
