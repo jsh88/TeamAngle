@@ -87,10 +87,24 @@ $(function() {
 					$("#p1").removeAttr("disabled");
 				}			
 			},
+			beforeSend : function() {
+
+				// 전송 전
+				// 이미지 보여주기
+				$('.wrap-loading').removeClass('display-none');
+
+			},
 			error : function(xhr, statusText, responseData) {
 				// $(".chk").text("x").css("color", "red");
 				alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
-			}	
+			},
+			complete : function() {
+
+				// 이미지 감추기 처리
+				// $(location).attr('href', "이동할 페이지");
+				$('.wrap-loading').addClass('display-none');
+
+			}
 		});	
 	}
 	});
@@ -123,10 +137,24 @@ $(function() {
 					$("#emailSubmit").removeAttr("disabled");
 				}			
 			},
+			beforeSend : function() {
+
+				// 전송 전
+				// 이미지 보여주기
+				$('.wrap-loading').removeClass('display-none');
+
+			},
 			error : function(xhr, statusText, responseData) {
 				$(".chk").text("x").css("color", "red");
 				alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
-			}	
+			},
+			complete : function() {
+
+				// 이미지 감추기 처리
+				// $(location).attr('href', "이동할 페이지");
+				$('.wrap-loading').addClass('display-none');
+
+			}
 			});	
 		 }
 		}
@@ -165,13 +193,27 @@ $(function() {
 					$("#nickNameSubmit").removeAttr("disabled");
 				}			
 			},
+			beforeSend : function() {
+
+				// 전송 전
+				// 이미지 보여주기
+				$('.wrap-loading').removeClass('display-none');
+
+			},
 			error : function(xhr, statusText, responseData) {
 				$(".chk").text("x").css("color", "red");
 				
 				 alert("error : " + statusText + "." + xhr.status + " - " +
 				  xhr.responseText);
 				 
-			}	
+			},
+			complete : function() {
+
+				// 이미지 감추기 처리
+				// $(location).attr('href', "이동할 페이지");
+				$('.wrap-loading').addClass('display-none');
+
+			}
 		});	
 	}	
 });
@@ -243,10 +285,24 @@ $("#edit_pass1").on("keyup", function() {
 					
 				}			
 			},
+			beforeSend : function() {
+
+				// 전송 전
+				// 이미지 보여주기
+				$('.wrap-loading').removeClass('display-none');
+
+			},
 			error : function(xhr, statusText, responseData) {
 				// $(".chk").text("x").css("color", "red");
 				alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
-			}	
+			},
+			complete : function() {
+
+				// 이미지 감추기 처리
+				// $(location).attr('href', "이동할 페이지");
+				$('.wrap-loading').addClass('display-none');
+
+			}
 		});	
 	});
 });	
@@ -275,10 +331,24 @@ $(function() {
 						window.location.href="./";
 					}			
 				},
+				beforeSend : function() {
+
+					// 전송 전
+					// 이미지 보여주기
+					$('.wrap-loading').removeClass('display-none');
+
+				},
 				error : function(xhr, statusText, responseData) {
 					// $(".chk").text("x").css("color", "red");
 					alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
-				}	
+				},
+				complete : function() {
+
+					// 이미지 감추기 처리
+					// $(location).attr('href', "이동할 페이지");
+					$('.wrap-loading').addClass('display-none');
+
+				}
 			});	
 		}
 });

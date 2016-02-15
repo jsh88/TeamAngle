@@ -46,7 +46,7 @@ public class MemberDaoImpl implements MemberDao {
 				new MapSqlParameterSource().addValue("id", member.getId()).addValue("pw", member.getPw())
 						.addValue("nickname", member.getNickName())						
 						.addValue("vcount", member.getvCount())
-						.addValue("state", state).addValue("image", member.getImage())
+						.addValue("state", state).addValue("image", "noImg.png")
 						.addValue("pcomment", member.getpComment()));					
 	}
 

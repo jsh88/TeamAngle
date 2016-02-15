@@ -43,7 +43,7 @@
 					<li><div id="loginbtn" class="btn btn-lg"
 							onclick="loginOpen()">Login</div></li>
 							<li><div id="testBtn" class="btn btn-lg"
-							onclick="modifyPostStart('11')">test</div></li>
+							onclick="modifyPostStart('63')">test</div></li>
 					<%
 						} else {
 					%>
@@ -51,7 +51,7 @@
 							onclick="location.href='logoutMember'">Logout</div></li>
 					<li><div id="navbtn" class="btn btn-lg">myPage</div></li>
 					<li><div id="testBtn" class="btn btn-lg"
-							onclick="modifyPostStart('11')">test</div></li>
+							onclick="modifyPostStart('63')">test</div></li>
 					<%
 						}
 					%>

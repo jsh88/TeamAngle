@@ -618,7 +618,7 @@
 							<c:set var="isDoing" value="true"/> 					
 							<c:forEach var="tags" items="${pTagList }" varStatus="status">
 								<c:if test="${isDoing}">
-									<span class="tags">#${tags.tag }</span>
+									<span class="detailTags">#${tags.tag }</span>
 									<c:if test="${status.index eq 19}"><c:set var="isDoing" value="false"/></c:if>
 								</c:if>
 							</c:forEach>							

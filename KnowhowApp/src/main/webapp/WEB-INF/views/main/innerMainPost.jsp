@@ -25,7 +25,7 @@
 	</c:if>
 	<c:if test="${fn:indexOf(postView.media, 'https:') != -1}">
 		<iframe class="bestMediaIframe"
-			src="${postView.media }?rel=0&showinfo=0&autoplay=1&controls=0&modestbranding=1"
+			src="${postView.media }?rel=0&showinfo=0&autoplay=0&controls=0&modestbranding=1"
 			height="150px;" frameborder="0" allowfullscreen></iframe>
 	</c:if>
 	<c:if test="${isURL && postView.media ne 'none'}">
@@ -43,7 +43,7 @@
 	</c:if>
 	<c:if test="${postView.tList ne null }">
 		<c:forEach var="tag" items="${postView.tList }">
-			<a href="#">#${tag }</a>&nbsp;
+			<a href="#" class="mainTags">#${tag }</a>&nbsp;
 		</c:forEach>
 	</c:if>
 </div>

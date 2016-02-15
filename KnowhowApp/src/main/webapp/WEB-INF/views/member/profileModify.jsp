@@ -163,11 +163,11 @@ $(function() {
 					<div class="col-sm-12">
 						<div id="dropbox" class="col-sm-push-1 col-sm-10"
 							contenteditable="true">
-							<c:if test="${ member.image ne null }">
+						<c:if test="${ member.image ne null }">
 							<img id="profile_Img" src="resources/images/${member.image }" class="img-responsive" />	
 						</c:if>
 						<c:if test="${ member.image eq null }">
-							<img id="profile_Img" src="resources/images/AOA_설현_2.jpg" class="img-responsive" />	
+							<img id="profile_Img" src="resources/images/noImg.png" class="img-responsive" />	
 						</c:if>
 						</div>
 					</div>
