@@ -52,12 +52,20 @@
 		height:480px;
 		font-size: 16px;
 		margin-left: 10px;
-		margin-top: 20px;
 	}
 	
 	#list{
 		float: right;
 		margin-right: 10px;
+	}
+	
+	.d{
+		margin-bottom: 20px;
+	}
+	
+	.knowhowlist{
+		margin-top: 10px;
+		margin-bottom: 10px;
 	}
 	
 	#listline{
@@ -66,7 +74,7 @@
 		float:right;
 	}
 	
-	.category1, .category2, .category3{
+	.cate1, .cate2, .cate3{
 		width:80px;
 		height:40px;
 		margin-bottom: 6px;
@@ -78,19 +86,19 @@
 		font-size: 18px;
 	}
 	
-	.category1{
+	.cate1{
 		background-color: tomato;
 	}
 	
-	.category2{
+	.cate2{
 		background-color: orange;
 	}
 	
-	.category3{
+	.cate3{
 		background-color: #FFDA00;
 	}
 	
-	.category4{
+	.cate4{
 		width:80px;
 		height:40px;
 		margin-bottom: 6px;
@@ -107,6 +115,12 @@
 		margin-top:20px;
 		float: left;
 	}
+	
+	.category: a{
+		text-decoration: none;
+		color:white;
+	}
+	
 	
 	::-webkit-scrollbar {width: 8px; height: 8px; border: 3px solid #fff; }
  
