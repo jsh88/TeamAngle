@@ -63,10 +63,8 @@ public class TagDaoImpl implements TagDao {
 			} catch (DataAccessException e) {
 				jdbcTemplate.update("update posttag set count = count + 1, rdate = sysdate where tag = ? and pno = ?",
 						new Object[] { p.getTag(), p.getpNo() });
-
 			}
 		}
-
 	}
 
 	@Override

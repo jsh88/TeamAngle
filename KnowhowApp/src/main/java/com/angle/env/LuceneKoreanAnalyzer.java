@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 import com.angle.domain.MemberTag;
 import com.angle.domain.PostContent;
 import com.angle.domain.PostTag;
-import com.angle.domain.Tag;
 
 @Component
 public class LuceneKoreanAnalyzer {

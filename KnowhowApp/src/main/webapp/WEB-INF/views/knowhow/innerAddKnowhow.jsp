@@ -315,7 +315,7 @@
 
 	function clearPage() {
 
-		alert("모든 요소를 비웁니다.");
+		alert("clear.");
 
 		// clear 로직
 		$('#mediaiframe' + addPagingCount).attr('src', ""); // 미디어 src 비우기
