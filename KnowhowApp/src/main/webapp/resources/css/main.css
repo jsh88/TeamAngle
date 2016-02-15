@@ -1,27 +1,5 @@
 @CHARSET "UTF-8";
 
-/*화면 전체를 어둡게 합니다.*/
-.wrap-loading {
-	position: fixed;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	background: rgba(0, 0, 0, 0.2);
-}
-
-.wrap-loading div { /*로딩 이미지*/
-	width: 1000; /*div의 전체 가로픽셀*/
-	position: absolute; /*테이블의 영향을받지않는 div*/
-	left: 50%; /*div 왼쪽 top 부분이 가로 전체의 중간으로 위치하게됨*/
-	margin-left: -500px;
-	/* 왼쪽 top부분이 가운데로왔으니 좌측에서 전체가로픽셀의 반을 마이너스하여 좌측으로 옮겨줌 */
-}
-
-.display-none { /*감추기*/
-	display: none;
-}
-
 body {
 	background-color: #F3F3F3;
 }
