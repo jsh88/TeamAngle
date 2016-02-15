@@ -267,15 +267,15 @@ public class MemberController {
 	@RequestMapping("/getMyPostByViews")
 	public String getMyPostByViews(HttpServletRequest req, HttpSession session, Model model){
 		memberService.getMyPostByViews(req, session);
-		return "knowhow/myKnowhow";
+		return "knowhow/myKnowhowAjax";
 	}
 
 	// 내가 작성한 포스트 좋아요순
 	@RequestMapping("/getMyPostByRecommand")
 	public String getMyPostByRecommand(HttpServletRequest req, HttpSession session, Model model){
-
+		
 		memberService.getMyPostByRecommand(req, session);
-		return "knowhow/myKnowhow";
+		return "knowhow/myKnowhowAjax";
 	}
 
 	// 내가 작성한 포스트 댓글순
@@ -283,7 +283,7 @@ public class MemberController {
 	public String getMyPostByComments(HttpServletRequest req, HttpSession session, Model model){
 
 		memberService.getMyPostByComments(req, session);
-		return "knowhow/myKnowhow";
+		return "knowhow/myKnowhowAjax";
 	}
 
 	// 내가 작성한 포스트 최신순
@@ -291,7 +291,7 @@ public class MemberController {
 	public String getMyPostByNews(HttpServletRequest req, HttpSession session, Model model){
 
 		memberService.getMyLatelyPost(req, session);
-		return "knowhow/myKnowhow";
+		return "knowhow/myKnowhowAjax";
 	}
 
 	// 로그인 세션 확인 부분 동작 확인 부분 처리

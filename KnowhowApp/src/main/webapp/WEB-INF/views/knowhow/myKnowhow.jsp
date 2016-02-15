@@ -65,88 +65,12 @@
 						</div>
 						<div id="Title">MyKnowhow</div>
 						<div id="description"></div>
-						<div id="listDiv" style="overflow: scroll; overflow-x: hidden;">
-							<span class="d" id="o">&nbsp;-조회 수 높은 knowhow <c:if
-									test="${ empty mypList }">
-								내가 작성한 포스트가 존재하지 않습니다.
-								</c:if> <c:if test="${ not empty mypList }">
-									<c:forEach items="${ mypList }" var="myp">
-
-										<div class="knowhowlist">
-											<span><a href="#"><b>${ myp.title }</b></a></span>
-											<div id="list">
-												<span class="l">${ myp.wDate }</span> <span class="l"
-													onclick="modifyPostStart('${ myp.pNo }')"><a href="#"><img
-														style="width: 30px;" src="resources/images/modify.png" /></a></span>
-												<span><a href="#"><img style="width: 30px;"
-														src="resources/images/delete.png" /></a></span>
-											</div>
-											<div id="listline"></div>
-										</div>
-
-									</c:forEach>
-								</c:if>
-							</span> <span class="d" id="n">&nbsp;-최근 knowhow <c:if
-									test="${ empty mypList }">
-								내가 작성한 포스트가 존재하지 않습니다.
-								</c:if> <c:if test="${ not empty mypList }">
-									<c:forEach items="${ mypList }" var="myp">
-
-										<div class="knowhowlist">
-											<span><a href="#"><b>${ myp.title }</b></a></span>
-											<div id="list">
-												<span class="l">${ myp.wDate }</span> <span class="l"
-													onclick="modifyPostStart('${ myp.pNo }')"><a href="#"><img
-														style="width: 30px;" src="resources/images/modify.png" /></a></span>
-												<span><a href="#"><img style="width: 30px;"
-														src="resources/images/delete.png" /></a></span>
-											</div>
-											<div id="listline"></div>
-										</div>
-
-									</c:forEach>
-								</c:if>
-							</span> <span class="d" id="c">&nbsp;-댓글 많은 knowhow <c:if
-									test="${ empty mypList }">
-								내가 작성한 포스트가 존재하지 않습니다.
-								</c:if> <c:if test="${ not empty mypList }">
-									<c:forEach items="${ mypList }" var="myp">
-
-										<div class="knowhowlist">
-											<span><a href="#"><b>${ myp.title }</b></a></span>
-											<div id="list">
-												<span class="l">${ myp.wDate }</span> <span class="l"
-													onclick="modifyPostStart('${ myp.pNo }')"><a href="#"><img
-														style="width: 30px;" src="resources/images/modify.png" /></a></span>
-												<span><a href="#"><img style="width: 30px;"
-														src="resources/images/delete.png" /></a></span>
-											</div>
-											<div id="listline"></div>
-										</div>
-
-									</c:forEach>
-								</c:if>
-							</span> <span class="d" id="r">&nbsp;-추천 높은 knowhow <c:if
-									test="${ empty mypList }">
-								내가 작성한 포스트가 존재하지 않습니다.
-								</c:if> <c:if test="${ not empty mypList }">
-									<c:forEach items="${ mypList }" var="myp">
-
-										<div class="knowhowlist">
-											<span><a href="#"><b>${ myp.title }</b></a></span>
-											<div id="list">
-												<span class="l">${ myp.wDate }</span> <span class="l"
-													onclick="modifyPostStart('${ myp.pNo }')"><a href="#"><img
-														style="width: 30px;" src="resources/images/modify.png" /></a></span>
-												<span><a href="#"><img style="width: 30px;"
-														src="resources/images/delete.png" /></a></span>
-											</div>
-											<div id="listline"></div>
-										</div>
-
-									</c:forEach>
-								</c:if>
+							<span class="d" id="o">&nbsp;-조회 수 높은 knowhow
+							</span> <span class="d" id="n">&nbsp;-최근 knowhow
+							</span> <span class="d" id="c">&nbsp;-댓글 많은 knowhow
+							</span> <span class="d" id="r">&nbsp;-추천 높은 knowhow
 							</span>
+							<div id="listDiv" style="overflow: scroll; overflow-x: hidden;">
 						</div>
 					</div>
 				</div>

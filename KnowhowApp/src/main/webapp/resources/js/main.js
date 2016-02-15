@@ -436,9 +436,7 @@ function showViews(id){
 			
 			modalOpen(11);
 			var result = responseData;
-			$('#myKnowhowList').empty();
-			$('#myKnowhowList').html(result);
-			
+			$('#listDiv').html(result);
 			 
 		},error : function(request, status, error) {
 
@@ -462,8 +460,7 @@ function showNews(id){
 		success : function(responseData, statusText, xhr){
 			modalOpen(11);
 			var result = responseData;
-			$('#myKnowhowList').empty();
-			$('#myKnowhowList').html(result);
+			$('#listDiv').html(result);
 		}
 	})
 }
@@ -481,8 +478,7 @@ function showReply(id){
 		success : function(responseData, statusText, xhr){
 			modalOpen(11);
 			var result = responseData;
-			$('#myKnowhowList').empty();
-			$('#myKnowhowList').html(result);
+			$('#listDiv').html(result);
 		}
 	})
 }
@@ -500,8 +496,7 @@ function showRcomm(id){
 		success : function(responseData, statusText, xhr){
 			modalOpen(11);
 			var result = responseData;
-			$('#myKnowhowList').empty();
-			$('#myKnowhowList').html(result);
+			$('#listDiv').html(result);
 		}
 	})
 }
