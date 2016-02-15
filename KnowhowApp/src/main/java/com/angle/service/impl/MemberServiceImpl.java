@@ -2,7 +2,6 @@ package com.angle.service.impl;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.Random;
 
@@ -234,32 +233,39 @@ public class MemberServiceImpl implements MemberService {
 			} 
 		}
 		}
-
+		
+		System.out.println("로그인 : " + result);
 		return result;		
 		
 	}
 
-	//파일 업로드 처리 안해놨음. 파일 경로도 없고 그냥 셋 이미지만 되어 있었음. 폼태그에다가 enctype="multipart/form-data"이거 안해놓음.
 	@Override
 	public String modifyMember(MultipartHttpServletRequest request, String path, HttpSession session) throws IllegalStateException, IOException {
 
 		Member m = (Member) session.getAttribute("member");
 		MultipartFile multipartFile = request.getFile("image");
 		String comment = request.getParameter("pcomment");
-		if (!multipartFile.isEmpty()) {
-			File file = new File(path, multipartFile.getOriginalFilename());
-			multipartFile.transferTo(file);
-			m.setImage(multipartFile.getOriginalFilename());
-			m.setpComment(comment);
-		}else{
-			m.setImage(null);
+		System.out.println("세션 멤버 이미지 : " + m.getImage());
+//		System.out.println("이미지 이름 : "+ multipartFile.getName());
+//		System.out.println("겟 어트리 : " + request.getAttribute("image"));
+		if(multipartFile != null ){
+			if (!multipartFile.isEmpty()) {
+				File file = new File(path, multipartFile.getOriginalFilename());
+				multipartFile.transferTo(file);
+				m.setImage(multipartFile.getOriginalFilename());
+				m.setpComment(comment);
+			}else{
+				m.setImage(null);
+				m.setpComment(comment);
+			}
+		}else {
 			m.setpComment(comment);
 		}
 		int result = memberDao.modifyMember(m);
 		request.setAttribute("result", result);
 		session.setAttribute("member", m);
 		
-		return multipartFile.getOriginalFilename() + ",," + m.getpComment();
+		return m.getImage() + ",," + m.getpComment();
 	}
 
 	@Override
