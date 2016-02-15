@@ -43,7 +43,7 @@
 	</c:if>
 	<c:if test="${postView.tList ne null }">
 		<c:forEach var="tag" items="${postView.tList }">
-			<a href="#">#${tag }</a>&nbsp;
+			<a href="#" class="mainTags">#${tag }</a>&nbsp;
 		</c:forEach>
 	</c:if>
 </div>
