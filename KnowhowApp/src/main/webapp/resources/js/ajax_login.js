@@ -37,10 +37,24 @@ $("#lg_btn").click(function(e) {
 				$("#lg_pass").val("");
 			}
 		},
+		beforeSend : function() {
+
+			// 전송 전
+			// 이미지 보여주기
+			$('.wrap-loading').removeClass('display-none');
+
+		},
 		error : function(xhr, statusText, responseData) {
 			/*alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);*/
 			alert("비밀번호가 틀리거나, 아이디가 맞지 않습니다.");
-		}	
+		},
+		complete : function() {
+
+			// 이미지 감추기 처리
+			// $(location).attr('href', "이동할 페이지");
+			$('.wrap-loading').addClass('display-none');
+
+		}
 	});
 });
 

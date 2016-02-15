@@ -54,9 +54,22 @@ $(function() {
 					$("#submit 버튼id ").removeAttr("disabled");
 				}			
 			},
+			beforeSend : function() {
+
+				// 전송 전
+				// 이미지 보여주기
+				$('.wrap-loading').removeClass('display-none');
+
+			},
 			error : function(xhr, statusText, responseData) {
 				alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
-			}	
+			},
+			complete : function() {
+
+				// 이미지 감추기 처리
+				$('.wrap-loading').addClass('display-none');
+
+			}
 		});	
 	});
 	
@@ -83,9 +96,21 @@ $(function() {
 					$("#submit 버튼id ").removeAttr("disabled");
 				}			
 			},
+			beforeSend : function() {
+
+				// 이미지 보여주기
+				$('.wrap-loading').removeClass('display-none');
+
+			},
 			error : function(xhr, statusText, responseData) {
 				alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
-			}	
+			},
+			complete : function() {
+
+				// 이미지 감추기 처리
+				$('.wrap-loading').addClass('display-none');
+
+			}
 		});	
 	});
 	
@@ -184,9 +209,22 @@ $("#로그인창 아이디 입력되는쪽 id").on("click", function() {
 				alert("비밀번호를 확인해 주세요.");
 			}
 		},
+		beforeSend : function() {
+
+			// 전송 전
+			// 이미지 보여주기
+			$('.wrap-loading').removeClass('display-none');
+
+		},
 		error : function(xhr, statusText, responseData) {
 			alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
-		}
+		},
+		beforeSend : function() {
+
+			// 이미지 보여주기
+			$('.wrap-loading').removeClass('display-none');
+
+		},
 	});
 });
 	
@@ -213,9 +251,23 @@ $("#memberUpdatePassCheck").on("keyup", function() {
 				$("#submit 버튼id ").removeAttr("disabled");
 			}			
 		},
+		beforeSend : function() {
+
+			// 전송 전
+			// 이미지 보여주기
+			$('.wrap-loading').removeClass('display-none');
+
+		},
 		error : function(xhr, statusText, responseData) {
 			alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
-		}	
+		},
+		complete : function() {
+
+			// 이미지 감추기 처리
+			// $(location).attr('href', "이동할 페이지");
+			$('.wrap-loading').addClass('display-none');
+
+		}
 	});	
 });
 
@@ -240,9 +292,23 @@ $("#id").on("keyup", function() {
 				$("#submit 버튼id ").removeAttr("disabled");
 			}			
 		},
+		beforeSend : function() {
+
+			// 전송 전
+			// 이미지 보여주기
+			$('.wrap-loading').removeClass('display-none');
+
+		},
 		error : function(xhr, statusText, responseData) {
 			alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
-		}	
+		},
+		complete : function() {
+
+			// 이미지 감추기 처리
+			// $(location).attr('href', "이동할 페이지");
+			$('.wrap-loading').addClass('display-none');
+
+		}
 	});	
 });
 			
@@ -268,9 +334,23 @@ $("#nickname").on("keyup", function() {
 				$("#submit 버튼id ").removeAttr("disabled");
 			}			
 		},
+		beforeSend : function() {
+
+			// 전송 전
+			// 이미지 보여주기
+			$('.wrap-loading').removeClass('display-none');
+
+		},
 		error : function(xhr, statusText, responseData) {
 			alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
-		}	
+		},
+		complete : function() {
+
+			// 이미지 감추기 처리
+			// $(location).attr('href', "이동할 페이지");
+			$('.wrap-loading').addClass('display-none');
+
+		}
 	});	
 });	
 	

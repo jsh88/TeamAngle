@@ -214,8 +214,6 @@ function getSearchPostView(word) {
 
 			$('#bestPost').html($('#bestPost').html() + result);
 
-			alert("성공");
-
 			// 성공처리(v는 서버로 받은 메시지, value)
 
 		},
@@ -232,16 +230,12 @@ function getSearchPostView(word) {
 			// alert("code:" + request.status + "\n\n" + "message:"
 			// + request.responseText + "\n\n" + "error:" + error);
 
-			alert("에러");
-
 		},
 		complete : function() {
 
 			// 이미지 감추기 처리
 			// $(location).attr('href', "이동할 페이지");
 			$('.wrap-loading').addClass('display-none');
-
-			alert("완료");
 
 		}
 	});
