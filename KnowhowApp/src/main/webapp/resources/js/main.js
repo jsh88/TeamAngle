@@ -12,7 +12,7 @@ $(document)
 						bestPostCount++;
 						postCount++;
 					}
-
+					
 					$('#navtag').css('width', $(window).width());
 
 					/* myPage JQuery Div 움직임 */

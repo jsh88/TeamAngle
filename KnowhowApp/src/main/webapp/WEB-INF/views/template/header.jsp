@@ -122,7 +122,7 @@
 				<!-- 마이페이지 - 최근 본 knowhow -->
 				<div class="col-sm-12 col-xs-12">
 					<div>
-						<div id="recentlyTitle">Recently Viewed Knowhow list</div>
+						<div id="recentlyTitle">Recently Viewed Knowhow List</div>
 					</div>
 					<div class="myPageBlankLine">&nbsp;</div>
 					<div id="c1" class="content col-xs-12 col-sm-12">
@@ -133,7 +133,7 @@
 							<c:forEach items="${ lately }" var="l">
 							
 								<div class="recentlyViewedWrap">
-									<div class="recentlyListTitle">
+									<div class="recentlyListTitle" onclick="morePost('${l.pNo}')">
 										<a href="#" class="recentlyListDetailTitle">${ l.title }</a>
 					
 										<div class="recentlyClose" onclick="">
@@ -146,6 +146,7 @@
 									<div class="recentlyNum">
 										<div class="recentlyGood">Good : ${ l.good }</div>
 										<div class="recentlyCount">ViewCount : ${ l.count }</div>
+										<div class="recentlyNickname">Nickname : ${ l.nickName }</div>
 									</div>
 								</div>
 								<div class="recentlyLine"></div>
@@ -156,10 +157,12 @@
 				</div>
 				<div class="myPageBlankLine">&nbsp;</div>
 				<div class="myPageBlankLine">&nbsp;</div>
+				<div class="myPageBlankLine">&nbsp;</div>
+				<div class="myPageBlankLine">&nbsp;</div>
 				<!-- 마이페이지 -  자주 본 knowhow -->
 				<div class="col-xs-12 col-sm-12">
 					<div>
-						<div id="mostTitle">Most Viewed Knowhow list</div>
+						<div id="mostTitle">Most Viewed Knowhow List</div>
 					</div>
 					<div class="myPageBlankLine">&nbsp;</div>
 					<div id="c2" class="content col-xs-12 col-sm-12">
@@ -170,7 +173,7 @@
 								<c:forEach items="${ most }" var="m">
 									
 									<div class="mostViewedWrap">
-										<div class="mostListTitle">
+										<div class="mostListTitle"  onclick="morePost('${m.pNo}')">
 											<a href="#" class="mostListDetailTitle">${ m.title }</a>
 						
 											<div class="mostClose" onclick="">
@@ -183,6 +186,7 @@
 										<div class="mostNum">
 											<div class="mostGood">Good : ${ m.good }</div>
 											<div class="mostCount">ViewCount : ${ m.count }</div>
+											<div class="mostNickname">Nickname : ${ m.nickName }</div>
 										</div>
 									</div>
 								<div class="mostLine"></div>
@@ -190,6 +194,7 @@
 							</c:forEach>
 						</c:if>
 					</div>
+					<div class="mostBlankLine">&nbsp;</div>
 				</div>
 
 			</div>
