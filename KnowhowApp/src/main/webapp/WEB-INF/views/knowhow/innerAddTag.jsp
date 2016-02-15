@@ -9,6 +9,8 @@
 	$(document).ready(
 			function() {
 
+				$('#header_main').css('width', $(window).width());
+				
 				$("#tagModal").modal();
 				$("#s").hide();
 				$("#k").hide();

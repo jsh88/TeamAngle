@@ -8,6 +8,8 @@ $(document)
 		.ready(
 				function() {
 
+					$('#navtag').css('width', $(window).width());
+					
 					// 스크롤 이벤트
 					$(window).scroll(
 							function() {
@@ -26,16 +28,15 @@ $(document)
 									}
 								}
 							});
-
+					
 					for (var i = 0; i < 5; i++) {
 						getBestPostView();
 						getPostView();
 						bestPostCount++;
 						postCount++;
 					}
-
-					$('#navtag').css('width', $(window).width());
-
+					
+					
 					/* myPage JQuery Div 움직임 */
 
 					$('#menu').hide();

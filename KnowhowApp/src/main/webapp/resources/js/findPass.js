@@ -1,6 +1,8 @@
 /* 회원 로그인 아작스 */
 
 $(function() {
+	
+	$('#navtag').css('width', $(window).width());
 
 	//비밀번호 찾기 이메일로 링크 클릭후 뜨는 비번수정페이지 비밀번호 확인체크
 	$("#passSubmit").attr("disabled", "disabled");

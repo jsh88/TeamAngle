@@ -9,12 +9,18 @@
 <script>
 	$(document).ready(function(){
 		
+		$('#header_main').css('width', $(window).width());
+		
 		$("#myModal").modal();
 		
 		$("#o").show();
 		$("#n").hide();
 		$("#c").hide();
 		$("#r").hide();
+		$("#viewListDes").show();
+		$("#recommenListDes").hide();
+		$("#newListDes").hide();
+		$("#commenListDes").hide();
 		
 		
 		$("#myModalInfoImg").mouseover(function(){
@@ -34,9 +40,13 @@
 	function showViews(){
 		
 			$("#o").show();
+			$("#viewListDes").show();
 			$("#n").hide();
 			$("#c").hide();
 			$("#r").hide();
+			$("#recommenListDes").hide();
+			$("#newListDes").hide();
+			$("#commenListDes").hide();
 	}
 	function showRcomm(){
 		
@@ -44,20 +54,33 @@
 			$("#n").hide();
 			$("#c").hide();
 			$("#r").show();
-	}
+			$("#recommenListDes").show();
+			$("#viewListDes").hide();
+			$("#newListDes").hide();
+			$("#commenListDes").hide();
+	}		
+			
 	function showNews(){
 		
 			$("#o").hide();
 			$("#n").show();
+			$("#newListDes").show();
 			$("#c").hide();
 			$("#r").hide();
+			$("#recommenListDes").hide();
+			$("#viewListDes").hide();
+			$("#commenListDes").hide();
 	}
 	function showReply(){
 		
 			$("#o").hide();
 			$("#n").hide();
 			$("#c").show();
+			$("#commenListDes").show();
 			$("#r").hide();
+			$("#recommenListDes").hide();
+			$("#newListDes").hide();
+			$("#viewListDes").hide();
 	}
 </script>
 </head>
@@ -77,10 +100,13 @@
 						<div id="Closeimg" onclick="javascript:$('#myPostList').modal('hide');"><a href="#"><img style="width:20px;" src="resources/images/close.png"/></a></div>
 						<div id="Title">MyKnowhow</div>
 						<div id="description">
-							
+							<span id="viewListDes" >&nbsp;-조회 수 높은 knowhow</span>
+							<span id="newListDes">&nbsp;-최근 knowhow</span>
+							<span id="commenListDes">&nbsp;-댓글 많은 knowhow</span>
+							<span id="recommenListDes">&nbsp;-추천 높은 knowhow</span>
 						</div>
 						<div id="listDiv" style="overflow:scroll; overflow-x:hidden;">
-						<span class="d" id="o">&nbsp;-조회 수 높은 knowhow
+						<span class="d" id="o">
 							<c:if test="${ empty getMyPostByViews }">
 								내가 작성한 포스트가 존재하지 않습니다.
 								</c:if>
@@ -100,7 +126,7 @@
 									</c:forEach>
 								</c:if>
 								</span>
-							<span class="d" id="n">&nbsp;-최근 knowhow
+							<span class="d" id="n">
 							<c:if test="${ empty getMyLatelyPost }">
 								내가 작성한 포스트가 존재하지 않습니다.
 								</c:if>
@@ -120,7 +146,7 @@
 									</c:forEach>
 								</c:if>
 							</span>
-							<span class="d" id="c">&nbsp;-댓글 많은 knowhow
+							<span class="d" id="c">
 							<c:if test="${ empty getMyPostByComments }">
 								내가 작성한 포스트가 존재하지 않습니다.
 								</c:if>
@@ -141,7 +167,7 @@
 								</c:if>
 							</span>
 							
-							<span class="d" id="r" >&nbsp;-추천 높은 knowhow
+							<span class="d" id="r" >
 								<c:if test="${ empty getMyPostByRecommand }">
 								내가 작성한 포스트가 존재하지 않습니다.
 								</c:if>

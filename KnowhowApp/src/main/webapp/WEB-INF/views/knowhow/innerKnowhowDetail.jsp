@@ -11,6 +11,8 @@
 	
 		$(document).ready(function(){
 			
+			$('#header_main').css('width', $(window).width());
+			
 			detailMaxPage = parseInt("${post.mPage}");
 			detailPno = "${post.pNo}";
 			recoNum = parseInt("${postRecommendationCount}");
