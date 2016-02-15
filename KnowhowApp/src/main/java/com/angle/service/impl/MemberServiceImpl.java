@@ -222,6 +222,7 @@ public class MemberServiceImpl implements MemberService {
 		}else {
 			if (member.getPw().equals(pw) && bool == 1) {
 				session.setAttribute("member", member);
+				session.setMaxInactiveInterval(24 * 60 * 60);
 				System.out.println(member.getId());
 				int v_result = memberDao.getVcount(id);
 				if (v_result != -1) {
