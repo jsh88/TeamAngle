@@ -305,7 +305,7 @@ public class MemberServiceImpl implements MemberService {
 		request.getServletContext().setAttribute("sendCode", sendCode);
 		String reciver = id;
 		String subject = "안녕하세요 세상의 모든 노하우 KnowHow 입니다.";
-		String content = "KnowHow 회원가입 인증 - \nhttp://192.168.137.46/:8080/KnowhowApp/checkMemberJoin.do?id="+id+"&code="+sendCode;
+		String content = "KnowHow 회원가입 인증 - \nhttp://192.168.137.46:8080/KnowhowApp/checkMemberJoin.do?id="+id+"&code="+sendCode;
 		
 		email.setReciver(reciver);
 		email.setSubject(subject);

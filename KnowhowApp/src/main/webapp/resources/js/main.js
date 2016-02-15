@@ -609,10 +609,6 @@ function loginOpen() {
 	}
 	
 	$("#loginPage").modal()
-
-	
-
-	
 }
 
 function returnLoginForm(num) {

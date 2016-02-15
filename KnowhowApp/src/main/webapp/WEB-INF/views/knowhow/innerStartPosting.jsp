@@ -2,11 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<script>
+	$(".atitle").click(function() {
+		var t = $(this).text();
+		$("#addtitle").val(t);
+		preventDefault();
+	});
+</script>
 <c:if test="${pList eq null}">
 	<br>
-	<div id="hideListEmptyText">
-			Empty temporary posts.
-	</div>
+	<div id="hideListEmptyText">Empty temporary posts.</div>
 </c:if>
 <c:if test="${pList ne null }">
 	<c:forEach items="${pList }" var="post">

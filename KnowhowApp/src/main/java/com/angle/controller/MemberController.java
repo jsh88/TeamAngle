@@ -349,7 +349,7 @@ public class MemberController {
 
 		int result = 0;
 
-		String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://192.168.137.51:8080/KnowhowApp/updateEmailMemberInfoPwForm?id="+ id + "&check=true";
+		String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://192.168.137.46:8080/KnowhowApp/updateEmailMemberInfoPwForm?id="+ id + "&check=true";
 		//String msg = "아래 링크를 클릭하시면 비밀번호 수정페이지로 이동합니다.\nhttp://10.1.0.214:8080/KnowhowApp/updateEmailMemberInfoPwForm?id="+ id + "&check=true";
 				
 		if(pw != null) {
@@ -387,7 +387,7 @@ public class MemberController {
 
 		int result = 0;
 
-		String msg = "아래 링크를 클릭하시면 회원탈퇴처리 됩니다.\nhttp://192.168.137.51:8080/KnowhowApp/deleteMemberJoin.do?id="+ id + "&deletecheck=true";
+		String msg = "아래 링크를 클릭하시면 회원탈퇴처리 됩니다.\nhttp://192.168.137.46:8080/KnowhowApp/deleteMemberJoin.do?id="+ id + "&deletecheck=true";
 		//String msg = "아래 링크를 클릭하시면 회원탈퇴처리 됩니다.\nhttp://10.1.0.214:8080/KnowhowApp/deleteMemberJoin.do?id="+ id + "&deletecheck=true";
 		
 		if(id != null) {
