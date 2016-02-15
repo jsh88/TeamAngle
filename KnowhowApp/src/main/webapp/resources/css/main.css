@@ -89,14 +89,20 @@ body {
 	margin-left: -15px;
 }
 
-.bestListTags {
-	margin-top: 5px;
-	color: #BFBCBC;
-	font-size: 13px;
-	margin-bottom: 6px;
-	overflow: hidden;
-	font-style: italic;
-	font-weight: bold;
+.bestListTags{
+			margin-top:5px;
+			height: 50px;
+			color: #BFBCBC;
+			font-size:13px;
+			margin-bottom: 6px;
+			overflow: hidden;
+			font-style: italic;
+			font-weight: bold;
+			word-break: break-all;
+}
+
+.mainTags{
+	display:inline-block;
 }
 
 .bestListTags a {
@@ -260,3 +266,4 @@ body {
 }
 .login-btn-top { color: white; }
 .login-a-left { float: right; }
+
