@@ -60,12 +60,11 @@ public class TagController {
 
 	// introTagList
 	@RequestMapping(value = "introTagList")
-	@ResponseBody
 	public String introTagList(HttpServletRequest request) {
 
 		tagService.introTagList(request);
 
-		return "success";
+		return "intro";
 	}
 
 	// 검색 추천 태그
