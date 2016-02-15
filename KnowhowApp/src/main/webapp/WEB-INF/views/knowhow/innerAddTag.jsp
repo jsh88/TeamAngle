@@ -50,6 +50,18 @@
 									}
 								});
 
+				$("#addTagModalInfoImg").mouseover(function(){
+					
+					$("#tagInfoModal").modal();
+					
+				});
+				
+				$("#tagInfoViewImg").mouseout(function(){
+					
+					$("#tagInfoModal").modal('hide');
+				});
+				
+				
 				// 추가된 태그 클릭시 태그 삭제
 
 				$("#tagtext").keypress(
@@ -207,6 +219,12 @@
 		});
 	}
 </script>
+ 	<div id="addTagModalInfo">
+ 		<div id="addTagModalBlankLine">&nbsp;</div>
+ 		<div id="addTagModalInfoImg">
+ 			<img style="width:55px;" src="resources/images/Info.png"/>
+ 		</div>
+ 	</div>
 <div class="modal-content" id="tagContent">
 	<div id="TagWrap">
 		<div id="Tagimage">

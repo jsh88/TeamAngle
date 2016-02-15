@@ -7,7 +7,8 @@ $(document).ready(function(){
 	$("#Priorbtn").hide();
 	$("#hideList").hide();
 	$("#middle").hide();
-
+	$("#startModalInfoView").hide();
+	
 	$("#Recallingbtn").click(function() {
 		/* $("#ModalDialog").css('margin-top','300px'); */
 		$("#Createbtn").hide();
@@ -32,6 +33,18 @@ $(document).ready(function(){
 		$("#addtitle").val("");
 
 	});
+	
+	$("#startModalInfoImg").mouseover(function(){
+		
+		$("#startPostingInfoModal").modal();
+		
+	});
+	
+	$("#InfoViewImg").mouseout(function(){
+		
+		$("#startPostingInfoModal").modal('hide');
+		
+	});
 
 	$(".atitle").click(function() {
 
@@ -43,8 +56,14 @@ $(document).ready(function(){
 	
 });
 </script>
-		<div class="modal-dialog" id="startModalDialog">
-    	<div class="modal-content" id="startModalContent">
+	<div class="modal-dialog" id="startModalDialog">
+ 	<div id="startModalInfo">
+ 		<div id="startModalBlankLine">&nbsp;</div>
+ 		<div id="startModalInfoImg">
+ 			<img style="width:55px;" src="resources/images/Info.png"/>
+ 		</div>
+ 	</div>
+ <div class="modal-content" id="startModalContent">
 	<div id="addCheckWrap">
 		<div id="addForm">
 			<form name="addTitleForm" action="addPost" method="post" onsubmit="return false;">
@@ -73,3 +92,10 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
+	<div id="startPostingInfoModal" class="modal fade">
+		<div class="modal-dialog" id="startPostingInfoDialog">
+			<div id ="InfoViewImg">
+				<img src="resources/images/startposting.png"/>
+			</div>
+		</div>
+	</div>	
