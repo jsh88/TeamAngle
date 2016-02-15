@@ -96,7 +96,7 @@
 								<td class="active">${member.nickName }</td>
 							</tr>
 							<tr>
-								<td>${member.pComment }</td>
+								<td id="myProfileComment">${member.pComment }</td>
 							</tr>
 							<tr>
 								<td>마지막 접속시간 : ${member.lDate }</td>
