@@ -23,7 +23,3 @@
 		</c:forEach>
 	</c:if>
 </div>
-<span class="l"><a href="#"><img style="width: 30px;"
-		src="resources/images/modify.png" /></a></span>
-<span><a href="#"><img style="width: 30px;"
-		src="resources/images/delete.png" /></a></span>

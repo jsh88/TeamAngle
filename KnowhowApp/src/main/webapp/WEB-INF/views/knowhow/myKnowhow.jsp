@@ -15,10 +15,6 @@
 		
 		$("#myModal").modal();
 		
-		$("#o").hide();
-		$("#n").hide();
-		$("#c").hide();
-		$("#r").hide();
 		$("#viewListDes").show();
 		$("#recommenListDes").hide();
 		$("#newListDes").hide();
@@ -81,7 +77,7 @@
  		</div>
  	</div>
 		
-				<div class="modal-content" id="myContent">
+				
 			<div class="modal-content" id="myContent">
 				<div id="myWrap">
 					<div id="myTitle">
@@ -102,23 +98,7 @@
 					</div>
 				</div>
 				</div>
-				<div id="knowhowCList">
-					<div id="lineback"></div>
-					<div id="postit">
-						<div class="cate1" onclick="showViews();">
-							Views
-						</div>
-						<div class="cate2" onclick="showNews();">
-							News
-						</div>
-						<div class="cate3" onclick="showReply();">
-							Reply
-						</div>
-						<div class="cate4" onclick="showRcomm();">
-							Rcomm
-					</div>
-				</div>
-			</div>
+
 	<div id="myKnowhowInfoModal" class="modal fade">
 		<div class="modal-dialog" id="myKnowhowInfoDialog">
 			<div id ="myInfoViewImg">
@@ -140,6 +120,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	
 </body>
 </html>
