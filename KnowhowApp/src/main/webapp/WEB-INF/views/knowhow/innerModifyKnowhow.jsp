@@ -15,6 +15,8 @@
 			.ready(
 					function() {
 
+						$('#header_main').css('width', $(window).width());
+						
 						modifyMaxPage = parseInt("${post.mPage}");
 
 // 						alert(modifyMaxPage);

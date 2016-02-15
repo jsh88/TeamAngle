@@ -6,6 +6,8 @@ $(document)
 		.ready(
 				function() {
 
+					$('#navtag').css('width', $(window).width());
+					
 					for (var i = 0; i < 5; i++) {
 						getBestPostView();
 						getPostView();
@@ -13,8 +15,7 @@ $(document)
 						postCount++;
 					}
 					
-					$('#navtag').css('width', $(window).width());
-
+					
 					/* myPage JQuery Div 움직임 */
 
 					$('#menu').hide();

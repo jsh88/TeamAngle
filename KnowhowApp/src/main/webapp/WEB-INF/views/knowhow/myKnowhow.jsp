@@ -9,6 +9,8 @@
 <script>
 	$(document).ready(function(){
 		
+		$('#header_main').css('width', $(window).width());
+		
 		$("#myModal").modal();
 		
 		$("#o").show();
