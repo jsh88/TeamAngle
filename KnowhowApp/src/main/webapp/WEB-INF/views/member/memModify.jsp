@@ -7,31 +7,43 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
 #md_content {
-	height: 260px;
+	height: 330px;
 	border-radius: 6px;
 
 }
 .btn_choice {
 	margin-top: 10px;
 }
+.memModify-margin {
+	text-align: center;
+}
+.memModify-bd-css {
+	border: 10px solid #535353;
+}
+.memModify-padding-zero {
+	padding: 0;
+	margin: 0;
+	margin-top: 5px;
+}
 </style>
 </head>
 <body>
 		<div id="show" class="modal-dialog"> 
-			<div class="modal-content"  style="height: 170px;">
+			<div class="modal-content memModify-bd-css"  style="height: 170px;">
 				<div class="modal-body">
 					<button type="button" class="close" data-dismiss="modal">
 						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 					</button>
 					<div class="col-sm-offset-1 col-sm-11">
-							<span>Please.. Pass..</span>
+							<span>Please.. You're Password..</span>
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="text" id="passCheck" name="pass" class="form-control">
+							<input type="password" id="passCheck" name="pass" class="form-control">
 					</div>
 					<div class="col-sm-offset-1 col-sm-10">
-							<button id="p1" class="btn btn-warning col-sm-12  btn_choice">go to</button>
+							<button id="p1" class="btn btn-warning col-sm-12  btn_choice">go to Modify</button>
 					</div>
 				</div>
 
@@ -39,13 +51,14 @@
 		</div>
 
 		<div id="show1" class="modal-dialog">
-			<div class="modal-content" id="md_content">
+			<div class="modal-content memModify-bd-css" id="md_content">
 				<div class="modal-body">
 					<button type="button" class="close" data-dismiss="modal">
 						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 					</button>
-					<div class="col-sm-10">
-						<h3>Member Modify</h3>
+					<div class="col-sm-12">
+						<h3 class="memModify-padding-zero">Member Modify</h3>
+						<p class="memModify-padding-zero">It is where you modify your information. Choose the information you want to change</p>
 					</div>
 
 					<div class="list-group col-sm-offset-3 col-sm-6">
@@ -59,7 +72,7 @@
 		</div>
 
 		<div id="show2" class="modal-dialog">
-			<div class="modal-content">
+			<div class="modal-content memModify-bd-css">
 				<div class="modal-body">
 				<form name="emailEdit" action="updateMemberIdModify">
 					<div id="lq1" style="height: 100px;">
@@ -71,7 +84,7 @@
 							<input type="email" id="edit_id" name="id" class="form-control">
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="submit" id="emailSubmit" class="btn btn-success col-sm-12  btn_choice" value="수정">
+							<input type="submit" id="emailSubmit" class="btn btn-success col-sm-12  btn_choice" value="Changing Email ID">
 						</div>
 					</div>
 					</form>
@@ -86,7 +99,7 @@
 							<input type="text" id="nick" name="nick" class="form-control">
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="submit" id="nickNameSubmit" class="btn btn-success col-sm-12 btn_choice" value="수정">
+							<input type="submit" id="nickNameSubmit" class="btn btn-success col-sm-12 btn_choice" value="Changing Nickname">
 						</div>
 					</div>
 					</form>
@@ -116,7 +129,7 @@
 							
 						</div>
 						<div class="col-sm-offset-1 col-sm-10">
-							<input type="submit" id="passSubmit" class="btn btn-success col-sm-12 btn_choice" value="수정">
+							<input type="submit" id="passSubmit" class="btn btn-success col-sm-12 btn_choice" value="Changing Password">
 						</div>
 					</div>
 					</form>
@@ -127,7 +140,7 @@
 								<span>Please.. delete..</span>
 							</div>
 							<div class="col-sm-offset-1 col-sm-10">
-								<input type="submit" id="deleteMember" class="btn btn-success col-sm-12 " value="수정" />
+								<input type="submit" id="deleteMember" class="btn btn-success col-sm-12 " value="Leave Membership" />
 							</div>
 						</div>
 					</form>
