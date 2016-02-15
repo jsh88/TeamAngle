@@ -69,10 +69,24 @@ $(document).ready(function() {
 					$("#mj_btn_right").show(1000);
 				}			
 			},
+			beforeSend : function() {
+
+				// 전송 전
+				// 이미지 보여주기
+				$('.wrap-loading').removeClass('display-none');
+
+			},
 			error : function(xhr, statusText, responseData) {
 //				$(".chk1").text("연결이 안돼 임마").css("color", "red");
 				alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
-			}	
+			},
+			complete : function() {
+
+				// 이미지 감추기 처리
+				// $(location).attr('href', "이동할 페이지");
+				$('.wrap-loading').addClass('display-none');
+
+			}
 		});
 		} else {
 			$("#mj_id").css("border", "2px solid red");
@@ -140,10 +154,24 @@ $(document).ready(function() {
 					$("#mj_btn_right").show(1000);
 				}		
 			},
+			beforeSend : function() {
+
+				// 전송 전
+				// 이미지 보여주기
+				$('.wrap-loading').removeClass('display-none');
+
+			},
 			error : function(xhr, statusText, responseData) {
 				//$(".chk2").text("x").css("color", "red");
 				alert("error : " + statusText + "." + xhr.status + " - " + xhr.responseText);
-			}	
+			},
+			complete : function() {
+
+				// 이미지 감추기 처리
+				// $(location).attr('href', "이동할 페이지");
+				$('.wrap-loading').addClass('display-none');
+
+			}
 		});
 		} else {
 			$("#mj_nickname").css("border", "2px solid red");
