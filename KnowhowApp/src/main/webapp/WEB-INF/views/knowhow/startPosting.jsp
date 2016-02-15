@@ -33,14 +33,7 @@ $(document).ready(function(){
 
 	});
 
-	$(".atitle").click(function() {
 
-		var t = $(this).text();
-
-		$("#addtitle").val(t);
-		preventDefault();
-	});
-	
 });
 </script>
 		<div class="modal-dialog" id="startModalDialog">
