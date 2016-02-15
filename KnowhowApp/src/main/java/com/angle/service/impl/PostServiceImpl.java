@@ -452,7 +452,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 
 	@Override
 	public void getCommentList(HttpServletRequest request) {
-		
+
 		request.setAttribute("pComList", postCommentDao.getPostCommentList(
 				Integer.parseInt(request.getParameter("pno")), Integer.parseInt(request.getParameter("page"))));
 
@@ -483,11 +483,12 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	@SuppressWarnings("unchecked")
 	public void getSearchPostView(HttpServletRequest request, HttpSession session) {
 
-		ArrayList<MemberTag> mTagList = (ArrayList<MemberTag>) request.getAttribute("mTagList");
+		ArrayList<MemberTag> mTagList = (ArrayList<MemberTag>) session.getAttribute("mTagList");
 		MemberTag mTag = new MemberTag();
 		mTag.setTag(request.getParameter("word"));
-//		mTagList.add(mTag);
+		mTagList.add(mTag); // 태그 마지막에 검색한 word 저장 
 
-//		postDao.getSearchPostView(mTagList, Integer.parseInt(request.getParameter("searchCount")));
+		request.setAttribute("postView",
+				postDao.getSearchPostView(mTagList, Integer.parseInt(request.getParameter("no"))));
 	}
 }

@@ -68,7 +68,7 @@
 							<a href="#" class="recommenTag">#${tag.tag }</a>
 						<c:if test="${status.index eq 19}">
 							<c:set var="isDoing" value="false"/></c:if>
-						</c:if>						
+						</c:if>
 					</c:forEach>
 				</div>
 				<div class="col-sm-2"></div>

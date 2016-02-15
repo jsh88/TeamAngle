@@ -81,11 +81,8 @@ public class TagController {
 	@RequestMapping(value = "searchView", method = RequestMethod.POST)
 	public String addMemberTag(HttpServletRequest request, HttpSession session) {
 
-		if (session.getAttribute("mTagList") == null)
+		if (!Boolean.parseBoolean(request.getParameter("isSearch")))
 			tagService.addSearchTag(request, session);
-
-		if (Integer.parseInt(request.getParameter("searchCount")) % 5 == 0)
-			session.removeAttribute("mTagList");
 
 		return "forward:doSearch";
 
