@@ -25,7 +25,7 @@ $("#lg_btn").click(function(e) {
 				$("#lg_id").val("");
 				$("#lg_pass").val("");
 			} else if(result == "c") {
-				alert("로그인 성공!!!");
+	//			alert("로그인 성공!!!");
 				document.location.reload();
 			} else if(result == "a") {
 				alert("비밀번호를 확인해 주세요.");

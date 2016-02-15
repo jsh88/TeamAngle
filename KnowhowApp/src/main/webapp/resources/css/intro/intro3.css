@@ -244,6 +244,6 @@ height: 30px;
 }
 
 @keyframes movingtrain {
-	0% { left: 100px; }
-	100% { left: 1090px;}
+	0% { left: 40px; }
+	100% { left: 965px;}
 }

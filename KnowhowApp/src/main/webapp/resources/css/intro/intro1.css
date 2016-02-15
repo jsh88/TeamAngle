@@ -1,8 +1,7 @@
 @CHARSET "UTF-8";
-/*  * { border: 1px solid black;}
-  */
 .intro1_top {
 	height: 30px;
+	margin-top: 40px;
 }
 .intro1_skip {
 	width: 250px;

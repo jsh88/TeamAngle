@@ -37,6 +37,9 @@
 .intro2_d_margin_top3 {
 	margin-top: 30px;
 }
+.intro2_d_margin_top4 {
+	margin-top: 80px;
+}
 /* tag size */
 .intro2_size1 {
 	font-size: 100px;
@@ -117,7 +120,7 @@ border-left: 180px solid transparent;
 border-right: 180px solid transparent;
 border-top: 260px solid red;
 transform: rotate(17deg);
-margin-left: 180px;
+margin-left: 155px;
 margin-top: 70px;
 
 }
@@ -140,17 +143,18 @@ margin-top: 70px;
 .g_color2 { color: #05b1b6; border-radius: 6.5em; background-color: #80ff80;}
 
 /* 팝오버 창 안에 css */
+
 .popover-title {
       background-color: #73AD21; 
       color: #FFFFFF; 
-      font-size: 11px;
+      font-size: 14px;
       padding:0;
       text-align:center;
   }
   .popover-content {
-  	background-image: url('http://superkts.com/img/css/bg0426.gif');
-  	width: 210px;
-  	height: 180px;
+  	width: auto;
+  	height: auto;
+  	
   }
   
   @keyframes eyes {

@@ -7,6 +7,7 @@ body {
 #bestTitle {
 	font-size: 20px;
 	font-weight: bold;
+	padding-left: 10px;
 }
 
 #bestWrap {
@@ -17,8 +18,8 @@ body {
 	border: 1px solid #BFBCBC;
 	border-radius: 6px;
 	background-color: white;
-	margin-right: 10px;
 	margin-top: 5px;
+	margin-right: 10px;
 	cursor: pointer;
 	margin-bottom: 20px;
 }
@@ -76,11 +77,11 @@ body {
 			overflow: hidden;
 			font-style: italic;
 			font-weight: bold;
-			word-break: break-all;
 }
 
 .mainTags{
 	display:inline-block;
+	word-break: break-all;
 }
 
 .bestListTags a {
@@ -96,6 +97,7 @@ body {
 .bestListDate {
 	color: #666666;
 	font-size: 13px;
+	padding-right: 0px;
 }
 
 .bestFooterContent {
@@ -169,7 +171,6 @@ body {
 #bestTitle {
 	font-size: 32px;
 	font-weight: bold;
-	margin-left: -15px;
 	margin-top: 20px;
 }
 
@@ -181,6 +182,9 @@ body {
 .bestListWriter {
 	float: right;
 	font-size: 12px;
+	margin-left: -15px;
+	padding-right: 0px;
+	padding-left: 0px;
 }
 
 #listTitle {
@@ -192,6 +196,7 @@ body {
 .bestTitleLine {
 	border-bottom: 1px solid #BFBCBC;
 	margin-bottom: 20px;
+	margin-left: 10px;
 }
 
 /* login css */
@@ -245,7 +250,6 @@ body {
 .login-btn-top { color: white; }
 .login-a-left { float: right; }
 
-<<<<<<< HEAD
 #md_content {
 	height: 330px;
 	border-radius: 6px;
@@ -260,8 +264,69 @@ body {
 .memModify-bd-css {
 	border: 10px solid #535353;
 }
+.memModify-bd-css1 {
+	margin-top: 300px;
+}
+.memModify-bd-css2 {
+	margin-top: 200px;
+}
 .memModify-padding-zero {
 	padding: 0;
 	margin: 0;
 	margin-top: 5px;
+}
+#profileDropWrap {
+	margin-top: 10px;
+}
+
+#profileBlankLine {
+	height: 20px;
+}
+
+#profile_form {
+	margin-top: 200px;
+	height: 500px;
+	border: 10px solid #535353;
+}
+
+#dropbox {
+	border: 4px dashed #BFBCBC;
+	border-radius: 6px;
+	height: 300px;
+	margin: 0 auto;
+	cursor: default;
+}
+
+#profileCloseImg {
+	margin-top: 10px;
+	float: right;
+}
+
+#closeBar {
+	height: 40px;
+}
+
+#profileLabel {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#profile_pcom {
+	margin-bottom: 5px;
+}
+
+#profileModify {
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+#profile_Img {
+	width: 100%;
+	height: 100%;
+	display: block;
+	margin-left: -15px;
+	margin-right: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	position: absolute;
 }

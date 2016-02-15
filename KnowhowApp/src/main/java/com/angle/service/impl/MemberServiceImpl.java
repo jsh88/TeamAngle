@@ -314,7 +314,7 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("(어플 저장함)sendCode : " + sendCode);
 		String reciver = id;
 		String subject = "안녕하세요 세상의 모든 노하우 KnowHow 입니다.";
-		String content = "KnowHow 회원가입 인증 - \nhttp://localhost:8181/KnowhowApp/checkMemberJoin.do?id="+id+"&code="+sendCode;
+		String content = "KnowHow 회원가입 인증 - \nhttp://localhost:8080/KnowhowApp/checkMemberJoin.do?id="+id+"&code="+sendCode;
 		
 		email.setReciver(reciver);
 		email.setSubject(subject);

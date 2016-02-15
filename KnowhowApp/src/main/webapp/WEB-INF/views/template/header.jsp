@@ -59,6 +59,7 @@
 
 			</div>
 		</div>
+		<div id="navLine" class="col-md-12"></div>
 		<div id="navtag">
 			<div id="navtag_lb">
 				<div class="col-sm-1 navTagTitle">Tag</div>
@@ -78,9 +79,9 @@
 	</nav>
 
 	<!--  마이페이지 -->
-	<div class="col-lg-12 main-padding-mypage" id="myPageWrap">
-		<div class="col-md-9"></div>
-		<div class="col-md-3 main-padding-mypage">
+	<div class="col-md-12 main-padding-mypage" id="myPageWrap">
+		<div class="col-md-7"></div>
+		<div class="col-md-5 main-padding-mypage">
 			<div id="menu">
 				<div id="profile_line" class="col-sm-12 col-xs-12 col-md-12">
 					

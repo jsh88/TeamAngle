@@ -49,7 +49,7 @@
 			<div class="col-md-12 intro4_margin intro4_p">
 			<div class="col-md-12 intro4_p">
 				<%
-					for (int i = 0; i <= 45; i++) {
+					for (int i = 0; i <= 39; i++) {
 				%>
 				<div class="nemoForm n1 n2"></div>
 				<%
@@ -60,7 +60,7 @@
 			<div class="col-md-12 intro4_margin intro4_p">
 			<div class="col-md-12 intro4_p">
 				<%
-					for (int i = 0; i <= 45; i++) {
+					for (int i = 0; i <= 39; i++) {
 				%>
 				<div class="nemoForm n1 n2"></div>
 				<%
@@ -71,7 +71,7 @@
 			<div class="col-md-12 intro4_margin intro4_p">
 			<div class="col-md-12 intro4_p">
 				<%
-					for (int i = 0; i <= 45; i++) {
+					for (int i = 0; i <= 39; i++) {
 				%>
 				<div class="nemoForm n1 n2"></div>
 				<%

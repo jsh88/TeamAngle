@@ -9,7 +9,7 @@
 </head>
 <body>
 		<div id="show" class="modal-dialog"> 
-			<div class="modal-content memModify-bd-css"  style="height: 170px;">
+			<div class="modal-content memModify-bd-css memModify-bd-css1"  style="height: 170px;">
 				<div class="modal-body">
 					<button type="button" class="close" data-dismiss="modal">
 						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
@@ -29,7 +29,7 @@
 		</div>
 
 		<div id="show1" class="modal-dialog">
-			<div class="modal-content memModify-bd-css" id="md_content">
+			<div class="modal-content memModify-bd-css memModify-bd-css2" id="md_content">
 				<div class="modal-body">
 					<button type="button" class="close" data-dismiss="modal">
 						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
@@ -144,6 +144,9 @@
 		window.onload = function() {
 			
 			alert("회원탈퇴처리 되었습니다.");
+//			window.location.href="deleteMemberSession.do";
+			/* self.opener = self;
+			window.close(); */
 			window.location.href="./";
 		}			
 		</script>

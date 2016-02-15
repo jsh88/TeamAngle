@@ -323,9 +323,17 @@ $(function() {
 					
 					if(result == 1) {
 						alert("이메일 발송 성공!!!");
+
 // session.removeAttribute("member");
 						window.location.href="./";
 // session.invalidate();
+
+						
+						window.location.href="deleteMemberSession.do";
+						self.opener = self;
+						window.close();
+
+
 					} else {
 						alert("이메일 발송 실패!!!");
 						window.location.href="./";

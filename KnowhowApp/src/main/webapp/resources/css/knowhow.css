@@ -761,6 +761,7 @@
 			padding-left: 12px;
 			color:#666666;
 			font-size: 16px;
+			display:inline-block;
 			word-break: break-all;
 		}
 	
@@ -856,7 +857,7 @@
 			 position:absolute;   /*테이블의 영향을받지않는 div*/
 			 left:50%;   /*div 왼쪽 top 부분이 가로 전체의 중간으로 위치하게됨*/
 			 margin-top: -50px;
-			 margin-left: -500px;
+			 margin-left: -200px;
 	  	  }
 	  	  
 	  	  .wrap-loading img{

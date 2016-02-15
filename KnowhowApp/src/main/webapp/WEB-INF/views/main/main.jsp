@@ -4,7 +4,7 @@
 		<div class="container-fluid" id="mainWrap">
 			<div class="row">
 				<div class="col-md-1"></div>
-				<div id="bestWrap" class="col-md-10">
+				<div id="bestWrap" class="col-md-11">
 					
 					<div id="bestTitle" class="col-md-12">
 						Best Knowhow
@@ -21,7 +21,6 @@
 					<div class="col-md-12" id="newPost"></div>
 					
 				</div>
-				<div class="col-md-1"></div>
 		</div>
 	</div>
 	</body>
