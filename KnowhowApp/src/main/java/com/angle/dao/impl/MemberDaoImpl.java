@@ -347,7 +347,6 @@ public class MemberDaoImpl implements MemberDao {
 		
 		@Override
 		public List<Post> getMyLatelyLookupPost(String id) {
-			System.out.println("dao"+ id);
 			List<Post> pList = namedParameterJdbcTemplate.query(
 					"select * from post p1, (select ps.pno from postlog ps where ps.id = :id order by ps.rdate desc) p2 where p1.pno = p2.pno", 
 					new MapSqlParameterSource().addValue("id", id),

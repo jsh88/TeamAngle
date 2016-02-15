@@ -41,12 +41,6 @@ public class MemberController {
 		this.emailSender = emailSender;
 	}
 
-	//	// 내가 최근에 작성한 포인트
-	//	@RequestMapping
-	//	public String getMyLatelyPost(String id) {
-	//		Post p = memberService.getMyLatelyPost(id);
-	//		return "redirect:/";
-	//	}
 
 	// 회원가입 폼 콜 부분
 	@RequestMapping(value = { "/memberJoinForm" }, method = RequestMethod.GET)
@@ -210,8 +204,6 @@ public class MemberController {
 	
 		ModelAndView mav = new ModelAndView();
 
-//		mav.addObject("result", result);
-//		mav.setViewName("login/loginAjax");
 		model.addAttribute("login/loginAjax");
 		if(result.equals("c")){
 			System.out.println("My lately lookup");
@@ -249,9 +241,8 @@ public class MemberController {
 	// 마이페이지 
 	@RequestMapping("/myPage")
 	public String getMyPage(HttpServletRequest req, HttpSession session, Model model){
-		// 마이 페이지 그냥 session 받아서 jsp 에서 뿌리자
 		model.addAttribute("title", "/member/myPage");
-		return "redirect:myPage";		// include 한다길래 그냥 title로 써서 index 보냄
+		return "redirect:myPage";
 	}
 	// 취향저걱 
 	@RequestMapping("/getMyConcertPost")
@@ -263,25 +254,6 @@ public class MemberController {
 		return "index"; // 어디로 가야하오
 	}
 
-	// 내가 최근 조회한 포스트 로그인으로 늠
-	/*@RequestMapping("/login/*") // 어디?
-	public void getMyLatelyLookupPost(HttpServletRequest req, HttpSession session, Model model){
-		System.out.println("My lately lookup");
-		List<Post> lately = (List<Post>)memberService.getMyLatelyLookupPost(session.getId());
-		session.setAttribute("latelyPost", lately) ;
-		model.addAttribute("title", "어디로갈까나?");
-	}*/
-
-	// 로그인으로 늠
-	/*@RequestMapping("/getMyMostLookupPost")
-	public String getMyMostLookupPost(HttpServletRequest req, HttpSession session, Model model){
-		Member m = (Member) session.getAttribute("member");
-		String id = m.getId();
-		memberService.getMyMostLookupPost(id);
-		model.addAttribute("title", "어디로갈까나?");
-		return "index";
-
-	}*/
 
 	// 이메일 발송
 	@RequestMapping("/emailCheck")

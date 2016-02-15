@@ -209,11 +209,9 @@ public class MemberServiceImpl implements MemberService {
 		String result = "a";
 		Member member = memberDao.memberLogin(id);
 		
-		System.out.println(member);
 		if (member == null || member.getId().equals("") ) {
 			
 			result = "b";
-			System.out.println(result);
 		}else{
 		int bool = member.isState() ? 1:0;
 		if (bool == 0){
@@ -222,7 +220,6 @@ public class MemberServiceImpl implements MemberService {
 			if (member.getPw().equals(pw) && bool == 1) {
 				session.setAttribute("member", member);
 				session.setMaxInactiveInterval(24 * 60 * 60);
-				System.out.println(member.getId());
 				int v_result = memberDao.getVcount(id);
 				if (v_result != -1) {
 					memberDao.updateVcount(member);
@@ -246,9 +243,6 @@ public class MemberServiceImpl implements MemberService {
 		Member m = (Member) session.getAttribute("member");
 		MultipartFile multipartFile = request.getFile("image");
 		String comment = request.getParameter("pcomment");
-		System.out.println("세션 멤버 이미지 : " + m.getImage());
-//		System.out.println("이미지 이름 : "+ multipartFile.getName());
-//		System.out.println("겟 어트리 : " + request.getAttribute("image"));
 		if(multipartFile != null ){
 			if (!multipartFile.isEmpty()) {
 				File file = new File(path, multipartFile.getOriginalFilename());
@@ -273,19 +267,19 @@ public class MemberServiceImpl implements MemberService {
 	public void getMyConcernPost(String id) {
 		List<Post> pList = null;
 		pList = memberDao.getMyConcernPost(id);
-		
+
 	}
 	@Override
 	public List<Post> getMyLatelyLookupPost(String id) {
 		List<Post> pList = null;
-			pList = memberDao.getMyLatelyLookupPost(id);
+		pList = memberDao.getMyLatelyLookupPost(id);
 		return pList;
 	}
 
 	@Override
 	public List<Post> getMyMostLookupPost(String id) {
 		List<Post> pList = null;
-			pList = memberDao.getMyMostLookupPost(id);
+		pList = memberDao.getMyMostLookupPost(id);
 		return pList;
 	}
 
@@ -295,10 +289,8 @@ public class MemberServiceImpl implements MemberService {
 		
 		response.setContentType("text/html;charset=UTF-8");
 		response.setHeader("Cache-Control", "no-cache");
-		/*PrintWriter out = response.getWriter();*/
 		Email email = new Email();
 		String id = request.getParameter("id");
-		System.out.println(id);
 		Random random = new Random();
 		// 0~999999 수를 받는다
 		int cipher = 1000000;
@@ -311,7 +303,6 @@ public class MemberServiceImpl implements MemberService {
 		}
 		String sendCode = (support + randomInteger).trim();
 		request.getServletContext().setAttribute("sendCode", sendCode);
-		System.out.println("(어플 저장함)sendCode : " + sendCode);
 		String reciver = id;
 		String subject = "안녕하세요 세상의 모든 노하우 KnowHow 입니다.";
 		String content = "KnowHow 회원가입 인증 - \nhttp://localhost:8181/KnowhowApp/checkMemberJoin.do?id="+id+"&code="+sendCode;
@@ -320,10 +311,6 @@ public class MemberServiceImpl implements MemberService {
 		email.setSubject(subject);
 		email.setContent(content);
 		emailSender.sendEmail(email);
-		/*out.println("<script type=\'text/javascript'>"); 
-		out.println("alert('인증메일을 확인하여 주십시오.');"); 
-		out.println("</script>"); 
-		out.close();*/
 
 	}
 
@@ -332,11 +319,8 @@ public class MemberServiceImpl implements MemberService {
 			throws Exception {
 
 		String id = request.getParameter("id");
-		System.out.println("id"+id);
 		String getCode = request.getParameter("code").trim();
-		System.out.println("getCode : " + getCode);
 		String sendCode = (String)request.getServletContext().getAttribute("sendCode");
-		System.out.println("어플 - sendCode : " + sendCode);
 		response.setContentType("text/html;charset=UTF-8");
 		response.setHeader("Cache-Control", "no-cache");
 		
@@ -347,17 +331,6 @@ public class MemberServiceImpl implements MemberService {
 			result = 1;
 			request.setAttribute("isCheckEmail", "아");
 		}
-		
-		/*PrintWriter out = response.getWriter();*/
-		/*String result = "<font color='red'>인증번호가 일치하지 않습니다</font>";
-		if (sendCode.equals(getCode)) {
-			memberDao.acceptJoin(id);
-			result = "<font color='green'>확인 되었습니다.</font>";
-		}*/
-		/*out.println("<script type=\'text/javascript'>"); 
-		out.println("alert("+ result +");"); 
-		out.println("</script>"); 
-		out.close();*/
 		
 		return result;
 	}
