@@ -72,7 +72,7 @@
 								name="title" value="${post.title }" maxlength="40" />
 						</div>
 					</div>
-					<div id="startbuttonGroup">
+					<div id="startButtonGroup">
 						<button type="button" class="btn btn-success addbtn"
 							id="startModifyBtn" onclick="modifyTitle2()">
 							<b>Modify Post</b>

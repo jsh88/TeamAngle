@@ -432,7 +432,7 @@
 											<div id="Media" class="mbackground">
 												<div id="modifyMedia1" class="modifyMedia" onclick="modifyOpenModal()" contenteditable="true"></div>
 												<iframe id="modifyMediaIframe1" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden" id="url1" name="videourl"/><input type="file" class="imgurl" id="imgurl1" name="media"/><img class="mediaImg" id="modifyMediaImg1"/>
+												<input type="hidden" id="url1" name="videourl"/><img class="mediaImg" id="modifyMediaImg1"/>
 											</div>
 											<div id="content_Text">
 												<textarea id="mta1" class="form-control knowhow1" name="knowhow" rows="10" cols=""></textarea>
@@ -451,7 +451,7 @@
 											<div id="Media"class="mbackground">
 												<div id="modifyMedia2" class="modifyMedia" onclick="modifyOpenModal()" contenteditable="true"></div>
 												<iframe id="modifyMediaIframe2" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden"id="url2" name="videourl"/><input type="file" class="imgurl" id="imgurl2" name="media"/><img class="mediaImg" id="modifyMediaImg2"/>
+												<input type="hidden"id="url2" name="videourl"/><img class="mediaImg" id="modifyMediaImg2"/>
 											</div>
 											<div id="content_Text">
 												<textarea id="mta2" class="form-control knowhow2" name="knowhow" rows="10" cols=""></textarea>
@@ -470,7 +470,7 @@
 											<div id="Media" class="mbackground">
 												<div id="modifyMedia3" class="modifyMedia"  onclick="modifyOpenModal()" contenteditable="true"></div>
 												<iframe id="modifyMediaIframe3" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden" id="url3" name="videourl"/><input type="file" class="imgurl" id="imgurl3" name="media"/><img class="mediaImg" id="modifyMediaImg3"/>
+												<input type="hidden" id="url3" name="videourl"/><img class="mediaImg" id="modifyMediaImg3"/>
 											</div>
 											<div id="content_Text">
 												<textarea id="mta3" class="form-control knowhow3"  name="knowhow" rows="10" cols=""></textarea>
@@ -489,7 +489,7 @@
 											<div id="Media" class="mbackground">
 												<div id="modifyMedia4" class="modifyMedia"  onclick="modifyOpenModal()" contenteditable="true"></div>
 												<iframe id="modifyMediaIframe4" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden" id="url4"  name="videourl"/><input type="file" class="imgurl" id="imgurl4" name="media"/><img class="mediaImg" id="modifyMediaImg4"/>
+												<input type="hidden" id="url4"  name="videourl"/><img class="mediaImg" id="modifyMediaImg4"/>
 											</div>
 											<div id="content_Text">
 												<textarea id="mta4" class="form-control knowhow4" name="knowhow" rows="10" cols=""></textarea>
@@ -508,7 +508,7 @@
 											<div id="Media" class="mbackground">
 												<div id="modifyMedia5" class="modifyMedia"  onclick="modifyOpenModal()" contenteditable="true"></div>
 												<iframe id="modifyMediaIframe5" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden"  id="url5" name="videourl"/><input type="file"  class="imgurl" id="imgurl5" name="media"/><img class="mediaImg" id="modifyMediaImg5"/>
+												<input type="hidden"  id="url5" name="videourl"/><img class="mediaImg" id="modifyMediaImg5"/>
 											</div>
 											<div id="content_Text">
 												<textarea id="mta5" class="form-control knowhow5" name="knowhow" rows="10" cols=""></textarea>
@@ -527,7 +527,7 @@
 											<div id="Media" class="mbackground">
 												<div id="modifyMedia6" class="modifyMedia"  onclick="modifyOpenModal()" contenteditable="true"></div>
 												<iframe id="modifyMediaIframe6" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden" id="url6" name="videourl"/><input type="file"  class="imgurl" id="imgurl6" name="media"/><img class="mediaImg" id="modifyMediaImg6"/>
+												<input type="hidden" id="url6" name="videourl"/><img class="mediaImg" id="modifyMediaImg6"/>
 											</div>
 											<div id="content_Text">
 												<textarea id="mta6" class="form-control knowhow6" name="knowhow" rows="10" cols=""></textarea>
@@ -546,7 +546,7 @@
 											<div id="Media" class="mbackground">
 												<div id="modifyMedia7" class="modifyMedia"  onclick="modifyOpenModal()" contenteditable="true"></div>
 												<iframe id="modifyMediaIframe7" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden" id="url7" name="videourl"/><input type="file" class="imgurl" id="imgurl7" name="media"/><img class="mediaImg" id="modifyMediaImg7"/>
+												<input type="hidden" id="url7" name="videourl"/><img class="mediaImg" id="modifyMediaImg7"/>
 											</div>
 											<div id="content_Text">
 												<textarea id="mta7" class="form-control knowhow7" name="knowhow" rows="10" cols=""></textarea>
@@ -565,7 +565,7 @@
 											<div id="Media" class="mbackground">
 												<div id="modifyMedia8" class="modifyMedia"  onclick="modifyOpenModal()" contenteditable="true"></div>
 												<iframe id="modifyMediaIframe8" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden" id="url8" name="videourl"/><input type="file"  class="imgurl" id="imgurl8" name="media"/><img class="mediaImg" id="modifyMediaImg8"/>
+												<input type="hidden" id="url8" name="videourl"/><img class="mediaImg" id="modifyMediaImg8"/>
 											</div>
 											<div id="content_Text">
 												<textarea id="mta8" class="form-control knowhow8" name="knowhow" rows="10" cols=""></textarea>
@@ -584,7 +584,7 @@
 											<div id="Media" class="mbackground">
 												<div id="modifyMedia9" class="modifyMedia"  onclick="modifyOpenModal()" contenteditable="true"></div>
 												<iframe id="modifyMediaIframe9" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden" id="url9" name="videourl"/><input type="file" class="imgurl" id="imgurl9" name="media"/><img class="mediaImg" id="modifyMediaImg9"/>
+												<input type="hidden" id="url9" name="videourl"/><img class="mediaImg" id="modifyMediaImg9"/>
 											</div>
 											<div id="content_Text">
 												<textarea id="mta9" class="form-control knowhow9" name="knowhow" rows="10" cols=""></textarea>
@@ -603,7 +603,7 @@
 											<div id="Media" class="mbackground">
 												<div id="modifyMedia10" class="modifyMedia"  onclick="modifyOpenModal()" contenteditable="true"></div>
 												<iframe id="modifyMediaIframe10" class="mediaiframe" width="567" height="300" frameborder="0" allowfullscreen></iframe>
-												<input type="hidden" id="url10" name="videourl"/><input type="file" class="imgurl" id="imgurl10" name="media"/><img class="mediaImg" id="modifyMediaImg10"/>
+												<input type="hidden" id="url10" name="videourl"/><img class="mediaImg" id="modifyMediaImg10"/>
 											</div>
 											<div id="content_Text">
 												<textarea id="mta10" class="form-control knowhow10" name="knowhow" rows="10" cols=""></textarea>
