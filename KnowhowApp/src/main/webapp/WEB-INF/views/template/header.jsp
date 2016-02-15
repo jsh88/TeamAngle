@@ -59,6 +59,7 @@
 
 			</div>
 		</div>
+		<div id="navLine" class="col-md-12"></div>
 		<div id="navtag">
 			<div id="navtag_lb">
 				<div class="col-sm-1 navTagTitle">Tag</div>
