@@ -325,7 +325,7 @@ $(function() {
 						alert("이메일 발송 성공!!!");
 
 // session.removeAttribute("member");
-						window.location.href="./";
+//						window.location.href="./";
 // session.invalidate();
 
 						
