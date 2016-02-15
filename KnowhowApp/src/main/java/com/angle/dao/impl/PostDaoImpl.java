@@ -613,9 +613,13 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	@Override
 	public Post getSearchPostView(ArrayList<MemberTag> mTagList, int no) {
 
+		String word = mTagList.get(mTagList.size() - 1).getTag();
+
+		System.out.println(word);
+
 		return jdbcTemplate.query(
-				"select pt.*, m.nickname from (select row_number() over (order by wdate desc) no, p.* from post p where p.state = 1 and p.id is not null) pt, member m where no = ? and m.id = pt.id",
-				new Object[] { no }, new ResultSetExtractor<Post>() {
+				"select * from (select row_number() over (order by p.good desc, p.count desc) no, p.*, m.nickname from post p, member m where p.id = m.id and p.state = 1 and title like ?) p where no = ?",
+				new Object[] { "%" + word + "%", no }, new ResultSetExtractor<Post>() {
 
 					@Override
 					public Post extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -629,6 +633,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 							p.setwDate(rs.getString("wdate")); // 작성일
 							p.setCount(rs.getInt("count")); // 조회수
 							p.setGood(rs.getInt("good")); // 추천
+							// 아이디 널 체크
 							p.setId(rs.getString("id")); // 아이디
 							p.setNickName(rs.getString("nickname")); // 닉네임
 

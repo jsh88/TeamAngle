@@ -484,6 +484,7 @@ public class PostServiceImpl implements PostService, PostCommentService {
 	public void getSearchPostView(HttpServletRequest request, HttpSession session) {
 
 		ArrayList<MemberTag> mTagList = (ArrayList<MemberTag>) session.getAttribute("mTagList");
+		System.out.println(mTagList);
 		MemberTag mTag = new MemberTag();
 		mTag.setTag(request.getParameter("word"));
 		mTagList.add(mTag); // 태그 마지막에 검색한 word 저장 

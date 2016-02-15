@@ -108,9 +108,7 @@ $(document)
 												$("#bestPost").remove();
 												$("#bestLine")
 														.after(
-																"<div class='col-md-12' id='bestPost'></div>");
-												
-												isSearch = false;
+																"<div class='col-md-12' id='bestPost'></div>");											
 
 												for (var i = 0; i < 10; i++) {
 
@@ -284,6 +282,10 @@ function getSearchPostView() {
 			// 이미지 감추기 처리
 			// $(location).attr('href', "이동할 페이지");
 			$('.wrap-loading').addClass('display-none');
+			
+			if(searchCount - 1 % 5 == 0) {
+				isSearch = false;
+			}
 
 		}
 	});

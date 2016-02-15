@@ -161,8 +161,11 @@ public class TagServiceImpl implements TagService {
 				mTagList.get(0).setId(m.getId());
 
 				if (!Boolean.parseBoolean(request.getParameter("isSearch"))) {
+					
 					tagDao.addMemberTag(mTagList);
+					
 					session.setAttribute("mTagList", mTagList);
+					
 				}
 			}
 
