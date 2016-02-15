@@ -28,7 +28,7 @@ $(function() {
 				
 			},
 			error : function(xhr, statusText, responseData) {
-				alert("error : " + statusText + "." + xhr.status
+				alert("error memModify : " + statusText + "." + xhr.status
 						+ " - " + xhr.responseText);
 			}
 		});
