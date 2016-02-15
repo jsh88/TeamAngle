@@ -23,9 +23,22 @@
 			title : 
 				'<div id="popoverWrap"><div id="popoverImg"><img style="width:50px;"src="resources/images/test.gif"/></div><div id="popoverUserNick">Test</div></div>',
 			content : '<div id="popoverList"><a href="#" class="popoverTags">#야호</a></div>',
-			trigger: 'hover'
-		});
-	
+			trigger: 'manual'
+		}).on("mouseenter", function () {
+	        var _this = this;
+	        $(this).popover("show");
+	        $(this).siblings(".popover").on("mouseleave", function () {
+	            $(_this).popover('hide');
+	        });
+	    }).on("mouseleave", function () {
+	        var _this = this;
+	        setTimeout(function () {
+	            if (!$(".popover:hover").length) {
+	                $(_this).popover("hide")
+	            }
+	        }, 100);
+	    });;
+				
 		
 		$(document).on("click", ".popoverTags", function(){
 			

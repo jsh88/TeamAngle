@@ -495,7 +495,7 @@ function showViews(id){
 			// 에러 로직, 에러 로그 확인
 
 		}
-	})
+	});
 }
 
 
@@ -514,7 +514,7 @@ function showNews(id){
 			var result = responseData;
 			$('#listDiv').html(result);
 		}
-	})
+	});
 }
 
 function showReply(id){
@@ -532,7 +532,7 @@ function showReply(id){
 			var result = responseData;
 			$('#listDiv').html(result);
 		}
-	})
+	});
 }
 
 function showRcomm(id){
@@ -550,7 +550,7 @@ function showRcomm(id){
 			var result = responseData;
 			$('#listDiv').html(result);
 		}
-	})
+	});
 }
 
 function addKnowhow() {

@@ -97,14 +97,6 @@
 					</div>
 				</div>
 				</div>
-
-	<div id="myKnowhowInfoModal" class="modal fade">
-		<div class="modal-dialog" id="myKnowhowInfoDialog">
-			<div id ="myInfoViewImg">
-				<img src="resources/images/myKnowhow.png"/>
-			</div>
-		</div>
-	</div>	
 			<div id="knowhowCList">
 				<div id="lineback"></div>
 				<div id="postit">
@@ -119,6 +111,13 @@
 				</div>
 			</div>
 		</div>
+		<div id="myKnowhowInfoModal" class="modal fade">
+		<div class="modal-dialog" id="myKnowhowInfoDialog">
+			<div id ="myInfoViewImg">
+				<img src="resources/images/myKnowhow.png"/>
+			</div>
+		</div>
+	</div>	
 	
 </body>
 </html>
