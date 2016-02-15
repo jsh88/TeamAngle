@@ -168,8 +168,9 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	@Override
 	public ArrayList<Post> getTempPostList(String id) {
 
-		return jdbcTemplate.query("select p.*, m.nickname from post p, member m where m.id = p.id and p.id = ? and p.state = 0", new Object[] { id },
-				new ResultSetExtractor<ArrayList<Post>>() {
+		return jdbcTemplate.query(
+				"select p.*, m.nickname from post p, member m where m.id = p.id and p.id = ? and p.state = 0",
+				new Object[] { id }, new ResultSetExtractor<ArrayList<Post>>() {
 
 					@Override
 					public ArrayList<Post> extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -289,12 +290,14 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 		try {
 
 			jdbcTemplate.update("insert into postrecommendation values(?, ?)", new Object[] { id, pNo });
+			jdbcTemplate.update("update post set good = good + 1 where pno = ?", new Object[] { pNo });
 
 			return true;
 
 		} catch (DataAccessException e) {
 
 			jdbcTemplate.update("delete from postrecommendation where pno = ? and id = ?", new Object[] { pNo, id });
+			jdbcTemplate.update("update post set good = good - 1 where pno = ?", new Object[] { pNo });
 
 			return false;
 
@@ -609,7 +612,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 
 	@Override
 	public Post getSearchPostView(ArrayList<MemberTag> mTagList, int no) {
-		
+
 		return jdbcTemplate.query(
 				"select pt.*, m.nickname from (select row_number() over (order by good desc) no, p.* from post p where p.state = 1) pt, member m where no = ? and m.id = pt.id",
 				new Object[] { no }, new ResultSetExtractor<Post>() {
