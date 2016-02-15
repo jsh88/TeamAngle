@@ -112,10 +112,3 @@ $("#findPw").click(function(e) {
 	
 });
 
-
-
-
-//});
-	
-
-	

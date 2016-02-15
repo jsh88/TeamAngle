@@ -339,42 +339,36 @@ public class MemberServiceImpl implements MemberService {
 	public void getMyPostByViews(HttpServletRequest req, HttpSession session) {
 		Member m = (Member) session.getAttribute("member");
 		if(!m.getId().isEmpty() || m.getId() != null){
-		String id = m.getId();
-		List<Post> pList = null;
-		pList = memberDao.getMyPostByViews(id);
-		session.setAttribute("getMyPostByViews", pList);
+			req.setAttribute("mypList", memberDao.getMyPostByViews(m.getId()));
 		}
-
+		
 	}
+	
 	// 내가 최근에 작성한 포인트
 	@Override
 	public void getMyLatelyPost(HttpServletRequest req, HttpSession session) {
 		Member m = (Member) session.getAttribute("member");
-		String id = m.getId();
-		List<Post> pList = null;
-		pList = memberDao.getMyLatelyPost(id);
-		session.setAttribute("getMyLatelyPost", pList);
+		if(!m.getId().isEmpty() || m.getId() != null){
+			req.setAttribute("mypList", memberDao.getMyPostByViews(m.getId()));
+		}
 
 	}
 
 	@Override
 	public void getMyPostByRecommand(HttpServletRequest req, HttpSession session) {
 		Member m = (Member) session.getAttribute("member");
-		String id = m.getId();
-		List<Post> pList = null;
-		pList = memberDao.getMyPostByRecommand(id);
-		session.setAttribute("getMyPostByRecommand", pList);
+		if(!m.getId().isEmpty() || m.getId() != null){
+			req.setAttribute("mypList", memberDao.getMyPostByViews(m.getId()));
+		}
 
 	}
 
 	@Override
 	public void getMyPostByComments(HttpServletRequest req, HttpSession session) {
 		Member m = (Member) session.getAttribute("member");
-		String id = m.getId();
-		List<Post> pList = null;
-		pList = memberDao.getMyPostByComments(id);
-		session.setAttribute("getMyPostByComments", pList);
-
+		if(!m.getId().isEmpty() || m.getId() != null){
+			req.setAttribute("mypList", memberDao.getMyPostByViews(m.getId()));
+		}
 	}
 
 	@Override

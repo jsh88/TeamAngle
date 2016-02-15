@@ -4,6 +4,7 @@ var searchCount = 1;
 
 $(document)
 		.ready(
+				
 				function() {
 
 					for (var i = 0; i < 5; i++) {
@@ -421,6 +422,90 @@ function startPosting() {
 	});
 }
 
+function showViews(id){
+	var formData = new FormData();
+	formData.append("id", id);
+	$.ajax({
+		type:'post',
+		url : 'getMyPostByViews',
+		data : formData,
+		processData : false,
+		contentType : false,
+		
+		success : function(responseData, statusText, xhr){
+			
+			modalOpen(11);
+			var result = responseData;
+			$('#myKnowhowList').empty();
+			$('#myKnowhowList').html(result);
+			
+			 
+		},error : function(request, status, error) {
+
+			// 에러 로직, 에러 로그 확인
+
+		}
+	})
+}
+
+
+function showNews(id){
+	var formData = new FormData();
+	formData.append("id", id);
+	$.ajax({
+		type:'post',
+		url : 'getMyPostByNews',
+		data : formData,
+		processData : false,
+		contentType : false,
+		
+		success : function(responseData, statusText, xhr){
+			modalOpen(11);
+			var result = responseData;
+			$('#myKnowhowList').empty();
+			$('#myKnowhowList').html(result);
+		}
+	})
+}
+
+function showReply(id){
+	var formData = new FormData();
+	formData.append("id", id);
+	$.ajax({
+		type:'post',
+		url : 'getMyPostByComments',
+		data : formData,
+		processData : false,
+		contentType : false,
+		
+		success : function(responseData, statusText, xhr){
+			modalOpen(11);
+			var result = responseData;
+			$('#myKnowhowList').empty();
+			$('#myKnowhowList').html(result);
+		}
+	})
+}
+
+function showRcomm(id){
+	var formData = new FormData();
+	formData.append("id", id);
+	$.ajax({
+		type:'post',
+		url : 'getMyPostByRecommand',
+		data : formData,
+		processData : false,
+		contentType : false,
+		
+		success : function(responseData, statusText, xhr){
+			modalOpen(11);
+			var result = responseData;
+			$('#myKnowhowList').empty();
+			$('#myKnowhowList').html(result);
+		}
+	})
+}
+
 function addKnowhow() {
 
 	var formData = new FormData();
@@ -516,6 +601,7 @@ function delTempPost(me, pNo) {
 		}
 	});
 }
+
 
 function modifyPostStart(pNo) {
 	
@@ -648,3 +734,4 @@ function modalOpen(selModal) {
 	$("#" + modal).modal('show');
 
 }
+
