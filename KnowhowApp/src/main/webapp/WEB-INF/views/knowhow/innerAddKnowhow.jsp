@@ -48,6 +48,23 @@
 								$(this).css("width", "50");
 							}
 						});
+						
+						$("#addModalInfoImg").mouseover(function(){
+							
+							$("#addKnowhowInfoModal").modal();
+							
+						});
+						
+						$("#addInfoViewImg").mouseout(function(){
+							
+							$("#addKnowhowInfoModal").modal('hide');
+							
+							if (addImgArr[addPagingCount - 1]) {
+								
+							}else{
+								$('#m' + addPagingCount).css("background-image","none");
+							}
+						});
 
 						/* 추가 버튼 */
 						$("#addbtn").click(function() {
@@ -511,6 +528,12 @@
 		});
 	}
 </script>
+ 	<div id="addModalInfo">
+ 		<div id="addModalBlankLine">&nbsp;</div>
+ 		<div id="addModalInfoImg">
+ 			<img style="width:55px;" src="resources/images/Info.png"/>
+ 		</div>
+ 	</div>
 <div class="modal-content" id="addContent">
 				<div id="addWrap">
 					<div class="modal-header" id="header">

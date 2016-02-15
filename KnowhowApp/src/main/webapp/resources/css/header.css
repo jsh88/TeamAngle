@@ -82,6 +82,15 @@
 	word-break: break-all;
 }
 
+.recommenTag:link{
+	text-decoration: none;
+}
+
+.recommenTag:visited{
+	text-decoration: none;
+	color:white;
+}
+
 .recommenTag:hover{
 	color:#FFDA00;	
 	font-weight: bold;

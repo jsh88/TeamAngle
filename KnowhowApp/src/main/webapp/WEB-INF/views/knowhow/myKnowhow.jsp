@@ -16,6 +16,19 @@
 		$("#c").hide();
 		$("#r").hide();
 		
+		
+		$("#myModalInfoImg").mouseover(function(){
+			
+			$("#myKnowhowInfoModal").modal();
+			
+		});
+		
+		$("#myInfoViewImg").mouseout(function(){
+			
+			$("#myKnowhowInfoModal").modal('hide');
+			
+		});
+		
 		});
 	
 	function showViews(){
@@ -51,6 +64,13 @@
 <body>
 	<div class="modal fade" id="myModal" data-backdrop="static">
 		<div class="modal-dialog" id="myPostList">
+	<div id="myModalInfo">
+ 		<div id="myModalBlankLine">&nbsp;</div>
+ 		<div id="myModalInfoImg">
+ 			<img style="width:55px;" src="resources/images/Info.png"/>
+ 		</div>
+ 	</div>
+		
 				<div class="modal-content" id="myContent">
 				<div id="myWrap">
 					<div id="myTitle">
@@ -163,6 +183,13 @@
 					</div>
 				</div>
 			</div>
+	<div id="myKnowhowInfoModal" class="modal fade">
+		<div class="modal-dialog" id="myKnowhowInfoDialog">
+			<div id ="myInfoViewImg">
+				<img src="resources/images/myKnowhow.png"/>
+			</div>
+		</div>
+	</div>	
 	</div>
 </body>
 </html>
