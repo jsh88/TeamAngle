@@ -101,7 +101,7 @@
 								<td id="myProfileComment">${member.pComment }</td>
 							</tr>
 							<tr>
-								<td>마지막 접속시간 : ${member.lDate }</td>
+								<td class="mypage-td-text">마지막 접속시간 : ${member.lDate }</td>
 							</tr>
 						</table>
 					</div>
