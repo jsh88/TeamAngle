@@ -64,7 +64,7 @@
 							if (addImgArr[addPagingCount - 1]) {
 								
 							}else{
-								$('#m' + addPagingCount).css("background-image","none");
+								$('#m' + addPagingCount).css("background-image"," url('/KnowhowApp/resources/images/insertImage.png')");
 							}
 						});
 
