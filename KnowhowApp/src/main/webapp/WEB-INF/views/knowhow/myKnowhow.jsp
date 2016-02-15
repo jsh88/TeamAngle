@@ -20,6 +20,36 @@
 		$("#newListDes").hide();
 		$("#commenListDes").hide();
 		
+		 
+		 $('#postByViews').click(function(){
+				
+				$("#viewListDes").show();
+				$("#recommenListDes").hide();
+				$("#newListDes").hide();
+				$("#commenListDes").hide();
+		});
+	 	$('#postByNews').click(function(){
+			
+				$("#recommenListDes").hide();
+				$("#viewListDes").hide();
+				$("#newListDes").show();
+				$("#commenListDes").hide();
+		});		
+				
+	 	$('#postByReply').click(function(){
+			
+				$("#newListDes").hide();
+				$("#recommenListDes").hide();
+				$("#viewListDes").hide();
+				$("#commenListDes").show();
+		});
+	 	$('#postByRcomm').click(function(){
+			
+				$("#commenListDes").hide();
+				$("#recommenListDes").show();
+				$("#newListDes").hide();
+				$("#viewListDes").hide();
+		});
 		
 		$("#myModalInfoImg").mouseover(function(){
 			
