@@ -178,7 +178,7 @@
 			success : function(v) {
 
 				// 성공처리(v는 서버로 받은 메시지, value)
-				alert("포스트 작성 완료");
+				alert("Complete Posting!");
 				location.reload();
 				
 			},
@@ -192,8 +192,8 @@
 			error : function(request, status, error) {
 
 				// 에러 로직, 에러 로그 확인
-				alert("code:" + request.status + "\n\n" + "message:"
-						+ request.responseText + "\n\n" + "error:" + error);
+// 				alert("code:" + request.status + "\n\n" + "message:"
+// 						+ request.responseText + "\n\n" + "error:" + error);
 
 			},
 			complete : function() {

@@ -7,6 +7,7 @@
 	var modifyUrlArr = [ 10 ];
 	var modifyConArr = [ 10 ];
 	var modifyPagingCount = 1;
+	var modifyPrePagingCount = 0;
 	var modifyMaxPage = 1;
 	var modifyUrl = "";
 
@@ -16,10 +17,8 @@
 
 						modifyMaxPage = parseInt("${post.mPage}");
 
-						alert(modifyMaxPage);
+// 						alert(modifyMaxPage);
 
-						$("#modifyAddBtn").hide();
-						$("#modifyDeleteBtn").hide();
 						$(".p2").hide();
 						$(".p3").hide();
 						$(".p4").hide();
@@ -30,6 +29,29 @@
 						$(".p9").hide();
 						$(".p10").hide();
 
+						$(".p" + modifyPagingCount).css("width", "65");
+
+						/* mouseOver 처리 */
+
+						$(".pageNumber").mouseover(function() {
+
+							$(this).css("width", "65");
+
+						});
+
+						$(".pageNumber").mouseout(function() {
+
+							if ($(this).is(".p" + modifyPagingCount) === true) {
+
+								$(this).css("width", "65");
+
+							} else {
+
+								$(this).css("width", "50");
+							}
+						});
+
+						
 						<c:forEach items="${pConList}" var="pCon" varStatus="status">
 
 						var media = "${pCon.media}";
@@ -97,7 +119,7 @@
 
 											}
 
-											alert(modifyMaxPage);
+// 											alert(modifyMaxPage);
 										});
 
 						/*삭제 버튼*/
@@ -150,72 +172,102 @@
 						$(".p1").click(function() {
 							$("#modifyCarousel").carousel(0);
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 1;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						$(".p2").click(function() {
 							$("#modifyCarousel").carousel(1);
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 2;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						$(".p3").click(function() {
 							$("#modifyCarousel").carousel(2);
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 3;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						$(".p4").click(function() {
 							$("#modifyCarousel").carousel(3);
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 4;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						$(".p5").click(function() {
 							$("#modifyCarousel").carousel(4);
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 5;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						$(".p6").click(function() {
 							$("#modifyCarousel").carousel(5);
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 6;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						$(".p7").click(function() {
 							$("#modifyCarousel").carousel(6);
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 7;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						$(".p8").click(function() {
 							$("#modifyCarousel").carousel(7);
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 8;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						$(".p9").click(function() {
 							$("#modifyCarousel").carousel(8);
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 9;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						$(".p10").click(function() {
 							$("#modifyCarousel").carousel(9);
 							$("#modifyAddBtn").hide();
 							modifyModifyCon();
+							modifyPrePagingCount = modifyPagingCount;
 							modifyPagingCount = 10;
 							checkModifyMaxPage();
+							$(".p" + modifyPagingCount).css("width", "65");
+							$(".p" + modifyPrePagingCount).css("width", "50");
 						});
 
 						/* 이미지 드래그 앤 드롭 */
@@ -349,9 +401,9 @@
 
 		for (var s = 0; s < modifyMaxPage; s++) {
 
-			alert(s + "페이지\n" + "이미지 : " + modifyImgArr[s] + "\nURL : "
-					+ modifyUrlArr[s] + "\n내용 : " + modifyConArr[s]
-					+ "\nmodifyMaxPage : " + modifyMaxPage);
+// 			alert(s + "페이지\n" + "이미지 : " + modifyImgArr[s] + "\nURL : "
+// 					+ modifyUrlArr[s] + "\n내용 : " + modifyConArr[s]
+// 					+ "\nmodifyMaxPage : " + modifyMaxPage);
 
 			if ($("#mta" + modifyPagingCount).val() == "") {
 				alert("내용이 없는 페이지가 있습니다.");
@@ -398,8 +450,8 @@
 			},
 			error : function(request, status, error) {
 
-				alert("code:" + request.status + "\n\n" + "message:"
-						+ request.responseText + "\n\n" + "error:" + error);
+// 				alert("code:" + request.status + "\n\n" + "message:"
+// 						+ request.responseText + "\n\n" + "error:" + error);
 
 			},
 			complete : function() {
@@ -412,11 +464,72 @@
 			}
 		});
 	}
+
+	// modifyknowhow -> x 버튼 누르면 임시 저장후 모달 끄기
+	function mSaveAndCanclePosting(pNo) {
+		
+		for (var s = 0; s < modifyMaxPage; s++) {
+			if ($("#mta" + modifyPagingCount).val() == "") {
+				alert("내용이 없는 페이지가 있습니다. 임시 저장을 위해 내용을 입력해주세요.");
+				return;
+			}
+		}
+
+		modifyConArr[modifyPagingCount - 1] = $("#mta" + modifyPagingCount).val();
+
+		$.ajaxSettings.traditional = true;
+		var formData = new FormData();
+		formData.append("mpage", modifyMaxPage);
+
+		for (var k = 0; k < modifyMaxPage; k++) {
+			formData.append("imgArr" + k, modifyImgArr[k]);
+			modifyConArr[k] = modifyConArr[k] + "q1z";
+			modifyUrlArr[k] = modifyUrlArr[k] + "q1z";
+		}
+
+		formData.append("urlArr", modifyUrlArr);
+		formData.append("conArr", modifyConArr);
+
+		$.ajax({
+			type : 'POST',
+			url : 'completeWrite',
+			data : formData,
+			processData : false,
+			contentType : false,
+			success : function(responseData, statusText, xhr) {
+				
+				var result = responseData;
+				
+				alert("임시 저장 되었습니다.");
+				$("#modifyKnowhow").modal('hide');
+
+			},
+			beforeSend : function() {
+
+				// 이미지 보여주기
+				$('.wrap-loading').removeClass('display-none');
+
+			},
+			error : function(request, status, error) {
+
+// 				alert("code:" + request.status + "\n\n" + "message:"
+// 						+ request.responseText + "\n\n" + "error:" + error);
+
+			},
+			complete : function() {
+
+				// 이미지 감추기 처리
+				$('.wrap-loading').addClass('display-none');
+
+			}
+		});
+	}
+	
 </script>
 <div class="modal-content" id="addContent">
 				<div id="addWrap">
 					<div class="modal-header" id="header">
-						<div id="Closeimg"><a href="#"><img style="width:20px;" src="resources/images/close.png"/></a></div>
+						<div id="Closeimg" onclick="mSaveAndCanclePosting('${post.pNo}')"><img style="width:20px;" src="resources/images/close.png"/></div>
 						<div id="addTitle">${post.title }</div>
 						<div id="addCreateDate">${post.wDate }</div>
 						<div id="Clear" onclick="modifyClearPage()"><img style="width:20px;" src="resources/images/clear.png"/></div>
