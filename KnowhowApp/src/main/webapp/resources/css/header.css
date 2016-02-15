@@ -209,6 +209,16 @@
 	color:white;
 }
 
+#c1,#c2{
+	padding-left: 0px;
+	padding-right:0px;
+	border: 8px solid #BFBCBC;
+	border-radius:6px;
+	overflow: auto;
+	overflow-x:hidden;
+	height: 400px;
+}
+
 /*내가 최근 본 리스트*/
 
 	#recentlyTitle{
@@ -219,10 +229,13 @@
 	}
 
 	.recentlyViewedWrap{
-		
+		padding-left:0px;
+		padding-right:0px;
 		padding-top:5px;
-		width:100%;
+		width:90%;
 		height: 80px;
+		margin-left: 20px;
+		margin-top: 10px;
 	}
 
 	.recentlyListTitle{
@@ -231,6 +244,15 @@
 	
 	.recentlyListDetailTitle{
 		text-align: inherit;
+	}
+	
+	.recentlyListDetailTitle:link{
+		text-decoration: none;
+		
+	}
+	
+	.recentlyListDetailTitle:visted{
+		text-decoration: none;
 	}
 	
 	.recentlyClose{
@@ -245,8 +267,13 @@
 
 	.recentlyCount{
 		float:left;
+		margin-right: 30px;
 	}
 
+	.recentlyNickname{
+		float:left;
+	}
+	
 	.recentlyLine{
 		border-bottom: 1px solid #BFBCBC;
 	}
@@ -261,10 +288,13 @@
 	}
 
 	.mostViewedWrap{
-		
+		padding-left:0px;
+		padding-right:0px;
 		padding-top:5px;
-		width:100%;
+		width:90%;
 		height: 80px;
+		margin-left: 20px;
+		margin-top: 10px;
 	}
 
 	.mostListTitle{
@@ -273,6 +303,15 @@
 	
 	.mostListDetailTitle{
 		text-align: inherit;
+	}
+	
+	.mostListDetailTitle:link{
+		text-decoration: none;
+		
+	}
+	
+	.mostListDetailTitle:visted{
+		text-decoration: none;
 	}
 	
 	.mostClose{
@@ -287,14 +326,26 @@
 
 	.mostCount{
 		float:left;
+		margin-right: 30px;
 	}
 
+	.mostNickname{
+		float:left;
+	}
+	
 	.mostLine{
 		border-bottom: 1px solid #BFBCBC;
 	}
 
 	.myPageBlankLine{
+		width:100%;
 		height: 15px;
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	
+	.mostBlankLine{
+		margin-bottom: 50px;
 	}
 
 ::-webkit-scrollbar {width: 8px; height: 8px; border: 3px solid #fff; }
