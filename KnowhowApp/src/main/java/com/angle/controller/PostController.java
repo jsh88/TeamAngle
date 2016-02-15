@@ -269,6 +269,7 @@ public class PostController {
 		postService.recommendPost(request, session);
 
 		return String.valueOf((boolean) request.getAttribute("isState"));
+		
 	}
 
 }
