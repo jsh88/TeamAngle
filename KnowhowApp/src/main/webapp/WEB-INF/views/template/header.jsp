@@ -118,7 +118,7 @@
 						Edit</button>
 					<button class="btn col-sm-3 col-xs-3 btn-choose-height"
 						onclick="startPosting()">Writing Post</button>
-					<button class="btn col-sm-3 col-xs-3 btn-choose-height" onclick="modalOpen('11')">MyPost</button>
+					<button class="btn col-sm-3 col-xs-3 btn-choose-height" onclick="showTemp()">MyPost</button>
 				</div>
 
 				<!-- 마이페이지 - 최근 본 knowhow -->

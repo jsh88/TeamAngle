@@ -593,7 +593,7 @@
 				height: 740px;
 				float:left;
 				border:10px solid #535353;
-				
+
 		}
 			
 		#detailDialog{
@@ -746,7 +746,9 @@
 			margin-left: 20px;
 			font-size: 28px;
 			font-weight: bold;
-			width:95%;
+			width:510px;
+			height: 40px;
+			overflow: hidden;
 		}
 			
 		#closeimg{

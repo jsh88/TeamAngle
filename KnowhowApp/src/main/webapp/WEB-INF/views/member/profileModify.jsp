@@ -40,8 +40,8 @@ $(function () {
 				
 			},
 			error : function(xhr, statusText, responseData) {
-				alert("error : " + statusText + "." + xhr.status
-						+ " - " + xhr.responseText);
+// 				alert("error : " + statusText + "." + xhr.status
+// 						+ " - " + xhr.responseText);
 			}
 		});
 	});

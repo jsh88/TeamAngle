@@ -203,7 +203,7 @@ public class MemberController {
 		System.out.println(result);
 
 		ModelAndView mav = new ModelAndView();
-
+		
 		model.addAttribute("login/loginAjax");
 		if(result.equals("c")){
 			System.out.println("My lately lookup");
@@ -211,10 +211,7 @@ public class MemberController {
 			session.setAttribute("lately", lately) ;
 			List<Post> most = (List<Post>)memberService.getMyMostLookupPost(id);
 			session.setAttribute("most", most);
-//			memberService.getMyPostByViews(request, session);
-//			memberService.getMyPostByRecommand(request, session);
-//			memberService.getMyPostByComments(request, session);
-//			memberService.getMyLatelyPost(request, session);
+			
 		}
 		return result;
 
