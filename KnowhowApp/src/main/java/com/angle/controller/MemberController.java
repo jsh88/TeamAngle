@@ -1,7 +1,6 @@
 package com.angle.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +17,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.angle.domain.Member;
-import com.angle.domain.Post;
 import com.angle.mail.Email;
 import com.angle.mail.EmailSender;
 import com.angle.service.MemberService;
@@ -206,11 +204,10 @@ public class MemberController {
 		
 		model.addAttribute("login/loginAjax");
 		if(result.equals("c")){
-			System.out.println("My lately lookup");
-			List<Post> lately = (List<Post>)memberService.getMyLatelyLookupPost(id);
-			session.setAttribute("lately", lately) ;
-			List<Post> most = (List<Post>)memberService.getMyMostLookupPost(id);
-			session.setAttribute("most", most);
+			memberService.getMyLatelyLookupPost(request, session);
+			model.addAttribute("knowhow/myLatelyViewAjax");
+			memberService.getMyMostLookupPost(request, session);
+			model.addAttribute("knowhow/myMostViewAjax");
 			
 		}
 		return result;
@@ -258,6 +255,22 @@ public class MemberController {
 		memberService.getSendCodeCheck(req, res, session);
 		return "index";
 
+	}
+	
+	// 내가 작성한 포스트 조회수순
+	@RequestMapping("/getMyLatelyLookupPost")
+	public String getMyLatelyLookupPost(HttpServletRequest req, HttpSession session, Model model){
+		String result = memberService.getMyLatelyLookupPost(req, session);
+		model.addAttribute("knowhow/myLatelyViewAjax");
+		return "knowhow/myLatelyViewAjax";
+	}
+	
+	// 내가 작성한 포스트 조회수순
+	@RequestMapping("/getMyMostLookupPost")
+	public String getMyMostLookupPost(HttpServletRequest req, HttpSession session, Model model){
+		String result = memberService.getMyMostLookupPost(req, session);
+		model.addAttribute("knowhow/myMostViewAjax");
+		return "knowhow/myMostViewAjax";
 	}
 	
 	// 내가 작성한 포스트 조회수순
