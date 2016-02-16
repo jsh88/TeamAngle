@@ -1,5 +1,7 @@
 package com.angle.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.angle.domain.MemberTag;
 import com.angle.service.TagService;
 
 @Controller
@@ -60,12 +63,11 @@ public class TagController {
 
 	// introTagList
 	@RequestMapping(value = "introTagList")
-	@ResponseBody
 	public String introTagList(HttpServletRequest request) {
 
 		tagService.introTagList(request);
 
-		return "success";
+		return "intro";
 	}
 
 	// 검색 추천 태그
@@ -93,5 +95,18 @@ public class TagController {
 	public void autoSearch(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws Exception {
 		tagService.autoSearch(request, response, session);
+	}
+
+	// get MemberTag
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "getMemberTag", method = RequestMethod.POST)
+	public String getMemberTag(HttpServletRequest request, HttpSession session) {
+
+		tagService.getMemberTag(request, session);
+
+		if (((ArrayList<MemberTag>) request.getAttribute("mTagList")).isEmpty())
+			return "templete/empty";
+		else
+			return "main/innerPopOverTags";
 	}
 }

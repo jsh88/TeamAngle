@@ -10,13 +10,13 @@
 		<c:forEach var="myp" items="${ mypList }">
 
 			<div class="knowhowlist">
-				<span><a href="#"><b>${ myp.title }</b></a></span>
+				<span onclick="morePost('${myp.pNo}')"><a href="#"><b>${ myp.title }</b></a></span>
 				<div id="list">
 					<span class="l">${ myp.wDate }</span> <span class="l"
 						onclick="modifyPostStart('${ myp.pNo }')"><a href="#"><img
-							style="width: 30px;" src="resources/images/modify.png" /></a></span> <span><a
-						href="#"><img style="width: 30px;"
-							src="resources/images/delete.png" /></a></span>
+							style="width: 30px;" src="resources/images/modify.png" /></a></span> <span
+						onclick="delPost(this, '${myp.pNo}')"><a href="#"><img
+							style="width: 30px;" src="resources/images/delete.png" /></a></span>
 				</div>
 			</div>
 

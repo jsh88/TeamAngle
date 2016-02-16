@@ -23,4 +23,6 @@ public interface TagDao {
 
 	public List<String> getTagList(String keyword);
 
+	public ArrayList<MemberTag> getMemberTag(String id);
+
 }

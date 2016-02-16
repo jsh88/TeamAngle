@@ -153,7 +153,7 @@ public class TagServiceImpl implements TagService {
 
 		ArrayList<MemberTag> mTagList = (ArrayList<MemberTag>) luceneKoreanAnalyzer
 				.getTags(request.getParameter("word"));
-		
+
 		if (!mTagList.isEmpty()) {
 
 			if ((m = (Member) session.getAttribute("member")) != null) {
@@ -161,8 +161,11 @@ public class TagServiceImpl implements TagService {
 				mTagList.get(0).setId(m.getId());
 
 				if (!Boolean.parseBoolean(request.getParameter("isSearch"))) {
+
 					tagDao.addMemberTag(mTagList);
+
 					session.setAttribute("mTagList", mTagList);
+
 				}
 			}
 
@@ -195,5 +198,12 @@ public class TagServiceImpl implements TagService {
 			}
 		}
 		out.close();
+	}
+
+	@Override
+	public void getMemberTag(HttpServletRequest request, HttpSession session) {
+
+		request.setAttribute("mTagList", tagDao.getMemberTag(request.getParameter("id")));
+
 	}
 }

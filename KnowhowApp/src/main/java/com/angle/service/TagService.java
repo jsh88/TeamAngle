@@ -20,4 +20,6 @@ public interface TagService {
 
 	void autoSearch(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception;
 
+	void getMemberTag(HttpServletRequest request, HttpSession session);
+
 }
