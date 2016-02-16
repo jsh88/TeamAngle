@@ -12,9 +12,9 @@ public class MainController {
 		return "forward:getRecommendationTag";
 	}
 	@RequestMapping(value = { "intro" })
-	public String intro() {		
+	public String intro() {
 
-		return "intro";
+		return "forward:introTagList";
 	}
 	
 	@RequestMapping(value ={"myPostList"})

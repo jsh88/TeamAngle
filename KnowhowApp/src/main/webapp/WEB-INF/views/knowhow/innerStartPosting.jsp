@@ -3,11 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <script>
-	$(".atitle").click(function() {
-		var t = $(this).text();
-		$("#addtitle").val(t);
-		preventDefault();
-	});
+// 	$(".atitle").click(function() {
+// 		var t = $(this).text();
+// 		$("#addtitle").val(t);
+// 		preventDefault();
+// 	});
 </script>
 <c:if test="${pList eq null}">
 	<br>

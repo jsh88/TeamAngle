@@ -3,41 +3,41 @@ var postCount = 1;
 var searchCount = 1;
 var searchWord = "";
 var isSearch = false;
+var isModify = false;
 
 $(document)
 		.ready(
-				
+
 				function() {
 
 					$('#navtag').css('width', $(window).width());
-					
+
 					// 스크롤 이벤트
 					$(window).scroll(
 							function() {
 								if ($(window).scrollTop() >= $(document)
 										.height()
 										- $(window).height()) {
-									
-									if(!searchWord) {
-										
+
+									if (!searchWord) {
+
 										morePostView();
-										
-									} else if(searchWord) {
-										
+
+									} else if (searchWord) {
+
 										moreSearchPostView();
-										
+
 									}
 								}
 							});
-					
+
 					for (var i = 0; i < 5; i++) {
 						getBestPostView();
 						getPostView();
 						bestPostCount++;
 						postCount++;
 					}
-					
-					
+
 					/* myPage JQuery Div 움직임 */
 
 					$('#menu').hide();
@@ -201,36 +201,45 @@ $(document)
 					});
 
 					$("#listBox").hide();
-					$("#search_txt").on("keyup", function(e) {
-						var keyword = $("#search_txt").val();
-						var params = "keyword=" + keyword;
-						$.ajax({
-							type: "POST",
-							url: "autoSearch",
-							data: params,
-							success: function(data, textStatus, xhr) {
-								$("#listBox").show()	
-									.css("border", "1px solid #a8a8a8")
-									.css("border-top", "1px solid #1EB501")
-									.css("z-index", "9999");
-								
-								$("#resultList").html(data);
-								$("#resultList li").hover(function() {
-									$(this).addClass("hover").css("cursor", "pointer");					
-								}, function() {
-									$(this).removeClass("hover");
+					$("#search_txt").on(
+							"keyup",
+							function(e) {
+								var keyword = $("#search_txt").val();
+								var params = "keyword=" + keyword;
+								$.ajax({
+									type : "POST",
+									url : "autoSearch",
+									data : params,
+									success : function(data, textStatus, xhr) {
+										$("#listBox").show().css("border",
+												"1px solid #a8a8a8").css(
+												"border-top",
+												"1px solid #1EB501").css(
+												"z-index", "9999");
+
+										$("#resultList").html(data);
+										$("#resultList li").hover(
+												function() {
+													$(this).addClass("hover")
+															.css("cursor",
+																	"pointer");
+												},
+												function() {
+													$(this)
+															.removeClass(
+																	"hover");
+												});
+									},
+									error : function(xhr, textStatus) {
+									}
 								});
-							},
-							error: function(xhr, textStatus) {
-							}
-						});		 
-					}).on("blur", function(e) {
+							}).on("blur", function(e) {
 						setTimeout(function() {
 							$("#listBox").hide();
-						}, 150);	
+						}, 150);
 					}).on("focus", function(e) {
 						$("#listBox").show();
-					});	
+					});
 					$("#resultList").on("click", "li.searchList", function(e) {
 						$("#toId").val($(this).text());
 						$("#listBox").hide();
@@ -238,9 +247,9 @@ $(document)
 
 				});
 // ready end
-//@
+// @
 function getSearchPostView() {
-	
+
 	// 폼 데이터 받기 or Append or 인자로 form id)
 	var formData = new FormData();
 
@@ -257,9 +266,9 @@ function getSearchPostView() {
 		contentType : false,
 
 		success : function(responseData, statusText, xhr) {
-			
+
 			isSearch = true;
-			
+
 			var result = responseData;
 
 			$('#bestPost').html($('#bestPost').html() + result);
@@ -285,6 +294,10 @@ function getSearchPostView() {
 			// 이미지 감추기 처리
 			// $(location).attr('href', "이동할 페이지");
 			$('.wrap-loading').addClass('display-none');
+
+			if (searchCount - 1 % 5 == 0) {
+				isSearch = false;
+			}
 
 		}
 	});
@@ -474,7 +487,7 @@ function startPosting() {
 	});
 }
 
-function showViews(id){
+function showTemp(id){
 	var formData = new FormData();
 	formData.append("id", id);
 	$.ajax({
@@ -489,66 +502,161 @@ function showViews(id){
 			modalOpen(11);
 			var result = responseData;
 			$('#listDiv').html(result);
-			 
+			
 		},error : function(request, status, error) {
+			
+			// 에러 로직, 에러 로그 확인
+			
+		}
+	});
+}
+
+function showViews(id){
+	var formData = new FormData();
+	formData.append("id", id);
+	$.ajax({
+		type : 'post',
+		url : 'getMyPostByViews',
+		data : formData,
+		processData : false,
+		contentType : false,
+
+		success : function(responseData, statusText, xhr) {
+
+			modalOpen(11);
+			var result = responseData;
+			$('#listDiv').html(result);
+
+		},
+		beforeSend : function() {
+
+			// 전송 전
+			// 이미지 보여주기
+			$('.wrap-loading').removeClass('display-none');
+
+		},
+		error : function(request, status, error) {
 
 			// 에러 로직, 에러 로그 확인
+
+		},
+		complete : function() {
+
+			// 이미지 감추기 처리
+			// $(location).attr('href', "이동할 페이지");
+			$('.wrap-loading').addClass('display-none');
 
 		}
 	});
 }
 
-
-function showNews(id){
+function showNews(id) {
 	var formData = new FormData();
 	formData.append("id", id);
 	$.ajax({
-		type:'post',
+		type : 'post',
 		url : 'getMyPostByNews',
 		data : formData,
 		processData : false,
 		contentType : false,
-		
-		success : function(responseData, statusText, xhr){
+
+		success : function(responseData, statusText, xhr) {
 			modalOpen(11);
 			var result = responseData;
 			$('#listDiv').html(result);
+		},
+		beforeSend : function() {
+
+			// 전송 전
+			// 이미지 보여주기
+			$('.wrap-loading').removeClass('display-none');
+
+		},
+		error : function(request, status, error) {
+
+			// 에러 로직, 에러 로그 확인
+
+		},
+		complete : function() {
+
+			// 이미지 감추기 처리
+			// $(location).attr('href', "이동할 페이지");
+			$('.wrap-loading').addClass('display-none');
+
 		}
 	});
 }
 
-function showReply(id){
+function showReply(id) {
 	var formData = new FormData();
 	formData.append("id", id);
 	$.ajax({
-		type:'post',
+		type : 'post',
 		url : 'getMyPostByComments',
 		data : formData,
 		processData : false,
 		contentType : false,
-		
-		success : function(responseData, statusText, xhr){
+
+		success : function(responseData, statusText, xhr) {
 			modalOpen(11);
 			var result = responseData;
 			$('#listDiv').html(result);
+		},
+		beforeSend : function() {
+
+			// 전송 전
+			// 이미지 보여주기
+			$('.wrap-loading').removeClass('display-none');
+
+		},
+		error : function(request, status, error) {
+
+			// 에러 로직, 에러 로그 확인
+
+		},
+		complete : function() {
+
+			// 이미지 감추기 처리
+			// $(location).attr('href', "이동할 페이지");
+			$('.wrap-loading').addClass('display-none');
+
 		}
 	});
 }
 
-function showRcomm(id){
+function showRcomm(id) {
 	var formData = new FormData();
 	formData.append("id", id);
 	$.ajax({
-		type:'post',
+		type : 'post',
 		url : 'getMyPostByRecommand',
 		data : formData,
 		processData : false,
 		contentType : false,
-		
-		success : function(responseData, statusText, xhr){
+
+		success : function(responseData, statusText, xhr) {
 			modalOpen(11);
 			var result = responseData;
 			$('#listDiv').html(result);
+		},
+		beforeSend : function() {
+
+			// 전송 전
+			// 이미지 보여주기
+			$('.wrap-loading').removeClass('display-none');
+
+		},
+		error : function(request, status, error) {
+
+			// 에러 로직, 에러 로그 확인
+
+		},
+		complete : function() {
+
+			// 이미지 감추기 처리
+			// $(location).attr('href', "이동할 페이지");
+			$('.wrap-loading').addClass('display-none');
+
 		}
 	});
 }
@@ -604,7 +712,11 @@ function addKnowhow() {
 
 // startPosting -> 임시 포스트 불러오기
 function modifyTempPost(pNo) {
-
+	
+	$("#startPosting").modal('hide');
+	
+	modifyPostStart(pNo);
+	
 }
 
 function delTempPost(me, pNo) {
@@ -649,8 +761,7 @@ function delTempPost(me, pNo) {
 	});
 }
 
-
-function delPost(pNo) {
+function delPost(me, pNo) {
 
 	$.ajaxSettings.traditional = true;
 	var formData = new FormData();
@@ -669,6 +780,7 @@ function delPost(pNo) {
 			alert("Delete! Post.");
 			// $(me).parent('div').parent('div').next().remove();
 			// $(me).parent('div').parent('div').remove();
+			$(me).parent('div').parent('div').remove();
 
 		},
 		beforeSend : function() {
@@ -777,12 +889,12 @@ function morePostView() {
 }
 
 function moreSearchPostView() {
-	
+
 	for (var i = 0; i < 5; i++) {
 		getSearchPostView();
 		searchCount++;
 	}
-	
+
 }
 
 function modalOpen(selModal) {
@@ -837,4 +949,3 @@ function modalOpen(selModal) {
 	$("#" + modal).modal('show');
 
 }
-

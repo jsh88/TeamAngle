@@ -172,4 +172,37 @@ public class TagDaoImpl implements TagDao {
 			}
 		});
 	}
+
+	@Override
+	public ArrayList<MemberTag> getMemberTag(String id) {
+		
+		return jdbcTemplate.query("select * from memberTag mt, member m where mt.id = m.id and m.id = ?", new Object[] { id },
+				new ResultSetExtractor<ArrayList<MemberTag>>() {
+
+					@Override
+					public ArrayList<MemberTag> extractData(ResultSet rs) throws SQLException, DataAccessException {
+
+						ArrayList<MemberTag> mTagList = new ArrayList<>();
+
+						while (rs.next()) {
+
+							MemberTag mTag = new MemberTag();
+
+							mTag.setId(id);
+							mTag.setfDate(rs.getString("fdate"));
+							mTag.setCount(rs.getInt("count"));
+							mTag.setNickName(rs.getString("nickname"));
+							mTag.setrDate(rs.getString("rdate"));
+							mTag.setTag(rs.getString("tag"));
+							mTag.setWeight(rs.getInt("weight"));
+
+							mTagList.add(mTag);
+
+						}
+
+						return mTagList;
+
+					}
+				});
+	}
 }
