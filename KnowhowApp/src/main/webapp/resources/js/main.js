@@ -110,6 +110,8 @@ $(document)
 												$("#bestLine")
 														.after(
 																"<div class='col-md-12' id='bestPost'></div>");
+												
+												isSearch = false;
 
 												for (var i = 0; i < 10; i++) {
 
@@ -485,7 +487,31 @@ function startPosting() {
 	});
 }
 
-function showViews(id) {
+function showTemp(id){
+	var formData = new FormData();
+	formData.append("id", id);
+	$.ajax({
+		type:'post',
+		url : 'getMyPostByViews',
+		data : formData,
+		processData : false,
+		contentType : false,
+		
+		success : function(responseData, statusText, xhr){
+			
+			modalOpen(11);
+			var result = responseData;
+			$('#listDiv').html(result);
+			
+		},error : function(request, status, error) {
+			
+			// 에러 로직, 에러 로그 확인
+			
+		}
+	});
+}
+
+function showViews(id){
 	var formData = new FormData();
 	formData.append("id", id);
 	$.ajax({
