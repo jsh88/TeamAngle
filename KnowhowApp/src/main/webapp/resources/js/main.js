@@ -487,6 +487,81 @@ function startPosting() {
 	});
 }
 
+function showTempPost(id){
+	var formData = new FormData();
+	formData.append("id", id);
+	
+	$.ajax({
+		type : 'post',
+		url : 'getMyLatelyLookupPost',
+		data : formData,
+		processData : false,
+		contentType : false,
+
+		success : function(responseData, statusText, xhr) {
+			$.ajax({
+				type : 'post',
+				url : 'getMyMostLookupPost',
+				data : formData,
+				processData : false,
+				contentType : false,
+
+				success : function(responseData, statusText, xhr) {
+
+					var result = responseData;
+					$('#c2').html(result);
+					
+				}
+			});
+			var result = responseData;
+			$('#c1').html(result);
+			
+		}
+	});
+}
+
+function myLatelyView(id){
+	var formData = new FormData();
+	formData.append("id", id);
+	$.ajax({
+		type : 'post',
+		url : 'getMyLatelyLookupPost',
+		data : formData,
+		processData : false,
+		contentType : false,
+
+		success : function(responseData, statusText, xhr) {
+
+			var result = responseData;
+			$('#c1').html(result);
+			
+		},error : function(request, status, error) {
+			
+		}
+	});
+}
+
+function myMostView(id){
+	var formData = new FormData();
+	formData.append("id", id);
+	$.ajax({
+		type : 'post',
+		url : 'getMyMostLookupPost',
+		data : formData,
+		processData : false,
+		contentType : false,
+		
+		success : function(responseData, statusText, xhr) {
+			
+			var result = responseData;
+			$('#c2').html(result);
+			
+		},error : function(request, status, error) {
+			
+		}
+	});
+}
+
 function showTemp(id){
 	var formData = new FormData();
 	formData.append("id", id);

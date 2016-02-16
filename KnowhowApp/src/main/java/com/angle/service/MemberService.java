@@ -47,10 +47,6 @@ public interface MemberService {
 
 	public void getMyConcernPost(String id);
 
-	public List<Post> getMyLatelyLookupPost(String id);
-
-	public List<Post> getMyMostLookupPost(String id);
-
 	public void emailCheck(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception;
 
 	public int getSendCodeCheck(HttpServletRequest request, HttpServletResponse response, HttpSession session)
@@ -69,5 +65,9 @@ public interface MemberService {
 	public String getEmail(HttpServletRequest request);
 
 	public void getMyLatelyPost(HttpServletRequest request, HttpSession session);
+
+	public String getMyLatelyLookupPost(HttpServletRequest req, HttpSession session);
+
+	public String getMyMostLookupPost(HttpServletRequest req, HttpSession session);
 
 }
