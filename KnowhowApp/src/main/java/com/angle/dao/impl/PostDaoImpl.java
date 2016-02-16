@@ -470,7 +470,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	public Post getPostInfo(int no) {
 
 		return jdbcTemplate.query(
-				"select pt.*, m.nickname from (select row_number() over (order by wdate desc) no, p.* from post p where p.state = 1 and p.id is not null) pt, member m where no = ? and m.id = pt.id",
+				"select pt.*, m.nickname, m.image from (select row_number() over (order by wdate desc) no, p.* from post p where p.state = 1 and p.id is not null) pt, member m where no = ? and m.id = pt.id",
 				new Object[] { no }, new ResultSetExtractor<Post>() {
 
 					@Override
@@ -487,6 +487,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 							p.setGood(rs.getInt("good")); // 추천
 							p.setId(rs.getString("id")); // 아이디
 							p.setNickName(rs.getString("nickname")); // 닉네임
+							p.setImage(rs.getString("image"));
 
 							// 내용, 미디어
 							jdbcTemplate.queryForObject(
@@ -542,7 +543,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 	public Post getBestPostInfo(int no) {
 
 		return jdbcTemplate.query(
-				"select pt.*, m.nickname from (select row_number() over (order by good desc) no, p.* from post p where p.state = 1 and p.id is not null) pt, member m where no = ? and m.id = pt.id",
+				"select pt.*, m.nickname, m.image from (select row_number() over (order by good desc) no, p.* from post p where p.state = 1 and p.id is not null) pt, member m where no = ? and m.id = pt.id",
 				new Object[] { no }, new ResultSetExtractor<Post>() {
 
 					@Override
@@ -559,6 +560,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 							p.setGood(rs.getInt("good")); // 추천
 							p.setId(rs.getString("id")); // 아이디
 							p.setNickName(rs.getString("nickname")); // 닉네임
+							p.setImage(rs.getString("image"));
 
 							// 내용, 미디어
 							jdbcTemplate.queryForObject(
@@ -618,7 +620,7 @@ public class PostDaoImpl implements PostDao, PostCommentDao {
 		System.out.println(word);
 
 		return jdbcTemplate.query(
-				"select * from (select row_number() over (order by p.good desc, p.count desc) no, p.*, m.nickname from post p, member m where p.id = m.id and p.state = 1 and title like ?) p where no = ?",
+				"select * from (select row_number() over (order by p.good desc, p.count desc) no, p.*, m.nickname, m.image from post p, member m where p.id = m.id and p.state = 1 and title like ?) p where no = ?",
 				new Object[] { "%" + word + "%", no }, new ResultSetExtractor<Post>() {
 
 					@Override
