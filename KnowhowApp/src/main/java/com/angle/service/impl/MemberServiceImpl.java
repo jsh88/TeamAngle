@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -270,19 +271,26 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 	@Override
-	public List<Post> getMyLatelyLookupPost(String id) {
-		List<Post> pList = null;
-		pList = memberDao.getMyLatelyLookupPost(id);
-		return pList;
+	public String getMyLatelyLookupPost(HttpServletRequest req, HttpSession session) {
+		
+		Member m = (Member) session.getAttribute("member");
+		List<Post> lList = memberDao.getMyLatelyLookupPost(m.getId());
+		req.setAttribute("lately", lList);
+		String result = "a";
+		return result;
 	}
 
 	@Override
-	public List<Post> getMyMostLookupPost(String id) {
-		List<Post> pList = null;
-		pList = memberDao.getMyMostLookupPost(id);
-		return pList;
-	}
+	public String getMyMostLookupPost(HttpServletRequest req, HttpSession session) {
+		
+		Member m = (Member) session.getAttribute("member");
+		List<Post> mList = memberDao.getMyMostLookupPost(m.getId());
+		req.setAttribute("most", mList);
+		String result = "a";
 
+		return result;
+	}
+		
 	@Override
 	public void emailCheck(HttpServletRequest request, HttpServletResponse response, HttpSession session)
 			throws Exception {
