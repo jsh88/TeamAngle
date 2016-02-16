@@ -29,23 +29,23 @@ $(function () {
 				
 				var result = responseData;
 				var fileName = result.substring(0, result.indexOf(",,"));
-				alert(fileName);
+// 				alert(fileName);
 				var comment = result.substring(result.indexOf(",,") + 2);
-				alert(comment);
+// 				alert(comment);
 				
 				$("#profile_Img").attr("src", "resources/images/" + fileName);
 				$("#myProfileImage").attr("src", "resources/images/" + fileName);
 				$("#profile_pcom").val(comment);
 				$("#myProfileComment").text(comment);
 				
-				alert("success");
+// 				alert("success");
 				
 				$("#profileModifyPage").modal("hide");
 				
 			},
 			error : function(xhr, statusText, responseData) {
-				alert("error : " + statusText + "." + xhr.status
-						+ " - " + xhr.responseText);
+// 				alert("error : " + statusText + "." + xhr.status
+// 						+ " - " + xhr.responseText);
 			}
 		});
 	});
