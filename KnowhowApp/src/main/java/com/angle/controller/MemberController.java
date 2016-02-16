@@ -212,12 +212,6 @@ public class MemberController {
 			List<Post> most = (List<Post>)memberService.getMyMostLookupPost(id);
 			session.setAttribute("most", most);
 			
-			memberService.getMyPostByViews(request, session);
-			model.addAttribute("knowhow/myKnowhowAjax");
-//			memberService.getMyPostByViews(request, session);
-//			memberService.getMyPostByRecommand(request, session);
-//			memberService.getMyPostByComments(request, session);
-//			memberService.getMyLatelyPost(request, session);
 		}
 		return result;
 
